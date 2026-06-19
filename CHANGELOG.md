@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.1 - 2026-06-19
+
+Repository-surface upgrade.
+
+Added:
+
+- Visual GitHub README hero with banner, badges, preview image, gallery, and 30-second start.
+- `assets/` visual assets for banner, demo preview, and social preview.
+- `docs/` documentation hub with quick start, installation, output formats, agent compatibility, schema, FAQ, and release checklist.
+- `examples/README.md` gallery.
+- Thesis proposal, software architecture, and campaign route demos with generated editable outputs.
+- GitHub Actions validation workflow for route JSON, renderers, and representative outputs.
+
 ## 0.1.0 - 2026-06-19
 
 Initial public release of `tech-route-maker`.
@@ -17,6 +30,19 @@ Added:
 ---
 
 # 更新日志
+
+## 0.1.1 - 2026-06-19
+
+仓库门面增强版本。
+
+新增：
+
+- 带 banner、badge、preview、gallery 和 30 秒上手路径的 GitHub README 首屏。
+- `assets/` 视觉资产，包括 banner、demo preview 和 social preview。
+- `docs/` 文档中心，包括快速开始、安装、输出格式、agent 兼容性、schema、FAQ 和 release checklist。
+- `examples/README.md` 案例图库。
+- 开题/论文计划、软件架构、广告 campaign 三个新案例及其可编辑输出。
+- GitHub Actions 校验工作流。
 
 ## 0.1.0 - 2026-06-19
 

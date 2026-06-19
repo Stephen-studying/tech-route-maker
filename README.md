@@ -1,5 +1,81 @@
 # tech-route-maker
 
+<p align="center">
+  <img src="assets/banner.svg" alt="tech-route-maker banner" width="100%">
+</p>
+
+<p align="center">
+  <a href="README.en.md">English</a> ·
+  <a href="README.zh-CN.md">中文</a> ·
+  <a href="docs/quickstart.md">Quick Start</a> ·
+  <a href="examples/README.md">Gallery</a> ·
+  <a href="docs/faq.md">FAQ</a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/Stephen-studying/tech-route-maker/actions/workflows/validate.yml"><img alt="Validation" src="https://github.com/Stephen-studying/tech-route-maker/actions/workflows/validate.yml/badge.svg"></a>
+  <img alt="License" src="https://img.shields.io/github/license/Stephen-studying/tech-route-maker">
+  <img alt="Outputs" src="https://img.shields.io/badge/outputs-PPTX%20%7C%20SVG%20%7C%20Draw.io%20%7C%20HTML%20%7C%20Mermaid-315C61">
+  <img alt="Agent portable" src="https://img.shields.io/badge/agent--portable-Codex%20%7C%20Claude%20%7C%20Gemini%20%7C%20Cursor-blue">
+</p>
+
+`tech-route-maker` turns papers, project briefs, repositories, and campaign briefs into **editable technical route diagrams**. It asks the user to choose the figure purpose, output formats, layout, and style, then renders source-grounded PPTX, SVG, Draw.io, Excalidraw, Mermaid, HTML, Markdown, and JSON outputs.
+
+![Demo preview](assets/demo-preview.svg)
+
+## Why It Looks Different
+
+Most diagram generators stop at one static picture. `tech-route-maker` keeps a structured `tech-route.json` as the source of truth, so users can rerender the same route into multiple editable formats and revise colors, labels, evidence, or layout later.
+
+## Highlights
+
+| Capability | What it gives users |
+|---|---|
+| Source-grounded route extraction | Keeps evidence and inference labels visible instead of inventing a route. |
+| User-choice gate | Does not guess output format, layout, or visual style from vague wording. |
+| Editable outputs | PPTX shapes, SVG vectors, Draw.io cells, Excalidraw scene JSON, Mermaid, HTML, Markdown, and JSON. |
+| Cross-agent adapters | Codex/OpenAI-style skills, AGENTS.md, Claude, Gemini, Cursor, Copilot, and Aider-compatible files. |
+| Academic and campaign focus | Paper method frameworks, thesis routes, software architecture routes, and advertising campaign routes. |
+| Built-in validation | Checks route structure before rendering and validates example outputs in CI. |
+
+## Gallery
+
+| Academic method framework | Thesis proposal route |
+|---|---|
+| ![Academic method framework](examples/academic-paper-demo/outputs/tech-route.svg) | ![Thesis proposal route](examples/thesis-proposal-demo/outputs/tech-route.svg) |
+
+| Software architecture route | Campaign route |
+|---|---|
+| ![Software architecture route](examples/software-architecture-demo/outputs/tech-route.svg) | ![Campaign route](examples/campaign-route-demo/outputs/tech-route.svg) |
+
+## 30-Second Start
+
+```bash
+git clone https://github.com/Stephen-studying/tech-route-maker.git
+cd tech-route-maker
+python scripts/validate_route.py examples/academic-paper-demo/outputs/tech-route.json
+python scripts/render_all.py examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,html,markdown,json
+```
+
+Open:
+
+```text
+examples/academic-paper-demo/outputs/tech-route.pptx
+examples/academic-paper-demo/outputs/tech-route.svg
+examples/academic-paper-demo/outputs/tech-route.html
+```
+
+## Documentation Map
+
+- [Quick start](docs/quickstart.md)
+- [Installation](docs/installation.md)
+- [Output formats](docs/output-formats.md)
+- [Agent compatibility](docs/agent-compatibility.md)
+- [Route schema](docs/schema.md)
+- [Gallery and demos](examples/README.md)
+- [FAQ](docs/faq.md)
+- [Release checklist](docs/release-checklist.md)
+
 Detailed documentation:
 
 - English: [README.en.md](README.en.md)

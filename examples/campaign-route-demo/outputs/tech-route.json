@@ -1,0 +1,119 @@
+{
+  "title": "Campaign Strategy Route",
+  "subtitle": "Research-tool launch campaign demo",
+  "audience": "advertising",
+  "figure_subtype": "campaign_route",
+  "layout": "campaign-funnel",
+  "style": "advertising-clean-campaign",
+  "reader_question": "How does the campaign move from audience insight to measurable adoption?",
+  "reader_path": ["Audience", "Insight", "Message", "Creative", "Channels", "Measurement", "Optimization"],
+  "metadata": {
+    "source_scope": "examples/campaign-route-demo/source/campaign-brief.md",
+    "generated_by": "tech-route-maker",
+    "selected_output_formats": ["pptx", "svg", "drawio", "html", "markdown", "json"],
+    "demo": true
+  },
+  "stages": [
+    {
+      "id": "audience",
+      "title": "Audience",
+      "summary": "Identify who the campaign must persuade.",
+      "nodes": [
+        {
+          "id": "audience_segments",
+          "label": "Map user segments",
+          "detail": "Target graduate students, lab managers, and academic teams with different workflow needs.",
+          "tag": "input",
+          "evidence": [{"kind": "document", "path": "examples/campaign-route-demo/source/campaign-brief.md", "note": "Audience"}]
+        }
+      ]
+    },
+    {
+      "id": "insight",
+      "title": "Insight",
+      "summary": "Find the trust driver behind adoption.",
+      "nodes": [
+        {
+          "id": "insight_editable",
+          "label": "Lead with editability",
+          "detail": "Users trust outputs more when visuals remain editable and evidence-linked.",
+          "tag": "method",
+          "evidence": [{"kind": "document", "path": "examples/campaign-route-demo/source/campaign-brief.md", "note": "Insight"}]
+        }
+      ]
+    },
+    {
+      "id": "message",
+      "title": "Message",
+      "summary": "Translate insight into campaign positioning.",
+      "nodes": [
+        {
+          "id": "message_positioning",
+          "label": "Position workflow value",
+          "detail": "Frame the product as agent-assisted source-to-editable-diagram workflow.",
+          "tag": "method",
+          "evidence": [{"kind": "document", "path": "examples/campaign-route-demo/source/campaign-brief.md", "note": "Strategy"}]
+        },
+        {
+          "id": "message_proof",
+          "label": "Show before and after",
+          "detail": "Use problem hook, evidence-first promise, demo output, and use-case proof.",
+          "tag": "implementation",
+          "evidence": [{"kind": "document", "path": "examples/campaign-route-demo/source/campaign-brief.md", "note": "Creative route"}]
+        }
+      ]
+    },
+    {
+      "id": "channels",
+      "title": "Channels",
+      "summary": "Distribute the message through proof-oriented channels.",
+      "nodes": [
+        {
+          "id": "channels_github",
+          "label": "Use GitHub as hub",
+          "detail": "Anchor the campaign in the README, examples, templates, and visible demo outputs.",
+          "tag": "deployment",
+          "evidence": [{"kind": "document", "path": "examples/campaign-route-demo/source/campaign-brief.md", "note": "GitHub README and templates"}]
+        },
+        {
+          "id": "channels_content",
+          "label": "Publish demo content",
+          "detail": "Share short video, social posts, lab demo deck, and community templates.",
+          "tag": "deployment",
+          "evidence": [{"kind": "document", "path": "examples/campaign-route-demo/source/campaign-brief.md", "note": "Channel route"}]
+        }
+      ]
+    },
+    {
+      "id": "measurement",
+      "title": "Measurement",
+      "summary": "Connect channel activity to adoption signals.",
+      "nodes": [
+        {
+          "id": "measurement_metrics",
+          "label": "Track adoption signals",
+          "detail": "Measure GitHub stars, demo runs, template downloads, issue feedback, and trials.",
+          "tag": "validation",
+          "evidence": [{"kind": "document", "path": "examples/campaign-route-demo/source/campaign-brief.md", "note": "Measurement"}]
+        },
+        {
+          "id": "measurement_optimize",
+          "label": "Optimize message route",
+          "detail": "Refine messaging based on drop-off, issue themes, and output-quality feedback.",
+          "tag": "feedback",
+          "evidence": [{"kind": "document", "path": "examples/campaign-route-demo/source/campaign-brief.md", "note": "Optimization"}]
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {"from": "audience_segments", "to": "insight_editable", "label": "reveals"},
+    {"from": "insight_editable", "to": "message_positioning", "label": "shapes"},
+    {"from": "message_positioning", "to": "message_proof", "label": "proves"},
+    {"from": "message_proof", "to": "channels_github", "label": "anchors"},
+    {"from": "channels_github", "to": "channels_content", "label": "extends"},
+    {"from": "channels_content", "to": "measurement_metrics", "label": "drives"},
+    {"from": "measurement_metrics", "to": "measurement_optimize", "label": "feeds back"},
+    {"from": "measurement_optimize", "to": "message_positioning", "label": "iterates"}
+  ]
+}

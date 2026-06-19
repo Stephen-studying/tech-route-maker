@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="1306" viewBox="0 0 920 1306">
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#2563EB"/></marker>
+</defs>
+<rect width="100%" height="100%" fill="#FFFFFF"/>
+<text x="460.0" y="36" text-anchor="middle" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#1F2937">Thesis Proposal Technical Route</text>
+<text x="460.0" y="60" text-anchor="middle" font-size="13" font-family="Arial, Helvetica, sans-serif" fill="#64748B">Data-driven PV module degradation assessment demo</text>
+<rect x="351.0" y="134.0" width="218.0" height="132.0" rx="12" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.5"/>
+<rect x="351.0" y="134.0" width="218.0" height="38" rx="12" fill="#1D4ED8"/>
+<text x="460.0" y="158.0" text-anchor="middle" font-size="14" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#FFFFFF">Research Question</text>
+<rect x="254.0" y="320.0" width="412.0" height="132.0" rx="12" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.5"/>
+<rect x="254.0" y="320.0" width="412.0" height="38" rx="12" fill="#1D4ED8"/>
+<text x="460.0" y="344.0" text-anchor="middle" font-size="14" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#FFFFFF">Source Evidence</text>
+<rect x="254.0" y="506.0" width="412.0" height="132.0" rx="12" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.5"/>
+<rect x="254.0" y="506.0" width="412.0" height="38" rx="12" fill="#1D4ED8"/>
+<text x="460.0" y="530.0" text-anchor="middle" font-size="14" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#FFFFFF">Feature Route</text>
+<rect x="254.0" y="692.0" width="412.0" height="132.0" rx="12" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.5"/>
+<rect x="254.0" y="692.0" width="412.0" height="38" rx="12" fill="#1D4ED8"/>
+<text x="460.0" y="716.0" text-anchor="middle" font-size="14" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#FFFFFF">Modeling</text>
+<rect x="254.0" y="878.0" width="412.0" height="132.0" rx="12" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.5"/>
+<rect x="254.0" y="878.0" width="412.0" height="38" rx="12" fill="#1D4ED8"/>
+<text x="460.0" y="902.0" text-anchor="middle" font-size="14" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#FFFFFF">Validation</text>
+<rect x="351.0" y="1064.0" width="218.0" height="132.0" rx="12" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.5"/>
+<rect x="351.0" y="1064.0" width="218.0" height="38" rx="12" fill="#1D4ED8"/>
+<text x="460.0" y="1088.0" text-anchor="middle" font-size="14" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#FFFFFF">Thesis Output</text>
+<line x1="460.0" y1="219.0" x2="363.0" y2="405.0" stroke="#2563EB" stroke-width="2" marker-end="url(#arrow)" opacity="0.78"/>
+<text x="411.5" y="306.0" text-anchor="middle" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#64748B">requires evidence</text>
+<line x1="363.0" y1="405.0" x2="557.0" y2="405.0" stroke="#2563EB" stroke-width="2" marker-end="url(#arrow)" opacity="0.78"/>
+<text x="460.0" y="399.0" text-anchor="middle" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#64748B">prepares</text>
+<line x1="557.0" y1="405.0" x2="363.0" y2="591.0" stroke="#2563EB" stroke-width="2" marker-end="url(#arrow)" opacity="0.78"/>
+<text x="460.0" y="492.0" text-anchor="middle" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#64748B">feeds</text>
+<line x1="363.0" y1="591.0" x2="557.0" y2="591.0" stroke="#2563EB" stroke-width="2" marker-end="url(#arrow)" opacity="0.78"/>
+<text x="460.0" y="585.0" text-anchor="middle" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#64748B">filters</text>
+<line x1="557.0" y1="591.0" x2="363.0" y2="777.0" stroke="#2563EB" stroke-width="2" marker-end="url(#arrow)" opacity="0.78"/>
+<text x="460.0" y="678.0" text-anchor="middle" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#64748B">trains</text>
+<line x1="363.0" y1="777.0" x2="557.0" y2="777.0" stroke="#2563EB" stroke-width="2" marker-end="url(#arrow)" opacity="0.78"/>
+<text x="460.0" y="771.0" text-anchor="middle" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#64748B">qualifies</text>
+<line x1="557.0" y1="777.0" x2="363.0" y2="963.0" stroke="#2563EB" stroke-width="2" marker-end="url(#arrow)" opacity="0.78"/>
+<text x="460.0" y="864.0" text-anchor="middle" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#64748B">tests</text>
+<line x1="363.0" y1="963.0" x2="557.0" y2="963.0" stroke="#2563EB" stroke-width="2" marker-end="url(#arrow)" opacity="0.78"/>
+<text x="460.0" y="957.0" text-anchor="middle" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#64748B">checks</text>
+<line x1="557.0" y1="963.0" x2="460.0" y2="1149.0" stroke="#2563EB" stroke-width="2" marker-end="url(#arrow)" opacity="0.78"/>
+<text x="508.5" y="1050.0" text-anchor="middle" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#64748B">supports</text>
+<g class="node" data-node="question_define" style="cursor:pointer">
+<rect x="371.0" y="190.0" width="178.0" height="58.0" rx="9" fill="#FFFFFF" stroke="#60A5FA" stroke-width="1.6"/>
+<text x="460.0" y="217.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#1F2937">Define degradation</text>
+<text x="460.0" y="232.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#1F2937">risk</text>
+</g>
+<g class="node" data-node="evidence_collect" style="cursor:pointer">
+<rect x="274.0" y="376.0" width="178.0" height="58.0" rx="9" fill="#FFFFFF" stroke="#60A5FA" stroke-width="1.6"/>
+<text x="363.0" y="403.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#1F2937">Collect field</text>
+<text x="363.0" y="418.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#1F2937">evidence</text>
+</g>
+<g class="node" data-node="evidence_align" style="cursor:pointer">
+<rect x="468.0" y="376.0" width="178.0" height="58.0" rx="9" fill="#FFFFFF" stroke="#60A5FA" stroke-width="1.6"/>
+<text x="557.0" y="403.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#1F2937">Clean and align</text>
+<text x="557.0" y="418.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#1F2937">data</text>
+</g>
+<g class="node" data-node="features_construct" style="cursor:pointer">
+<rect x="274.0" y="562.0" width="178.0" height="58.0" rx="9" fill="#FFFFFF" stroke="#60A5FA" stroke-width="1.6"/>
+<text x="363.0" y="589.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#1F2937">Construct</text>
+<text x="363.0" y="604.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#1F2937">indicators</text>
+</g>
+<g class="node" data-node="features_select" style="cursor:pointer">
+<rect x="468.0" y="562.0" width="178.0" height="58.0" rx="9" fill="#FFFFFF" stroke="#60A5FA" stroke-width="1.6"/>
+<text x="557.0" y="589.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#1F2937">Select feature</text>
+<text x="557.0" y="604.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#1F2937">groups</text>
+</g>
+<g class="node" data-node="model_fit" style="cursor:pointer">
+<rect x="274.0" y="748.0" width="178.0" height="58.0" rx="9" fill="#FFFFFF" stroke="#60A5FA" stroke-width="1.6"/>
+<text x="363.0" y="775.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#1F2937">Fit interpretable</text>
+<text x="363.0" y="790.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#1F2937">model</text>
+</g>
+<g class="node" data-node="model_uncertainty" style="cursor:pointer">
+<rect x="468.0" y="748.0" width="178.0" height="58.0" rx="9" fill="#FFFFFF" stroke="#60A5FA" stroke-width="1.6"/>
+<text x="557.0" y="782.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#1F2937">Label uncertainty</text>
+</g>
+<g class="node" data-node="validation_cases" style="cursor:pointer">
+<rect x="274.0" y="934.0" width="178.0" height="58.0" rx="9" fill="#FFFFFF" stroke="#60A5FA" stroke-width="1.6"/>
+<text x="363.0" y="961.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#1F2937">Validate on fault</text>
+<text x="363.0" y="976.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#1F2937">cases</text>
+</g>
+<g class="node" data-node="validation_review" style="cursor:pointer">
+<rect x="468.0" y="934.0" width="178.0" height="58.0" rx="9" fill="#FFFFFF" stroke="#60A5FA" stroke-width="1.6"/>
+<text x="557.0" y="961.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#1F2937">Review feature</text>
+<text x="557.0" y="976.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#1F2937">ablation</text>
+</g>
+<g class="node" data-node="output_priority" style="cursor:pointer">
+<rect x="371.0" y="1120.0" width="178.0" height="58.0" rx="9" fill="#FFFFFF" stroke="#60A5FA" stroke-width="1.6"/>
+<text x="460.0" y="1147.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#1F2937">Output inspection</text>
+<text x="460.0" y="1162.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#1F2937">priority</text>
+</g>
+</svg>

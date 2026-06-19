@@ -1,0 +1,141 @@
+{
+  "title": "Thesis Proposal Technical Route",
+  "subtitle": "Data-driven PV module degradation assessment demo",
+  "audience": "academic",
+  "figure_subtype": "thesis_proposal_route",
+  "layout": "vertical-research-route",
+  "style": "academic-blue",
+  "reader_question": "How does the thesis move from monitoring evidence to defensible degradation-risk assessment?",
+  "reader_path": ["Research question", "Source evidence", "Feature route", "Modeling", "Validation", "Thesis output"],
+  "metadata": {
+    "source_scope": "examples/thesis-proposal-demo/source/project-brief.md",
+    "generated_by": "tech-route-maker",
+    "selected_output_formats": ["pptx", "svg", "drawio", "html", "markdown", "json"],
+    "demo": true
+  },
+  "stages": [
+    {
+      "id": "question",
+      "title": "Research Question",
+      "summary": "Define the thesis problem and reader expectation.",
+      "nodes": [
+        {
+          "id": "question_define",
+          "label": "Define degradation risk",
+          "detail": "Frame the thesis around linking outdoor monitoring data with photovoltaic module degradation risk.",
+          "tag": "objective",
+          "evidence": [{"kind": "document", "path": "examples/thesis-proposal-demo/source/project-brief.md", "note": "Research question"}]
+        }
+      ]
+    },
+    {
+      "id": "evidence",
+      "title": "Source Evidence",
+      "summary": "Collect and align multi-source monitoring data.",
+      "nodes": [
+        {
+          "id": "evidence_collect",
+          "label": "Collect field evidence",
+          "detail": "Use inspection records, I-V curves, infrared images, weather logs, and maintenance notes.",
+          "tag": "input",
+          "evidence": [{"kind": "document", "path": "examples/thesis-proposal-demo/source/project-brief.md", "note": "Inputs"}]
+        },
+        {
+          "id": "evidence_align",
+          "label": "Clean and align data",
+          "detail": "Clean records, align time series, screen abnormal samples, and prepare train/test splits.",
+          "tag": "implementation",
+          "evidence": [{"kind": "document", "path": "examples/thesis-proposal-demo/source/project-brief.md", "note": "Preparation"}]
+        }
+      ]
+    },
+    {
+      "id": "features",
+      "title": "Feature Route",
+      "summary": "Convert raw evidence into degradation indicators.",
+      "nodes": [
+        {
+          "id": "features_construct",
+          "label": "Construct indicators",
+          "detail": "Build degradation indicators from electrical, thermal, environmental, and maintenance features.",
+          "tag": "method",
+          "evidence": [{"kind": "document", "path": "examples/thesis-proposal-demo/source/project-brief.md", "note": "Feature construction"}]
+        },
+        {
+          "id": "features_select",
+          "label": "Select feature groups",
+          "detail": "Choose interpretable feature groups that support model explanation and ablation.",
+          "tag": "method",
+          "evidence": [{"kind": "document", "path": "examples/thesis-proposal-demo/source/project-brief.md", "note": "Feature selection"}]
+        }
+      ]
+    },
+    {
+      "id": "modeling",
+      "title": "Modeling",
+      "summary": "Estimate risk with interpretable uncertainty-aware modeling.",
+      "nodes": [
+        {
+          "id": "model_fit",
+          "label": "Fit interpretable model",
+          "detail": "Train a model that maps indicators to degradation-risk scores and factor explanations.",
+          "tag": "method",
+          "evidence": [{"kind": "document", "path": "examples/thesis-proposal-demo/source/project-brief.md", "note": "Interpretable model and risk scoring"}]
+        },
+        {
+          "id": "model_uncertainty",
+          "label": "Label uncertainty",
+          "detail": "Attach uncertainty labels to risk estimates for cautious thesis claims.",
+          "tag": "validation",
+          "evidence": [{"kind": "document", "path": "examples/thesis-proposal-demo/source/project-brief.md", "note": "Uncertainty labeling"}]
+        }
+      ]
+    },
+    {
+      "id": "validation",
+      "title": "Validation",
+      "summary": "Check whether the route supports defensible thesis conclusions.",
+      "nodes": [
+        {
+          "id": "validation_cases",
+          "label": "Validate on fault cases",
+          "detail": "Compare against historical fault cases and cross-site evidence.",
+          "tag": "validation",
+          "evidence": [{"kind": "document", "path": "examples/thesis-proposal-demo/source/project-brief.md", "note": "Historical fault cases and cross-site comparison"}]
+        },
+        {
+          "id": "validation_review",
+          "label": "Review feature ablation",
+          "detail": "Ablate feature groups and use expert review to confirm the result logic.",
+          "tag": "validation",
+          "evidence": [{"kind": "document", "path": "examples/thesis-proposal-demo/source/project-brief.md", "note": "Ablation and expert review"}]
+        }
+      ]
+    },
+    {
+      "id": "output",
+      "title": "Thesis Output",
+      "summary": "Deliver thesis-ready risk interpretation and inspection priority.",
+      "nodes": [
+        {
+          "id": "output_priority",
+          "label": "Output inspection priority",
+          "detail": "Provide risk grade, contributing factors, and recommended inspection priority.",
+          "tag": "output",
+          "evidence": [{"kind": "document", "path": "examples/thesis-proposal-demo/source/project-brief.md", "note": "Output"}]
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {"from": "question_define", "to": "evidence_collect", "label": "requires evidence"},
+    {"from": "evidence_collect", "to": "evidence_align", "label": "prepares"},
+    {"from": "evidence_align", "to": "features_construct", "label": "feeds"},
+    {"from": "features_construct", "to": "features_select", "label": "filters"},
+    {"from": "features_select", "to": "model_fit", "label": "trains"},
+    {"from": "model_fit", "to": "model_uncertainty", "label": "qualifies"},
+    {"from": "model_uncertainty", "to": "validation_cases", "label": "tests"},
+    {"from": "validation_cases", "to": "validation_review", "label": "checks"},
+    {"from": "validation_review", "to": "output_priority", "label": "supports"}
+  ]
+}

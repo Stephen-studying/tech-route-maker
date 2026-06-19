@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Software Architecture Technical Route</title>
+  <style>
+    body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: #1f2937; background: #f8fafc; }
+    .wrap { display: grid; grid-template-columns: minmax(0, 1fr) 340px; min-height: 100vh; }
+    .diagram { overflow: auto; padding: 24px; background: #ffffff; }
+    .panel { border-left: 1px solid #e5e7eb; padding: 20px; background: #f8fafc; }
+    .panel h2 { margin: 0 0 8px; font-size: 18px; }
+    .panel p { line-height: 1.45; }
+    .evidence { margin-top: 12px; padding: 10px; border: 1px solid #e5e7eb; background: #fff; border-radius: 8px; }
+    .muted { color: #64748b; font-size: 13px; }
+    svg { max-width: none; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <main class="diagram"><svg xmlns="http://www.w3.org/2000/svg" width="1468" height="396" viewBox="0 0 1468 396">
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1F2937"/></marker>
+</defs>
+<rect width="100%" height="100%" fill="#FFFFFF"/>
+<text x="734.0" y="36" text-anchor="middle" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#111827">Software Architecture Technical Route</text>
+<text x="734.0" y="60" text-anchor="middle" font-size="13" font-family="Arial, Helvetica, sans-serif" fill="#4B5563">Document-to-report workflow demo</text>
+<rect x="56.0" y="134.0" width="228.0" height="206.0" rx="12" fill="#F9FAFB" stroke="#9CA3AF" stroke-width="1.5"/>
+<rect x="56.0" y="134.0" width="228.0" height="38" rx="12" fill="#374151"/>
+<text x="170.0" y="158.0" text-anchor="middle" font-size="14" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#FFFFFF">Inputs</text>
+<rect x="338.0" y="134.0" width="228.0" height="206.0" rx="12" fill="#F9FAFB" stroke="#9CA3AF" stroke-width="1.5"/>
+<rect x="338.0" y="134.0" width="228.0" height="38" rx="12" fill="#374151"/>
+<text x="452.0" y="158.0" text-anchor="middle" font-size="14" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#FFFFFF">Ingestion</text>
+<rect x="620.0" y="134.0" width="228.0" height="206.0" rx="12" fill="#F9FAFB" stroke="#9CA3AF" stroke-width="1.5"/>
+<rect x="620.0" y="134.0" width="228.0" height="38" rx="12" fill="#374151"/>
+<text x="734.0" y="158.0" text-anchor="middle" font-size="14" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#FFFFFF">Analysis</text>
+<rect x="902.0" y="134.0" width="228.0" height="206.0" rx="12" fill="#F9FAFB" stroke="#9CA3AF" stroke-width="1.5"/>
+<rect x="902.0" y="134.0" width="228.0" height="38" rx="12" fill="#374151"/>
+<text x="1016.0" y="158.0" text-anchor="middle" font-size="14" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#FFFFFF">Rendering</text>
+<rect x="1184.0" y="134.0" width="228.0" height="206.0" rx="12" fill="#F9FAFB" stroke="#9CA3AF" stroke-width="1.5"/>
+<rect x="1184.0" y="134.0" width="228.0" height="38" rx="12" fill="#374151"/>
+<text x="1298.0" y="158.0" text-anchor="middle" font-size="14" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#FFFFFF">Quality Gate</text>
+<line x1="170.0" y1="219.0" x2="452.0" y2="219.0" stroke="#1F2937" stroke-width="2" marker-end="url(#arrow)" opacity="0.78"/>
+<text x="311.0" y="213.0" text-anchor="middle" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#4B5563">uploads</text>
+<line x1="452.0" y1="219.0" x2="452.0" y2="293.0" stroke="#1F2937" stroke-width="2" marker-end="url(#arrow)" opacity="0.78"/>
+<text x="452.0" y="250.0" text-anchor="middle" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#4B5563">normalizes</text>
+<line x1="452.0" y1="293.0" x2="734.0" y2="219.0" stroke="#1F2937" stroke-width="2" marker-end="url(#arrow)" opacity="0.78"/>
+<text x="593.0" y="250.0" text-anchor="middle" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#4B5563">feeds</text>
+<line x1="734.0" y1="219.0" x2="734.0" y2="293.0" stroke="#1F2937" stroke-width="2" marker-end="url(#arrow)" opacity="0.78"/>
+<text x="734.0" y="250.0" text-anchor="middle" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#4B5563">links</text>
+<line x1="734.0" y1="293.0" x2="1016.0" y2="219.0" stroke="#1F2937" stroke-width="2" marker-end="url(#arrow)" opacity="0.78"/>
+<text x="875.0" y="250.0" text-anchor="middle" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#4B5563">annotates</text>
+<line x1="1016.0" y1="219.0" x2="1016.0" y2="293.0" stroke="#1F2937" stroke-width="2" marker-end="url(#arrow)" opacity="0.78"/>
+<text x="1016.0" y="250.0" text-anchor="middle" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#4B5563">records</text>
+<line x1="1016.0" y1="293.0" x2="1298.0" y2="219.0" stroke="#1F2937" stroke-width="2" marker-end="url(#arrow)" opacity="0.78"/>
+<text x="1157.0" y="250.0" text-anchor="middle" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#4B5563">checks</text>
+<line x1="1298.0" y1="219.0" x2="1298.0" y2="293.0" stroke="#1F2937" stroke-width="2" marker-end="url(#arrow)" opacity="0.78"/>
+<text x="1298.0" y="250.0" text-anchor="middle" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#4B5563">releases</text>
+<g class="node" data-node="inputs_files" style="cursor:pointer">
+<rect x="81.0" y="190.0" width="178.0" height="58.0" rx="9" fill="#FFFFFF" stroke="#111827" stroke-width="1.6"/>
+<text x="170.0" y="224.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#111827">Receive user files</text>
+</g>
+<g class="node" data-node="ingestion_service" style="cursor:pointer">
+<rect x="363.0" y="190.0" width="178.0" height="58.0" rx="9" fill="#FFFFFF" stroke="#111827" stroke-width="1.6"/>
+<text x="452.0" y="217.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#111827">Run ingestion</text>
+<text x="452.0" y="232.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#111827">service</text>
+</g>
+<g class="node" data-node="ingestion_store" style="cursor:pointer">
+<rect x="363.0" y="264.0" width="178.0" height="58.0" rx="9" fill="#FFFFFF" stroke="#111827" stroke-width="1.6"/>
+<text x="452.0" y="291.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#111827">Normalize data</text>
+<text x="452.0" y="306.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#111827">store</text>
+</g>
+<g class="node" data-node="analysis_engine" style="cursor:pointer">
+<rect x="645.0" y="190.0" width="178.0" height="58.0" rx="9" fill="#FFFFFF" stroke="#111827" stroke-width="1.6"/>
+<text x="734.0" y="217.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#111827">Run analysis</text>
+<text x="734.0" y="232.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#111827">engine</text>
+</g>
+<g class="node" data-node="analysis_provenance" style="cursor:pointer">
+<rect x="645.0" y="264.0" width="178.0" height="58.0" rx="9" fill="#FFFFFF" stroke="#111827" stroke-width="1.6"/>
+<text x="734.0" y="298.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#111827">Track provenance</text>
+</g>
+<g class="node" data-node="render_reports" style="cursor:pointer">
+<rect x="927.0" y="190.0" width="178.0" height="58.0" rx="9" fill="#FFFFFF" stroke="#111827" stroke-width="1.6"/>
+<text x="1016.0" y="224.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#111827">Render reports</text>
+</g>
+<g class="node" data-node="render_registry" style="cursor:pointer">
+<rect x="927.0" y="264.0" width="178.0" height="58.0" rx="9" fill="#FFFFFF" stroke="#111827" stroke-width="1.6"/>
+<text x="1016.0" y="298.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#111827">Register artifacts</text>
+</g>
+<g class="node" data-node="quality_rules" style="cursor:pointer">
+<rect x="1209.0" y="190.0" width="178.0" height="58.0" rx="9" fill="#FFFFFF" stroke="#111827" stroke-width="1.6"/>
+<text x="1298.0" y="217.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#111827">Apply validation</text>
+<text x="1298.0" y="232.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#111827">rules</text>
+</g>
+<g class="node" data-node="quality_ci" style="cursor:pointer">
+<rect x="1209.0" y="264.0" width="178.0" height="58.0" rx="9" fill="#FFFFFF" stroke="#111827" stroke-width="1.6"/>
+<text x="1298.0" y="298.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#111827">Publish through CI</text>
+</g>
+</svg></main>
+  <aside class="panel">
+    <h2 id="node-title">Select a node</h2>
+    <p id="node-detail" class="muted">Click any diagram node to inspect its detail and evidence.</p>
+    <div id="node-evidence"></div>
+  </aside>
+</div>
+<script>
+const route = {"title": "Software Architecture Technical Route", "subtitle": "Document-to-report workflow demo", "audience": "engineering", "figure_subtype": "software_architecture_route", "layout": "engineering-architecture", "style": "schematic-precision", "reader_question": "How does the system transform user files into validated analytical artifacts?", "reader_path": ["Inputs", "Ingestion", "Processing", "Analysis", "Rendering", "Quality gate", "Artifacts"], "metadata": {"source_scope": "examples/software-architecture-demo/source/project-brief.md", "generated_by": "tech-route-maker", "selected_output_formats": ["pptx", "svg", "drawio", "html", "markdown", "json"], "demo": true}, "stages": [{"id": "inputs", "title": "Inputs", "summary": "Collect user-provided files and configuration.", "nodes": [{"id": "inputs_files", "label": "Receive user files", "detail": "Accept documents, spreadsheets, PDFs, and user configuration as project evidence.", "tag": "input", "evidence": [{"kind": "document", "path": "examples/software-architecture-demo/source/project-brief.md", "note": "Inputs"}]}]}, {"id": "ingestion", "title": "Ingestion", "summary": "Normalize file metadata and parsing jobs.", "nodes": [{"id": "ingestion_service", "label": "Run ingestion service", "detail": "Coordinate upload intake, metadata extraction, and parser-worker dispatch.", "tag": "implementation", "evidence": [{"kind": "document", "path": "examples/software-architecture-demo/source/project-brief.md", "note": "Ingestion service and parser workers"}]}, {"id": "ingestion_store", "label": "Normalize data store", "detail": "Persist normalized source metadata and parsed records for downstream analysis.", "tag": "implementation", "evidence": [{"kind": "document", "path": "examples/software-architecture-demo/source/project-brief.md", "note": "Normalized data store"}]}]}, {"id": "analysis", "title": "Analysis", "summary": "Orchestrate analytical logic and provenance.", "nodes": [{"id": "analysis_engine", "label": "Run analysis engine", "detail": "Use normalized data to drive analytical workflows and report logic.", "tag": "method", "evidence": [{"kind": "document", "path": "examples/software-architecture-demo/source/project-brief.md", "note": "Analysis engine"}]}, {"id": "analysis_provenance", "label": "Track provenance", "detail": "Attach source metadata, validation status, and evidence links to outputs.", "tag": "validation", "evidence": [{"kind": "document", "path": "examples/software-architecture-demo/source/project-brief.md", "note": "Provenance tracking"}]}]}, {"id": "rendering", "title": "Rendering", "summary": "Render human-facing analytical artifacts.", "nodes": [{"id": "render_reports", "label": "Render reports", "detail": "Generate HTML report, editable charts, dashboard view, and Markdown summary.", "tag": "output", "evidence": [{"kind": "document", "path": "examples/software-architecture-demo/source/project-brief.md", "note": "Output artifacts"}]}, {"id": "render_registry", "label": "Register artifacts", "detail": "Store artifact metadata for inspection, handoff, and rerendering.", "tag": "output", "evidence": [{"kind": "document", "path": "examples/software-architecture-demo/source/project-brief.md", "note": "Artifact registry"}]}]}, {"id": "quality", "title": "Quality Gate", "summary": "Validate outputs before handoff.", "nodes": [{"id": "quality_rules", "label": "Apply validation rules", "detail": "Run validation rules, snapshots, regression tests, and user review checkpoints.", "tag": "validation", "evidence": [{"kind": "document", "path": "examples/software-architecture-demo/source/project-brief.md", "note": "Quality controls"}]}, {"id": "quality_ci", "label": "Publish through CI", "detail": "Use local development, CI validation, and packaged examples as the release route.", "tag": "deployment", "evidence": [{"kind": "document", "path": "examples/software-architecture-demo/source/project-brief.md", "note": "Deployment"}]}]}], "edges": [{"id": "edge_1", "from": "inputs_files", "to": "ingestion_service", "label": "uploads", "kind": "flow", "valid": true}, {"id": "edge_2", "from": "ingestion_service", "to": "ingestion_store", "label": "normalizes", "kind": "flow", "valid": true}, {"id": "edge_3", "from": "ingestion_store", "to": "analysis_engine", "label": "feeds", "kind": "flow", "valid": true}, {"id": "edge_4", "from": "analysis_engine", "to": "analysis_provenance", "label": "links", "kind": "flow", "valid": true}, {"id": "edge_5", "from": "analysis_provenance", "to": "render_reports", "label": "annotates", "kind": "flow", "valid": true}, {"id": "edge_6", "from": "render_reports", "to": "render_registry", "label": "records", "kind": "flow", "valid": true}, {"id": "edge_7", "from": "render_registry", "to": "quality_rules", "label": "checks", "kind": "flow", "valid": true}, {"id": "edge_8", "from": "quality_rules", "to": "quality_ci", "label": "releases", "kind": "flow", "valid": true}]};
+const nodes = {};
+for (const stage of route.stages) {
+  for (const node of stage.nodes) {
+    nodes[node.id] = node;
+  }
+}
+document.querySelectorAll("[data-node]").forEach(el => {
+  el.addEventListener("click", () => {
+    const node = nodes[el.dataset.node];
+    if (!node) return;
+    document.getElementById("node-title").textContent = node.label;
+    document.getElementById("node-detail").textContent = node.detail || "No detail recorded.";
+    const evidence = node.evidence || [];
+    document.getElementById("node-evidence").innerHTML = evidence.map(item => {
+      const path = item.path ? `<div><b>Path:</b> ${item.path}</div>` : "";
+      const symbol = item.symbol ? `<div><b>Symbol:</b> ${item.symbol}</div>` : "";
+      const note = item.note ? `<div><b>Note:</b> ${item.note}</div>` : "";
+      return `<div class="evidence"><div><b>Kind:</b> ${item.kind || "unknown"}</div>${path}${symbol}${note}</div>`;
+    }).join("") || '<p class="muted">No evidence recorded.</p>';
+  });
+});
+</script>
+</body>
+</html>

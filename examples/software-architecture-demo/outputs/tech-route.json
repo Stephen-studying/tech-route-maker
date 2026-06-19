@@ -1,0 +1,126 @@
+{
+  "title": "Software Architecture Technical Route",
+  "subtitle": "Document-to-report workflow demo",
+  "audience": "engineering",
+  "figure_subtype": "software_architecture_route",
+  "layout": "engineering-architecture",
+  "style": "schematic-precision",
+  "reader_question": "How does the system transform user files into validated analytical artifacts?",
+  "reader_path": ["Inputs", "Ingestion", "Processing", "Analysis", "Rendering", "Quality gate", "Artifacts"],
+  "metadata": {
+    "source_scope": "examples/software-architecture-demo/source/project-brief.md",
+    "generated_by": "tech-route-maker",
+    "selected_output_formats": ["pptx", "svg", "drawio", "html", "markdown", "json"],
+    "demo": true
+  },
+  "stages": [
+    {
+      "id": "inputs",
+      "title": "Inputs",
+      "summary": "Collect user-provided files and configuration.",
+      "nodes": [
+        {
+          "id": "inputs_files",
+          "label": "Receive user files",
+          "detail": "Accept documents, spreadsheets, PDFs, and user configuration as project evidence.",
+          "tag": "input",
+          "evidence": [{"kind": "document", "path": "examples/software-architecture-demo/source/project-brief.md", "note": "Inputs"}]
+        }
+      ]
+    },
+    {
+      "id": "ingestion",
+      "title": "Ingestion",
+      "summary": "Normalize file metadata and parsing jobs.",
+      "nodes": [
+        {
+          "id": "ingestion_service",
+          "label": "Run ingestion service",
+          "detail": "Coordinate upload intake, metadata extraction, and parser-worker dispatch.",
+          "tag": "implementation",
+          "evidence": [{"kind": "document", "path": "examples/software-architecture-demo/source/project-brief.md", "note": "Ingestion service and parser workers"}]
+        },
+        {
+          "id": "ingestion_store",
+          "label": "Normalize data store",
+          "detail": "Persist normalized source metadata and parsed records for downstream analysis.",
+          "tag": "implementation",
+          "evidence": [{"kind": "document", "path": "examples/software-architecture-demo/source/project-brief.md", "note": "Normalized data store"}]
+        }
+      ]
+    },
+    {
+      "id": "analysis",
+      "title": "Analysis",
+      "summary": "Orchestrate analytical logic and provenance.",
+      "nodes": [
+        {
+          "id": "analysis_engine",
+          "label": "Run analysis engine",
+          "detail": "Use normalized data to drive analytical workflows and report logic.",
+          "tag": "method",
+          "evidence": [{"kind": "document", "path": "examples/software-architecture-demo/source/project-brief.md", "note": "Analysis engine"}]
+        },
+        {
+          "id": "analysis_provenance",
+          "label": "Track provenance",
+          "detail": "Attach source metadata, validation status, and evidence links to outputs.",
+          "tag": "validation",
+          "evidence": [{"kind": "document", "path": "examples/software-architecture-demo/source/project-brief.md", "note": "Provenance tracking"}]
+        }
+      ]
+    },
+    {
+      "id": "rendering",
+      "title": "Rendering",
+      "summary": "Render human-facing analytical artifacts.",
+      "nodes": [
+        {
+          "id": "render_reports",
+          "label": "Render reports",
+          "detail": "Generate HTML report, editable charts, dashboard view, and Markdown summary.",
+          "tag": "output",
+          "evidence": [{"kind": "document", "path": "examples/software-architecture-demo/source/project-brief.md", "note": "Output artifacts"}]
+        },
+        {
+          "id": "render_registry",
+          "label": "Register artifacts",
+          "detail": "Store artifact metadata for inspection, handoff, and rerendering.",
+          "tag": "output",
+          "evidence": [{"kind": "document", "path": "examples/software-architecture-demo/source/project-brief.md", "note": "Artifact registry"}]
+        }
+      ]
+    },
+    {
+      "id": "quality",
+      "title": "Quality Gate",
+      "summary": "Validate outputs before handoff.",
+      "nodes": [
+        {
+          "id": "quality_rules",
+          "label": "Apply validation rules",
+          "detail": "Run validation rules, snapshots, regression tests, and user review checkpoints.",
+          "tag": "validation",
+          "evidence": [{"kind": "document", "path": "examples/software-architecture-demo/source/project-brief.md", "note": "Quality controls"}]
+        },
+        {
+          "id": "quality_ci",
+          "label": "Publish through CI",
+          "detail": "Use local development, CI validation, and packaged examples as the release route.",
+          "tag": "deployment",
+          "evidence": [{"kind": "document", "path": "examples/software-architecture-demo/source/project-brief.md", "note": "Deployment"}]
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {"from": "inputs_files", "to": "ingestion_service", "label": "uploads"},
+    {"from": "ingestion_service", "to": "ingestion_store", "label": "normalizes"},
+    {"from": "ingestion_store", "to": "analysis_engine", "label": "feeds"},
+    {"from": "analysis_engine", "to": "analysis_provenance", "label": "links"},
+    {"from": "analysis_provenance", "to": "render_reports", "label": "annotates"},
+    {"from": "render_reports", "to": "render_registry", "label": "records"},
+    {"from": "render_registry", "to": "quality_rules", "label": "checks"},
+    {"from": "quality_rules", "to": "quality_ci", "label": "releases"}
+  ]
+}

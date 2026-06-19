@@ -1,0 +1,59 @@
+name: Validate examples
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Compile Python scripts
+        run: |
+          python - <<'PY'
+          import pathlib
+          for path in pathlib.Path("scripts").glob("*.py"):
+              compile(path.read_text(encoding="utf-8"), str(path), "exec")
+          print("source compile OK")
+          PY
+
+      - name: Validate route JSON examples
+        run: |
+          python scripts/validate_route.py examples/academic-paper-demo/outputs/tech-route.json
+          python scripts/validate_route.py examples/thesis-proposal-demo/outputs/tech-route.json
+          python scripts/validate_route.py examples/software-architecture-demo/outputs/tech-route.json
+          python scripts/validate_route.py examples/campaign-route-demo/outputs/tech-route.json
+
+      - name: Render demo outputs
+        run: |
+          python scripts/render_all.py examples/academic-paper-demo/outputs/tech-route.json /tmp/academic --formats pptx,svg,drawio,html,markdown,json
+          python scripts/render_all.py examples/thesis-proposal-demo/outputs/tech-route.json /tmp/thesis --formats pptx,svg,drawio,html,markdown,json
+          python scripts/render_all.py examples/software-architecture-demo/outputs/tech-route.json /tmp/software --formats pptx,svg,drawio,html,markdown,json
+          python scripts/render_all.py examples/campaign-route-demo/outputs/tech-route.json /tmp/campaign --formats pptx,svg,drawio,html,markdown,json
+
+      - name: Parse representative outputs
+        run: |
+          python - <<'PY'
+          import json
+          import pathlib
+          import xml.etree.ElementTree as ET
+          import zipfile
+          roots = [pathlib.Path("/tmp/academic"), pathlib.Path("/tmp/thesis"), pathlib.Path("/tmp/software"), pathlib.Path("/tmp/campaign")]
+          for root in roots:
+              json.load(open(root / "tech-route.json", encoding="utf-8"))
+              ET.parse(root / "tech-route.svg")
+              ET.parse(root / "tech-route.drawio")
+              z = zipfile.ZipFile(root / "tech-route.pptx")
+              assert z.testzip() is None
+          print("output parse OK")
+          PY
