@@ -1,0 +1,16 @@
+---
+description: Use tech-route-maker to create editable academic and campaign technical route diagrams.
+alwaysApply: true
+---
+
+# tech-route-maker Cursor Rule
+
+When the user asks for a technical route diagram, paper framework figure, publication figure, method flowchart, roadmap, workflow, pipeline, campaign route, or editable diagram output:
+
+1. Read `SKILL.md`.
+2. Build or update `tech-route.json` before rendering.
+3. Ask the user to explicitly choose figure subtype, output formats, layout, and style.
+4. Use scripts in `scripts/` to validate and render.
+5. Keep PPTX/SVG/Draw.io/Excalidraw outputs editable; do not use screenshots as the main artifact.
+
+Do not infer user choices from vague terms like "editable", "academic", "paper", "presentation", or "interactive".

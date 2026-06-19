@@ -1,0 +1,23 @@
+flowchart LR
+  title["Sample Project Technical Route"]
+  subgraph objective["Objective"]
+    objective_goal["Define project goal"]
+  end
+  subgraph input["Input"]
+    input_sources["Collect source evidence"]
+  end
+  subgraph method["Method"]
+    method_extract["Extract route stages"]
+    method_render["Render editable files"]
+  end
+  subgraph validation["Validation"]
+    validation_check["Check route quality"]
+  end
+  subgraph output["Output"]
+    output_files["Deliver editable diagrams"]
+  end
+  objective_goal -->|guides| input_sources
+  input_sources -->|feeds| method_extract
+  method_extract -->|structures| method_render
+  method_render -->|checks| validation_check
+  validation_check -->|delivers| output_files

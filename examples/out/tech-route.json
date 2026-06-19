@@ -1,0 +1,92 @@
+{
+  "title": "Sample Project Technical Route",
+  "subtitle": "Editable route diagram generated from structured evidence",
+  "layout": "horizontal-stages",
+  "style": "academic-blue",
+  "metadata": {
+    "source_scope": "examples/sample-project",
+    "generated_by": "tech-route-maker",
+    "selected_output_formats": ["pptx", "svg", "drawio", "mermaid"]
+  },
+  "stages": [
+    {
+      "id": "objective",
+      "title": "Objective",
+      "nodes": [
+        {
+          "id": "objective_goal",
+          "label": "Define project goal",
+          "detail": "Clarify the problem, audience, and expected technical result.",
+          "tag": "objective",
+          "evidence": [{"kind": "file", "path": "README.md", "note": "Project overview"}]
+        }
+      ]
+    },
+    {
+      "id": "input",
+      "title": "Input",
+      "nodes": [
+        {
+          "id": "input_sources",
+          "label": "Collect source evidence",
+          "detail": "Read documents, configuration files, and source directories.",
+          "tag": "input",
+          "evidence": [{"kind": "file", "path": "docs/", "note": "Project documentation"}]
+        }
+      ]
+    },
+    {
+      "id": "method",
+      "title": "Method",
+      "nodes": [
+        {
+          "id": "method_extract",
+          "label": "Extract route stages",
+          "detail": "Convert evidence into objective, input, method, validation, and output nodes.",
+          "tag": "method",
+          "evidence": [{"kind": "inference", "note": "Derived from repository scan pattern"}]
+        },
+        {
+          "id": "method_render",
+          "label": "Render editable files",
+          "detail": "Render the same JSON route into selected editable formats.",
+          "tag": "implementation",
+          "evidence": [{"kind": "file", "path": "scripts/", "note": "Renderer scripts"}]
+        }
+      ]
+    },
+    {
+      "id": "validation",
+      "title": "Validation",
+      "nodes": [
+        {
+          "id": "validation_check",
+          "label": "Check route quality",
+          "detail": "Validate IDs, evidence, edge endpoints, and selected output formats.",
+          "tag": "validation",
+          "evidence": [{"kind": "file", "path": "scripts/validate_route.py", "note": "Validation script"}]
+        }
+      ]
+    },
+    {
+      "id": "output",
+      "title": "Output",
+      "nodes": [
+        {
+          "id": "output_files",
+          "label": "Deliver editable diagrams",
+          "detail": "Provide PPTX, SVG, Draw.io, Excalidraw, Mermaid, HTML, Markdown, or JSON based on user choices.",
+          "tag": "output",
+          "evidence": [{"kind": "file", "path": "outputs/", "note": "Selected output files"}]
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {"from": "objective_goal", "to": "input_sources", "label": "guides"},
+    {"from": "input_sources", "to": "method_extract", "label": "feeds"},
+    {"from": "method_extract", "to": "method_render", "label": "structures"},
+    {"from": "method_render", "to": "validation_check", "label": "checks"},
+    {"from": "validation_check", "to": "output_files", "label": "delivers"}
+  ]
+}

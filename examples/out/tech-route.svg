@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1468" height="396" viewBox="0 0 1468 396">
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#2563EB"/></marker>
+</defs>
+<rect width="100%" height="100%" fill="#FFFFFF"/>
+<text x="734.0" y="36" text-anchor="middle" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#1F2937">Sample Project Technical Route</text>
+<text x="734.0" y="60" text-anchor="middle" font-size="13" font-family="Arial, Helvetica, sans-serif" fill="#64748B">Editable route diagram generated from structured evidence</text>
+<rect x="56.0" y="134.0" width="228.0" height="206.0" rx="12" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.5"/>
+<rect x="56.0" y="134.0" width="228.0" height="38" rx="12" fill="#1D4ED8"/>
+<text x="170.0" y="158.0" text-anchor="middle" font-size="14" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#FFFFFF">Objective</text>
+<rect x="338.0" y="134.0" width="228.0" height="206.0" rx="12" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.5"/>
+<rect x="338.0" y="134.0" width="228.0" height="38" rx="12" fill="#1D4ED8"/>
+<text x="452.0" y="158.0" text-anchor="middle" font-size="14" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#FFFFFF">Input</text>
+<rect x="620.0" y="134.0" width="228.0" height="206.0" rx="12" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.5"/>
+<rect x="620.0" y="134.0" width="228.0" height="38" rx="12" fill="#1D4ED8"/>
+<text x="734.0" y="158.0" text-anchor="middle" font-size="14" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#FFFFFF">Method</text>
+<rect x="902.0" y="134.0" width="228.0" height="206.0" rx="12" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.5"/>
+<rect x="902.0" y="134.0" width="228.0" height="38" rx="12" fill="#1D4ED8"/>
+<text x="1016.0" y="158.0" text-anchor="middle" font-size="14" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#FFFFFF">Validation</text>
+<rect x="1184.0" y="134.0" width="228.0" height="206.0" rx="12" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.5"/>
+<rect x="1184.0" y="134.0" width="228.0" height="38" rx="12" fill="#1D4ED8"/>
+<text x="1298.0" y="158.0" text-anchor="middle" font-size="14" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#FFFFFF">Output</text>
+<line x1="170.0" y1="219.0" x2="452.0" y2="219.0" stroke="#2563EB" stroke-width="2" marker-end="url(#arrow)" opacity="0.78"/>
+<text x="311.0" y="213.0" text-anchor="middle" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#64748B">guides</text>
+<line x1="452.0" y1="219.0" x2="734.0" y2="219.0" stroke="#2563EB" stroke-width="2" marker-end="url(#arrow)" opacity="0.78"/>
+<text x="593.0" y="213.0" text-anchor="middle" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#64748B">feeds</text>
+<line x1="734.0" y1="219.0" x2="734.0" y2="293.0" stroke="#2563EB" stroke-width="2" marker-end="url(#arrow)" opacity="0.78"/>
+<text x="734.0" y="250.0" text-anchor="middle" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#64748B">structures</text>
+<line x1="734.0" y1="293.0" x2="1016.0" y2="219.0" stroke="#2563EB" stroke-width="2" marker-end="url(#arrow)" opacity="0.78"/>
+<text x="875.0" y="250.0" text-anchor="middle" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#64748B">checks</text>
+<line x1="1016.0" y1="219.0" x2="1298.0" y2="219.0" stroke="#2563EB" stroke-width="2" marker-end="url(#arrow)" opacity="0.78"/>
+<text x="1157.0" y="213.0" text-anchor="middle" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#64748B">delivers</text>
+<g class="node" data-node="objective_goal" style="cursor:pointer">
+<rect x="81.0" y="190.0" width="178.0" height="58.0" rx="9" fill="#FFFFFF" stroke="#60A5FA" stroke-width="1.6"/>
+<text x="170.0" y="217.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#1F2937">Define project</text>
+<text x="170.0" y="232.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#1F2937">goal</text>
+</g>
+<g class="node" data-node="input_sources" style="cursor:pointer">
+<rect x="363.0" y="190.0" width="178.0" height="58.0" rx="9" fill="#FFFFFF" stroke="#60A5FA" stroke-width="1.6"/>
+<text x="452.0" y="217.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#1F2937">Collect source</text>
+<text x="452.0" y="232.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#1F2937">evidence</text>
+</g>
+<g class="node" data-node="method_extract" style="cursor:pointer">
+<rect x="645.0" y="190.0" width="178.0" height="58.0" rx="9" fill="#FFFFFF" stroke="#60A5FA" stroke-width="1.6"/>
+<text x="734.0" y="217.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#1F2937">Extract route</text>
+<text x="734.0" y="232.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#1F2937">stages</text>
+</g>
+<g class="node" data-node="method_render" style="cursor:pointer">
+<rect x="645.0" y="264.0" width="178.0" height="58.0" rx="9" fill="#FFFFFF" stroke="#60A5FA" stroke-width="1.6"/>
+<text x="734.0" y="291.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#1F2937">Render editable</text>
+<text x="734.0" y="306.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#1F2937">files</text>
+</g>
+<g class="node" data-node="validation_check" style="cursor:pointer">
+<rect x="927.0" y="190.0" width="178.0" height="58.0" rx="9" fill="#FFFFFF" stroke="#60A5FA" stroke-width="1.6"/>
+<text x="1016.0" y="217.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#1F2937">Check route</text>
+<text x="1016.0" y="232.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#1F2937">quality</text>
+</g>
+<g class="node" data-node="output_files" style="cursor:pointer">
+<rect x="1209.0" y="190.0" width="178.0" height="58.0" rx="9" fill="#FFFFFF" stroke="#60A5FA" stroke-width="1.6"/>
+<text x="1298.0" y="217.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#1F2937">Deliver editable</text>
+<text x="1298.0" y="232.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#1F2937">diagrams</text>
+</g>
+</svg>

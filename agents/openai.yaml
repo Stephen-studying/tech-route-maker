@@ -1,0 +1,6 @@
+interface:
+  display_name: "Tech Route Maker"
+  short_description: "Create editable academic and campaign route diagrams."
+  default_prompt: "Use $tech-route-maker to understand this paper, project, or campaign brief and create an editable technical route diagram."
+policy:
+  allow_implicit_invocation: true
