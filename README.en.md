@@ -6,6 +6,8 @@ The skill turns a paper, project brief, source directory, or campaign brief into
 
 The repository homepage may include `assets/github-visual-preview.png` as an image2-generated visual preview. That PNG is only a presentation asset; editable diagrams remain SVG, native-shape PPTX, Draw.io, Excalidraw, HTML, Markdown, and JSON.
 
+> **Usage note**: generated route diagrams should be treated as editable drafts and design starting points, not final artifacts ready for paper submission, thesis defense, grant application, or commercial delivery without review. Users should refine the generated PPTX, SVG, or Draw.io files by checking research facts, terminology, logic, evidence, colors, layout, and wording.
+
 ## Core Idea
 
 Most agents can summarize a project, but technical route diagrams need a stricter workflow. A usable route diagram should be traceable to the source, readable by the target audience, editable after generation, and explicit about format and style choices.

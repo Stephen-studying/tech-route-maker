@@ -25,6 +25,8 @@
 
 > `assets/demo-preview.svg` 和下方 Gallery 是可编辑路线图示例；`assets/github-visual-preview.png` 仅作为 image2 生成的 GitHub 视觉预览，不替代 PPTX、SVG 或 Draw.io 主输出。
 
+> **使用提醒**：自动生成的路线图更适合作为可编辑初稿和设计起点，不建议不加修改就直接用于论文投稿、答辩汇报、课题申报或商业交付。用户需要在生成后继续核对研究事实、术语、逻辑关系、证据来源、颜色、版式和文字表达，并在 PPTX、SVG 或 Draw.io 等可编辑文件中进行二次修改。
+
 ![GitHub 视觉预览](assets/github-visual-preview.png)
 
 ## 它解决什么问题
