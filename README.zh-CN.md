@@ -111,8 +111,8 @@ Use tech-route-maker to create an editable technical route diagram from my sourc
 ```text
 图的用途/子类型：学术方法框架图
 输出格式：PPTX、SVG、Draw.io、HTML、Markdown、JSON
-版式：AI 或算法 pipeline
-视觉风格：Premium scientific
+版式：Proposal phase axis
+视觉风格：Proposal pastel route
 ```
 
 ## 可输出格式

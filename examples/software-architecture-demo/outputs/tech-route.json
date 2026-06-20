@@ -4,7 +4,7 @@
   "audience": "engineering",
   "figure_subtype": "software_architecture_route",
   "layout": "engineering-architecture",
-  "style": "schematic-precision",
+  "style": "grant-linework",
   "reader_question": "How does the system transform user files into validated analytical artifacts?",
   "reader_path": ["Inputs", "Ingestion", "Processing", "Analysis", "Rendering", "Quality gate", "Artifacts"],
   "metadata": {

@@ -100,6 +100,8 @@ Please choose one layout:
 12. Case walkthrough strip
 13. Campaign funnel
 14. Creative-production pipeline
+15. Proposal phase axis
+16. Wide collaboration map
 
 Please choose one visual style:
 1. Academic blue
@@ -117,6 +119,9 @@ Please choose one visual style:
 13. Evidence infographic
 14. Premium scientific
 15. Advertising clean campaign
+16. Proposal pastel route
+17. Grant linework
+18. Wide collaboration map
 ```
 
 If the user chooses "all formats", render PPTX, SVG, Draw.io, Excalidraw, Mermaid, HTML, Markdown, and JSON.
@@ -153,6 +158,8 @@ Editable constraints:
 Read `references/layout-patterns.md` before asking for layout choices or building `tech-route.json`.
 
 Read `references/visual-styles.md` before asking for visual style choices or setting a theme.
+
+For proposal and research-report diagrams, prefer the polished academic template language documented in `references/visual-styles.md`: white canvas, title pill or title band, low-saturation stage regions, dashed logical boundaries, left phase axis for long vertical routes, and white editable node cards. For project-report or advertising diagrams, prefer wide collaboration maps or campaign routes only when the user explicitly chooses them.
 
 For academic figures, choose a reader-first diagram: the 3 to 7 step first-glance path should be clear without reading long captions. For advertising diagrams, keep audience, insight, creative route, channel route, and measurement route visibly separated.
 

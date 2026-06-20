@@ -29,8 +29,9 @@ def tx_body(text, font_size=1200, font_color="111827", bold=False, max_chars=18)
     return f'<p:txBody><a:bodyPr wrap="square" anchor="ctr"/><a:lstStyle/>{"".join(paras)}</p:txBody>'
 
 
-def rect_shape(shape_id, name, x, y, w, h, text, fill, stroke, font_color, font_size=1200, bold=False, radius=True):
+def rect_shape(shape_id, name, x, y, w, h, text, fill, stroke, font_color, font_size=1200, bold=False, radius=True, dash=False):
     geom = "roundRect" if radius else "rect"
+    dash_xml = '<a:prstDash val="dash"/>' if dash else ""
     return f"""
 <p:sp>
   <p:nvSpPr><p:cNvPr id="{shape_id}" name="{escape(name)}"/><p:cNvSpPr/><p:nvPr/></p:nvSpPr>
@@ -38,7 +39,7 @@ def rect_shape(shape_id, name, x, y, w, h, text, fill, stroke, font_color, font_
     <a:xfrm><a:off x="{int(x)}" y="{int(y)}"/><a:ext cx="{int(w)}" cy="{int(h)}"/></a:xfrm>
     <a:prstGeom prst="{geom}"><a:avLst/></a:prstGeom>
     <a:solidFill><a:srgbClr val="{color(fill)}"/></a:solidFill>
-    <a:ln w="12700"><a:solidFill><a:srgbClr val="{color(stroke)}"/></a:solidFill></a:ln>
+    <a:ln w="12700"><a:solidFill><a:srgbClr val="{color(stroke)}"/></a:solidFill>{dash_xml}</a:ln>
   </p:spPr>
   {tx_body(text, font_size, font_color, bold)}
 </p:sp>"""
@@ -71,6 +72,11 @@ def scale_box(box, scale, ox, oy):
     }
 
 
+def palette_item(style, index):
+    palette = style.get("palette") or [style["stage_fill"]]
+    return palette[index % len(palette)]
+
+
 def make_slide(route):
     layout = build_layout(route)
     route = layout["route"]
@@ -81,11 +87,15 @@ def make_slide(route):
     nodes = {nid: scale_box(box, scale, ox, oy) for nid, box in layout["nodes"].items()}
     shapes = []
     sid = 2
-    shapes.append(rect_shape(sid, "Title", ox + 900000, oy + 90000, SLIDE_W - 2 * (ox + 900000), 360000, route["title"], style["background"], style["background"], style["text"], 2100, True, False))
+    title_w = SLIDE_W - 2 * (ox + 620000)
+    shapes.append(rect_shape(sid, "Title Band", ox + 620000, oy + 70000, title_w, 430000, route["title"], palette_item(style, 0), palette_item(style, 0), style["text"], 2100, True, True))
     sid += 1
+    if route.get("subtitle"):
+        shapes.append(rect_shape(sid, "Subtitle", ox + 1450000, oy + 515000, SLIDE_W - 2 * (ox + 1450000), 190000, route["subtitle"], style["background"], style["background"], style["muted"], 850, False, False))
+        sid += 1
     for stage in layout["stages"]:
         box = scale_box(stage, scale, ox, oy)
-        shapes.append(rect_shape(sid, f"Stage {stage['title']}", box["x"], box["y"], box["w"], box["h"], "", style["stage_fill"], style["stage_stroke"], style["text"], 1000, False, True))
+        shapes.append(rect_shape(sid, f"Stage {stage['title']}", box["x"], box["y"], box["w"], box["h"], "", palette_item(style, stage["index"]), style["stage_stroke"], style["text"], 1000, False, True, bool(style.get("stage_dash"))))
         sid += 1
         shapes.append(rect_shape(sid, f"Header {stage['title']}", box["x"], box["y"], box["w"], max(260000, 38 * scale), stage["title"], style["header_fill"], style["header_fill"], style["header_text"], 1100, True, True))
         sid += 1

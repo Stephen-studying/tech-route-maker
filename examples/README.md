@@ -4,10 +4,10 @@ This gallery shows the main scenarios supported by `tech-route-maker`. Each demo
 
 | Demo | Audience | Layout | Style | Preview |
 |---|---|---|---|---|
-| [Academic paper method framework](academic-paper-demo/) | Academic paper or defense | AI pipeline | Premium scientific | [SVG](academic-paper-demo/outputs/tech-route.svg) |
-| [Thesis proposal route](thesis-proposal-demo/) | Thesis, proposal, research plan | Vertical research route | Academic blue | [SVG](thesis-proposal-demo/outputs/tech-route.svg) |
-| [Software architecture route](software-architecture-demo/) | Engineering handoff | Engineering architecture | Schematic precision | [SVG](software-architecture-demo/outputs/tech-route.svg) |
-| [Campaign strategy route](campaign-route-demo/) | Advertising and campaign planning | Campaign funnel | Advertising clean campaign | [SVG](campaign-route-demo/outputs/tech-route.svg) |
+| [Academic paper method framework](academic-paper-demo/) | Academic paper or defense | Proposal phase axis | Proposal pastel route | [SVG](academic-paper-demo/outputs/tech-route.svg) |
+| [Thesis proposal route](thesis-proposal-demo/) | Thesis, proposal, research plan | Proposal phase axis | Proposal pastel route | [SVG](thesis-proposal-demo/outputs/tech-route.svg) |
+| [Software architecture route](software-architecture-demo/) | Engineering handoff | Engineering architecture | Grant linework | [SVG](software-architecture-demo/outputs/tech-route.svg) |
+| [Campaign strategy route](campaign-route-demo/) | Advertising and campaign planning | Wide collaboration map | Wide collaboration map | [SVG](campaign-route-demo/outputs/tech-route.svg) |
 
 ## Render All Demo Outputs
 

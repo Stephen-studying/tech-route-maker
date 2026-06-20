@@ -201,6 +201,66 @@ STYLES = {
         "node_stroke": "#FB7185",
         "palette": ["#FFE4E6", "#FEF3C7", "#DBEAFE", "#DCFCE7", "#FCE7F3", "#E0F2FE"],
     },
+    "proposal-pastel-route": {
+        "background": "#FFFFFF",
+        "text": "#162033",
+        "muted": "#5B6472",
+        "line": "#2C6A93",
+        "stage_fill": "#F8FBFC",
+        "stage_stroke": "#6FAEC3",
+        "header_fill": "#7BCFD0",
+        "header_text": "#122033",
+        "node_fill": "#FFFFFF",
+        "node_stroke": "#9FB6C4",
+        "palette": ["#D9F2F2", "#F7E0E8", "#FFF1C7", "#DDECF9", "#E6F4D7", "#F6E7D7"],
+        "accent": "#F36E78",
+        "accent_2": "#F7C744",
+        "accent_3": "#67C7A5",
+        "stage_dash": "6 6",
+    },
+    "grant-linework": {
+        "background": "#FFFFFF",
+        "text": "#111111",
+        "muted": "#555555",
+        "line": "#111111",
+        "stage_fill": "#FFFFFF",
+        "stage_stroke": "#222222",
+        "header_fill": "#FFFFFF",
+        "header_text": "#111111",
+        "node_fill": "#FFFFFF",
+        "node_stroke": "#222222",
+        "palette": ["#FFFFFF", "#F7F7F7", "#FFFFFF", "#F7F7F7", "#FFFFFF", "#F7F7F7"],
+        "accent": "#111111",
+        "accent_2": "#666666",
+        "accent_3": "#999999",
+        "stage_dash": "7 5",
+    },
+    "wide-collaboration-map": {
+        "background": "#FFFFFF",
+        "text": "#111827",
+        "muted": "#526070",
+        "line": "#2D5CA8",
+        "stage_fill": "#F8FBFF",
+        "stage_stroke": "#AFC4E8",
+        "header_fill": "#2D5CA8",
+        "header_text": "#FFFFFF",
+        "node_fill": "#FFFFFF",
+        "node_stroke": "#8BADE3",
+        "palette": ["#DCE9FF", "#DFF2E3", "#E9EEFF", "#FFF1D6", "#E4F6F5", "#FCE3E8"],
+        "accent": "#2D5CA8",
+        "accent_2": "#5E9F3B",
+        "accent_3": "#D94E4E",
+        "stage_dash": "8 6",
+    },
+}
+
+STYLE_DEFAULTS = {
+    "accent": "#2563EB",
+    "accent_2": "#0F766E",
+    "accent_3": "#F59E0B",
+    "stage_dash": "",
+    "canvas_stroke": "#D8E1EA",
+    "soft_shadow": "#E7ECF2",
 }
 
 
@@ -326,7 +386,11 @@ def normalize_route(route):
 
 def get_style(route):
     name = route.get("style") or "academic-blue"
-    return STYLES.get(name, STYLES["academic-blue"])
+    style = copy.deepcopy(STYLES.get(name, STYLES["academic-blue"]))
+    for key, value in STYLE_DEFAULTS.items():
+        style.setdefault(key, value)
+    style["name"] = name
+    return style
 
 
 def flatten_nodes(route):
@@ -337,50 +401,94 @@ def build_layout(route):
     route = normalize_route(route)
     layout_name = route.get("layout", "horizontal-stages")
     stages = route["stages"]
-    margin = 56
-    title_h = 78
-    node_w = 178
-    node_h = 58
-    stage_w = 228
-    header_h = 38
-    gap = 54
+    margin = 64
+    title_h = 102
+    node_h = 62
+    header_h = 42
+    gap = 38
     node_gap = 16
     nodes = {}
     stage_boxes = []
 
-    vertical = layout_name in {"vertical-research-route", "closed-loop-optimization"}
+    vertical = layout_name in {"vertical-research-route", "closed-loop-optimization", "evidence-centered", "proposal-phase-axis"}
     if vertical:
-        width = 920
-        y = title_h + margin
+        width = 1120
+        axis_x = 102
+        stage_x = 202
+        stage_w = 842
+        y = title_h + 36
         for si, stage in enumerate(stages):
-            cols = min(3, max(1, len(stage["nodes"])))
+            count = max(1, len(stage["nodes"]))
+            cols = 1 if count == 1 else min(3, count)
             rows = int(math.ceil(max(1, len(stage["nodes"])) / cols))
-            sw = cols * node_w + (cols - 1) * node_gap + 40
-            sh = header_h + rows * node_h + max(0, rows - 1) * node_gap + 36
-            x = (width - sw) / 2
-            stage_boxes.append({"id": stage["id"], "title": stage["title"], "x": x, "y": y, "w": sw, "h": sh, "index": si})
+            node_w = (stage_w - 70 - (cols - 1) * node_gap) / cols
+            sh = header_h + rows * node_h + max(0, rows - 1) * node_gap + 42
+            stage_boxes.append(
+                {
+                    "id": stage["id"],
+                    "title": stage["title"],
+                    "x": stage_x,
+                    "y": y,
+                    "w": stage_w,
+                    "h": sh,
+                    "index": si,
+                    "axis_x": axis_x,
+                    "layout": "vertical",
+                }
+            )
             for ni, node in enumerate(stage["nodes"]):
                 row = ni // cols
                 col = ni % cols
-                nx = x + 20 + col * (node_w + node_gap)
+                nx = stage_x + 35 + col * (node_w + node_gap)
                 ny = y + header_h + 18 + row * (node_h + node_gap)
                 nodes[node["id"]] = {"x": nx, "y": ny, "w": node_w, "h": node_h, "stage": stage["id"]}
             y += sh + gap
-        height = y + margin
+        height = y + 48
     else:
         max_nodes = max([len(s["nodes"]) for s in stages] + [1])
-        stage_h = header_h + max_nodes * node_h + max(0, max_nodes - 1) * node_gap + 36
-        width = margin * 2 + len(stages) * stage_w + max(0, len(stages) - 1) * gap
-        height = title_h + margin + stage_h + margin
+        if layout_name in {"campaign-funnel", "creative-production-pipeline"}:
+            width = 1320
+            height = 620
+            gap = 28
+        elif layout_name in {"engineering-architecture", "layered-architecture", "timeline-swimlane", "wide-collaboration-map"}:
+            width = 1340
+            height = 580
+            gap = 30
+        else:
+            width = max(1180, min(1520, margin * 2 + len(stages) * 214 + max(0, len(stages) - 1) * gap))
+            height = 610
+        stage_w = (width - margin * 2 - max(0, len(stages) - 1) * gap) / max(1, len(stages))
+        stage_w = max(150, stage_w)
+        stage_h = min(390, height - title_h - margin - 56)
         for si, stage in enumerate(stages):
             x = margin + si * (stage_w + gap)
             y = title_h + margin
-            stage_boxes.append({"id": stage["id"], "title": stage["title"], "x": x, "y": y, "w": stage_w, "h": stage_h, "index": si})
+            stage_boxes.append(
+                {
+                    "id": stage["id"],
+                    "title": stage["title"],
+                    "x": x,
+                    "y": y,
+                    "w": stage_w,
+                    "h": stage_h,
+                    "index": si,
+                    "layout": "horizontal",
+                }
+            )
+            node_w = max(116, stage_w - 42)
             for ni, node in enumerate(stage["nodes"]):
                 nx = x + (stage_w - node_w) / 2
                 ny = y + header_h + 18 + ni * (node_h + node_gap)
                 nodes[node["id"]] = {"x": nx, "y": ny, "w": node_w, "h": node_h, "stage": stage["id"]}
-    return {"width": int(width), "height": int(height), "stages": stage_boxes, "nodes": nodes, "route": route}
+    return {
+        "width": int(width),
+        "height": int(height),
+        "layout_name": layout_name,
+        "orientation": "vertical" if vertical else "horizontal",
+        "stages": stage_boxes,
+        "nodes": nodes,
+        "route": route,
+    }
 
 
 def center(box):

@@ -3,7 +3,7 @@
 Data-driven PV module degradation assessment demo
 
 ```mermaid
-flowchart TB
+flowchart LR
   title["Thesis Proposal Technical Route"]
   subgraph question["Research Question"]
     question_define["Define degradation risk"]

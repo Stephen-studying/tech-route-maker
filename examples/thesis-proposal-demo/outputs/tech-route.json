@@ -3,8 +3,8 @@
   "subtitle": "Data-driven PV module degradation assessment demo",
   "audience": "academic",
   "figure_subtype": "thesis_proposal_route",
-  "layout": "vertical-research-route",
-  "style": "academic-blue",
+  "layout": "proposal-phase-axis",
+  "style": "proposal-pastel-route",
   "reader_question": "How does the thesis move from monitoring evidence to defensible degradation-risk assessment?",
   "reader_path": ["Research question", "Source evidence", "Feature route", "Modeling", "Validation", "Thesis output"],
   "metadata": {

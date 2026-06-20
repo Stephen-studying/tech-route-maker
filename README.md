@@ -40,13 +40,29 @@
 
 ## 案例预览
 
-| 学术方法框架图 | 开题技术路线图 |
-|---|---|
-| ![学术方法框架图](examples/academic-paper-demo/outputs/tech-route.svg) | ![开题技术路线图](examples/thesis-proposal-demo/outputs/tech-route.svg) |
+### 学术方法框架图
 
-| 软件架构路线图 | 广告活动路线图 |
-|---|---|
-| ![软件架构路线图](examples/software-architecture-demo/outputs/tech-route.svg) | ![广告活动路线图](examples/campaign-route-demo/outputs/tech-route.svg) |
+<p align="center">
+  <img src="examples/academic-paper-demo/outputs/tech-route.svg" alt="学术方法框架图" width="100%">
+</p>
+
+### 开题技术路线图
+
+<p align="center">
+  <img src="examples/thesis-proposal-demo/outputs/tech-route.svg" alt="开题技术路线图" width="100%">
+</p>
+
+### 软件架构路线图
+
+<p align="center">
+  <img src="examples/software-architecture-demo/outputs/tech-route.svg" alt="软件架构路线图" width="100%">
+</p>
+
+### 广告活动路线图
+
+<p align="center">
+  <img src="examples/campaign-route-demo/outputs/tech-route.svg" alt="广告活动路线图" width="100%">
+</p>
 
 ## 30 秒快速开始
 
@@ -79,8 +95,8 @@ examples/academic-paper-demo/outputs/tech-route.html
 ```text
 图的用途：学术方法框架图
 输出格式：PPTX、SVG、Draw.io、HTML、Markdown、JSON
-版式：AI 或算法 pipeline
-视觉风格：Premium scientific
+版式：Proposal phase axis
+视觉风格：Proposal pastel route
 ```
 
 ## 文档导航

@@ -65,12 +65,26 @@ Use this reference to offer layout choices. Ask the user to choose one layout. D
    - Strength: separates creative work from channel execution.
    - Risk: needs clear approval/revision loops.
 
+15. `proposal-phase-axis`
+   - Best for Chinese thesis proposals, grant applications, and research-topic roadmaps.
+   - Reads top to bottom with a left phase axis, dashed stage regions, and grouped task nodes.
+   - Strength: looks familiar to academic reviewers and keeps long research logic readable.
+   - Risk: too tall for slide decks unless exported as PPTX or split into sections.
+
+16. `wide-collaboration-map`
+   - Best for project reports, platform construction, industry-academia collaboration, and policy/resource coordination.
+   - Reads as side axes plus a central collaboration system.
+   - Strength: exposes actors, dependencies, work packages, and support systems better than a simple pipeline.
+   - Risk: can look busy if every stakeholder becomes a node.
+
 ## Design rules
 
 - Keep the main route to 4 to 7 stages.
 - Keep each stage to 2 to 6 nodes.
 - Keep labels short; put details in evidence tables, notes, or HTML panels.
 - Use grouped regions for stages.
+- For proposal-style vertical routes, use a left phase axis, large stage regions, dashed boundaries, and 1 to 3 columns of nodes inside each region.
+- For polished PPT landscape routes, use a wide canvas, central modules, side labels, and restrained connector arrows rather than a single cramped line.
 - Use semantic edge labels.
 - Put variables, metrics, parameters, and pass-through artifacts on edges or ports before promoting them to nodes.
 - Separate the audit/semantic graph from the visible render graph.

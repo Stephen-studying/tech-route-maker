@@ -64,6 +64,33 @@ Use this reference when asking the user to choose a visual style. Ask explicitly
    - Clean brand-neutral campaign map with audience, insight, creative, media, launch, and KPI accents.
    - Useful for advertising strategy and campaign-production route diagrams.
 
+16. `proposal-pastel-route`
+   - White canvas, large title pill, low-saturation pastel stage regions, dashed group borders, left-side phase axis, and white editable node cards.
+   - Useful for Chinese thesis proposals, grant applications, academic project routes, and research reports where the diagram must look polished but still formal.
+
+17. `grant-linework`
+   - White canvas, black or gray linework, dashed section boundaries, minimal fills, and strict box-arrow hierarchy.
+   - Useful for print-safe proposals, journal supplements, or reviewers who prefer conservative technical-route diagrams.
+
+18. `wide-collaboration-map`
+   - Landscape composition with side axes, central collaboration modules, dashed system boundaries, and restrained blue/green emphasis.
+   - Useful for project reports, industry-academia collaboration, policy-support diagrams, and campaign/operations route maps.
+
+## Aesthetic Baseline
+
+Use these style rules when the user asks for a polished technical route diagram:
+
+- Start with a white or near-white canvas. Most high-quality academic route maps rely on clean whitespace, not decorative backgrounds.
+- Use a clear title band or title pill; avoid tiny titles floating above dense diagrams.
+- Separate structure from skin: first choose the route layout, then apply the visual style.
+- Prefer low-saturation pastel regions for academic proposal routes: teal, light blue, pale yellow, pale green, soft pink, and warm cream.
+- Use dashed boundaries for logical groups, chapters, work packages, or evidence scopes.
+- Keep content nodes white with dark text; use color on stage headers, bands, side labels, or group regions.
+- Use a left-side phase axis for long vertical research routes when there are four or more stages.
+- Use landscape collaboration maps when the route is about actors, resources, channels, policies, platforms, or campaign touchpoints.
+- Keep arrowheads visible but not visually heavier than the nodes.
+- For GitHub/README previews, prefer large readable SVGs and avoid two-column compression when labels become too small.
+
 ## Style rules
 
 - Use color to encode stage category, not decoration.

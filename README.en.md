@@ -110,8 +110,8 @@ Example answer:
 ```text
 Figure purpose/subtype: Academic method framework
 Output formats: PPTX, SVG, Draw.io, HTML, Markdown, JSON
-Layout: AI or algorithm pipeline
-Visual style: Premium scientific
+Layout: Proposal phase axis
+Visual style: Proposal pastel route
 ```
 
 ## Output Formats

@@ -3,8 +3,8 @@
   "subtitle": "Research-tool launch campaign demo",
   "audience": "advertising",
   "figure_subtype": "campaign_route",
-  "layout": "campaign-funnel",
-  "style": "advertising-clean-campaign",
+  "layout": "wide-collaboration-map",
+  "style": "wide-collaboration-map",
   "reader_question": "How does the campaign move from audience insight to measurable adoption?",
   "reader_path": ["Audience", "Insight", "Message", "Creative", "Channels", "Measurement", "Optimization"],
   "metadata": {
