@@ -318,23 +318,27 @@ def asset_svg(width, height, title, subtitle, compact=False):
         svg_text(width // 2, 106 if compact else 124, subtitle, 15 if compact else 17, "#59636A", 400),
     ]
     if compact:
-        start_x, card_y, card_w, card_h, gap = 70, 160, 245, 270, 28
+        start_x, card_y, card_w, card_h, gap = 70, 150, 245, 158, 28
+        header_h, label_h, label_step, label_start, label_font, footer_y = 30, 24, 34, 62, 11, height - 24
     else:
         start_x, card_y, card_w, card_h, gap = 70, 190, 270, 360, 32
+        header_h, label_h, label_step, label_start, label_font, footer_y = 36, 38, 58, 82, 14, height - 48
     for i, (name, fill, accent, labels) in enumerate(cards):
         x = start_x + i * (card_w + gap)
         out.append(svg_rect(x, card_y, card_w, card_h, fill, "#C8D4E0", 16, 1.4))
-        out.append(svg_rect(x + 18, card_y + 18, card_w - 36, 36, accent, accent, 10, 1))
-        out.append(svg_text(x + card_w / 2, card_y + 42, name, 15, "#FFFFFF", 700))
-        for j, label in enumerate(labels):
-            y = card_y + 82 + j * (44 if compact else 58)
-            out.append(svg_rect(x + 30, y, card_w - 60, 30 if compact else 38, "#FFFFFF", "#9DB3C5", 8, 1.2))
-            out.append(svg_text(x + card_w / 2, y + (20 if compact else 25), label, 12 if compact else 14, "#172033", 600))
-            if j < len(labels) - 1:
+        out.append(svg_rect(x + 18, card_y + 18, card_w - 36, header_h, accent, accent, 10, 1))
+        out.append(svg_text(x + card_w / 2, card_y + 18 + header_h / 2 + 5, name, 13 if compact else 15, "#FFFFFF", 700))
+        visible_labels = labels[:3] if compact else labels
+        for j, label in enumerate(visible_labels):
+            y = card_y + label_start + j * label_step
+            out.append(svg_rect(x + 30, y, card_w - 60, label_h, "#FFFFFF", "#9DB3C5", 8, 1.2))
+            out.append(svg_text(x + card_w / 2, y + label_h / 2 + 4, label, label_font, "#172033", 600))
+            if j < len(visible_labels) - 1:
                 cx = x + card_w / 2
-                out.append(f'<path d="M {cx} {y + (30 if compact else 38)} L {cx} {y + (42 if compact else 56)}" stroke="{accent}" stroke-width="1.6" marker-end="url(#arrow{i})"/>')
+                out.append(f'<path d="M {cx} {y + label_h} L {cx} {y + label_step - 2}" stroke="{accent}" stroke-width="1.6" marker-end="url(#arrow{i})"/>')
         out.append(f'<defs><marker id="arrow{i}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="{accent}"/></marker></defs>')
-    out.append(svg_text(width // 2, height - 48, "Editable SVG · Native PPTX shapes · Draw.io cells · HTML preview", 15, "#59636A", 600))
+    footer_text = "Editable SVG | Native PPTX shapes | Draw.io cells | HTML preview" if compact else "Editable SVG · Native PPTX shapes · Draw.io cells · HTML preview"
+    out.append(svg_text(width // 2, footer_y, footer_text, 13 if compact else 15, "#59636A", 600))
     out.append("</svg>")
     return "\n".join(out)
 
