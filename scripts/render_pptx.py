@@ -97,8 +97,13 @@ def make_slide(route):
         box = scale_box(stage, scale, ox, oy)
         shapes.append(rect_shape(sid, f"Stage {stage['title']}", box["x"], box["y"], box["w"], box["h"], "", palette_item(style, stage["index"]), style["stage_stroke"], style["text"], 1000, False, True, bool(style.get("stage_dash"))))
         sid += 1
-        shapes.append(rect_shape(sid, f"Header {stage['title']}", box["x"], box["y"], box["w"], max(260000, 38 * scale), stage["title"], style["header_fill"], style["header_fill"], style["header_text"], 1100, True, True))
-        sid += 1
+        if stage.get("label_box"):
+            label = scale_box(stage["label_box"], scale, ox, oy)
+            shapes.append(rect_shape(sid, f"Label {stage['title']}", label["x"], label["y"], label["w"], label["h"], stage["title"], style["header_fill"], style["header_fill"], style["header_text"], 1050, True, True))
+            sid += 1
+        else:
+            shapes.append(rect_shape(sid, f"Header {stage['title']}", box["x"], box["y"], box["w"], max(260000, 38 * scale), stage["title"], style["header_fill"], style["header_fill"], style["header_text"], 1100, True, True))
+            sid += 1
     for edge in route["edges"]:
         if not edge.get("valid", True) or edge["from"] not in nodes or edge["to"] not in nodes:
             continue

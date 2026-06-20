@@ -23,6 +23,10 @@
 
 ![示例预览](assets/demo-preview.svg)
 
+> `assets/demo-preview.svg` 和下方 Gallery 是可编辑路线图示例；`assets/github-visual-preview.png` 仅作为 image2 生成的 GitHub 视觉预览，不替代 PPTX、SVG 或 Draw.io 主输出。
+
+![GitHub 视觉预览](assets/github-visual-preview.png)
+
 ## 它解决什么问题
 
 普通画图工具通常只生成一张静态图，后续改颜色、改文字、换版式都很麻烦。`tech-route-maker` 把 `tech-route.json` 作为路线图源文件保存下来，因此同一份路线可以反复渲染成多种可编辑格式，并且保留证据、推断、阶段、节点、连线、版式和风格信息。
@@ -95,8 +99,8 @@ examples/academic-paper-demo/outputs/tech-route.html
 ```text
 图的用途：学术方法框架图
 输出格式：PPTX、SVG、Draw.io、HTML、Markdown、JSON
-版式：Proposal phase axis
-视觉风格：Proposal pastel route
+版式：Academic method framework
+视觉风格：Premium scientific
 ```
 
 ## 文档导航

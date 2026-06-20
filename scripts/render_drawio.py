@@ -19,7 +19,11 @@ def make_drawio(route):
     parts.append(f'<mxCell id="title" value="{html_escape(route["title"])}" style="text;html=1;strokeColor=none;fillColor=none;fontSize=24;fontStyle=1;fontColor={style["text"]};" vertex="1" parent="1"><mxGeometry x="40" y="20" width="{layout["width"] - 80}" height="40" as="geometry"/></mxCell>')
     for stage in layout["stages"]:
         sid = f'stage_{stage["id"]}'
-        parts.append(f'<mxCell id="{sid}" value="{html_escape(stage["title"])}" style="rounded=1;whiteSpace=wrap;html=1;fillColor={style["stage_fill"]};strokeColor={style["stage_stroke"]};fontColor={style["text"]};fontStyle=1;verticalAlign=top;spacingTop=8;" vertex="1" parent="1"><mxGeometry x="{stage["x"]:.0f}" y="{stage["y"]:.0f}" width="{stage["w"]:.0f}" height="{stage["h"]:.0f}" as="geometry"/></mxCell>')
+        stage_value = "" if stage.get("label_box") else html_escape(stage["title"])
+        parts.append(f'<mxCell id="{sid}" value="{stage_value}" style="rounded=1;whiteSpace=wrap;html=1;fillColor={style["stage_fill"]};strokeColor={style["stage_stroke"]};fontColor={style["text"]};fontStyle=1;verticalAlign=top;spacingTop=8;" vertex="1" parent="1"><mxGeometry x="{stage["x"]:.0f}" y="{stage["y"]:.0f}" width="{stage["w"]:.0f}" height="{stage["h"]:.0f}" as="geometry"/></mxCell>')
+        if stage.get("label_box"):
+            label = stage["label_box"]
+            parts.append(f'<mxCell id="{sid}_label" value="{html_escape(stage["title"])}" style="rounded=1;whiteSpace=wrap;html=1;fillColor={style["header_fill"]};strokeColor={style["header_fill"]};fontColor={style["header_text"]};fontStyle=1;" vertex="1" parent="1"><mxGeometry x="{label["x"]:.0f}" y="{label["y"]:.0f}" width="{label["w"]:.0f}" height="{label["h"]:.0f}" as="geometry"/></mxCell>')
     for stage in route["stages"]:
         for node in stage["nodes"]:
             box = nodes[node["id"]]

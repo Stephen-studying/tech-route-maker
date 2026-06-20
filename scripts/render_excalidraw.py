@@ -55,15 +55,33 @@ def make_excalidraw(route):
             "roughness": 0,
             "opacity": 100,
         })
+        if stage.get("label_box"):
+            label = stage["label_box"]
+            elements.append({
+                "id": element_id("stage_label", stage["id"]),
+                "type": "rectangle",
+                "x": label["x"],
+                "y": label["y"],
+                "width": label["w"],
+                "height": label["h"],
+                "angle": 0,
+                "strokeColor": style["header_fill"],
+                "backgroundColor": style["header_fill"],
+                "fillStyle": "solid",
+                "strokeWidth": 1,
+                "strokeStyle": "solid",
+                "roughness": 0,
+                "opacity": 100,
+            })
         elements.append({
             "id": element_id("stage_text", stage["id"]),
             "type": "text",
-            "x": stage["x"] + 12,
-            "y": stage["y"] + 10,
-            "width": stage["w"] - 24,
-            "height": 22,
+            "x": (stage.get("label_box") or stage)["x"] + 12,
+            "y": (stage.get("label_box") or stage)["y"] + 10,
+            "width": (stage.get("label_box") or stage)["w"] - 24,
+            "height": min(42, (stage.get("label_box") or stage)["h"] - 12),
             "angle": 0,
-            "strokeColor": style["text"],
+            "strokeColor": style["header_text"] if stage.get("label_box") else style["text"],
             "backgroundColor": "transparent",
             "fillStyle": "solid",
             "strokeWidth": 1,

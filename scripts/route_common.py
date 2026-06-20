@@ -410,6 +410,159 @@ def build_layout(route):
     nodes = {}
     stage_boxes = []
 
+    matrix_layouts = {"academic-method-framework", "proposal-matrix-route"}
+    system_layouts = {"software-system-route"}
+    campaign_layouts = {"campaign-strategy-map"}
+
+    if layout_name in matrix_layouts:
+        width = 1280
+        content_x = 228
+        content_w = 980
+        label_x = 62
+        label_w = 128
+        y = title_h + 44
+        row_gap = 24
+        node_h = 60
+        node_gap = 16
+        for si, stage in enumerate(stages):
+            count = max(1, len(stage["nodes"]))
+            cols = 1 if count == 1 else min(3, count)
+            rows = int(math.ceil(count / cols))
+            node_w = (content_w - 72 - (cols - 1) * node_gap) / cols
+            row_h = max(112, 32 + rows * node_h + max(0, rows - 1) * node_gap + 34)
+            label_box = {
+                "x": label_x,
+                "y": y + row_h / 2 - 28,
+                "w": label_w,
+                "h": 56,
+            }
+            stage_boxes.append(
+                {
+                    "id": stage["id"],
+                    "title": stage["title"],
+                    "x": content_x,
+                    "y": y,
+                    "w": content_w,
+                    "h": row_h,
+                    "index": si,
+                    "layout": "matrix",
+                    "label_box": label_box,
+                }
+            )
+            for ni, node in enumerate(stage["nodes"]):
+                row = ni // cols
+                col = ni % cols
+                if count == 1:
+                    node_w_single = min(760, content_w - 110)
+                    nx = content_x + (content_w - node_w_single) / 2
+                    nw = node_w_single
+                else:
+                    nx = content_x + 36 + col * (node_w + node_gap)
+                    nw = node_w
+                ny = y + 32 + row * (node_h + node_gap)
+                nodes[node["id"]] = {"x": nx, "y": ny, "w": nw, "h": node_h, "stage": stage["id"]}
+            y += row_h + row_gap
+        height = y + 40
+        return {
+            "width": int(width),
+            "height": int(height),
+            "layout_name": layout_name,
+            "orientation": "matrix",
+            "stages": stage_boxes,
+            "nodes": nodes,
+            "route": route,
+        }
+
+    if layout_name in system_layouts:
+        width = 1320
+        content_x = 238
+        content_w = 1008
+        label_x = 58
+        label_w = 146
+        y = title_h + 48
+        row_gap = 18
+        node_h = 58
+        node_gap = 18
+        for si, stage in enumerate(stages):
+            count = max(1, len(stage["nodes"]))
+            cols = min(4, count)
+            rows = int(math.ceil(count / cols))
+            node_w = (content_w - 70 - (cols - 1) * node_gap) / cols
+            row_h = max(104, 28 + rows * node_h + max(0, rows - 1) * node_gap + 28)
+            label_box = {
+                "x": label_x,
+                "y": y,
+                "w": label_w,
+                "h": row_h,
+            }
+            stage_boxes.append(
+                {
+                    "id": stage["id"],
+                    "title": stage["title"],
+                    "x": content_x,
+                    "y": y,
+                    "w": content_w,
+                    "h": row_h,
+                    "index": si,
+                    "layout": "system",
+                    "label_box": label_box,
+                }
+            )
+            for ni, node in enumerate(stage["nodes"]):
+                row = ni // cols
+                col = ni % cols
+                nx = content_x + 35 + col * (node_w + node_gap)
+                ny = y + 28 + row * (node_h + node_gap)
+                nodes[node["id"]] = {"x": nx, "y": ny, "w": node_w, "h": node_h, "stage": stage["id"]}
+            y += row_h + row_gap
+        height = y + 44
+        return {
+            "width": int(width),
+            "height": int(height),
+            "layout_name": layout_name,
+            "orientation": "system",
+            "stages": stage_boxes,
+            "nodes": nodes,
+            "route": route,
+        }
+
+    if layout_name in campaign_layouts:
+        width = 1360
+        height = 690
+        margin = 60
+        top = title_h + 74
+        gap = 22
+        stage_w = (width - margin * 2 - max(0, len(stages) - 1) * gap) / max(1, len(stages))
+        stage_h = 390
+        for si, stage in enumerate(stages):
+            x = margin + si * (stage_w + gap)
+            stage_boxes.append(
+                {
+                    "id": stage["id"],
+                    "title": stage["title"],
+                    "x": x,
+                    "y": top,
+                    "w": stage_w,
+                    "h": stage_h,
+                    "index": si,
+                    "layout": "campaign",
+                }
+            )
+            node_w = stage_w - 34
+            for ni, node in enumerate(stage["nodes"]):
+                nx = x + 17
+                ny = top + 68 + ni * (node_h + node_gap)
+                nodes[node["id"]] = {"x": nx, "y": ny, "w": node_w, "h": node_h, "stage": stage["id"]}
+        return {
+            "width": int(width),
+            "height": int(height),
+            "layout_name": layout_name,
+            "orientation": "campaign",
+            "stages": stage_boxes,
+            "nodes": nodes,
+            "route": route,
+        }
+
     vertical = layout_name in {"vertical-research-route", "closed-loop-optimization", "evidence-centered", "proposal-phase-axis"}
     if vertical:
         width = 1120

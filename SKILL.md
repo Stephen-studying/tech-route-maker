@@ -86,22 +86,26 @@ Please choose output format(s), single or multiple:
 9. All formats
 
 Please choose one layout:
-1. Horizontal stages
-2. Vertical research route
-3. Three-column goals/content/results
-4. AI or algorithm pipeline
-5. Engineering architecture route
-6. Timeline or swimlane roadmap
-7. Layered architecture
-8. Closed-loop optimization route
-9. Evidence-centered route
-10. Hub-and-spoke core method
-11. Baseline-vs-ours split
-12. Case walkthrough strip
-13. Campaign funnel
-14. Creative-production pipeline
-15. Proposal phase axis
-16. Wide collaboration map
+1. Academic method framework
+2. Proposal matrix route
+3. Software system route
+4. Campaign strategy map
+5. Horizontal stages
+6. Vertical research route
+7. Three-column goals/content/results
+8. AI or algorithm pipeline
+9. Engineering architecture route
+10. Timeline or swimlane roadmap
+11. Layered architecture
+12. Closed-loop optimization route
+13. Evidence-centered route
+14. Hub-and-spoke core method
+15. Baseline-vs-ours split
+16. Case walkthrough strip
+17. Campaign funnel
+18. Creative-production pipeline
+19. Wide collaboration map
+20. Proposal phase axis (legacy only; do not use as the default README/gallery example)
 
 Please choose one visual style:
 1. Academic blue
@@ -159,7 +163,7 @@ Read `references/layout-patterns.md` before asking for layout choices or buildin
 
 Read `references/visual-styles.md` before asking for visual style choices or setting a theme.
 
-For proposal and research-report diagrams, prefer the polished academic template language documented in `references/visual-styles.md`: white canvas, title pill or title band, low-saturation stage regions, dashed logical boundaries, left phase axis for long vertical routes, and white editable node cards. For project-report or advertising diagrams, prefer wide collaboration maps or campaign routes only when the user explicitly chooses them.
+For proposal and research-report diagrams, prefer the polished academic template language documented in `references/visual-styles.md`: white canvas, clear title, matrix or framework sections, low-saturation logical regions, dashed boundaries where they clarify grouping, and white editable node cards. Use a left phase axis only when the user explicitly chooses a long vertical route; do not make it the default academic format. For project-report or advertising diagrams, prefer software system routes, wide collaboration maps, or campaign routes only when the user explicitly chooses them.
 
 For academic figures, choose a reader-first diagram: the 3 to 7 step first-glance path should be clear without reading long captions. For advertising diagrams, keep audience, insight, creative route, channel route, and measurement route visibly separated.
 

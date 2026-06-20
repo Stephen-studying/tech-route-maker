@@ -65,8 +65,8 @@ Use this reference when asking the user to choose a visual style. Ask explicitly
    - Useful for advertising strategy and campaign-production route diagrams.
 
 16. `proposal-pastel-route`
-   - White canvas, large title pill, low-saturation pastel stage regions, dashed group borders, left-side phase axis, and white editable node cards.
-   - Useful for Chinese thesis proposals, grant applications, academic project routes, and research reports where the diagram must look polished but still formal.
+   - White canvas, clear title pill, low-saturation pastel logical regions, section labels, dashed group borders when useful, and white editable node cards.
+   - Useful for Chinese thesis proposals, grant applications, academic project routes, and research reports where the diagram must look polished but still formal. Use a left-side phase axis only when the user explicitly chooses a long vertical layout.
 
 17. `grant-linework`
    - White canvas, black or gray linework, dashed section boundaries, minimal fills, and strict box-arrow hierarchy.
@@ -86,7 +86,7 @@ Use these style rules when the user asks for a polished technical route diagram:
 - Prefer low-saturation pastel regions for academic proposal routes: teal, light blue, pale yellow, pale green, soft pink, and warm cream.
 - Use dashed boundaries for logical groups, chapters, work packages, or evidence scopes.
 - Keep content nodes white with dark text; use color on stage headers, bands, side labels, or group regions.
-- Use a left-side phase axis for long vertical research routes when there are four or more stages.
+- Use matrix or framework sections as the default academic route structure. Use a left-side phase axis only for long vertical research routes explicitly selected by the user.
 - Use landscape collaboration maps when the route is about actors, resources, channels, policies, platforms, or campaign touchpoints.
 - Keep arrowheads visible but not visually heavier than the nodes.
 - For GitHub/README previews, prefer large readable SVGs and avoid two-column compression when labels become too small.

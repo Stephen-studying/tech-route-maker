@@ -4,6 +4,8 @@
 
 The skill turns a paper, project brief, source directory, or campaign brief into a source-grounded route model, asks the user to explicitly choose output options, and renders editable artifacts such as PPTX, SVG, Draw.io, Excalidraw, Mermaid, HTML, Markdown, and JSON.
 
+The repository homepage may include `assets/github-visual-preview.png` as an image2-generated visual preview. That PNG is only a presentation asset; editable diagrams remain SVG, native-shape PPTX, Draw.io, Excalidraw, HTML, Markdown, and JSON.
+
 ## Core Idea
 
 Most agents can summarize a project, but technical route diagrams need a stricter workflow. A usable route diagram should be traceable to the source, readable by the target audience, editable after generation, and explicit about format and style choices.
@@ -110,8 +112,8 @@ Example answer:
 ```text
 Figure purpose/subtype: Academic method framework
 Output formats: PPTX, SVG, Draw.io, HTML, Markdown, JSON
-Layout: Proposal phase axis
-Visual style: Proposal pastel route
+Layout: Academic method framework
+Visual style: Premium scientific
 ```
 
 ## Output Formats

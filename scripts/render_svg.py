@@ -47,7 +47,7 @@ def draw_wrapped_text(out, text, x, y, width_chars, max_lines, size, fill, weigh
 def draw_title(out, route, layout, style):
     width = layout["width"]
     title_y = 42
-    if layout["orientation"] == "vertical":
+    if layout["orientation"] in {"vertical", "matrix"}:
         pill_w = min(760, max(440, len(route["title"]) * 18))
         out.append(rect((width - pill_w) / 2, 18, pill_w, 58, 28, "#FFFFFF", stage_palette(style, 1), 2.2, "", 'filter="url(#softShadow)"'))
         out.append(svg_text(width / 2, title_y + 10, route["title"], 25, style["text"], weight="700"))
@@ -56,8 +56,9 @@ def draw_title(out, route, layout, style):
         out.append(svg_text(width / 2, 58, route["title"], 24, style["text"], weight="700"))
     if route.get("subtitle"):
         out.append(svg_text(width / 2, 92, route["subtitle"], 12, style["muted"]))
+    show_reader_path = (route.get("metadata") or {}).get("show_reader_path", False)
     reader_path = route.get("reader_path") or []
-    if reader_path:
+    if reader_path and show_reader_path:
         visible = reader_path[:7]
         chip_gap = 10
         chip_w = min(128, max(82, (width - 160 - chip_gap * (len(visible) - 1)) / max(1, len(visible))))
@@ -89,7 +90,21 @@ def draw_stage_regions(out, layout, style):
     for stage in layout["stages"]:
         fill = stage_palette(style, stage["index"])
         dash = style.get("stage_dash", "")
-        if layout["orientation"] == "vertical":
+        if stage.get("layout") == "matrix":
+            out.append(rect(stage["x"], stage["y"], stage["w"], stage["h"], 18, fill, style["stage_stroke"], 1.4, dash, 'opacity="0.70"'))
+            label = stage.get("label_box") or {"x": stage["x"], "y": stage["y"], "w": 140, "h": 42}
+            out.append(rect(label["x"], label["y"], label["w"], label["h"], 12, style["header_fill"], style["header_fill"], 1.0, "", 'filter="url(#softShadow)"'))
+            draw_wrapped_text(out, stage["title"], label["x"] + label["w"] / 2, label["y"] + label["h"] / 2 + 4, 7, 2, 14, style["header_text"], "700")
+        elif stage.get("layout") == "system":
+            out.append(rect(stage["x"], stage["y"], stage["w"], stage["h"], 6, fill, style["stage_stroke"], 1.4, dash, 'opacity="0.78"'))
+            label = stage.get("label_box") or {"x": stage["x"], "y": stage["y"], "w": 140, "h": stage["h"]}
+            out.append(rect(label["x"], label["y"], label["w"], label["h"], 6, style["header_fill"], style["header_fill"], 1.0))
+            draw_wrapped_text(out, stage["title"], label["x"] + label["w"] / 2, label["y"] + label["h"] / 2 + 4, 9, 3, 14, style["header_text"], "700")
+        elif stage.get("layout") == "campaign":
+            out.append(rect(stage["x"], stage["y"], stage["w"], stage["h"], 12, fill, style["stage_stroke"], 1.3, dash, 'opacity="0.88"'))
+            out.append(rect(stage["x"], stage["y"], stage["w"], 48, 12, style["header_fill"], style["header_fill"], 1.0))
+            draw_wrapped_text(out, stage["title"], stage["x"] + stage["w"] / 2, stage["y"] + 31, 15, 2, 13, style["header_text"], "700")
+        elif layout["orientation"] == "vertical":
             out.append(rect(stage["x"], stage["y"], stage["w"], stage["h"], 22, fill, style["stage_stroke"], 1.6, dash, 'opacity="0.92"'))
             title_w = min(310, max(170, len(stage["title"]) * 16))
             out.append(rect(stage["x"] + 28, stage["y"] - 17, title_w, 34, 10, style["header_fill"], style["header_fill"], 1.0, "", 'filter="url(#softShadow)"'))
@@ -108,11 +123,23 @@ def draw_edges(out, route, layout, style):
             continue
         a = nodes[edge["from"]]
         b = nodes[edge["to"]]
+        same_band = abs((a["y"] + a["h"] / 2) - (b["y"] + b["h"] / 2)) < 38
         if vertical:
             x1, y1 = node_port(a, "bottom")
             x2, y2 = node_port(b, "top")
             mid_y = (y1 + y2) / 2
             path = f"M {x1:.1f} {y1:.1f} C {x1:.1f} {mid_y:.1f}, {x2:.1f} {mid_y:.1f}, {x2:.1f} {y2:.1f}"
+        elif layout["orientation"] in {"matrix", "system"} and not same_band:
+            if b["y"] >= a["y"]:
+                x1, y1 = node_port(a, "bottom")
+                x2, y2 = node_port(b, "top")
+                mid_y = (y1 + y2) / 2
+                path = f"M {x1:.1f} {y1:.1f} C {x1:.1f} {mid_y:.1f}, {x2:.1f} {mid_y:.1f}, {x2:.1f} {y2:.1f}"
+            else:
+                x1, y1 = node_port(a, "top")
+                x2, y2 = node_port(b, "top")
+                arc_y = min(y1, y2) - 54
+                path = f"M {x1:.1f} {y1:.1f} C {x1:.1f} {arc_y:.1f}, {x2:.1f} {arc_y:.1f}, {x2:.1f} {y2:.1f}"
         else:
             if b["x"] >= a["x"]:
                 x1, y1 = node_port(a, "right")
@@ -124,7 +151,7 @@ def draw_edges(out, route, layout, style):
                 x2, y2 = node_port(b, "top")
                 arc_y = min(y1, y2) - 62
                 path = f"M {x1:.1f} {y1:.1f} C {x1:.1f} {arc_y:.1f}, {x2:.1f} {arc_y:.1f}, {x2:.1f} {y2:.1f}"
-        dash = ' stroke-dasharray="6 5"' if edge.get("kind") == "feedback" or nodes[edge["to"]]["x"] < nodes[edge["from"]]["x"] else ""
+        dash = ' stroke-dasharray="6 5"' if edge.get("kind") == "feedback" or nodes[edge["to"]]["x"] < nodes[edge["from"]]["x"] or nodes[edge["to"]]["y"] < nodes[edge["from"]]["y"] else ""
         out.append(f'<path d="{path}" fill="none" stroke="{style["line"]}" stroke-width="2.1" marker-end="url(#arrow)" opacity="0.72"{dash}/>')
         if edge.get("label"):
             label_x = (a["x"] + a["w"] / 2 + b["x"] + b["w"] / 2) / 2

@@ -4,6 +4,8 @@
 
 它可以把论文、项目说明、源码目录、研究计划、课题申报材料或广告活动 brief 转换成一个有证据来源的路线模型，然后询问用户选择输出格式、版式和风格，最后生成 PPTX、SVG、Draw.io、Excalidraw、Mermaid、HTML、Markdown 和 JSON 等可编辑文件。
 
+仓库首页中的 `assets/github-visual-preview.png` 是 image2 生成的视觉预览图，只用于展示氛围；真正可编辑的路线图仍然是 SVG、原生形状 PPTX、Draw.io、Excalidraw、HTML、Markdown 和 JSON。
+
 ## 核心思路
 
 很多 agent 都能总结项目，但技术路线图需要更严格的工作流。一个真正可用的技术路线图应该同时满足四点：
@@ -111,8 +113,8 @@ Use tech-route-maker to create an editable technical route diagram from my sourc
 ```text
 图的用途/子类型：学术方法框架图
 输出格式：PPTX、SVG、Draw.io、HTML、Markdown、JSON
-版式：Proposal phase axis
-视觉风格：Proposal pastel route
+版式：Academic method framework
+视觉风格：Premium scientific
 ```
 
 ## 可输出格式
