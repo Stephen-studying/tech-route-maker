@@ -1,67 +1,67 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
 <rect width="100%" height="100%" fill="#FFFFFF"/>
-<rect x="18" y="18" width="1244" height="684" rx="22" fill="#FFFFFF" stroke="#D8E1EA" stroke-width="1" />
+<rect x="18" y="18" width="1244" height="684" rx="18" fill="#FFFFFF" stroke="#D8E1EA" stroke-width="1"/>
 <text x="640" y="82" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="700" fill="#172033">Editable Technical Route Gallery</text>
-<text x="640" y="124" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" fill="#59636A">Four template families regenerated as editable route diagrams</text>
-<rect x="70" y="190" width="270" height="360" rx="16" fill="#E8F3F1" stroke="#C8D4E0" stroke-width="1.4" />
-<rect x="88" y="208" width="234" height="36" rx="10" fill="#315C61" stroke="#315C61" stroke-width="1" />
-<text x="205.0" y="232" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" fill="#FFFFFF">Academic Method</text>
-<rect x="100" y="272" width="210" height="38" rx="8" fill="#FFFFFF" stroke="#9DB3C5" stroke-width="1.2" />
-<text x="205.0" y="297" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#172033">Goal</text>
-<path d="M 205.0 310 L 205.0 328" stroke="#315C61" stroke-width="1.6" marker-end="url(#arrow0)"/>
-<rect x="100" y="330" width="210" height="38" rx="8" fill="#FFFFFF" stroke="#9DB3C5" stroke-width="1.2" />
-<text x="205.0" y="355" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#172033">Data</text>
-<path d="M 205.0 368 L 205.0 386" stroke="#315C61" stroke-width="1.6" marker-end="url(#arrow0)"/>
-<rect x="100" y="388" width="210" height="38" rx="8" fill="#FFFFFF" stroke="#9DB3C5" stroke-width="1.2" />
-<text x="205.0" y="413" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#172033">Method</text>
-<path d="M 205.0 426 L 205.0 444" stroke="#315C61" stroke-width="1.6" marker-end="url(#arrow0)"/>
-<rect x="100" y="446" width="210" height="38" rx="8" fill="#FFFFFF" stroke="#9DB3C5" stroke-width="1.2" />
-<text x="205.0" y="471" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#172033">Validation</text>
+<text x="640" y="124" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" fill="#59636A">Evidence-grounded editable route diagrams for research and engineering</text>
+<rect x="66" y="190" width="270" height="360" rx="14" fill="#E8F3F1" stroke="#C8D4E0" stroke-width="1.4"/>
+<rect x="84" y="208" width="234" height="32" rx="8" fill="#315C61" stroke="#315C61" stroke-width="1"/>
+<text x="201.0" y="229" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">Academic</text>
+<rect x="96" y="258" width="210" height="38" rx="7" fill="#FFFFFF" stroke="#9DB3C5" stroke-width="1.1"/>
+<text x="201.0" y="281.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#172033">Goal</text>
+<path d="M 201.0 296 L 201.0 314" stroke="#315C61" stroke-width="1.6" marker-end="url(#arrow0)"/>
+<rect x="96" y="316" width="210" height="38" rx="7" fill="#FFFFFF" stroke="#9DB3C5" stroke-width="1.1"/>
+<text x="201.0" y="339.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#172033">Data</text>
+<path d="M 201.0 354 L 201.0 372" stroke="#315C61" stroke-width="1.6" marker-end="url(#arrow0)"/>
+<rect x="96" y="374" width="210" height="38" rx="7" fill="#FFFFFF" stroke="#9DB3C5" stroke-width="1.1"/>
+<text x="201.0" y="397.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#172033">Method</text>
+<path d="M 201.0 412 L 201.0 430" stroke="#315C61" stroke-width="1.6" marker-end="url(#arrow0)"/>
+<rect x="96" y="432" width="210" height="38" rx="7" fill="#FFFFFF" stroke="#9DB3C5" stroke-width="1.1"/>
+<text x="201.0" y="455.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#172033">Validation</text>
 <defs><marker id="arrow0" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#315C61"/></marker></defs>
-<rect x="372" y="190" width="270" height="360" rx="16" fill="#F7E0E8" stroke="#C8D4E0" stroke-width="1.4" />
-<rect x="390" y="208" width="234" height="36" rx="10" fill="#7BCFD0" stroke="#7BCFD0" stroke-width="1" />
-<text x="507.0" y="232" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" fill="#FFFFFF">Proposal Route</text>
-<rect x="402" y="272" width="210" height="38" rx="8" fill="#FFFFFF" stroke="#9DB3C5" stroke-width="1.2" />
-<text x="507.0" y="297" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#172033">Objective</text>
-<path d="M 507.0 310 L 507.0 328" stroke="#7BCFD0" stroke-width="1.6" marker-end="url(#arrow1)"/>
-<rect x="402" y="330" width="210" height="38" rx="8" fill="#FFFFFF" stroke="#9DB3C5" stroke-width="1.2" />
-<text x="507.0" y="355" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#172033">Content</text>
-<path d="M 507.0 368 L 507.0 386" stroke="#7BCFD0" stroke-width="1.6" marker-end="url(#arrow1)"/>
-<rect x="402" y="388" width="210" height="38" rx="8" fill="#FFFFFF" stroke="#9DB3C5" stroke-width="1.2" />
-<text x="507.0" y="413" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#172033">Technology</text>
-<path d="M 507.0 426 L 507.0 444" stroke="#7BCFD0" stroke-width="1.6" marker-end="url(#arrow1)"/>
-<rect x="402" y="446" width="210" height="38" rx="8" fill="#FFFFFF" stroke="#9DB3C5" stroke-width="1.2" />
-<text x="507.0" y="471" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#172033">Output</text>
+<rect x="368" y="190" width="270" height="360" rx="14" fill="#F7E0E8" stroke="#C8D4E0" stroke-width="1.4"/>
+<rect x="386" y="208" width="234" height="32" rx="8" fill="#7BCFD0" stroke="#7BCFD0" stroke-width="1"/>
+<text x="503.0" y="229" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">Proposal</text>
+<rect x="398" y="258" width="210" height="38" rx="7" fill="#FFFFFF" stroke="#9DB3C5" stroke-width="1.1"/>
+<text x="503.0" y="281.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#172033">Objective</text>
+<path d="M 503.0 296 L 503.0 314" stroke="#7BCFD0" stroke-width="1.6" marker-end="url(#arrow1)"/>
+<rect x="398" y="316" width="210" height="38" rx="7" fill="#FFFFFF" stroke="#9DB3C5" stroke-width="1.1"/>
+<text x="503.0" y="339.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#172033">Content</text>
+<path d="M 503.0 354 L 503.0 372" stroke="#7BCFD0" stroke-width="1.6" marker-end="url(#arrow1)"/>
+<rect x="398" y="374" width="210" height="38" rx="7" fill="#FFFFFF" stroke="#9DB3C5" stroke-width="1.1"/>
+<text x="503.0" y="397.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#172033">Technology</text>
+<path d="M 503.0 412 L 503.0 430" stroke="#7BCFD0" stroke-width="1.6" marker-end="url(#arrow1)"/>
+<rect x="398" y="432" width="210" height="38" rx="7" fill="#FFFFFF" stroke="#9DB3C5" stroke-width="1.1"/>
+<text x="503.0" y="455.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#172033">Output</text>
 <defs><marker id="arrow1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#7BCFD0"/></marker></defs>
-<rect x="674" y="190" width="270" height="360" rx="16" fill="#F3F4F6" stroke="#C8D4E0" stroke-width="1.4" />
-<rect x="692" y="208" width="234" height="36" rx="10" fill="#374151" stroke="#374151" stroke-width="1" />
-<text x="809.0" y="232" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" fill="#FFFFFF">System Route</text>
-<rect x="704" y="272" width="210" height="38" rx="8" fill="#FFFFFF" stroke="#9DB3C5" stroke-width="1.2" />
-<text x="809.0" y="297" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#172033">Input</text>
-<path d="M 809.0 310 L 809.0 328" stroke="#374151" stroke-width="1.6" marker-end="url(#arrow2)"/>
-<rect x="704" y="330" width="210" height="38" rx="8" fill="#FFFFFF" stroke="#9DB3C5" stroke-width="1.2" />
-<text x="809.0" y="355" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#172033">Data</text>
-<path d="M 809.0 368 L 809.0 386" stroke="#374151" stroke-width="1.6" marker-end="url(#arrow2)"/>
-<rect x="704" y="388" width="210" height="38" rx="8" fill="#FFFFFF" stroke="#9DB3C5" stroke-width="1.2" />
-<text x="809.0" y="413" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#172033">Service</text>
-<path d="M 809.0 426 L 809.0 444" stroke="#374151" stroke-width="1.6" marker-end="url(#arrow2)"/>
-<rect x="704" y="446" width="210" height="38" rx="8" fill="#FFFFFF" stroke="#9DB3C5" stroke-width="1.2" />
-<text x="809.0" y="471" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#172033">Release</text>
-<defs><marker id="arrow2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#374151"/></marker></defs>
-<rect x="976" y="190" width="270" height="360" rx="16" fill="#FFE4E6" stroke="#C8D4E0" stroke-width="1.4" />
-<rect x="994" y="208" width="234" height="36" rx="10" fill="#E11D48" stroke="#E11D48" stroke-width="1" />
-<text x="1111.0" y="232" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" fill="#FFFFFF">Campaign Map</text>
-<rect x="1006" y="272" width="210" height="38" rx="8" fill="#FFFFFF" stroke="#9DB3C5" stroke-width="1.2" />
-<text x="1111.0" y="297" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#172033">Audience</text>
-<path d="M 1111.0 310 L 1111.0 328" stroke="#E11D48" stroke-width="1.6" marker-end="url(#arrow3)"/>
-<rect x="1006" y="330" width="210" height="38" rx="8" fill="#FFFFFF" stroke="#9DB3C5" stroke-width="1.2" />
-<text x="1111.0" y="355" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#172033">Message</text>
-<path d="M 1111.0 368 L 1111.0 386" stroke="#E11D48" stroke-width="1.6" marker-end="url(#arrow3)"/>
-<rect x="1006" y="388" width="210" height="38" rx="8" fill="#FFFFFF" stroke="#9DB3C5" stroke-width="1.2" />
-<text x="1111.0" y="413" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#172033">Channels</text>
-<path d="M 1111.0 426 L 1111.0 444" stroke="#E11D48" stroke-width="1.6" marker-end="url(#arrow3)"/>
-<rect x="1006" y="446" width="210" height="38" rx="8" fill="#FFFFFF" stroke="#9DB3C5" stroke-width="1.2" />
-<text x="1111.0" y="471" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#172033">KPI</text>
-<defs><marker id="arrow3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#E11D48"/></marker></defs>
-<text x="640" y="672" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="600" fill="#59636A">Editable SVG · Native PPTX shapes · Draw.io cells · HTML preview</text>
+<rect x="670" y="190" width="270" height="360" rx="14" fill="#E8EEF7" stroke="#C8D4E0" stroke-width="1.4"/>
+<rect x="688" y="208" width="234" height="32" rx="8" fill="#27456F" stroke="#27456F" stroke-width="1"/>
+<text x="805.0" y="229" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">Engineering</text>
+<rect x="700" y="258" width="210" height="38" rx="7" fill="#FFFFFF" stroke="#9DB3C5" stroke-width="1.1"/>
+<text x="805.0" y="281.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#172033">Boundary</text>
+<path d="M 805.0 296 L 805.0 314" stroke="#27456F" stroke-width="1.6" marker-end="url(#arrow2)"/>
+<rect x="700" y="316" width="210" height="38" rx="7" fill="#FFFFFF" stroke="#9DB3C5" stroke-width="1.1"/>
+<text x="805.0" y="339.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#172033">Model</text>
+<path d="M 805.0 354 L 805.0 372" stroke="#27456F" stroke-width="1.6" marker-end="url(#arrow2)"/>
+<rect x="700" y="374" width="210" height="38" rx="7" fill="#FFFFFF" stroke="#9DB3C5" stroke-width="1.1"/>
+<text x="805.0" y="397.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#172033">Control</text>
+<path d="M 805.0 412 L 805.0 430" stroke="#27456F" stroke-width="1.6" marker-end="url(#arrow2)"/>
+<rect x="700" y="432" width="210" height="38" rx="7" fill="#FFFFFF" stroke="#9DB3C5" stroke-width="1.1"/>
+<text x="805.0" y="455.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#172033">KPIs</text>
+<defs><marker id="arrow2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#27456F"/></marker></defs>
+<rect x="972" y="190" width="270" height="360" rx="14" fill="#F4F5F7" stroke="#C8D4E0" stroke-width="1.4"/>
+<rect x="990" y="208" width="234" height="32" rx="8" fill="#475569" stroke="#475569" stroke-width="1"/>
+<text x="1107.0" y="229" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">Workflow</text>
+<rect x="1002" y="258" width="210" height="38" rx="7" fill="#FFFFFF" stroke="#9DB3C5" stroke-width="1.1"/>
+<text x="1107.0" y="281.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#172033">Intake</text>
+<path d="M 1107.0 296 L 1107.0 314" stroke="#475569" stroke-width="1.6" marker-end="url(#arrow3)"/>
+<rect x="1002" y="316" width="210" height="38" rx="7" fill="#FFFFFF" stroke="#9DB3C5" stroke-width="1.1"/>
+<text x="1107.0" y="339.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#172033">Extract</text>
+<path d="M 1107.0 354 L 1107.0 372" stroke="#475569" stroke-width="1.6" marker-end="url(#arrow3)"/>
+<rect x="1002" y="374" width="210" height="38" rx="7" fill="#FFFFFF" stroke="#9DB3C5" stroke-width="1.1"/>
+<text x="1107.0" y="397.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#172033">Render</text>
+<path d="M 1107.0 412 L 1107.0 430" stroke="#475569" stroke-width="1.6" marker-end="url(#arrow3)"/>
+<rect x="1002" y="432" width="210" height="38" rx="7" fill="#FFFFFF" stroke="#9DB3C5" stroke-width="1.1"/>
+<text x="1107.0" y="455.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#172033">Review</text>
+<defs><marker id="arrow3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/></marker></defs>
+<text x="640" y="678" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="600" fill="#59636A">Editable PPTX | SVG | Draw.io | HTML | Markdown | JSON</text>
 </svg>

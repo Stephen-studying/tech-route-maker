@@ -24,6 +24,8 @@ jobs:
           import pathlib
           for path in pathlib.Path("scripts").glob("*.py"):
               compile(path.read_text(encoding="utf-8"), str(path), "exec")
+          for path in pathlib.Path("tech_route_maker").glob("*.py"):
+              compile(path.read_text(encoding="utf-8"), str(path), "exec")
           print("source compile OK")
           PY
 
@@ -31,15 +33,15 @@ jobs:
         run: |
           python scripts/validate_route.py examples/academic-paper-demo/outputs/tech-route.json
           python scripts/validate_route.py examples/thesis-proposal-demo/outputs/tech-route.json
-          python scripts/validate_route.py examples/software-architecture-demo/outputs/tech-route.json
-          python scripts/validate_route.py examples/campaign-route-demo/outputs/tech-route.json
+          python scripts/validate_route.py examples/engineering-energy-system-demo/outputs/tech-route.json
+          python scripts/validate_route.py examples/agent-workflow-demo/outputs/tech-route.json
 
       - name: Render demo outputs
         run: |
           python scripts/render_all.py examples/academic-paper-demo/outputs/tech-route.json /tmp/academic --formats pptx,svg,drawio,html,markdown,json
           python scripts/render_all.py examples/thesis-proposal-demo/outputs/tech-route.json /tmp/thesis --formats pptx,svg,drawio,html,markdown,json
-          python scripts/render_all.py examples/software-architecture-demo/outputs/tech-route.json /tmp/software --formats pptx,svg,drawio,html,markdown,json
-          python scripts/render_all.py examples/campaign-route-demo/outputs/tech-route.json /tmp/campaign --formats pptx,svg,drawio,html,markdown,json
+          python scripts/render_all.py examples/engineering-energy-system-demo/outputs/tech-route.json /tmp/energy --formats pptx,svg,drawio,html,markdown,json
+          python scripts/render_all.py examples/agent-workflow-demo/outputs/tech-route.json /tmp/workflow --formats pptx,svg,drawio,html,markdown,json
 
       - name: Parse representative outputs
         run: |
@@ -48,11 +50,12 @@ jobs:
           import pathlib
           import xml.etree.ElementTree as ET
           import zipfile
-          roots = [pathlib.Path("/tmp/academic"), pathlib.Path("/tmp/thesis"), pathlib.Path("/tmp/software"), pathlib.Path("/tmp/campaign")]
+          roots = [pathlib.Path("/tmp/academic"), pathlib.Path("/tmp/thesis"), pathlib.Path("/tmp/energy"), pathlib.Path("/tmp/workflow")]
           for root in roots:
               json.load(open(root / "tech-route.json", encoding="utf-8"))
               ET.parse(root / "tech-route.svg")
               ET.parse(root / "tech-route.drawio")
+              assert (root / "QUALITY_REPORT.md").exists()
               z = zipfile.ZipFile(root / "tech-route.pptx")
               assert z.testzip() is None
           print("output parse OK")

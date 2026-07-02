@@ -1,0 +1,39 @@
+flowchart LR
+  title["PV Surface Defect Detection Method Route"]
+  subgraph goal["Research Goal"]
+    goal_task["Define defect task"]
+    goal_metric["Set evaluation metrics"]
+  end
+  subgraph data["Data Evidence"]
+    data_collect["Collect RGB and IR images"]
+    data_align["Align and annotate defects"]
+    data_split["Prepare train test sets"]
+  end
+  subgraph method["Method Design"]
+    method_baseline["Build baseline detector"]
+    method_fusion["Fuse multimodal features"]
+    method_attention["Enhance weak regions"]
+  end
+  subgraph training["Training Validation"]
+    training_loss["Optimize detection losses"]
+    training_ablation["Run ablation studies"]
+    training_infer["Infer defect candidates"]
+  end
+  subgraph output["Validation Output"]
+    output_metrics["Report quantitative gains"]
+    output_visual["Explain visual results"]
+    output_report["Generate defect report"]
+  end
+  goal_task -->|defines| goal_metric
+  goal_metric -->|guides| data_collect
+  data_collect -->|aligns| data_align
+  data_align -->|prepares| data_split
+  data_split -->|feeds| method_baseline
+  method_baseline -->|extends| method_fusion
+  method_fusion -->|enhances| method_attention
+  method_attention -->|optimizes| training_loss
+  training_loss -->|tests| training_ablation
+  training_ablation -->|selects| training_infer
+  training_infer -->|evaluates| output_metrics
+  output_metrics -->|explains| output_visual
+  output_visual -->|reports| output_report
