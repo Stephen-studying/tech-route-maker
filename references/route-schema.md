@@ -1,109 +1,75 @@
-# Route Schema
+# Route Schema Reference
 
 Use this schema for `tech-route.json`. The file is the single source of truth for every rendered format.
 
-## Minimal example
+Current schema version: `0.2.0`.
 
-```json
-{
-  "title": "Project Technical Route",
-  "subtitle": "Generated from repository evidence",
-  "layout": "horizontal-stages",
-  "style": "academic-blue",
-  "audience": "academic",
-  "figure_subtype": "academic_method_framework",
-  "reader_question": "What is the proposed method and how do the stages connect?",
-  "reader_path": ["Objective", "Input", "Method", "Validation", "Output"],
-  "stages": [
-    {
-      "id": "objective",
-      "title": "Objective",
-      "nodes": [
-        {
-          "id": "objective_1",
-          "label": "Define project goal",
-          "detail": "Summarize the core problem and expected result.",
-          "tag": "objective",
-          "evidence": [
-            {"kind": "file", "path": "README.md", "note": "Project overview"}
-          ]
-        }
-      ]
-    }
-  ],
-  "edges": [
-    {"from": "objective_1", "to": "input_1", "label": "guides"}
-  ],
-  "metadata": {
-    "source_scope": ".",
-    "generated_by": "tech-route-maker"
-  }
-}
-```
+## Top-level fields
 
-## Required top-level fields
+| Field | Required | Notes |
+|---|---|---|
+| `route_version` | yes | Current version is `0.2.0`. |
+| `title` | yes | Visible diagram title. |
+| `subtitle` | no | Optional visible subtitle. |
+| `selected_preset` | yes | `academic-method`, `thesis-proposal`, `engineering-system`, `workflow-pipeline`, or `custom`. |
+| `layout` | recommended | Renderer layout ID. |
+| `style` | recommended | Renderer visual style ID. |
+| `metadata` | recommended | Source files, selected outputs, language and audience. |
+| `stages` | yes | Ordered stage list. |
+| `edges` | recommended | Semantic links between node IDs. |
+| `assumptions` | recommended | Explains inferred content. |
+| `unresolved_questions` | recommended | Questions requiring user or source-owner review. |
+| `quality_report` | generated | Filled by validator/render tooling. |
+| `citations` | optional | External citation records when needed. |
+| `renderer_overrides` | optional | Format-specific render hints. |
 
-- `title`: visible diagram title.
-- `stages`: ordered list of route stages.
+## Metadata fields
 
-## Recommended top-level fields
-
-- `subtitle`: optional visible subtitle.
-- `layout`: selected layout ID.
-- `style`: selected visual style ID.
-- `edges`: semantic links between node IDs.
-- `metadata`: source scope, date, author, assumptions, and selected output formats.
-- `audience`: `academic`, `advertising`, `engineering`, or another user group.
-- `figure_subtype`: selected figure purpose/subtype.
-- `reader_question`: the main question the diagram answers.
-- `reader_path`: 3 to 7 first-glance anchor steps.
-- `visible_text_contract`: separates node labels, edge labels, internal micro-labels, and legend/caption labels.
-- `density_budget`: node count, repeated element compression, and first-glance risk.
-- `caption_support_plan`: what the figure body carries versus what caption/legend/supporting text carries.
-
-## Stage fields
-
-- `id`: stable stage identifier.
-- `title`: visible stage label.
-- `summary`: optional detail for HTML or Markdown.
-- `nodes`: ordered node list.
+- `created_by`: normally `tech-route-maker`.
+- `selected_output_formats`: actual rendered outputs.
+- `source_type`: `paper`, `proposal`, `engineering`, `workflow`, `legacy-campaign`, or `custom`.
+- `source_files`: list of source files with `path`, `kind`, and `description`.
+- `source_hashes`: optional file hashes for audit trails.
+- `language`: route language.
+- `audience`: `research`, `engineering`, `technical`, or another target audience.
 
 ## Node fields
 
 - `id`: stable node identifier.
 - `label`: visible node label.
-- `detail`: node explanation.
-- `tag`: category such as `objective`, `input`, `method`, `implementation`, `validation`, `output`, `risk`, `inference`.
-- `evidence`: list of evidence objects.
+- `detail`: longer explanation for HTML/Markdown.
+- `tag`: category such as `objective`, `input`, `method`, `implementation`, `validation`, `output`, `risk`, or `feedback`.
+- `node_type`: optional semantic type.
+- `confidence`: `high`, `medium`, or `low`.
+- `is_inferred`: boolean. Use `true` only when the node is not directly stated in the source.
+- `evidence`: source-grounding list.
 
 ## Evidence fields
 
-- `kind`: `file`, `function`, `class`, `config`, `document`, `dataset`, `metric`, `output`, or `inference`.
+- `kind`: `source`, `file`, `function`, `class`, `config`, `document`, `dataset`, `metric`, `output`, or `inference`.
+- `source_id`: optional source record ID.
 - `path`: source path when available.
+- `locator`: section, page, paragraph, function, table, figure, or row locator.
+- `quote_or_note`: short evidence note. Keep it concise.
 - `symbol`: function/class/config key when available.
-- `note`: short explanation.
-
-If a node is inferred from weak evidence, include:
-
-```json
-{"kind": "inference", "note": "Inferred from project structure; verify with owner."}
-```
 
 ## Edge fields
 
+- `id`: stable edge identifier.
 - `from`: source node ID.
 - `to`: target node ID.
 - `label`: semantic transition.
-- `kind`: optional edge category such as `flow`, `feedback`, `dependency`, `evidence`.
+- `kind`: `flow`, `feedback`, `dependency`, `validation`, or `evidence`.
+- `confidence`: `high`, `medium`, or `low`.
+- `evidence`: optional edge-level support.
 
-## Normalization rules
+## Validation rules
 
-The scripts normalize missing IDs, derive sequential edges when no edges are provided, and preserve user labels. Do not rely on normalization for final handoff; write stable IDs when possible.
-
-## Academic and advertising additions
-
-For paper, thesis, proposal, and research-project diagrams, include `figure_subtype`, `reader_question`, `reader_path`, and a short `caption_support_plan`.
-
-For advertising diagrams, include audience/segment, creative or campaign stage labels, channel/media stages, measurement nodes, and any approval or optimization loops.
-
-Use `visible_text_contract` to prevent file paths, schema keys, audit IDs, and long explanations from appearing inside visible boxes.
+- `route_version` must exist.
+- `selected_preset` must be valid.
+- Stages should usually be 4 to 7.
+- Each stage should usually contain 2 to 6 nodes.
+- Every visible node must have evidence or be explicitly inferred.
+- Inferred nodes should be linked from an assumption by `node_ids`.
+- Edge endpoints must point to existing nodes.
+- Confidence values must be `high`, `medium`, or `low`.

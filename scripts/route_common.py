@@ -263,6 +263,14 @@ STYLE_DEFAULTS = {
     "soft_shadow": "#E7ECF2",
 }
 
+STYLE_ALIASES = {
+    "presentation-clean": "defense-color",
+    "nature-style-editorial": "nature-editorial",
+    "high-contrast-accessible": "accessible-high-contrast",
+    "premium-scientific": "premium-scientific",
+    "advertising-clean-campaign": "advertising-clean-campaign",
+}
+
 
 def load_route(path):
     with open(path, "r", encoding="utf-8") as f:
@@ -324,7 +332,7 @@ def normalize_route(route):
     node_ids = set()
     for si, stage in enumerate(data.get("stages") or []):
         sid = slug(stage.get("id") or stage.get("title") or stage.get("name"), f"stage_{si + 1}")
-        title = str(stage.get("title") or stage.get("name") or f"Stage {si + 1}")
+        title = str(stage.get("title") or stage.get("label") or stage.get("name") or f"Stage {si + 1}")
         nodes = []
         for ni, node in enumerate(stage.get("nodes") or []):
             if isinstance(node, str):
@@ -336,15 +344,19 @@ def normalize_route(route):
                 nid = f"{base}_{offset}"
                 offset += 1
             node_ids.add(nid)
-            nodes.append(
+            normalized_node = copy.deepcopy(node)
+            normalized_node.update(
                 {
                     "id": nid,
                     "label": str(node.get("label") or node.get("title") or f"Node {ni + 1}"),
                     "detail": str(node.get("detail") or node.get("summary") or ""),
                     "tag": str(node.get("tag") or stage.get("tag") or "step"),
                     "evidence": node.get("evidence") if isinstance(node.get("evidence"), list) else [],
+                    "confidence": node.get("confidence") or "medium",
+                    "is_inferred": bool(node.get("is_inferred", False)),
                 }
             )
+            nodes.append(normalized_node)
         stages.append(
             {
                 "id": sid,
@@ -361,16 +373,20 @@ def normalize_route(route):
             continue
         source = slug(edge.get("from") or edge.get("source"), f"missing_from_{ei}")
         target = slug(edge.get("to") or edge.get("target"), f"missing_to_{ei}")
-        edges.append(
+        normalized_edge = copy.deepcopy(edge)
+        normalized_edge.update(
             {
                 "id": slug(edge.get("id"), f"edge_{ei + 1}"),
                 "from": source,
                 "to": target,
                 "label": str(edge.get("label") or edge.get("title") or "next"),
                 "kind": str(edge.get("kind") or "flow"),
+                "confidence": edge.get("confidence") or "medium",
+                "evidence": edge.get("evidence") if isinstance(edge.get("evidence"), list) else [],
                 "valid": source in valid_ids and target in valid_ids,
             }
         )
+        edges.append(normalized_edge)
     if not edges:
         last = None
         count = 1
@@ -385,11 +401,12 @@ def normalize_route(route):
 
 
 def get_style(route):
-    name = route.get("style") or "academic-blue"
+    requested = route.get("style") or "academic-blue"
+    name = STYLE_ALIASES.get(requested, requested)
     style = copy.deepcopy(STYLES.get(name, STYLES["academic-blue"]))
     for key, value in STYLE_DEFAULTS.items():
         style.setdefault(key, value)
-    style["name"] = name
+    style["name"] = requested
     return style
 
 
@@ -411,7 +428,7 @@ def build_layout(route):
     stage_boxes = []
 
     matrix_layouts = {"academic-method-framework", "proposal-matrix-route"}
-    system_layouts = {"software-system-route"}
+    system_layouts = {"software-system-route", "engineering-architecture-route", "engineering-architecture"}
     campaign_layouts = {"campaign-strategy-map"}
 
     if layout_name in matrix_layouts:
@@ -563,7 +580,14 @@ def build_layout(route):
             "route": route,
         }
 
-    vertical = layout_name in {"vertical-research-route", "closed-loop-optimization", "evidence-centered", "proposal-phase-axis"}
+    vertical = layout_name in {
+        "vertical-research-route",
+        "closed-loop-optimization",
+        "closed-loop-optimization-route",
+        "evidence-centered",
+        "evidence-centered-route",
+        "proposal-phase-axis",
+    }
     if vertical:
         width = 1120
         axis_x = 102
