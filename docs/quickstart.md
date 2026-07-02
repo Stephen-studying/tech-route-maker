@@ -1,6 +1,6 @@
 # Quick Start
 
-This page gives the shortest path from clone to editable outputs.
+This page gives the shortest path from clone to editable route outputs.
 
 ## 1. Clone
 
@@ -18,6 +18,12 @@ python scripts/validate_route.py examples/academic-paper-demo/outputs/tech-route
 Expected result:
 
 ```text
+Validation OK
+```
+
+Older versions may print:
+
+```text
 Validation passed with 0 warning(s).
 ```
 
@@ -32,10 +38,23 @@ Open:
 ```text
 examples/academic-paper-demo/outputs/tech-route.pptx
 examples/academic-paper-demo/outputs/tech-route.svg
+examples/academic-paper-demo/outputs/tech-route.drawio
 examples/academic-paper-demo/outputs/tech-route.html
+examples/academic-paper-demo/outputs/QUALITY_REPORT.md
 ```
 
-## 4. Use With An Agent
+## 4. Use The CLI
+
+After local installation:
+
+```bash
+pip install -e .
+trm doctor
+trm validate examples/academic-paper-demo/outputs/tech-route.json
+trm render examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,html,markdown,json
+```
+
+## 5. Use With An Agent
 
 Ask your agent:
 
@@ -43,24 +62,14 @@ Ask your agent:
 Use tech-route-maker to create an editable technical route diagram from my source brief.
 ```
 
-The agent must ask for:
+The agent should choose a default preset when the request is clear. It should ask only when a missing choice would materially change the result.
 
-1. Figure purpose/subtype.
-2. Output format(s).
-3. Layout.
-4. Visual style.
+## Manual Review Reminder
 
----
+The generated route is an editable draft. Before using it in a paper, thesis defense, grant proposal, course design or engineering report, review:
 
-# 快速开始
-
-最短流程：
-
-```bash
-git clone https://github.com/Stephen-studying/tech-route-maker.git
-cd tech-route-maker
-python scripts/validate_route.py examples/academic-paper-demo/outputs/tech-route.json
-python scripts/render_all.py examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,html,markdown,json
-```
-
-然后打开 `examples/academic-paper-demo/outputs/` 中的 PPTX、SVG 或 HTML 文件。
+- Facts and terminology.
+- Evidence and inferred nodes.
+- Route logic and edge labels.
+- Colors, layout and spacing.
+- Long labels and overloaded stages.

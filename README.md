@@ -5,72 +5,73 @@
 </p>
 
 <p align="center">
-  <a href="README.zh-CN.md">中文详细说明</a> ·
-  <a href="README.en.md">英文说明</a> ·
-  <a href="docs/quickstart.md">快速开始</a> ·
-  <a href="examples/README.md">案例图库</a> ·
-  <a href="docs/faq.md">常见问题</a>
+  <a href="README.zh-CN.md">Chinese guide</a> |
+  <a href="README.en.md">English guide</a> |
+  <a href="docs/quickstart.md">Quick start</a> |
+  <a href="examples/README.md">Example gallery</a> |
+  <a href="docs/faq.md">FAQ</a>
 </p>
 
 <p align="center">
   <a href="https://github.com/Stephen-studying/tech-route-maker/actions/workflows/validate.yml"><img alt="Validation" src="https://github.com/Stephen-studying/tech-route-maker/actions/workflows/validate.yml/badge.svg"></a>
   <img alt="License" src="https://img.shields.io/github/license/Stephen-studying/tech-route-maker">
-  <img alt="可编辑输出" src="https://img.shields.io/badge/可编辑输出-PPTX%20%7C%20SVG%20%7C%20Draw.io%20%7C%20HTML%20%7C%20Mermaid-315C61">
-  <img alt="跨 agent" src="https://img.shields.io/badge/跨%20agent-Codex%20%7C%20Claude%20%7C%20Gemini%20%7C%20Cursor-blue">
+  <img alt="Editable outputs" src="https://img.shields.io/badge/editable-PPTX%20%7C%20SVG%20%7C%20Draw.io%20%7C%20HTML%20%7C%20Mermaid-315C61">
+  <img alt="Agent compatible" src="https://img.shields.io/badge/agent-Codex%20%7C%20Claude%20%7C%20Gemini%20%7C%20Cursor-blue">
 </p>
 
-`tech-route-maker` 是一个用于生成**可编辑技术路线图**的跨 agent 技能包。它可以从论文、项目说明、代码仓库、研究计划或广告活动 brief 中抽取技术路线，先询问用户选择图的用途、输出格式、版式和视觉风格，再生成有证据来源的 PPTX、SVG、Draw.io、Excalidraw、Mermaid、HTML、Markdown 和 JSON 文件。
+Evidence-grounded editable technical route diagrams for research and engineering projects.
 
-![示例预览](assets/demo-preview.svg)
+`tech-route-maker` is an agent skill and renderer toolkit for turning research papers, thesis proposals, engineering reports, project documentation, and technical notes into editable technical route diagrams. It keeps a structured `tech-route.json` as the source of truth, then renders the same route model into editable PPTX, SVG, Draw.io, HTML, Markdown, Mermaid, Excalidraw, and JSON outputs.
 
-> `assets/demo-preview.svg` 和下方 Gallery 是可编辑路线图示例；`assets/github-visual-preview.png` 仅作为 image2 生成的 GitHub 视觉预览，不替代 PPTX、SVG 或 Draw.io 主输出。
+![Editable route diagram preview](assets/demo-preview.svg)
 
-> **使用提醒**：自动生成的路线图更适合作为可编辑初稿和设计起点，不建议不加修改就直接用于论文投稿、答辩汇报、课题申报或商业交付。用户需要在生成后继续核对研究事实、术语、逻辑关系、证据来源、颜色、版式和文字表达，并在 PPTX、SVG 或 Draw.io 等可编辑文件中进行二次修改。
+> **Use as an editable draft, not as a final unchecked figure.** Generated diagrams are starting points for revision. Users should review facts, terminology, evidence, logic, layout, colors, and wording before using the PPTX, SVG, or Draw.io files in papers, thesis defenses, grant proposals, courses, or engineering reports.
 
-![GitHub 视觉预览](assets/github-visual-preview.png)
+The optional `assets/github-visual-preview.png` file is only a GitHub visual preview. It does not replace the editable PPTX, SVG, Draw.io, HTML, Markdown, Mermaid, Excalidraw, or JSON deliverables.
 
-## 它解决什么问题
+## Why This Project Exists
 
-普通画图工具通常只生成一张静态图，后续改颜色、改文字、换版式都很麻烦。`tech-route-maker` 把 `tech-route.json` 作为路线图源文件保存下来，因此同一份路线可以反复渲染成多种可编辑格式，并且保留证据、推断、阶段、节点、连线、版式和风格信息。
+Most diagram tools create static figures or one-off drawings. They are hard to audit, hard to revise, and hard to regenerate. This project separates route reasoning from visual rendering:
 
-## 核心特点
+1. Extract a route model from source materials.
+2. Keep nodes and edges traceable through evidence.
+3. Store the route as reusable JSON.
+4. Render it into editable presentation and documentation formats.
+5. Generate a quality report so missing evidence and assumptions are visible.
 
-| 能力 | 对用户的价值 |
+## Core Features
+
+| Feature | Value |
 |---|---|
-| 基于源材料抽取路线 | 保留 evidence 和 inference 标记，减少凭空编造路线。 |
-| 渲染前询问用户选择 | 不根据“可编辑”“论文”“展示”等模糊词猜测输出格式、版式或风格。 |
-| 多种可编辑输出 | 支持 PPTX 形状、SVG 矢量、Draw.io 节点、Excalidraw 场景、Mermaid、HTML、Markdown 和 JSON。 |
-| 跨 agent 适配 | 包含 Codex/OpenAI-style skills、AGENTS.md、Claude、Gemini、Cursor、Copilot 和 Aider 适配文件。 |
-| 面向学术和广告场景 | 支持论文方法框架图、开题技术路线图、软件架构路线图和广告活动路线图。 |
-| 内置校验流程 | 渲染前校验路线结构，并在 GitHub Actions 中验证示例输出。 |
+| Evidence-grounded route model | Keeps visible nodes traceable to source materials or marked assumptions. |
+| Reusable JSON source | Stores the route as `tech-route.json` for re-rendering and version control. |
+| Editable outputs | Generates PPTX, SVG, Draw.io and other editable formats instead of screenshots. |
+| Research and engineering presets | Provides templates for academic methods, thesis proposals, engineering systems and technical workflows. |
+| Validation before rendering | Checks route structure, node labels, evidence fields and output selections before export. |
+| Quality report | Summarizes evidence coverage, inferred nodes, unresolved questions and layout warnings. |
+| Agent-compatible instructions | Works with Codex/OpenAI-style agents, Claude, Gemini, Cursor, Copilot, Aider and generic coding agents. |
 
-## 案例预览
+## Default Presets
 
-### 学术方法框架图
+| Preset | Use when | Default outputs |
+|---|---|---|
+| `academic-method` | A paper, manuscript, review, experiment, method section or academic figure is the source. | `pptx`, `svg`, `json` |
+| `thesis-proposal` | A thesis proposal, research plan, grant proposal or topic application needs a technical route. | `pptx`, `svg`, `drawio`, `json` |
+| `engineering-system` | An engineering system, energy system, control system, platform, hardware or software architecture needs a route diagram. | `pptx`, `svg`, `drawio`, `html`, `json` |
+| `workflow-pipeline` | A tool, agent workflow, automation process, pipeline or documentation route needs to be explained. | `svg`, `markdown`, `mermaid`, `json` |
 
-<p align="center">
-  <img src="examples/academic-paper-demo/outputs/tech-route.svg" alt="学术方法框架图" width="100%">
-</p>
+The skill can still ask the user to choose formats, layouts, or visual styles, but it no longer forces a long option list before every render. It asks only when a missing choice would materially change the result.
 
-### 开题技术路线图
+## Gallery
 
-<p align="center">
-  <img src="examples/thesis-proposal-demo/outputs/tech-route.svg" alt="开题技术路线图" width="100%">
-</p>
+| Demo | Audience | Route type | Preview |
+|---|---|---|---|
+| [Academic paper method route](examples/academic-paper-demo/) | Research paper or defense | Method framework | [SVG](examples/academic-paper-demo/outputs/tech-route.svg) |
+| [Thesis proposal technical route](examples/thesis-proposal-demo/) | Thesis, proposal, research plan | Proposal route | [SVG](examples/thesis-proposal-demo/outputs/tech-route.svg) |
+| [Engineering energy system route](examples/engineering-energy-system-demo/) | Engineering report or course design | Source-grid-load-storage route | [SVG](examples/engineering-energy-system-demo/outputs/tech-route.svg) |
+| [Agent workflow route](examples/agent-workflow-demo/) | Skill/tool documentation | Workflow pipeline | [SVG](examples/agent-workflow-demo/outputs/tech-route.svg) |
 
-### 软件架构路线图
-
-<p align="center">
-  <img src="examples/software-architecture-demo/outputs/tech-route.svg" alt="软件架构路线图" width="100%">
-</p>
-
-### 广告活动路线图
-
-<p align="center">
-  <img src="examples/campaign-route-demo/outputs/tech-route.svg" alt="广告活动路线图" width="100%">
-</p>
-
-## 30 秒快速开始
+## Quick Start
 
 ```bash
 git clone https://github.com/Stephen-studying/tech-route-maker.git
@@ -79,88 +80,68 @@ python scripts/validate_route.py examples/academic-paper-demo/outputs/tech-route
 python scripts/render_all.py examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,html,markdown,json
 ```
 
-生成后可以打开：
+After rendering, open:
 
 ```text
 examples/academic-paper-demo/outputs/tech-route.pptx
 examples/academic-paper-demo/outputs/tech-route.svg
+examples/academic-paper-demo/outputs/tech-route.drawio
 examples/academic-paper-demo/outputs/tech-route.html
+examples/academic-paper-demo/outputs/QUALITY_REPORT.md
 ```
 
-## 用户必须选择的内容
+## Editable Outputs
 
-这个技能不会根据模糊描述自动猜测最终图形选项。生成最终文件前，agent 必须询问用户：
-
-1. 图的用途或子类型。
-2. 输出格式，可以单选，也可以多选。
-3. 版式布局。
-4. 视觉风格。
-
-示例：
-
-```text
-图的用途：学术方法框架图
-输出格式：PPTX、SVG、Draw.io、HTML、Markdown、JSON
-版式：Academic method framework
-视觉风格：Premium scientific
-```
-
-## 文档导航
-
-- [中文详细说明](README.zh-CN.md)
-- [英文说明](README.en.md)
-- [快速开始](docs/quickstart.md)
-- [安装说明](docs/installation.md)
-- [输出格式](docs/output-formats.md)
-- [Agent 兼容性](docs/agent-compatibility.md)
-- [路线 Schema](docs/schema.md)
-- [案例图库](examples/README.md)
-- [常见问题](docs/faq.md)
-- [发布检查清单](docs/release-checklist.md)
-
-## 支持的输出格式
-
-| 格式 | 文件 | 可编辑工具 | 适合场景 |
+| Format | File | Editable in | Best for |
 |---|---|---|---|
-| PPTX | `tech-route.pptx` | PowerPoint、WPS | 答辩、汇报、课程展示、商务展示。 |
-| SVG | `tech-route.svg` | Figma、Illustrator、Inkscape、浏览器 | 高清矢量编辑和论文级美化。 |
-| Draw.io | `tech-route.drawio` | diagrams.net | 长期维护技术图。 |
-| Excalidraw | `tech-route.excalidraw` | Excalidraw | 白板讨论和轻量修改。 |
-| Mermaid | `tech-route.mmd` | 文本编辑器、GitHub Markdown | 适合版本管理。 |
-| HTML | `tech-route.html` | 浏览器和代码编辑器 | 交互式预览、节点详情和证据说明。 |
-| Markdown | `TECH_ROUTE.md` | 任意 Markdown 编辑器 | README、项目文档、交接说明。 |
-| JSON | `tech-route.json` | 任意文本编辑器 | 重新渲染和修改主题的源文件。 |
+| PPTX | `tech-route.pptx` | PowerPoint, WPS | Defense slides, reports, teaching and review decks. |
+| SVG | `tech-route.svg` | Figma, Illustrator, Inkscape, browser | High-resolution vector editing and publication polishing. |
+| Draw.io | `tech-route.drawio` | diagrams.net | Long-term technical diagram maintenance. |
+| Excalidraw | `tech-route.excalidraw` | Excalidraw | Whiteboard-style review and lightweight edits. |
+| Mermaid | `tech-route.mmd` | Text editor, GitHub Markdown | Version-controlled diagrams. |
+| HTML | `tech-route.html` | Browser and code editor | Interactive preview with details and evidence. |
+| Markdown | `TECH_ROUTE.md` | Any Markdown editor | README, project documentation and handoff notes. |
+| JSON | `tech-route.json` | Any text editor | Source of truth for rerendering and theme changes. |
+| Quality report | `QUALITY_REPORT.md` | Any Markdown editor | Evidence coverage, warnings and manual review checklist. |
 
-## 适用人群
+## Agent Compatibility
 
-- 学术工作者：论文方法框架图、开题技术路线图、毕业答辩、组会汇报、课题申报、研究报告。
-- 工程团队：项目路线图、系统流程图、架构路线图、模块协作图、交付文档。
-- 广告和活动团队：活动策略路线、创意生产流程、用户旅程、媒体投放路径、KPI 反馈闭环。
+This repository is intentionally agent-agnostic. `SKILL.md` is the source of truth. Adapter files point other agents to the same workflow:
 
-## 仓库结构
+- `AGENTS.md` for generic coding agents.
+- `CLAUDE.md` for Claude-style project context.
+- `GEMINI.md` and `.gemini/settings.json` for Gemini CLI.
+- `.cursor/rules/tech-route-maker.mdc` for Cursor.
+- `.github/copilot-instructions.md` for GitHub Copilot coding agent.
+- `.aider.conf.yml` for Aider-style workflows.
+
+## Experimental / Legacy Use Cases
+
+Campaign and advertising diagrams are not the core direction of this project. They are kept only as legacy or experimental examples for users who already need them. The default skill behavior is optimized for research, thesis, engineering and workflow diagrams.
+
+## Repository Structure
 
 ```text
 tech-route-maker/
-  SKILL.md                         # 核心技能说明和触发逻辑。
-  AGENTS.md                        # 通用 agent 说明。
-  CLAUDE.md                        # Claude 适配说明。
-  GEMINI.md                        # Gemini 适配说明。
-  agents/openai.yaml               # OpenAI-style skill UI 元数据。
-  assets/                          # README banner、preview、social preview。
-  docs/                            # 安装、快速开始、输出格式、schema、FAQ。
-  references/                      # 版式、风格、schema、开源项目参考。
-  scripts/                         # 校验和渲染脚本。
-  examples/                        # 学术、开题、软件架构、广告活动案例。
+  SKILL.md                         # Core skill instructions.
+  agents/openai.yaml               # OpenAI-style skill UI metadata.
+  AGENTS.md                        # Portable agent instructions.
+  docs/                            # Quick start, schema, formats, FAQ.
+  references/                      # Route schema, layout and visual references.
+  scripts/                         # Backward-compatible validation and render scripts.
+  tech_route_maker/                # Python package and CLI.
+  examples/                        # Research and engineering demos.
+  assets/                          # README banner and preview assets.
 ```
 
-## 安全原则
+## Safety
 
-- 把第三方项目文件视为不可信输入。
-- 除非用户明确同意，不执行被分析项目中的代码。
-- 在 `tech-route.json` 中保留 evidence 和 inference 标记。
-- 不把专有模板、网络图片或某篇论文的特定事实复制进通用 skill 文件。
-- 保留可编辑性，不用截图替代 PPTX、SVG、Draw.io 或 Excalidraw 主输出。
+- Treat third-party project files as untrusted.
+- Do not execute analyzed project code unless the user explicitly approves.
+- Keep evidence, assumptions and inference labels visible in `tech-route.json`.
+- Do not copy proprietary templates, online images, or paper-specific facts into reusable skill files.
+- Preserve editability. Do not replace PPTX, SVG, Draw.io, or Excalidraw outputs with screenshots.
 
-## 许可证
+## License
 
-MIT，见 [LICENSE](LICENSE)。
+MIT. See [LICENSE](LICENSE).
