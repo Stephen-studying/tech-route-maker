@@ -43,15 +43,22 @@ Use the adapter files already included in the repository:
 
 ## Local Rendering Toolkit
 
-No package installation is required for the included renderers. They use Python standard-library functionality.
+Use the backward-compatible scripts without package installation:
 
 ```bash
 python scripts/validate_route.py <route-json>
 python scripts/render_all.py <route-json> <output-dir> --formats pptx,svg,drawio,html,markdown,json
 ```
 
----
+Or install the local CLI:
 
-# 安装说明
+```bash
+pip install -e .
+trm doctor
+trm validate examples/academic-paper-demo/outputs/tech-route.json
+trm render examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,html,markdown,json
+```
 
-这个仓库可以作为 skill 文件夹、agent 项目上下文，也可以作为普通本地渲染工具包使用。核心入口是 `SKILL.md`，不同 agent 的适配文件已经放在仓库中。
+## Output Reminder
+
+Rendered diagrams are editable drafts. Users should revise the PPTX, SVG or Draw.io files before academic submission, defense use, course delivery or engineering handoff.

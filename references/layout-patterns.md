@@ -1,6 +1,6 @@
 # Layout Patterns
 
-Use this reference to offer layout choices. Ask the user to choose one layout. Do not infer the layout from the request.
+Use this reference to choose or explain layout patterns. Use the default preset layout first, and ask the user only when the layout choice would materially change the output.
 
 ## Layout menu
 
@@ -17,7 +17,7 @@ Use this reference to offer layout choices. Ask the user to choose one layout. D
    - Uses system layers such as user input, data layer, service layer, rendering/output layer, and quality/release layer.
 
 4. `campaign-strategy-map`
-   - Best for advertising and campaign planning when the user explicitly selects a business route.
+   - Legacy/experimental option for advertising and campaign planning when the user explicitly selects a business route.
    - Separates audience, insight, message, channels, measurement, and optimization.
 
 5. `horizontal-stages`
@@ -72,12 +72,12 @@ Use this reference to offer layout choices. Ask the user to choose one layout. D
    - Risk: insufficient as a full method specification unless paired with a framework overview.
 
 17. `campaign-funnel`
-   - Best for advertising teams mapping audience, awareness, engagement, conversion, retention, and measurement.
+   - Legacy/experimental option for teams mapping audience, awareness, engagement, conversion, retention, and measurement.
    - Strength: familiar business communication path.
    - Risk: can hide production dependencies.
 
 18. `creative-production-pipeline`
-   - Best for advertising teams mapping brief, insight, concept, assets, media, launch, and optimization.
+   - Legacy/experimental option for mapping brief, insight, concept, assets, media, launch, and optimization.
    - Strength: separates creative work from channel execution.
    - Risk: needs clear approval/revision loops.
 
@@ -103,7 +103,7 @@ Use this reference to offer layout choices. Ask the user to choose one layout. D
 - Use semantic edge labels.
 - Put variables, metrics, parameters, and pass-through artifacts on edges or ports before promoting them to nodes.
 - Separate the audit/semantic graph from the visible render graph.
-- Add a 3 to 7 step `reader_path` for academic and advertising-facing diagrams.
+- Add a 3 to 7 step `reader_path` for academic, engineering, workflow, and legacy campaign diagrams.
 - Use feedback arrows only when the project has real iteration or optimization evidence.
 - If the source is uncertain, mark the node evidence as `inference` instead of presenting it as confirmed.
 
@@ -132,7 +132,7 @@ Paper-framework figure references also commonly use:
 - edge-label-first variables and artifact labels;
 - density and repetition-compression budgets.
 
-Advertising route references commonly use:
+Legacy campaign route references commonly use:
 - target audience and insight;
 - creative idea and message route;
 - media/channel route;

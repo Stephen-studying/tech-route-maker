@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-`tech-route-maker` is a portable agent skill for creating editable technical route diagrams. Primary users are academic workers; secondary users are advertising or campaign teams.
+`tech-route-maker` is a portable agent skill for creating evidence-grounded editable technical route diagrams for research and engineering projects.
 
 Use `SKILL.md` as the source of truth. This file exists so generic coding agents can discover and operate the skill without Codex-specific assumptions.
 
@@ -11,13 +11,10 @@ Use `SKILL.md` as the source of truth. This file exists so generic coding agents
 - Read `SKILL.md` before using the skill.
 - Read relevant files in `references/` only when needed.
 - Always build or update `tech-route.json` before rendering final diagram files.
-- Always ask the user to choose:
-  - figure purpose/subtype;
-  - output format(s);
-  - layout;
-  - visual style.
-- Do not infer those choices from words such as "editable", "paper", "presentation", "GitHub", or "interactive".
-- Render only the formats selected by the user.
+- Use the default presets in `SKILL.md` when the request is clear.
+- Ask only when a missing choice would materially change the output.
+- Record `selected_preset` and `metadata.selected_output_formats` in `tech-route.json`.
+- Report `QUALITY_REPORT.md` findings after rendering.
 - Keep diagrams editable. Do not replace PPTX/SVG/Draw.io/Excalidraw outputs with screenshots.
 
 ## Common Commands

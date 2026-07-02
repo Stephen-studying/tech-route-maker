@@ -1,8 +1,8 @@
 # Output Options
 
-Use this reference when asking the user to choose output formats. Always let the user choose. Do not infer output formats from intent words.
+Use this reference when choosing or explaining output formats. Use default presets first, and ask only when a missing choice would materially change the output.
 
-Primary users are academic workers who need editable paper, thesis, proposal, defense, and method-framework diagrams. Secondary users are advertising or campaign workers who need editable strategy, production, channel, journey, or funnel diagrams.
+Primary users are academic and engineering users who need editable paper, thesis, proposal, defense, method-framework, system, workflow, and engineering route diagrams. Campaign diagrams are legacy/experimental and should be used only when the user explicitly asks for them.
 
 ## Format menu
 
@@ -18,11 +18,18 @@ Primary users are academic workers who need editable paper, thesis, proposal, de
 | json | `tech-route.json` | Any text editor | Best for re-rendering and theme changes | Treat as the source of truth |
 | all | all of the above | mixed | Best for archival handoff | Slower and more files |
 
-## Asking rule
+## Default selection rule
 
-Ask for output formats before rendering. The internal `tech-route.json` can be generated first, but no user-facing final file should be rendered until formats are selected.
+Use these defaults unless the user asks for advanced choices:
 
-If the user gives no choice, stop and ask again. If the user says "editable", ask whether they want PPTX, SVG, Draw.io, Excalidraw, or multiple formats.
+- Editable presentation figure: `pptx,svg,json`
+- Paper or research figure: `svg,pptx,json`
+- Maintainable system diagram: `drawio,svg,json`
+- Documentation output: `markdown,mermaid,json`
+- Long-term maintenance: add `drawio`
+- Full archive: `pptx,svg,drawio,excalidraw,mermaid,html,markdown,json`
+
+Ask one clarification question only when the target output is genuinely ambiguous.
 
 ## Source patterns
 

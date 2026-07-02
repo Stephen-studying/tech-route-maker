@@ -1,5 +1,33 @@
 # Changelog
 
+## 0.2.0 - 2026-07-02
+
+Research and engineering focus release.
+
+Added:
+
+- Default presets for academic methods, thesis proposals, engineering systems and workflow pipelines.
+- `route_version: 0.2.0` schema with structured assumptions, unresolved questions, confidence fields and inference flags.
+- `QUALITY_REPORT.md` generation for evidence coverage, inferred nodes, warning checks and manual review guidance.
+- Python package entry point with `trm validate`, `trm render`, `trm init` and `trm doctor`.
+- Engineering energy system demo for source-grid-load-storage planning.
+- Agent workflow demo for converting technical materials into editable route diagrams.
+- `docs/schema-migration-v0.2.md` migration guide.
+
+Changed:
+
+- README positioning narrowed from broad cross-domain route diagrams to evidence-grounded research and engineering route diagrams.
+- Skill interaction policy now uses default presets instead of forcing long option selection.
+- Advertising/campaign examples moved to legacy or experimental status.
+- GitHub Actions now validates the four core research and engineering examples.
+
+Validation:
+
+- Python source compile check for `scripts/*.py` and `tech_route_maker/*.py`.
+- Example route JSON validation.
+- Demo rendering for PPTX, SVG, Draw.io, Excalidraw, Mermaid, HTML, Markdown, JSON and `QUALITY_REPORT.md`.
+- CLI validation through `trm --help`, `trm doctor`, `trm validate` and `trm render`.
+
 ## 0.1.1 - 2026-06-19
 
 Repository-surface upgrade.
@@ -26,34 +54,3 @@ Added:
 - Academic paper-framework guidance and open-source reference notes.
 - Complete academic demo with source brief, route JSON, editable outputs, and English/Chinese walkthroughs.
 - English and Chinese README files.
-
----
-
-# 更新日志
-
-## 0.1.1 - 2026-06-19
-
-仓库门面增强版本。
-
-新增：
-
-- 带 banner、badge、preview、gallery 和 30 秒上手路径的 GitHub README 首屏。
-- `assets/` 视觉资产，包括 banner、demo preview 和 social preview。
-- `docs/` 文档中心，包括快速开始、安装、输出格式、agent 兼容性、schema、FAQ 和 release checklist。
-- `examples/README.md` 案例图库。
-- 开题/论文计划、软件架构、广告 campaign 三个新案例及其可编辑输出。
-- GitHub Actions 校验工作流。
-
-## 0.1.0 - 2026-06-19
-
-`tech-route-maker` 首个公开版本。
-
-新增：
-
-- 用于生成可编辑技术路线图的 `SKILL.md` 核心工作流。
-- 面向 Codex/OpenAI-style skills、AGENTS.md 通用 agent、Claude-style context、Gemini CLI、Cursor、GitHub Copilot coding agent 和 Aider-style workflow 的跨 agent 适配文件。
-- `tech-route.json` 结构说明。
-- PPTX、SVG、Draw.io、Excalidraw、Mermaid、HTML、Markdown 和 JSON 渲染脚本。
-- 学术论文框架图参考方法和开源项目参考说明。
-- 完整学术案例，包括源 brief、路线 JSON、可编辑输出和中英文 walkthrough。
-- 英文和中文 README。

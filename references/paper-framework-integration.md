@@ -16,9 +16,9 @@ For academic inputs, build a source-grounded foundation before drawing:
 - arrow semantics with source, target, meaning, and evidence;
 - figure-relevant inclusions, exclusions, uncertainty, reviewer risks, and non-droppable core substeps.
 
-For advertising inputs, build the equivalent foundation:
+For legacy campaign inputs, build the equivalent foundation only when the user explicitly asks for advertising or campaign work:
 
-- brand/campaign objective, target audience, insight, promise, and constraints;
+- brand or campaign objective, target audience, insight, promise, and constraints;
 - creative strategy, content/message route, channel route, production route, approval route, and conversion/evaluation route;
 - deliverables, timeline, evidence, assumptions, and risks.
 
@@ -36,9 +36,9 @@ Ask the user to choose one figure purpose/subtype. Recommended menu:
 - `evidence_linked_framework`
 - `failure_aware_framework`
 - `thesis_proposal_technical_route`
-- `advertising_strategy_route`
-- `campaign_production_workflow`
-- `customer_journey_funnel`
+- `legacy_advertising_strategy_route`
+- `legacy_campaign_production_workflow`
+- `legacy_customer_journey_funnel`
 - `media_channel_swimlane`
 
 Use multi-label reasoning internally, but render from the selected primary subtype.
@@ -52,7 +52,7 @@ Examples:
 - "What is the proposed method and why are these parts organized this way?"
 - "Which modules interact during training and inference?"
 - "How does one example move through the framework?"
-- "How does the campaign move from audience insight to conversion?"
+- "How does the legacy campaign move from audience insight to conversion?"
 
 ### Semantic graph versus visual graph
 
@@ -120,14 +120,14 @@ Avoid:
 
 - repeated full workflow rows for equivalent actors;
 - repeated labels in the body, legend, and caption;
-- decorative icons with no method or campaign meaning;
+- decorative icons with no method, system, workflow, or legacy campaign meaning;
 - dense grids unless the task is explicitly evidence or distribution focused.
 
 ### Caption and legend co-design
 
 For academic diagrams, plan the caption/legend as part of the figure logic. The figure body should carry non-droppable steps; the caption should define symbols, assumptions, scope, and claim boundaries.
 
-For advertising diagrams, use side notes or legend for audience definitions, channel terms, KPI definitions, and non-visual constraints; do not overload the main route with paragraph text.
+For legacy campaign diagrams, use side notes or legend for audience definitions, channel terms, KPI definitions, and non-visual constraints; do not overload the main route with paragraph text.
 
 ### Candidate brief fields
 
@@ -150,7 +150,7 @@ When proposing alternatives or preparing a final selected rendering, record:
 
 ## Route JSON additions
 
-Use these optional fields when the diagram is academic or advertising-facing:
+Use these optional fields when the diagram is academic, engineering-facing, or a legacy campaign route:
 
 ```json
 {

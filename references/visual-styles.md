@@ -62,7 +62,7 @@ Use this reference when asking the user to choose a visual style. Ask explicitly
 
 15. `advertising-clean-campaign`
    - Clean brand-neutral campaign map with audience, insight, creative, media, launch, and KPI accents.
-   - Useful for advertising strategy and campaign-production route diagrams.
+   - Legacy/experimental style for explicit advertising strategy and campaign-production route diagrams.
 
 16. `proposal-pastel-route`
    - White canvas, clear title pill, low-saturation pastel logical regions, section labels, dashed group borders when useful, and white editable node cards.
@@ -74,7 +74,7 @@ Use this reference when asking the user to choose a visual style. Ask explicitly
 
 18. `wide-collaboration-map`
    - Landscape composition with side axes, central collaboration modules, dashed system boundaries, and restrained blue/green emphasis.
-   - Useful for project reports, industry-academia collaboration, policy-support diagrams, and campaign/operations route maps.
+   - Useful for project reports, industry-academia collaboration, policy-support diagrams, and operations route maps.
 
 ## Aesthetic Baseline
 
@@ -87,7 +87,7 @@ Use these style rules when the user asks for a polished technical route diagram:
 - Use dashed boundaries for logical groups, chapters, work packages, or evidence scopes.
 - Keep content nodes white with dark text; use color on stage headers, bands, side labels, or group regions.
 - Use matrix or framework sections as the default academic route structure. Use a left-side phase axis only for long vertical research routes explicitly selected by the user.
-- Use landscape collaboration maps when the route is about actors, resources, channels, policies, platforms, or campaign touchpoints.
+- Use landscape collaboration maps when the route is about actors, resources, channels, policies, platforms, or operational touchpoints.
 - Keep arrowheads visible but not visually heavier than the nodes.
 - For GitHub/README previews, prefer large readable SVGs and avoid two-column compression when labels become too small.
 
@@ -101,7 +101,7 @@ Use these style rules when the user asks for a polished technical route diagram:
 - For PPTX and SVG, keep labels as editable text.
 - For monochrome output, vary borders, fill intensity, or line styles instead of relying on color.
 - For academic figures, visible style must serve the reader question and selected figure subtype.
-- For advertising diagrams, visual style may be more presentation-oriented, but audience, channel, and measurement logic must stay explicit.
+- For legacy campaign diagrams, visual style may be more presentation-oriented, but audience, channel, and measurement logic must stay explicit.
 - Do not transfer paper-specific facts, claims, metrics, labels, or symbols from visual references into a new diagram.
 
 ## Palette defaults
