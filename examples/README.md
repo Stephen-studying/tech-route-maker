@@ -6,9 +6,10 @@ The optional `assets/github-visual-preview.png` image on the repository homepage
 
 | Demo | Audience | Layout | Style | Preview |
 |---|---|---|---|---|
-| [Academic paper method route](academic-paper-demo/) | Academic paper or defense | Academic method framework | Academic blue | [SVG](academic-paper-demo/outputs/tech-route.svg) |
-| [Thesis proposal technical route](thesis-proposal-demo/) | Thesis, proposal, research plan | Proposal matrix route | Presentation clean | [SVG](thesis-proposal-demo/outputs/tech-route.svg) |
-| [Engineering energy system route](engineering-energy-system-demo/) | Engineering report or course design | Engineering architecture route | Dark technical | [SVG](engineering-energy-system-demo/outputs/tech-route.svg) |
+| [Academic paper method route](academic-paper-demo/) | Chinese paper or defense | Chinese research method matrix | Blue-green proposal | [SVG](academic-paper-demo/outputs/tech-route.svg) |
+| [Thesis proposal technical route](thesis-proposal-demo/) | Chinese thesis, opening report, research plan | Chinese proposal poster route | Polished pastel academic | [SVG](thesis-proposal-demo/outputs/tech-route.svg) |
+| [Chinese grant application route](chinese-grant-application-demo/) | Grant, project application, reviewer-facing route | Chinese grant application route | Soft grant report | [SVG](chinese-grant-application-demo/outputs/tech-route.svg) |
+| [Engineering energy system route](engineering-energy-system-demo/) | Engineering report or course design | Chinese wide project map | Blue-green proposal | [SVG](engineering-energy-system-demo/outputs/tech-route.svg) |
 | [Agent workflow route](agent-workflow-demo/) | Skill/tool documentation | Horizontal stages | Minimal gray | [SVG](agent-workflow-demo/outputs/tech-route.svg) |
 
 ## Legacy / Experimental
@@ -20,6 +21,7 @@ The optional `assets/github-visual-preview.png` image on the repository homepage
 ```bash
 python scripts/render_all.py examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,html,markdown,json
 python scripts/render_all.py examples/thesis-proposal-demo/outputs/tech-route.json examples/thesis-proposal-demo/outputs --formats pptx,svg,drawio,html,markdown,json
+python scripts/render_all.py examples/chinese-grant-application-demo/outputs/tech-route.json examples/chinese-grant-application-demo/outputs --formats pptx,svg,drawio,html,markdown,json
 python scripts/render_all.py examples/engineering-energy-system-demo/outputs/tech-route.json examples/engineering-energy-system-demo/outputs --formats pptx,svg,drawio,html,markdown,json
 python scripts/render_all.py examples/agent-workflow-demo/outputs/tech-route.json examples/agent-workflow-demo/outputs --formats pptx,svg,drawio,html,markdown,json
 ```

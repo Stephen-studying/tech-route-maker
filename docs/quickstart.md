@@ -64,6 +64,14 @@ Use tech-route-maker to create an editable technical route diagram from my sourc
 
 The agent should choose a default preset when the request is clear. It should ask only when a missing choice would materially change the result.
 
+For Chinese academic proposal routes, ask for the dedicated preset:
+
+```text
+Use tech-route-maker to create a Chinese thesis proposal technical route diagram. Output PPTX, SVG, Draw.io and HTML.
+```
+
+The expected default is `chinese-thesis-proposal`, which renders a portrait, editable, poster-style academic route rather than a generic flowchart.
+
 ## Manual Review Reminder
 
 The generated route is an editable draft. Before using it in a paper, thesis defense, grant proposal, course design or engineering report, review:

@@ -33,6 +33,7 @@ jobs:
         run: |
           python scripts/validate_route.py examples/academic-paper-demo/outputs/tech-route.json
           python scripts/validate_route.py examples/thesis-proposal-demo/outputs/tech-route.json
+          python scripts/validate_route.py examples/chinese-grant-application-demo/outputs/tech-route.json
           python scripts/validate_route.py examples/engineering-energy-system-demo/outputs/tech-route.json
           python scripts/validate_route.py examples/agent-workflow-demo/outputs/tech-route.json
 
@@ -40,6 +41,7 @@ jobs:
         run: |
           python scripts/render_all.py examples/academic-paper-demo/outputs/tech-route.json /tmp/academic --formats pptx,svg,drawio,html,markdown,json
           python scripts/render_all.py examples/thesis-proposal-demo/outputs/tech-route.json /tmp/thesis --formats pptx,svg,drawio,html,markdown,json
+          python scripts/render_all.py examples/chinese-grant-application-demo/outputs/tech-route.json /tmp/grant --formats pptx,svg,drawio,html,markdown,json
           python scripts/render_all.py examples/engineering-energy-system-demo/outputs/tech-route.json /tmp/energy --formats pptx,svg,drawio,html,markdown,json
           python scripts/render_all.py examples/agent-workflow-demo/outputs/tech-route.json /tmp/workflow --formats pptx,svg,drawio,html,markdown,json
 
@@ -50,7 +52,7 @@ jobs:
           import pathlib
           import xml.etree.ElementTree as ET
           import zipfile
-          roots = [pathlib.Path("/tmp/academic"), pathlib.Path("/tmp/thesis"), pathlib.Path("/tmp/energy"), pathlib.Path("/tmp/workflow")]
+          roots = [pathlib.Path("/tmp/academic"), pathlib.Path("/tmp/thesis"), pathlib.Path("/tmp/grant"), pathlib.Path("/tmp/energy"), pathlib.Path("/tmp/workflow")]
           for root in roots:
               json.load(open(root / "tech-route.json", encoding="utf-8"))
               ET.parse(root / "tech-route.svg")

@@ -1,37 +1,37 @@
 flowchart LR
-  title["Photovoltaic Self-Cleaning Coating Proposal Route"]
-  subgraph objective["Research Objective"]
-    objective_problem["Reduce surface contamination"]
-    objective_value["Protect optical efficiency"]
+  title["光伏自清洁涂层开题技术路线图"]
+  subgraph objective["研究目标"]
+    objective_problem["降低表面污染"]
+    objective_value["保护透光效率"]
   end
-  subgraph content["Research Content"]
-    content_material["Select coating chemistry"]
-    content_texture["Design micro nano texture"]
-    content_process["Plan scalable process"]
+  subgraph content["研究内容"]
+    content_material["筛选涂层体系"]
+    content_texture["构筑微纳结构"]
+    content_process["设计制备工艺"]
   end
-  subgraph technology["Key Technology"]
-    technology_wettability["Tune wetting behavior"]
-    technology_durability["Improve durability"]
-    technology_transparency["Maintain transparency"]
+  subgraph technology["关键技术"]
+    technology_wetting["调控润湿行为"]
+    technology_durability["提升服役耐久性"]
+    technology_transparency["保持高透光率"]
   end
-  subgraph validation["Experimental Validation"]
-    validation_surface["Characterize surface structure"]
-    validation_cleaning["Test self-cleaning function"]
-    validation_power["Measure PV impact"]
+  subgraph validation["实验验证"]
+    validation_surface["表征表面结构"]
+    validation_cleaning["测试自清洁功能"]
+    validation_power["测量发电影响"]
   end
-  subgraph outcome["Expected Outcomes"]
-    outcome_route["Form technical route"]
-    outcome_thesis["Support thesis chapters"]
+  subgraph outcome["预期成果"]
+    outcome_route["形成技术路线"]
+    outcome_thesis["支撑论文写作"]
   end
-  objective_problem -->|frames| objective_value
-  objective_value -->|guides| content_material
-  content_material -->|supports| content_texture
-  content_texture -->|scales| content_process
-  content_process -->|requires| technology_wettability
-  technology_wettability -->|balances| technology_durability
-  technology_durability -->|constrains| technology_transparency
-  technology_transparency -->|checks| validation_surface
-  validation_surface -->|tests| validation_cleaning
-  validation_cleaning -->|links| validation_power
-  validation_power -->|supports| outcome_route
-  outcome_route -->|writes| outcome_thesis
+  objective_problem -->|明确价值| objective_value
+  objective_value -->|指导设计| content_material
+  content_material -->|构筑结构| content_texture
+  content_texture -->|形成工艺| content_process
+  content_process -->|评价润湿| technology_wetting
+  technology_wetting -->|平衡耐久| technology_durability
+  technology_durability -->|约束透光| technology_transparency
+  technology_transparency -->|开展表征| validation_surface
+  validation_surface -->|验证功能| validation_cleaning
+  validation_cleaning -->|关联应用| validation_power
+  validation_power -->|支撑路线| outcome_route
+  outcome_route -->|写入论文| outcome_thesis

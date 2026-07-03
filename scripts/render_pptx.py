@@ -9,8 +9,10 @@ from route_common import build_layout, center, get_style, load_route, wrap_text
 P_NS = "http://schemas.openxmlformats.org/presentationml/2006/main"
 A_NS = "http://schemas.openxmlformats.org/drawingml/2006/main"
 R_NS = "http://schemas.openxmlformats.org/officeDocument/2006/relationships"
-SLIDE_W = 12192000
-SLIDE_H = 6858000
+LANDSCAPE_W = 12192000
+LANDSCAPE_H = 6858000
+PORTRAIT_W = 6858000
+PORTRAIT_H = 12192000
 
 
 def color(value):
@@ -22,7 +24,7 @@ def tx_body(text, font_size=1200, font_color="111827", bold=False, max_chars=18)
     for line in wrap_text(text, max_chars, 4):
         b = ' b="1"' if bold else ""
         paras.append(
-            f'<a:p><a:pPr algn="ctr"/><a:r><a:rPr lang="en-US" sz="{font_size}"{b}>'
+            f'<a:p><a:pPr algn="ctr"/><a:r><a:rPr lang="zh-CN" sz="{font_size}"{b}>'
             f'<a:solidFill><a:srgbClr val="{color(font_color)}"/></a:solidFill></a:rPr>'
             f"<a:t>{escape(line)}</a:t></a:r></a:p>"
         )
@@ -45,20 +47,22 @@ def rect_shape(shape_id, name, x, y, w, h, text, fill, stroke, font_color, font_
 </p:sp>"""
 
 
-def line_shape(shape_id, x1, y1, x2, y2, stroke):
+def line_shape(shape_id, x1, y1, x2, y2, stroke, arrow=True, dash=False):
     off_x = min(x1, x2)
     off_y = min(y1, y2)
     ext_x = max(abs(x2 - x1), 1)
     ext_y = max(abs(y2 - y1), 1)
     flip_h = ' flipH="1"' if x2 < x1 else ""
     flip_v = ' flipV="1"' if y2 < y1 else ""
+    arrow_xml = '<a:headEnd type="triangle"/>' if arrow else ""
+    dash_xml = '<a:prstDash val="dash"/>' if dash else ""
     return f"""
 <p:cxnSp>
   <p:nvCxnSpPr><p:cNvPr id="{shape_id}" name="Connector {shape_id}"/><p:cNvCxnSpPr/><p:nvPr/></p:nvCxnSpPr>
   <p:spPr>
     <a:xfrm{flip_h}{flip_v}><a:off x="{int(off_x)}" y="{int(off_y)}"/><a:ext cx="{int(ext_x)}" cy="{int(ext_y)}"/></a:xfrm>
     <a:prstGeom prst="line"><a:avLst/></a:prstGeom>
-    <a:ln w="19050"><a:solidFill><a:srgbClr val="{color(stroke)}"/></a:solidFill><a:headEnd type="triangle"/></a:ln>
+    <a:ln w="19050"><a:solidFill><a:srgbClr val="{color(stroke)}"/></a:solidFill>{dash_xml}{arrow_xml}</a:ln>
   </p:spPr>
 </p:cxnSp>"""
 
@@ -77,22 +81,43 @@ def palette_item(style, index):
     return palette[index % len(palette)]
 
 
+def slide_size_for(layout):
+    if layout["orientation"] == "vertical" and str(layout.get("layout_name", "")).startswith("cn-"):
+        return PORTRAIT_W, PORTRAIT_H
+    if layout["height"] > layout["width"] * 1.18:
+        return PORTRAIT_W, PORTRAIT_H
+    return LANDSCAPE_W, LANDSCAPE_H
+
+
 def make_slide(route):
     layout = build_layout(route)
     route = layout["route"]
     style = get_style(route)
-    scale = min((SLIDE_W - 500000) / layout["width"], (SLIDE_H - 400000) / layout["height"])
-    ox = (SLIDE_W - layout["width"] * scale) / 2
-    oy = (SLIDE_H - layout["height"] * scale) / 2
+    slide_w, slide_h = slide_size_for(layout)
+    scale = min((slide_w - 500000) / layout["width"], (slide_h - 520000) / layout["height"])
+    ox = (slide_w - layout["width"] * scale) / 2
+    oy = (slide_h - layout["height"] * scale) / 2
     nodes = {nid: scale_box(box, scale, ox, oy) for nid, box in layout["nodes"].items()}
     shapes = []
     sid = 2
-    title_w = SLIDE_W - 2 * (ox + 620000)
-    shapes.append(rect_shape(sid, "Title Band", ox + 620000, oy + 70000, title_w, 430000, route["title"], palette_item(style, 0), palette_item(style, 0), style["text"], 2100, True, True))
+    title_w = slide_w - 2 * max(360000, ox + 420000)
+    title_x = (slide_w - title_w) / 2
+    shapes.append(rect_shape(sid, "Title Band", title_x, oy + 70000, title_w, 430000, route["title"], palette_item(style, 0), style["stage_stroke"], style["text"], 2100, True, True))
     sid += 1
     if route.get("subtitle"):
-        shapes.append(rect_shape(sid, "Subtitle", ox + 1450000, oy + 515000, SLIDE_W - 2 * (ox + 1450000), 190000, route["subtitle"], style["background"], style["background"], style["muted"], 850, False, False))
+        sub_w = min(slide_w - 700000, title_w)
+        shapes.append(rect_shape(sid, "Subtitle", (slide_w - sub_w) / 2, oy + 515000, sub_w, 190000, route["subtitle"], style["background"], style["background"], style["muted"], 850, False, False))
         sid += 1
+    if layout["orientation"] == "vertical" and layout["stages"]:
+        y1 = oy + (layout["stages"][0]["y"] + 10) * scale
+        y2 = oy + (layout["stages"][-1]["y"] + layout["stages"][-1]["h"] - 10) * scale
+        axis_x = ox + layout["stages"][0].get("axis_x", 100) * scale
+        shapes.append(line_shape(sid, axis_x, y1, axis_x, y2, style["accent"], arrow=False))
+        sid += 1
+        for stage in layout["stages"]:
+            box = scale_box({"x": stage.get("axis_x", 100) - 58, "y": stage["y"] + stage["h"] / 2 - 33, "w": 82, "h": 66}, scale, ox, oy)
+            shapes.append(rect_shape(sid, f"Axis {stage['title']}", box["x"], box["y"], box["w"], box["h"], stage["title"], palette_item(style, stage["index"]), palette_item(style, stage["index"]), style["text"], 900, True, True))
+            sid += 1
     for stage in layout["stages"]:
         box = scale_box(stage, scale, ox, oy)
         shapes.append(rect_shape(sid, f"Stage {stage['title']}", box["x"], box["y"], box["w"], box["h"], "", palette_item(style, stage["index"]), style["stage_stroke"], style["text"], 1000, False, True, bool(style.get("stage_dash"))))
@@ -102,21 +127,22 @@ def make_slide(route):
             shapes.append(rect_shape(sid, f"Label {stage['title']}", label["x"], label["y"], label["w"], label["h"], stage["title"], style["header_fill"], style["header_fill"], style["header_text"], 1050, True, True))
             sid += 1
         else:
-            shapes.append(rect_shape(sid, f"Header {stage['title']}", box["x"], box["y"], box["w"], max(260000, 38 * scale), stage["title"], style["header_fill"], style["header_fill"], style["header_text"], 1100, True, True))
+            header_w = min(box["w"] * 0.34, 1850000)
+            shapes.append(rect_shape(sid, f"Header {stage['title']}", box["x"] + 220000, box["y"] - 120000 if layout["orientation"] == "vertical" else box["y"], header_w, max(260000, 38 * scale), stage["title"], style["header_fill"], style["header_fill"], style["header_text"], 1100, True, True))
             sid += 1
     for edge in route["edges"]:
         if not edge.get("valid", True) or edge["from"] not in nodes or edge["to"] not in nodes:
             continue
         x1, y1 = center(nodes[edge["from"]])
         x2, y2 = center(nodes[edge["to"]])
-        shapes.append(line_shape(sid, x1, y1, x2, y2, style["line"]))
+        shapes.append(line_shape(sid, x1, y1, x2, y2, style["line"], arrow=True, dash=edge.get("kind") == "feedback"))
         sid += 1
     for stage in route["stages"]:
         for node in stage["nodes"]:
             box = nodes[node["id"]]
-            shapes.append(rect_shape(sid, f"Node {node['id']}", box["x"], box["y"], box["w"], box["h"], node["label"], style["node_fill"], style["node_stroke"], style["text"], 1050, False, True))
+            shapes.append(rect_shape(sid, f"Node {node['id']}", box["x"], box["y"], box["w"], box["h"], node["label"], style["node_fill"], style["node_stroke"], style["text"], 980, False, True))
             sid += 1
-    return f"""<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+    return slide_w, slide_h, f"""<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <p:sld xmlns:a="{A_NS}" xmlns:r="{R_NS}" xmlns:p="{P_NS}">
   <p:cSld>
     <p:spTree>
@@ -130,12 +156,12 @@ def make_slide(route):
 
 
 def write_pptx(route, output):
-    slide = make_slide(route)
+    slide_w, slide_h, slide = make_slide(route)
     Path(output).parent.mkdir(parents=True, exist_ok=True)
     files = {
         "[Content_Types].xml": """<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/ppt/presentation.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.presentation.main+xml"/><Override PartName="/ppt/slides/slide1.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.slide+xml"/><Override PartName="/ppt/slideMasters/slideMaster1.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.slideMaster+xml"/><Override PartName="/ppt/slideLayouts/slideLayout1.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.slideLayout+xml"/><Override PartName="/ppt/theme/theme1.xml" ContentType="application/vnd.openxmlformats-officedocument.theme+xml"/><Override PartName="/docProps/core.xml" ContentType="application/vnd.openxmlformats-package.core-properties+xml"/><Override PartName="/docProps/app.xml" ContentType="application/vnd.openxmlformats-officedocument.extended-properties+xml"/></Types>""",
         "_rels/.rels": """<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="ppt/presentation.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="docProps/core.xml"/><Relationship Id="rId3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/extended-properties" Target="docProps/app.xml"/></Relationships>""",
-        "ppt/presentation.xml": f"""<?xml version="1.0" encoding="UTF-8" standalone="yes"?><p:presentation xmlns:a="{A_NS}" xmlns:r="{R_NS}" xmlns:p="{P_NS}"><p:sldMasterIdLst><p:sldMasterId id="2147483648" r:id="rId1"/></p:sldMasterIdLst><p:sldIdLst><p:sldId id="256" r:id="rId2"/></p:sldIdLst><p:sldSz cx="{SLIDE_W}" cy="{SLIDE_H}" type="wide"/><p:notesSz cx="6858000" cy="9144000"/></p:presentation>""",
+        "ppt/presentation.xml": f"""<?xml version="1.0" encoding="UTF-8" standalone="yes"?><p:presentation xmlns:a="{A_NS}" xmlns:r="{R_NS}" xmlns:p="{P_NS}"><p:sldMasterIdLst><p:sldMasterId id="2147483648" r:id="rId1"/></p:sldMasterIdLst><p:sldIdLst><p:sldId id="256" r:id="rId2"/></p:sldIdLst><p:sldSz cx="{slide_w}" cy="{slide_h}" type="custom"/><p:notesSz cx="6858000" cy="9144000"/></p:presentation>""",
         "ppt/_rels/presentation.xml.rels": """<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/slideMaster" Target="slideMasters/slideMaster1.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/slide" Target="slides/slide1.xml"/></Relationships>""",
         "ppt/slides/slide1.xml": slide,
         "ppt/slides/_rels/slide1.xml.rels": """<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/slideLayout" Target="../slideLayouts/slideLayout1.xml"/></Relationships>""",

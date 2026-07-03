@@ -35,6 +35,10 @@ Technical route diagrams are not ordinary decorative flowcharts. A usable resear
 | `thesis-proposal` | Thesis proposal, research plan, grant application, topic application. | `pptx`, `svg`, `drawio`, `json` |
 | `engineering-system` | Engineering system, energy system, control system, hardware/software platform. | `pptx`, `svg`, `drawio`, `html`, `json` |
 | `workflow-pipeline` | Tool workflow, agent skill workflow, automation pipeline, documentation process. | `svg`, `markdown`, `mermaid`, `json` |
+| `chinese-thesis-proposal` | Chinese thesis proposal, opening report, topic application, or research plan. | `pptx`, `svg`, `drawio`, `html`, `json` |
+| `chinese-grant-application` | Chinese grant or project application with reviewer-facing route logic. | `pptx`, `svg`, `drawio`, `html`, `markdown`, `json` |
+| `academic-paper-framework-cn` | Chinese academic method framework or paper figure. | `pptx`, `svg`, `drawio`, `json` |
+| `engineering-project-report-cn` | Chinese engineering report, platform map, or energy-system route. | `pptx`, `svg`, `drawio`, `html`, `json` |
 
 Advanced format, layout and style choices are still available. The skill asks for them only when the user explicitly asks to choose or when a missing decision would materially change the output.
 
@@ -127,6 +131,7 @@ For other agents, open the repository root and let the agent read the adapter it
 - Do not execute project code unless the user explicitly approves.
 - Mark inferred content instead of presenting it as source-supported fact.
 - Keep editable files editable; do not replace them with screenshots.
+- Chinese academic styles are implemented as original editable vector templates; local/private reference images are not bundled into the public repository.
 
 ## License
 

@@ -9,6 +9,7 @@
   <a href="README.en.md">English guide</a> |
   <a href="docs/quickstart.md">Quick start</a> |
   <a href="examples/README.md">Example gallery</a> |
+  <a href="docs/comparison-before-after.md">Before/after comparison</a> |
   <a href="docs/faq.md">FAQ</a>
 </p>
 
@@ -59,6 +60,10 @@ Most diagram tools create static figures or one-off drawings. They are hard to a
 | `thesis-proposal` | A thesis proposal, research plan, grant proposal or topic application needs a technical route. | `pptx`, `svg`, `drawio`, `json` |
 | `engineering-system` | An engineering system, energy system, control system, platform, hardware or software architecture needs a route diagram. | `pptx`, `svg`, `drawio`, `html`, `json` |
 | `workflow-pipeline` | A tool, agent workflow, automation process, pipeline or documentation route needs to be explained. | `svg`, `markdown`, `mermaid`, `json` |
+| `chinese-thesis-proposal` | A Chinese thesis proposal, opening report, topic application or research plan needs a polished poster-style route. | `pptx`, `svg`, `drawio`, `html`, `json` |
+| `chinese-grant-application` | A Chinese grant, project application or reviewer-facing research route needs a dense but organized editable diagram. | `pptx`, `svg`, `drawio`, `html`, `markdown`, `json` |
+| `academic-paper-framework-cn` | A Chinese academic method framework or paper figure needs a matrix-style route. | `pptx`, `svg`, `drawio`, `json` |
+| `engineering-project-report-cn` | A Chinese engineering report, platform map or energy-system route needs a wide project diagram. | `pptx`, `svg`, `drawio`, `html`, `json` |
 
 The skill can still ask the user to choose formats, layouts, or visual styles, but it no longer forces a long option list before every render. It asks only when a missing choice would materially change the result.
 
@@ -68,6 +73,7 @@ The skill can still ask the user to choose formats, layouts, or visual styles, b
 |---|---|---|---|
 | [Academic paper method route](examples/academic-paper-demo/) | Research paper or defense | Method framework | [SVG](examples/academic-paper-demo/outputs/tech-route.svg) |
 | [Thesis proposal technical route](examples/thesis-proposal-demo/) | Thesis, proposal, research plan | Proposal route | [SVG](examples/thesis-proposal-demo/outputs/tech-route.svg) |
+| [Chinese grant application route](examples/chinese-grant-application-demo/) | Grant or project application | Application route | [SVG](examples/chinese-grant-application-demo/outputs/tech-route.svg) |
 | [Engineering energy system route](examples/engineering-energy-system-demo/) | Engineering report or course design | Source-grid-load-storage route | [SVG](examples/engineering-energy-system-demo/outputs/tech-route.svg) |
 | [Agent workflow route](examples/agent-workflow-demo/) | Skill/tool documentation | Workflow pipeline | [SVG](examples/agent-workflow-demo/outputs/tech-route.svg) |
 
@@ -140,6 +146,7 @@ tech-route-maker/
 - Do not execute analyzed project code unless the user explicitly approves.
 - Keep evidence, assumptions and inference labels visible in `tech-route.json`.
 - Do not copy proprietary templates, online images, or paper-specific facts into reusable skill files.
+- Chinese academic styles are recreated as original editable vector templates; local/private reference images are not bundled into the public repository.
 - Preserve editability. Do not replace PPTX, SVG, Draw.io, or Excalidraw outputs with screenshots.
 
 ## License

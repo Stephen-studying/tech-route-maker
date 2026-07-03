@@ -1,3 +1,3 @@
 # thesis-proposal-demo
 
-Thesis proposal demo brief for PV self-cleaning coating research.
+Chinese thesis proposal demo brief for PV self-cleaning coating research.

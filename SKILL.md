@@ -32,6 +32,7 @@ If the user provides enough context, choose the closest preset automatically and
 
 Default behavior:
 
+- If the user asks in Chinese for 开题, 课题申报, 项目申请, 基金, 论文技术路线图, or a Chinese research route diagram, prefer the Chinese academic presets below.
 - If the user asks for an editable presentation figure, generate `pptx`, `svg` and `json`.
 - If the user asks for a paper or research figure, generate `svg`, `pptx` and `json`.
 - If the user asks for a maintainable system diagram, generate `drawio`, `svg` and `json`.
@@ -55,7 +56,7 @@ academic-method:
 
 thesis-proposal:
   purpose: Thesis/proposal technical route
-  trigger_hints: [proposal, research plan, thesis, grant, topic application, 开题, 课题申报]
+  trigger_hints: [proposal, research plan, thesis, grant, topic application, opening report]
   outputs: [pptx, svg, drawio, json]
   layout: proposal-matrix-route
   style: presentation-clean
@@ -73,6 +74,34 @@ workflow-pipeline:
   outputs: [svg, markdown, mermaid, json]
   layout: horizontal-stages
   style: minimal-gray
+
+chinese-thesis-proposal:
+  purpose: Chinese thesis/proposal poster route
+  trigger_hints: [中文技术路线图, 开题报告, 课题申报, 论文技术路线, 研究方案, 毕设, 学位论文]
+  outputs: [pptx, svg, drawio, html, json]
+  layout: cn-proposal-poster-route
+  style: cn-polished-pastel-academic
+
+chinese-grant-application:
+  purpose: Chinese grant or project application route
+  trigger_hints: [基金申请, 项目申请, 申报书, 科研项目, 研究内容, 科学问题]
+  outputs: [pptx, svg, drawio, html, markdown, json]
+  layout: cn-grant-application-route
+  style: cn-soft-grant-report
+
+academic-paper-framework-cn:
+  purpose: Chinese academic method framework
+  trigger_hints: [中文论文方法框架, 研究框架图, 方法路线图, 论文图, 技术路线]
+  outputs: [pptx, svg, drawio, json]
+  layout: cn-research-method-matrix
+  style: cn-blue-green-proposal
+
+engineering-project-report-cn:
+  purpose: Chinese engineering project report route
+  trigger_hints: [工程项目, 项目汇报, 系统路线图, 能源系统, 平台建设]
+  outputs: [pptx, svg, drawio, html, json]
+  layout: cn-wide-project-map
+  style: cn-blue-green-proposal
 ```
 
 ## Ask Only When Necessary
@@ -114,6 +143,11 @@ Advanced layout families:
 8. `evidence-centered-route`
 9. `baseline-vs-ours-split`
 10. `case-walkthrough-strip`
+11. `cn-proposal-poster-route`
+12. `cn-grant-application-route`
+13. `cn-research-method-matrix`
+14. `cn-wide-project-map`
+15. `cn-monochrome-linework-route`
 
 Advanced visual styles:
 
@@ -127,6 +161,11 @@ Advanced visual styles:
 8. `dark-technical`
 9. `schematic-precision`
 10. `premium-scientific`
+11. `cn-polished-pastel-academic`
+12. `cn-blue-green-proposal`
+13. `cn-soft-grant-report`
+14. `cn-reviewer-linework`
+15. `cn-defense-poster`
 
 ## Workflow
 
@@ -187,6 +226,8 @@ Editable constraints:
 Read `references/layout-patterns.md` before building `tech-route.json` for an unfamiliar layout.
 
 Read `references/visual-styles.md` before setting a theme.
+
+Read `references/local-style-study.md` when the target is a Chinese academic, thesis, grant, project-application, or research-report technical route diagram.
 
 For proposal and research-report diagrams, prefer polished academic template language: white canvas, clear title, matrix or framework sections, low-saturation logical regions, dashed boundaries where they clarify grouping, and white editable node cards.
 

@@ -92,6 +92,36 @@ Use this reference to choose or explain layout patterns. Use the default preset 
    - Strength: exposes actors, dependencies, work packages, and support systems better than a simple pipeline.
    - Risk: can look busy if every stakeholder becomes a node.
 
+21. `cn-proposal-poster-route`
+   - Best for Chinese thesis proposals, opening reports, topic applications, and research-route poster pages.
+   - Reads top to bottom with a polished left phase axis, pastel stage regions, dashed group boundaries, and white node cards.
+   - Strength: matches common Chinese academic route aesthetics while keeping PPTX/SVG/Draw.io editable.
+   - Risk: becomes weak if every semantic step is drawn as a separate visible node; compress repeated content.
+
+22. `cn-grant-application-route`
+   - Best for grants, project applications, and reviewer-facing research routes.
+   - Reads as proposal objective, research contents, scientific questions, key methods, validation, and deliverables.
+   - Strength: supports dense but organized application figures.
+   - Risk: needs stricter text-density control than slide-first routes.
+
+23. `cn-research-method-matrix`
+   - Best for Chinese paper method frameworks, thesis method chapters, and defense method slides.
+   - Reads as side-labeled matrix sections rather than a simple chain.
+   - Strength: separates objective, data, method, training/implementation, validation, and outputs.
+   - Risk: can become too report-like if every node is a paragraph.
+
+24. `cn-wide-project-map`
+   - Best for engineering project reports, platform construction, energy systems, and collaborative project maps.
+   - Reads as side labels plus central work-package/system regions.
+   - Strength: avoids forcing engineering systems into thesis-proposal poster structure.
+   - Risk: needs explicit system boundaries and validation/output layers.
+
+25. `cn-monochrome-linework-route`
+   - Best for reviewer-safe, print-safe, or Word/PDF application figures.
+   - Reads like the proposal poster route, but with black/gray linework and minimal fills.
+   - Strength: robust for formal documents and low-color printing.
+   - Risk: less visually engaging for presentations.
+
 ## Design rules
 
 - Keep the main route to 4 to 7 stages.
@@ -100,6 +130,9 @@ Use this reference to choose or explain layout patterns. Use the default preset 
 - Use grouped regions for stages.
 - For proposal-style academic routes, prefer matrix sections or framework sections first. Use a left phase axis only when the user explicitly chooses a long vertical route.
 - For polished PPT landscape routes, use a wide canvas, central modules, side labels, and restrained connector arrows rather than a single cramped line.
+- For Chinese thesis/proposal/grant figures, prefer `cn-proposal-poster-route`, `cn-grant-application-route`, or `cn-research-method-matrix` over the legacy `proposal-phase-axis`.
+- Preserve a visible distinction between research content, research objective, scientific questions, methods, validation, and outputs.
+- Use portrait PPTX canvas for long Chinese proposal routes instead of shrinking them into 16:9.
 - Use semantic edge labels.
 - Put variables, metrics, parameters, and pass-through artifacts on edges or ports before promoting them to nodes.
 - Separate the audit/semantic graph from the visible render graph.

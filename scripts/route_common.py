@@ -252,6 +252,93 @@ STYLES = {
         "accent_3": "#D94E4E",
         "stage_dash": "8 6",
     },
+    "cn-polished-pastel-academic": {
+        "background": "#FFFFFF",
+        "text": "#13243A",
+        "muted": "#5D6B7A",
+        "line": "#4C8CBF",
+        "stage_fill": "#F8FBFC",
+        "stage_stroke": "#78B5C7",
+        "header_fill": "#64C7C8",
+        "header_text": "#102033",
+        "node_fill": "#FFFFFF",
+        "node_stroke": "#A8B8C5",
+        "palette": ["#DDF3F3", "#F9E3EB", "#FFF1C9", "#DDECF8", "#E7F5DA", "#F7E8D9"],
+        "accent": "#F36F7B",
+        "accent_2": "#F6C54B",
+        "accent_3": "#5CC5A8",
+        "stage_dash": "7 6",
+        "canvas_stroke": "#D8E5EE",
+    },
+    "cn-blue-green-proposal": {
+        "background": "#FFFFFF",
+        "text": "#152E3A",
+        "muted": "#57717A",
+        "line": "#2F7CA6",
+        "stage_fill": "#F7FBFB",
+        "stage_stroke": "#7CB7C6",
+        "header_fill": "#5AA6D6",
+        "header_text": "#FFFFFF",
+        "node_fill": "#FFFFFF",
+        "node_stroke": "#9EB7C8",
+        "palette": ["#D8F0EA", "#DDEBFB", "#EAF4D9", "#FFF0D4", "#F6E2E8", "#E6F3F6"],
+        "accent": "#3EA8C8",
+        "accent_2": "#6AA43A",
+        "accent_3": "#E58B3A",
+        "stage_dash": "7 6",
+    },
+    "cn-soft-grant-report": {
+        "background": "#FFFFFF",
+        "text": "#172033",
+        "muted": "#59636A",
+        "line": "#315C88",
+        "stage_fill": "#FAFCFD",
+        "stage_stroke": "#AEBECC",
+        "header_fill": "#4E7FB0",
+        "header_text": "#FFFFFF",
+        "node_fill": "#FFFFFF",
+        "node_stroke": "#AAB8C5",
+        "palette": ["#E7F0F7", "#F5E5E2", "#F7F1D8", "#E6F2DF", "#EAE7F4", "#F7ECE1"],
+        "accent": "#4E7FB0",
+        "accent_2": "#D34B4B",
+        "accent_3": "#6E9B49",
+        "stage_dash": "8 6",
+    },
+    "cn-reviewer-linework": {
+        "background": "#FFFFFF",
+        "text": "#111111",
+        "muted": "#555555",
+        "line": "#222222",
+        "stage_fill": "#FFFFFF",
+        "stage_stroke": "#333333",
+        "header_fill": "#F4F4F4",
+        "header_text": "#111111",
+        "node_fill": "#FFFFFF",
+        "node_stroke": "#222222",
+        "palette": ["#FFFFFF", "#F8F8F8", "#FFFFFF", "#F4F4F4", "#FFFFFF", "#F8F8F8"],
+        "accent": "#111111",
+        "accent_2": "#666666",
+        "accent_3": "#999999",
+        "stage_dash": "8 5",
+        "canvas_stroke": "#BBBBBB",
+    },
+    "cn-defense-poster": {
+        "background": "#FFFFFF",
+        "text": "#101A2B",
+        "muted": "#5E6B78",
+        "line": "#4E86B8",
+        "stage_fill": "#F9FBFC",
+        "stage_stroke": "#8EB7C8",
+        "header_fill": "#2F6FA8",
+        "header_text": "#FFFFFF",
+        "node_fill": "#FFFFFF",
+        "node_stroke": "#A7B7C6",
+        "palette": ["#DCECF7", "#DDF0EA", "#FFF0CB", "#F6E0E8", "#E7F3D7", "#EEE7F4"],
+        "accent": "#5AB7C9",
+        "accent_2": "#F3C64E",
+        "accent_3": "#E96C72",
+        "stage_dash": "7 6",
+    },
 }
 
 STYLE_DEFAULTS = {
@@ -269,6 +356,9 @@ STYLE_ALIASES = {
     "high-contrast-accessible": "accessible-high-contrast",
     "premium-scientific": "premium-scientific",
     "advertising-clean-campaign": "advertising-clean-campaign",
+    "cn-thesis-pastel": "cn-polished-pastel-academic",
+    "cn-grant-pastel": "cn-soft-grant-report",
+    "cn-linework": "cn-reviewer-linework",
 }
 
 
@@ -427,26 +517,47 @@ def build_layout(route):
     nodes = {}
     stage_boxes = []
 
-    matrix_layouts = {"academic-method-framework", "proposal-matrix-route"}
-    system_layouts = {"software-system-route", "engineering-architecture-route", "engineering-architecture"}
+    matrix_layouts = {
+        "academic-method-framework",
+        "proposal-matrix-route",
+        "cn-research-method-matrix",
+        "cn-paper-framework-canvas",
+    }
+    system_layouts = {
+        "software-system-route",
+        "engineering-architecture-route",
+        "engineering-architecture",
+        "cn-wide-project-map",
+    }
     campaign_layouts = {"campaign-strategy-map"}
 
     if layout_name in matrix_layouts:
-        width = 1280
-        content_x = 228
-        content_w = 980
-        label_x = 62
-        label_w = 128
-        y = title_h + 44
-        row_gap = 24
-        node_h = 60
-        node_gap = 16
+        if layout_name.startswith("cn-"):
+            width = 1380
+            content_x = 250
+            content_w = 1046
+            label_x = 58
+            label_w = 148
+            y = title_h + 58
+            row_gap = 30
+            node_h = 64
+            node_gap = 18
+        else:
+            width = 1280
+            content_x = 228
+            content_w = 980
+            label_x = 62
+            label_w = 128
+            y = title_h + 44
+            row_gap = 24
+            node_h = 60
+            node_gap = 16
         for si, stage in enumerate(stages):
             count = max(1, len(stage["nodes"]))
             cols = 1 if count == 1 else min(3, count)
             rows = int(math.ceil(count / cols))
             node_w = (content_w - 72 - (cols - 1) * node_gap) / cols
-            row_h = max(112, 32 + rows * node_h + max(0, rows - 1) * node_gap + 34)
+            row_h = max(126 if layout_name.startswith("cn-") else 112, 34 + rows * node_h + max(0, rows - 1) * node_gap + 38)
             label_box = {
                 "x": label_x,
                 "y": y + row_h / 2 - 28,
@@ -491,15 +602,26 @@ def build_layout(route):
         }
 
     if layout_name in system_layouts:
-        width = 1320
-        content_x = 238
-        content_w = 1008
-        label_x = 58
-        label_w = 146
-        y = title_h + 48
-        row_gap = 18
-        node_h = 58
-        node_gap = 18
+        if layout_name == "cn-wide-project-map":
+            width = 1500
+            content_x = 270
+            content_w = 1120
+            label_x = 58
+            label_w = 168
+            y = title_h + 54
+            row_gap = 22
+            node_h = 60
+            node_gap = 18
+        else:
+            width = 1320
+            content_x = 238
+            content_w = 1008
+            label_x = 58
+            label_w = 146
+            y = title_h + 48
+            row_gap = 18
+            node_h = 58
+            node_gap = 18
         for si, stage in enumerate(stages):
             count = max(1, len(stage["nodes"]))
             cols = min(4, count)
@@ -587,19 +709,33 @@ def build_layout(route):
         "evidence-centered",
         "evidence-centered-route",
         "proposal-phase-axis",
+        "cn-proposal-poster-route",
+        "cn-grant-application-route",
+        "cn-monochrome-linework-route",
     }
     if vertical:
-        width = 1120
-        axis_x = 102
-        stage_x = 202
-        stage_w = 842
-        y = title_h + 36
+        if layout_name.startswith("cn-"):
+            width = 1060
+            axis_x = 96
+            stage_x = 194
+            stage_w = 790
+            y = title_h + 62
+            gap = 42
+            node_h = 64
+            node_gap = 18
+            header_h = 52
+        else:
+            width = 1120
+            axis_x = 102
+            stage_x = 202
+            stage_w = 842
+            y = title_h + 36
         for si, stage in enumerate(stages):
             count = max(1, len(stage["nodes"]))
             cols = 1 if count == 1 else min(3, count)
             rows = int(math.ceil(max(1, len(stage["nodes"])) / cols))
             node_w = (stage_w - 70 - (cols - 1) * node_gap) / cols
-            sh = header_h + rows * node_h + max(0, rows - 1) * node_gap + 42
+            sh = header_h + rows * node_h + max(0, rows - 1) * node_gap + (54 if layout_name.startswith("cn-") else 42)
             stage_boxes.append(
                 {
                     "id": stage["id"],

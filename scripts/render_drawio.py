@@ -3,15 +3,23 @@ import sys
 from route_common import build_layout, get_style, html_escape, load_route, save_text
 
 
+def palette_item(style, index):
+    palette = style.get("palette") or [style["stage_fill"]]
+    return palette[index % len(palette)]
+
+
 def make_drawio(route):
     layout = build_layout(route)
     route = layout["route"]
     style = get_style(route)
     nodes = layout["nodes"]
+    page_w = max(1200, int(layout["width"] + 80))
+    page_h = max(800, int(layout["height"] + 80))
+    dashed = "dashed=1;dashPattern=8 6;" if style.get("stage_dash") else ""
     parts = [
         '<mxfile host="app.diagrams.net" modified="2026-06-19T00:00:00.000Z" agent="tech-route-maker" version="24.7.8">',
         '<diagram id="tech-route" name="Tech Route">',
-        '<mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">',
+        f'<mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="{page_w}" pageHeight="{page_h}" math="0" shadow="0">',
         "<root>",
         '<mxCell id="0"/>',
         '<mxCell id="1" parent="0"/>',
@@ -20,10 +28,16 @@ def make_drawio(route):
     for stage in layout["stages"]:
         sid = f'stage_{stage["id"]}'
         stage_value = "" if stage.get("label_box") else html_escape(stage["title"])
-        parts.append(f'<mxCell id="{sid}" value="{stage_value}" style="rounded=1;whiteSpace=wrap;html=1;fillColor={style["stage_fill"]};strokeColor={style["stage_stroke"]};fontColor={style["text"]};fontStyle=1;verticalAlign=top;spacingTop=8;" vertex="1" parent="1"><mxGeometry x="{stage["x"]:.0f}" y="{stage["y"]:.0f}" width="{stage["w"]:.0f}" height="{stage["h"]:.0f}" as="geometry"/></mxCell>')
+        parts.append(f'<mxCell id="{sid}" value="{stage_value}" style="rounded=1;whiteSpace=wrap;html=1;fillColor={palette_item(style, stage["index"])};strokeColor={style["stage_stroke"]};fontColor={style["text"]};fontStyle=1;verticalAlign=top;spacingTop=8;opacity=80;{dashed}" vertex="1" parent="1"><mxGeometry x="{stage["x"]:.0f}" y="{stage["y"]:.0f}" width="{stage["w"]:.0f}" height="{stage["h"]:.0f}" as="geometry"/></mxCell>')
         if stage.get("label_box"):
             label = stage["label_box"]
             parts.append(f'<mxCell id="{sid}_label" value="{html_escape(stage["title"])}" style="rounded=1;whiteSpace=wrap;html=1;fillColor={style["header_fill"]};strokeColor={style["header_fill"]};fontColor={style["header_text"]};fontStyle=1;" vertex="1" parent="1"><mxGeometry x="{label["x"]:.0f}" y="{label["y"]:.0f}" width="{label["w"]:.0f}" height="{label["h"]:.0f}" as="geometry"/></mxCell>')
+        elif layout["orientation"] == "vertical":
+            label_w = min(stage["w"] * 0.34, 230)
+            parts.append(f'<mxCell id="{sid}_tab" value="{html_escape(stage["title"])}" style="rounded=1;whiteSpace=wrap;html=1;fillColor={style["header_fill"]};strokeColor={style["header_fill"]};fontColor={style["header_text"]};fontStyle=1;" vertex="1" parent="1"><mxGeometry x="{stage["x"] + 28:.0f}" y="{stage["y"] - 17:.0f}" width="{label_w:.0f}" height="34" as="geometry"/></mxCell>')
+            axis_x = stage.get("axis_x")
+            if axis_x is not None:
+                parts.append(f'<mxCell id="{sid}_axis" value="{html_escape(stage["title"])}" style="rounded=1;whiteSpace=wrap;html=1;fillColor={palette_item(style, stage["index"])};strokeColor={palette_item(style, stage["index"])};fontColor={style["text"]};fontStyle=1;" vertex="1" parent="1"><mxGeometry x="{axis_x - 58:.0f}" y="{stage["y"] + stage["h"] / 2 - 32:.0f}" width="82" height="64" as="geometry"/></mxCell>')
     for stage in route["stages"]:
         for node in stage["nodes"]:
             box = nodes[node["id"]]

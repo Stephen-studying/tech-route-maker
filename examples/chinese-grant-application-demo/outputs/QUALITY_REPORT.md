@@ -3,7 +3,7 @@
 ## Summary
 
 - Route version: 0.2.0
-- Selected preset: chinese-thesis-proposal
+- Selected preset: chinese-grant-application
 - Output formats: pptx, svg, drawio, html, markdown, json
 - Stage count: 5
 - Node count: 13

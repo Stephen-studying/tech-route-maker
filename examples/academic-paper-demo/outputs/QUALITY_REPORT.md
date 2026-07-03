@@ -3,7 +3,7 @@
 ## Summary
 
 - Route version: 0.2.0
-- Selected preset: academic-method
+- Selected preset: academic-paper-framework-cn
 - Output formats: pptx, svg, drawio, html, markdown, json
 - Stage count: 5
 - Node count: 14

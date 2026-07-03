@@ -8,6 +8,10 @@ VALID_PRESETS = {
     "thesis-proposal",
     "engineering-system",
     "workflow-pipeline",
+    "chinese-thesis-proposal",
+    "chinese-grant-application",
+    "academic-paper-framework-cn",
+    "engineering-project-report-cn",
     "custom",
 }
 
@@ -56,6 +60,38 @@ PRESETS = {
         "style": "minimal-gray",
         "source_type": "workflow",
         "audience": "technical",
+    },
+    "chinese-thesis-proposal": {
+        "purpose": "Chinese thesis proposal poster route",
+        "outputs": ["pptx", "svg", "drawio", "html", "json"],
+        "layout": "cn-proposal-poster-route",
+        "style": "cn-polished-pastel-academic",
+        "source_type": "proposal",
+        "audience": "research",
+    },
+    "chinese-grant-application": {
+        "purpose": "Chinese grant or project application route",
+        "outputs": ["pptx", "svg", "drawio", "html", "markdown", "json"],
+        "layout": "cn-grant-application-route",
+        "style": "cn-soft-grant-report",
+        "source_type": "proposal",
+        "audience": "research",
+    },
+    "academic-paper-framework-cn": {
+        "purpose": "Chinese academic paper method framework",
+        "outputs": ["pptx", "svg", "drawio", "json"],
+        "layout": "cn-research-method-matrix",
+        "style": "cn-blue-green-proposal",
+        "source_type": "paper",
+        "audience": "research",
+    },
+    "engineering-project-report-cn": {
+        "purpose": "Chinese engineering project report route",
+        "outputs": ["pptx", "svg", "drawio", "html", "json"],
+        "layout": "cn-wide-project-map",
+        "style": "cn-blue-green-proposal",
+        "source_type": "engineering",
+        "audience": "engineering",
     },
 }
 

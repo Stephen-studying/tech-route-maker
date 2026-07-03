@@ -1,3 +1,21 @@
+"""Compatibility entrypoint.
+
+The maintained v0.2.x demo generator is scripts/build_v02_demos.py. Running
+this legacy script now delegates there before any historical code executes.
+"""
+
+if __name__ == "__main__":
+    import sys
+
+    if any(arg in {"-h", "--help"} for arg in sys.argv[1:]):
+        print("Usage: python scripts/refresh_demo_assets.py")
+        print("Compatibility wrapper for scripts/build_v02_demos.py.")
+        raise SystemExit(0)
+
+    from build_v02_demos import main as _build_v02_main
+
+    raise SystemExit(_build_v02_main())
+
 import json
 import subprocess
 import sys

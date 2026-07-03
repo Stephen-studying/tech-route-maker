@@ -381,10 +381,269 @@ def campaign_route():
     )
 
 
+def academic_route_cn():
+    path = "examples/academic-paper-demo/brief.md"
+    return finalize(
+        {
+            "title": "多模态光伏缺陷检测方法技术路线图",
+            "subtitle": "中文论文方法框架示例：从图像证据到可验证检测结果",
+            "selected_preset": "academic-paper-framework-cn",
+            "layout": "cn-research-method-matrix",
+            "style": "cn-blue-green-proposal",
+            "reader_question": "该方法如何从多源图像证据走向可验证的缺陷检测结果？",
+            "reader_path": ["研究目标", "数据证据", "方法设计", "训练验证", "结果输出"],
+            "metadata": {
+                "created_by": "tech-route-maker",
+                "selected_output_formats": ["pptx", "svg", "drawio", "html", "markdown", "json"],
+                "source_type": "paper",
+                "source_files": [{"path": path, "kind": "document", "description": "Chinese academic paper demo brief"}],
+                "source_hashes": [],
+                "language": "zh-CN",
+                "audience": "research",
+                "demo": True,
+            },
+            "stages": [
+                stage("goal", "研究目标", 1, "明确检测任务、指标体系和论文图需要回答的问题。", [
+                    node("goal_task", "明确缺陷检测任务", "识别光伏组件可见光和红外图像中的缺陷类别、位置与置信度。", "objective", path, "Detection task"),
+                    node("goal_metric", "设定评价指标", "围绕 precision、recall、mAP、推理速度和失败案例组织验证逻辑。", "objective", path, "Evaluation metrics"),
+                ]),
+                stage("data", "数据证据", 2, "建立 RGB 与红外图像输入，并形成可训练样本。", [
+                    node("data_collect", "采集多模态图像", "收集 RGB 图像和红外热图，作为缺陷检测的互补输入。", "input", path, "Multimodal images"),
+                    node("data_align", "配准并标注缺陷", "对齐 RGB/IR 图像，并标注缺陷边界或类别。", "input", path, "Alignment and annotation"),
+                    node("data_split", "划分训练样本", "清洗低质量样本，划分训练、验证和测试数据。", "implementation", path, "Dataset split"),
+                ]),
+                stage("method", "方法设计", 3, "突出论文方法的主要创新模块。", [
+                    node("method_baseline", "建立基线检测器", "以通用目标检测器作为基础框架和对照基线。", "method", path, "Baseline detector"),
+                    node("method_fusion", "构建跨模态融合", "融合 RGB 与红外特征，提升缺陷区域表达能力。", "method", path, "Feature fusion"),
+                    node("method_attention", "增强关键区域感知", "通过特征增强模块突出弱纹理、小目标或热异常区域。", "method", path, "Region enhancement"),
+                ]),
+                stage("training", "训练验证", 4, "从模型训练走向稳定推理。", [
+                    node("training_loss", "优化检测损失", "平衡分类、定位和置信度损失，提升检测稳定性。", "implementation", path, "Loss optimization"),
+                    node("training_ablation", "开展消融实验", "逐项验证融合模块、增强模块和训练策略的贡献。", "validation", path, "Ablation plan"),
+                    node("training_infer", "推理并筛选结果", "对未见图像执行推理，并按置信度筛选缺陷结果。", "implementation", path, "Inference plan"),
+                ]),
+                stage("output", "结果输出", 5, "把技术路线连接到论文证据和应用结果。", [
+                    node("output_metrics", "完成指标评估", "通过基线对比、mAP、precision 和 recall 验证方法有效性。", "validation", path, "Metric report"),
+                    node("output_visual", "生成可视化解释", "输出检测框、热区响应和失败案例，支撑论文图表。", "output", path, "Visual explanation"),
+                    node("output_report", "输出缺陷报告", "形成缺陷类别、位置、置信度和维护建议。", "output", path, "Defect report"),
+                ]),
+            ],
+            "edges": [
+                edge("e1", "goal_task", "goal_metric", "定义指标"),
+                edge("e2", "goal_metric", "data_collect", "指导采集"),
+                edge("e3", "data_collect", "data_align", "配准标注"),
+                edge("e4", "data_align", "data_split", "形成样本"),
+                edge("e5", "data_split", "method_baseline", "输入模型"),
+                edge("e6", "method_baseline", "method_fusion", "扩展"),
+                edge("e7", "method_fusion", "method_attention", "增强"),
+                edge("e8", "method_attention", "training_loss", "优化"),
+                edge("e9", "training_loss", "training_ablation", "验证贡献"),
+                edge("e10", "training_ablation", "training_infer", "选择方案"),
+                edge("e11", "training_infer", "output_metrics", "评价"),
+                edge("e12", "output_metrics", "output_visual", "解释"),
+                edge("e13", "output_visual", "output_report", "汇总"),
+            ],
+        }
+    )
+
+
+def thesis_route_cn():
+    path = "examples/thesis-proposal-demo/brief.md"
+    return finalize(
+        {
+            "title": "光伏自清洁涂层开题技术路线图",
+            "subtitle": "中文开题报告示例：材料设计、性能测试与光伏应用验证",
+            "selected_preset": "chinese-thesis-proposal",
+            "layout": "cn-proposal-poster-route",
+            "style": "cn-polished-pastel-academic",
+            "reader_question": "该课题如何从涂层设计走向光伏应用价值验证？",
+            "reader_path": ["研究目标", "研究内容", "关键技术", "实验验证", "预期成果"],
+            "metadata": {
+                "created_by": "tech-route-maker",
+                "selected_output_formats": ["pptx", "svg", "drawio", "html", "markdown", "json"],
+                "source_type": "proposal",
+                "source_files": [{"path": path, "kind": "document", "description": "Chinese thesis proposal demo brief"}],
+                "source_hashes": [],
+                "language": "zh-CN",
+                "audience": "research",
+                "demo": True,
+            },
+            "stages": [
+                stage("objective", "研究目标", 1, "明确光伏盖板自清洁涂层的研究目标。", [
+                    node("objective_problem", "降低表面污染", "针对灰尘、水滴和结冰导致的光伏盖板污染问题。", "objective", path, "Research problem"),
+                    node("objective_value", "保护透光效率", "兼顾表面防护、透光性和发电收益相关性。", "objective", path, "PV value"),
+                ]),
+                stage("content", "研究内容", 2, "把研究任务拆分为材料、结构和性能三类内容。", [
+                    node("content_material", "筛选涂层体系", "选择低表面能组分和适配光伏玻璃的基体材料。", "method", path, "Material selection"),
+                    node("content_texture", "构筑微纳结构", "设计表面粗糙度和微纳结构以增强疏水与去污能力。", "method", path, "Texture design"),
+                    node("content_process", "设计制备工艺", "比较喷涂、浸涂或溶胶凝胶等可放大工艺。", "implementation", path, "Process route"),
+                ]),
+                stage("technology", "关键技术", 3, "解决涂层性能背后的技术约束。", [
+                    node("technology_wetting", "调控润湿行为", "利用接触角和滚动角指导表面结构设计。", "method", path, "Wetting behavior"),
+                    node("technology_durability", "提升服役耐久性", "评估磨耗、紫外、湿热和热循环条件下的稳定性。", "validation", path, "Durability design"),
+                    node("technology_transparency", "保持高透光率", "控制粗糙度和膜厚，避免引入明显光学损失。", "validation", path, "Transparency constraint"),
+                ]),
+                stage("validation", "实验验证", 4, "验证涂层功能和光伏应用相关性。", [
+                    node("validation_surface", "表征表面结构", "利用形貌和化学表征确认涂层形成机制。", "validation", path, "Surface characterization"),
+                    node("validation_cleaning", "测试自清洁功能", "比较除尘、排水、抗冰和污染恢复表现。", "validation", path, "Function tests"),
+                    node("validation_power", "测量发电影响", "跟踪污染前后透过率和组件功率变化。", "validation", path, "PV performance"),
+                ]),
+                stage("outcome", "预期成果", 5, "把实验结果转化为可答辩的成果。", [
+                    node("outcome_route", "形成技术路线", "建立从材料设计到光伏验证的完整研究路线。", "output", path, "Technical route"),
+                    node("outcome_thesis", "支撑论文写作", "对应背景、方法、实验、结果和讨论章节。", "output", path, "Thesis output"),
+                ]),
+            ],
+            "edges": [
+                edge("e1", "objective_problem", "objective_value", "明确价值"),
+                edge("e2", "objective_value", "content_material", "指导设计"),
+                edge("e3", "content_material", "content_texture", "构筑结构"),
+                edge("e4", "content_texture", "content_process", "形成工艺"),
+                edge("e5", "content_process", "technology_wetting", "评价润湿"),
+                edge("e6", "technology_wetting", "technology_durability", "平衡耐久"),
+                edge("e7", "technology_durability", "technology_transparency", "约束透光"),
+                edge("e8", "technology_transparency", "validation_surface", "开展表征"),
+                edge("e9", "validation_surface", "validation_cleaning", "验证功能"),
+                edge("e10", "validation_cleaning", "validation_power", "关联应用"),
+                edge("e11", "validation_power", "outcome_route", "支撑路线"),
+                edge("e12", "outcome_route", "outcome_thesis", "写入论文"),
+            ],
+        }
+    )
+
+
+def grant_route_cn():
+    path = "examples/chinese-grant-application-demo/brief.md"
+    return finalize(
+        {
+            "title": "智能光伏缺陷诊断项目申请技术路线图",
+            "subtitle": "中文项目申请示例：研究内容、科学问题、关键方法与验证输出",
+            "selected_preset": "chinese-grant-application",
+            "layout": "cn-grant-application-route",
+            "style": "cn-soft-grant-report",
+            "reader_question": "项目如何把科学问题、研究内容、关键方法和验证成果对应起来？",
+            "reader_path": ["项目目标", "研究内容", "科学问题", "关键方法", "验证输出"],
+            "metadata": {
+                "created_by": "tech-route-maker",
+                "selected_output_formats": ["pptx", "svg", "drawio", "html", "markdown", "json"],
+                "source_type": "proposal",
+                "source_files": [{"path": path, "kind": "document", "description": "Chinese grant application demo brief"}],
+                "source_hashes": [],
+                "language": "zh-CN",
+                "audience": "research",
+                "demo": True,
+            },
+            "stages": [
+                stage("objective", "项目目标", 1, "明确项目拟解决的问题和总体目标。", [
+                    node("objective_need", "面向运维诊断需求", "聚焦光伏组件缺陷早期识别、风险分级和维护决策。", "objective", path, "Project need"),
+                    node("objective_goal", "建立智能诊断框架", "构建从多源数据到可解释诊断结果的技术体系。", "objective", path, "Project goal"),
+                ]),
+                stage("content", "研究内容", 2, "把申请书研究内容拆分为可执行任务。", [
+                    node("content_data", "构建多源样本库", "整合可见光、红外、电性能和现场运维记录。", "input", path, "Dataset construction"),
+                    node("content_model", "研究诊断模型", "建立缺陷识别、风险评分和跨场景泛化模型。", "method", path, "Diagnostic model"),
+                    node("content_platform", "设计应用流程", "形成采集、识别、复核、报告和反馈闭环。", "implementation", path, "Application workflow"),
+                ]),
+                stage("question", "科学问题", 3, "明确方法创新需要回答的核心问题。", [
+                    node("question_feature", "弱纹理缺陷如何表征", "解决低对比、小尺度和热异常缺陷难以稳定表达的问题。", "method", path, "Feature question"),
+                    node("question_general", "跨场景如何泛化", "处理不同组件类型、拍摄条件和气候环境造成的域差异。", "method", path, "Generalization question"),
+                    node("question_trust", "诊断结果如何可信", "把模型输出与证据、置信度和人工复核逻辑连接起来。", "validation", path, "Trust question"),
+                ]),
+                stage("method", "关键方法", 4, "形成可验证的技术方案。", [
+                    node("method_fusion", "多模态融合建模", "融合图像、电性能和运维特征，提高缺陷识别鲁棒性。", "method", path, "Multimodal fusion"),
+                    node("method_explain", "可解释风险评分", "输出缺陷依据、影响因素和风险等级，服务运维决策。", "method", path, "Explainable scoring"),
+                    node("method_loop", "闭环优化机制", "利用复核结果和新增样本持续修正诊断模型。", "feedback", path, "Closed-loop optimization"),
+                ]),
+                stage("validation", "验证输出", 5, "把项目成果转化为申请书可交付内容。", [
+                    node("validation_metrics", "完成指标验证", "比较准确率、召回率、误报率、推理速度和跨场景稳定性。", "validation", path, "Metric validation"),
+                    node("validation_demo", "形成原型系统", "输出样本库、模型、诊断报告和演示流程。", "output", path, "Prototype output"),
+                ]),
+            ],
+            "edges": [
+                edge("e1", "objective_need", "objective_goal", "提出目标"),
+                edge("e2", "objective_goal", "content_data", "支撑内容"),
+                edge("e3", "content_data", "content_model", "输入模型"),
+                edge("e4", "content_model", "content_platform", "落地流程"),
+                edge("e5", "content_platform", "question_feature", "提炼问题"),
+                edge("e6", "question_feature", "question_general", "扩展场景"),
+                edge("e7", "question_general", "question_trust", "要求可信"),
+                edge("e8", "question_trust", "method_fusion", "设计方法"),
+                edge("e9", "method_fusion", "method_explain", "解释结果"),
+                edge("e10", "method_explain", "method_loop", "闭环优化"),
+                edge("e11", "method_loop", "validation_metrics", "验证"),
+                edge("e12", "validation_metrics", "validation_demo", "交付"),
+            ],
+        }
+    )
+
+
+def energy_route_cn():
+    path = "examples/engineering-energy-system-demo/brief.md"
+    return finalize(
+        {
+            "title": "校园综合能源系统项目技术路线图",
+            "subtitle": "中文工程项目汇报示例：源网荷储配置、运行策略与验证输出",
+            "selected_preset": "engineering-project-report-cn",
+            "layout": "cn-wide-project-map",
+            "style": "cn-blue-green-proposal",
+            "reader_question": "工程路线如何把校园负荷证据转化为可验证的源网荷储配置方案？",
+            "reader_path": ["系统边界", "源荷数据", "配置模型", "运行策略", "验证交付"],
+            "metadata": {
+                "created_by": "tech-route-maker",
+                "selected_output_formats": ["pptx", "svg", "drawio", "html", "markdown", "json"],
+                "source_type": "engineering",
+                "source_files": [{"path": path, "kind": "document", "description": "Chinese engineering energy system demo brief"}],
+                "source_hashes": [],
+                "language": "zh-CN",
+                "audience": "engineering",
+                "demo": True,
+            },
+            "stages": [
+                stage("boundary", "系统边界", 1, "明确校园综合能源项目边界和目标。", [
+                    node("boundary_scope", "定义校园边界", "识别建筑、负荷、能源资产和并网范围。", "objective", path, "System boundary"),
+                    node("boundary_targets", "设定规划目标", "平衡成本、碳减排、可靠性和新能源消纳。", "objective", path, "Planning targets"),
+                ]),
+                stage("data", "源荷数据", 2, "建立配置优化的基础证据。", [
+                    node("data_load", "构建冷热电负荷", "形成逐时电、热、冷和可调负荷曲线。", "input", path, "Load profiles"),
+                    node("data_resource", "评估新能源资源", "估算光伏、储能、屋顶面积和可用资源。", "input", path, "Resource assessment"),
+                    node("data_tariff", "整理约束条件", "纳入电价、需量、电网交互和碳排因子约束。", "input", path, "Tariff and constraints"),
+                ]),
+                stage("model", "配置模型", 3, "优化源网荷储容量和运行边界。", [
+                    node("model_assets", "建模候选设备", "表达光伏、储能、热泵、购电和可调负荷等设备。", "method", path, "Candidate assets"),
+                    node("model_objective", "多目标容量优化", "在成本、碳排和可靠性之间求解配置方案。", "method", path, "Optimization objective"),
+                    node("model_scenarios", "比较规划场景", "比较基准、低碳优先、储能优先和经济优先场景。", "validation", path, "Scenario comparison"),
+                ]),
+                stage("operation", "运行策略", 4, "把规划结果转化为运行逻辑。", [
+                    node("operation_dispatch", "制定调度策略", "协调光伏自用、储能充放电和电网交互。", "implementation", path, "Dispatch strategy"),
+                    node("operation_control", "定义控制层级", "区分日前计划、日内修正和实时控制。", "implementation", path, "Control hierarchy"),
+                ]),
+                stage("validation", "验证交付", 5, "验证工程可行性并形成交付物。", [
+                    node("validation_kpi", "评价系统指标", "输出成本、碳排、新能源消纳、削峰和可靠性指标。", "validation", path, "KPI evaluation"),
+                    node("validation_sensitivity", "开展敏感性分析", "测试电价、天气、负荷增长和设备成本不确定性。", "validation", path, "Sensitivity analysis"),
+                    node("validation_deliver", "交付配置方案", "形成容量配置、运行策略、风险提示和实施顺序。", "output", path, "Deliverables"),
+                ]),
+            ],
+            "edges": [
+                edge("e1", "boundary_scope", "boundary_targets", "设定目标"),
+                edge("e2", "boundary_targets", "data_load", "定义数据"),
+                edge("e3", "data_load", "data_resource", "匹配资源"),
+                edge("e4", "data_resource", "data_tariff", "加入约束"),
+                edge("e5", "data_tariff", "model_assets", "输入模型"),
+                edge("e6", "model_assets", "model_objective", "优化配置"),
+                edge("e7", "model_objective", "model_scenarios", "比较场景"),
+                edge("e8", "model_scenarios", "operation_dispatch", "形成策略"),
+                edge("e9", "operation_dispatch", "operation_control", "组织控制"),
+                edge("e10", "operation_control", "validation_kpi", "验证指标"),
+                edge("e11", "validation_kpi", "validation_sensitivity", "测试不确定性"),
+                edge("e12", "validation_sensitivity", "validation_deliver", "输出方案"),
+            ],
+        }
+    )
+
+
 DEMOS = {
-    "academic-paper-demo": (academic_route, "Academic paper demo brief for a PV surface defect detection method route."),
-    "thesis-proposal-demo": (thesis_route, "Thesis proposal demo brief for PV self-cleaning coating research."),
-    "engineering-energy-system-demo": (energy_route, "Engineering demo brief for a campus source-grid-load-storage energy system."),
+    "academic-paper-demo": (academic_route_cn, "Chinese academic paper demo brief for a PV surface defect detection method route."),
+    "thesis-proposal-demo": (thesis_route_cn, "Chinese thesis proposal demo brief for PV self-cleaning coating research."),
+    "chinese-grant-application-demo": (grant_route_cn, "Chinese grant application demo brief for intelligent PV defect diagnosis."),
+    "engineering-energy-system-demo": (energy_route_cn, "Chinese engineering demo brief for a campus source-grid-load-storage energy system."),
     "agent-workflow-demo": (workflow_route, "Workflow demo brief for converting technical materials into editable route diagrams."),
     "legacy-campaign-route-demo": (campaign_route, "Legacy campaign demo brief retained only for explicit advertising requests."),
 }
@@ -422,13 +681,13 @@ def svg_rect(x, y, w, h, fill, stroke="#D7E0EA", rx=10, width=1.3):
 
 def asset_svg(width, height, compact=False):
     cards = [
-        ("Academic", "#E8F3F1", "#315C61", ["Goal", "Data", "Method", "Validation"]),
-        ("Proposal", "#F7E0E8", "#7BCFD0", ["Objective", "Content", "Technology", "Output"]),
-        ("Engineering", "#E8EEF7", "#27456F", ["Boundary", "Model", "Control", "KPIs"]),
-        ("Workflow", "#F4F5F7", "#475569", ["Intake", "Extract", "Render", "Review"]),
+        ("Paper Matrix", "#E4F3F1", "#2F7CA6", ["Goal", "Data", "Method", "Validation"]),
+        ("Proposal Poster", "#F8E3EA", "#64C7C8", ["Objective", "Content", "Technology", "Output"]),
+        ("Grant Route", "#F4EDE3", "#4E7FB0", ["Problem", "Questions", "Methods", "Deliverables"]),
+        ("Engineering Map", "#E7F0F7", "#5E9F3B", ["Boundary", "Resources", "Model", "KPIs"]),
     ]
-    title = "tech-route-maker" if compact else "Editable Technical Route Gallery"
-    subtitle = "Evidence-grounded editable route diagrams for research and engineering"
+    title = "tech-route-maker" if compact else "Editable Research Route Templates"
+    subtitle = "Chinese academic presets, editable PPTX/SVG/Draw.io outputs, and source-grounded quality reports"
     out = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">',
         '<rect width="100%" height="100%" fill="#FFFFFF"/>',
@@ -456,7 +715,7 @@ def asset_svg(width, height, compact=False):
                 cx = x + card_w / 2
                 out.append(f'<path d="M {cx} {y + h} L {cx} {y + (34 if compact else 58) - 2}" stroke="{accent}" stroke-width="1.6" marker-end="url(#arrow{i})"/>')
         out.append(f'<defs><marker id="arrow{i}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="{accent}"/></marker></defs>')
-    out.append(svg_text(width // 2, height - (24 if compact else 42), "Editable PPTX | SVG | Draw.io | HTML | Markdown | JSON", 13 if compact else 15, "#59636A", 600))
+    out.append(svg_text(width // 2, height - (24 if compact else 42), "Editable PPTX shapes | SVG vectors | Draw.io cells | HTML evidence preview", 13 if compact else 15, "#59636A", 600))
     out.append("</svg>")
     return "\n".join(out)
 

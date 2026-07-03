@@ -1,5 +1,25 @@
 # Changelog
 
+## Unreleased
+
+Chinese academic route style upgrade.
+
+Added:
+
+- Chinese academic presets: `chinese-thesis-proposal`, `chinese-grant-application`, `academic-paper-framework-cn`, and `engineering-project-report-cn`.
+- Chinese layout families: `cn-proposal-poster-route`, `cn-grant-application-route`, `cn-research-method-matrix`, `cn-wide-project-map`, and `cn-monochrome-linework-route`.
+- Chinese visual styles: `cn-polished-pastel-academic`, `cn-blue-green-proposal`, `cn-soft-grant-report`, `cn-reviewer-linework`, and `cn-defense-poster`.
+- `references/local-style-study.md` with distilled academic-route aesthetics from the maintainer-provided local template corpus.
+- `examples/chinese-grant-application-demo/` with editable PPTX, SVG, Draw.io, Excalidraw, Mermaid, HTML, Markdown, JSON, and quality report outputs.
+- `docs/comparison-before-after.md` comparing old and new generated examples.
+
+Changed:
+
+- Core academic, thesis proposal, and engineering demos now use the new Chinese academic template family.
+- PPTX rendering now uses portrait slide size for Chinese proposal/grant route diagrams instead of compressing them into 16:9.
+- Draw.io rendering now uses layout-aware page dimensions and dashed stage boundaries.
+- `scripts/refresh_demo_assets.py` now delegates to the maintained `scripts/build_v02_demos.py` generator.
+
 ## 0.2.0 - 2026-07-02
 
 Research and engineering focus release.

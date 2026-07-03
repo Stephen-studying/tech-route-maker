@@ -76,6 +76,26 @@ Use this reference when asking the user to choose a visual style. Ask explicitly
    - Landscape composition with side axes, central collaboration modules, dashed system boundaries, and restrained blue/green emphasis.
    - Useful for project reports, industry-academia collaboration, policy-support diagrams, and operations route maps.
 
+19. `cn-polished-pastel-academic`
+   - White canvas, centered title pill, pastel stage regions, left phase axis when vertical, dashed rounded group boundaries, and white editable node cards.
+   - Useful for Chinese thesis proposals, opening reports, topic applications, and research-route posters.
+
+20. `cn-blue-green-proposal`
+   - White canvas, blue/green academic accents, wide section labels, clean matrix regions, and restrained connector arrows.
+   - Useful for Chinese paper method frameworks, engineering project reports, and research-summary diagrams.
+
+21. `cn-soft-grant-report`
+   - White or near-white canvas, muted blue headers, soft document-like panels, reviewer-facing note areas, and conservative dashed boundaries.
+   - Useful for grants, project applications, and formal research reports.
+
+22. `cn-reviewer-linework`
+   - Black/gray linework, minimal fills, dashed boundaries, and print-safe hierarchy.
+   - Useful for Word documents, application forms, reviewer-safe PDFs, and low-color printing.
+
+23. `cn-defense-poster`
+   - Polished defense-style academic palette with blue, teal, green, cream, and pink stage accents.
+   - Useful for academic slides and poster-style route overviews.
+
 ## Aesthetic Baseline
 
 Use these style rules when the user asks for a polished technical route diagram:
@@ -88,6 +108,8 @@ Use these style rules when the user asks for a polished technical route diagram:
 - Keep content nodes white with dark text; use color on stage headers, bands, side labels, or group regions.
 - Use matrix or framework sections as the default academic route structure. Use a left-side phase axis only for long vertical research routes explicitly selected by the user.
 - Use landscape collaboration maps when the route is about actors, resources, channels, policies, platforms, or operational touchpoints.
+- For Chinese thesis/proposal/grant diagrams, use `references/local-style-study.md` and prefer the dedicated `cn-*` styles before generic `presentation-clean`.
+- For Chinese text, allocate larger label boxes and fewer words per node than English examples.
 - Keep arrowheads visible but not visually heavier than the nodes.
 - For GitHub/README previews, prefer large readable SVGs and avoid two-column compression when labels become too small.
 

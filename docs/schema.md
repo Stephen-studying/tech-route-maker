@@ -79,7 +79,7 @@ Current schema version: `0.2.0`.
 
 - `route_version`: must exist. Current version is `0.2.0`.
 - `title`: visible diagram title.
-- `selected_preset`: one of `academic-method`, `thesis-proposal`, `engineering-system`, `workflow-pipeline`, or `custom`.
+- `selected_preset`: one of `academic-method`, `thesis-proposal`, `engineering-system`, `workflow-pipeline`, `chinese-thesis-proposal`, `chinese-grant-application`, `academic-paper-framework-cn`, `engineering-project-report-cn`, or `custom`.
 - `stages`: ordered route stages.
 - `nodes[].confidence`: `high`, `medium`, or `low`.
 - `nodes[].is_inferred`: boolean inference marker.
@@ -109,6 +109,11 @@ Use `unresolved_questions` for missing decisions that would materially affect th
 - `proposal-matrix-route`: thesis proposal, grant route, and research-plan route.
 - `engineering-architecture-route`: engineering systems, energy systems, platform workflow and system handoff.
 - `horizontal-stages`: workflow, pipeline, agent/tool process.
+- `cn-proposal-poster-route`: Chinese thesis proposal, opening report, topic application, and research-route poster.
+- `cn-grant-application-route`: Chinese grant or project application route with reviewer-facing logic.
+- `cn-research-method-matrix`: Chinese academic method framework and paper-method matrix.
+- `cn-wide-project-map`: Chinese engineering project report, platform map, and energy-system route.
+- `cn-monochrome-linework-route`: print-safe Chinese proposal/application route.
 - `campaign-strategy-map`: legacy/experimental campaign workflow.
 - `proposal-phase-axis`: legacy long vertical route with a left phase axis.
 

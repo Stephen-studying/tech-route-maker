@@ -37,6 +37,10 @@
 | `thesis-proposal` | 开题报告、research plan、课题申报、基金申请。 | `pptx`, `svg`, `drawio`, `json` |
 | `engineering-system` | 工程系统、能源系统、控制系统、硬件系统、平台设计。 | `pptx`, `svg`, `drawio`, `html`, `json` |
 | `workflow-pipeline` | 软件工具、agent skill、pipeline、workflow、automation、文档流程。 | `svg`, `markdown`, `mermaid`, `json` |
+| `chinese-thesis-proposal` | 中文开题报告、课题申报、论文技术路线和研究方案。 | `pptx`, `svg`, `drawio`, `html`, `json` |
+| `chinese-grant-application` | 中文基金申请、项目申请和申报书技术路线。 | `pptx`, `svg`, `drawio`, `html`, `markdown`, `json` |
+| `academic-paper-framework-cn` | 中文论文方法框架图、研究框架图和学术图。 | `pptx`, `svg`, `drawio`, `json` |
+| `engineering-project-report-cn` | 中文工程项目汇报、平台建设和能源系统路线图。 | `pptx`, `svg`, `drawio`, `html`, `json` |
 
 用户仍然可以自行选择格式、版式和风格，但默认情况下 Skill 不再强制用户回答一长串选项。只有当缺失信息会明显改变输出结果时，才会提出一个必要问题。
 
@@ -125,6 +129,7 @@ trm render examples/academic-paper-demo/outputs/tech-route.json examples/academi
 - 除非用户明确同意，不执行被分析项目中的代码。
 - 在 `tech-route.json` 中保留 evidence、assumption 和 inference 标记。
 - 不把专有模板、网络图片或特定论文事实复制进通用 skill 文件。
+- 中文科研审美样式以原创可编辑矢量模板重建，不把本地或私有参考图片打包进公开仓库。
 - 保留可编辑性，不用截图替代 PPTX、SVG、Draw.io 或 Excalidraw 主输出。
 
 ## 许可证
