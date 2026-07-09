@@ -11,6 +11,7 @@ Primary users are academic and engineering users who need editable paper, thesis
 | pptx | `tech-route.pptx` | PowerPoint, WPS | Best for presentations and defenses | Must use native shapes, text, and lines |
 | svg | `tech-route.svg` | Figma, Illustrator, Inkscape, browser | Best for high-resolution vector editing | Keep text/vector elements editable |
 | drawio | `tech-route.drawio` | diagrams.net | Best for long-term technical maintenance | Use `mxCell` nodes and edges |
+| drawio-code | `tech-route.drawio-code.xml` | diagrams.net XML editor | Best for copy-paste import into draw.io | Paste through Extras > Edit Diagram |
 | excalidraw | `tech-route.excalidraw` | Excalidraw | Best for whiteboard review and lightweight edits | Use scene JSON, not an image |
 | mermaid | `tech-route.mmd` | Any text editor, GitHub Markdown | Best for version control | Visual control is limited |
 | html | `tech-route.html` | Browser and code editor | Best for interactive previews | Include node detail and evidence data |
@@ -25,9 +26,10 @@ Use these defaults unless the user asks for advanced choices:
 - Editable presentation figure: `pptx,svg,json`
 - Paper or research figure: `svg,pptx,json`
 - Maintainable system diagram: `drawio,svg,json`
+- Copy-paste into Draw.io / diagrams.net: `drawio-code,drawio,svg,json`
 - Documentation output: `markdown,mermaid,json`
 - Long-term maintenance: add `drawio`
-- Full archive: `pptx,svg,drawio,excalidraw,mermaid,html,markdown,json`
+- Full archive: `pptx,svg,drawio,drawio-code,excalidraw,mermaid,html,markdown,json`
 
 Ask one clarification question only when the target output is genuinely ambiguous.
 
@@ -38,5 +40,6 @@ Public roadmap guidance emphasizes editable, reusable, and audience-specific out
 - Smartsheet describes roadmap outputs for migration, unifying systems, continuity, upgrades, and new infrastructure.
 - Miro and Canva emphasize template selection, customization, collaboration, milestones, dependencies, and visual communication.
 - diagrams.net uses an XML-based editable diagram format and can export SVG/PDF/PNG.
+- diagrams.net / Draw.io is available at <https://app.diagrams.net/>. For copy-paste usage, generate `drawio-code`, copy `tech-route.drawio-code.xml`, then paste it through **Extras > Edit Diagram**.
 
 Use these as design patterns, not as copied template assets.

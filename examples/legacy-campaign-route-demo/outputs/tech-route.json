@@ -4,6 +4,47 @@
   "selected_preset": "custom",
   "layout": "campaign-strategy-map",
   "style": "advertising-clean-campaign",
+  "domain_context": {
+    "discipline": "Marketing",
+    "subfield": "Campaign strategy mapping",
+    "project_type": "legacy campaign route",
+    "research_object": "audience-to-channel campaign workflow",
+    "method_family": "audience analysis, message design and channel measurement",
+    "application_area": "commercial campaign planning",
+    "data_or_materials": [
+      "audience brief",
+      "channel plan",
+      "campaign metrics"
+    ],
+    "technical_objects": [
+      "audience segment",
+      "insight",
+      "message",
+      "channel",
+      "measurement"
+    ],
+    "domain_constraints": [
+      "brand consistency",
+      "budget",
+      "timing",
+      "channel attribution"
+    ],
+    "evaluation_metrics": [
+      "reach",
+      "conversion",
+      "engagement",
+      "cost per action"
+    ],
+    "expected_outputs": [
+      "campaign map",
+      "channel plan",
+      "measurement report"
+    ],
+    "terminology": {},
+    "domain_profile": {},
+    "source": "demo brief",
+    "confidence": "medium"
+  },
   "reader_question": "How does the campaign connect audience insight to measurable adoption?",
   "reader_path": [
     "Audience",
@@ -366,6 +407,49 @@
       "markdown",
       "json"
     ],
+    "domain_context_status": "complete",
+    "domain_context_missing_fields": [],
+    "domain_context": {
+      "discipline": "Marketing",
+      "subfield": "Campaign strategy mapping",
+      "project_type": "legacy campaign route",
+      "research_object": "audience-to-channel campaign workflow",
+      "method_family": "audience analysis, message design and channel measurement",
+      "application_area": "commercial campaign planning",
+      "data_or_materials": [
+        "audience brief",
+        "channel plan",
+        "campaign metrics"
+      ],
+      "technical_objects": [
+        "audience segment",
+        "insight",
+        "message",
+        "channel",
+        "measurement"
+      ],
+      "domain_constraints": [
+        "brand consistency",
+        "budget",
+        "timing",
+        "channel attribution"
+      ],
+      "evaluation_metrics": [
+        "reach",
+        "conversion",
+        "engagement",
+        "cost per action"
+      ],
+      "expected_outputs": [
+        "campaign map",
+        "channel plan",
+        "measurement report"
+      ],
+      "terminology": {},
+      "domain_profile": {},
+      "source": "demo brief",
+      "confidence": "medium"
+    },
     "stage_count": 5,
     "node_count": 10,
     "edge_count": 10,
@@ -382,6 +466,7 @@
     },
     "warnings": [],
     "suggested_manual_review": [
+      "Check whether the diagram matches the stated discipline, subfield, project type, research object, method family, constraints, and evaluation metrics.",
       "Check terminology against the source material.",
       "Check whether inferred nodes should be removed or supported with evidence.",
       "Check edge labels and route logic.",

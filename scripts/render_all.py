@@ -17,6 +17,7 @@ SCRIPT_BY_FORMAT = {
     "mermaid": ("render_mermaid.py", "tech-route.mmd"),
     "svg": ("render_svg.py", "tech-route.svg"),
     "drawio": ("render_drawio.py", "tech-route.drawio"),
+    "drawio-code": ("render_drawio_code.py", "tech-route.drawio-code.xml"),
     "excalidraw": ("render_excalidraw.py", "tech-route.excalidraw"),
     "html": ("render_html.py", "tech-route.html"),
     "markdown": ("render_markdown.py", "TECH_ROUTE.md"),

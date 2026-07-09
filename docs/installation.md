@@ -47,7 +47,7 @@ Use the backward-compatible scripts without package installation:
 
 ```bash
 python scripts/validate_route.py <route-json>
-python scripts/render_all.py <route-json> <output-dir> --formats pptx,svg,drawio,html,markdown,json
+python scripts/render_all.py <route-json> <output-dir> --formats pptx,svg,drawio,drawio-code,html,markdown,json
 ```
 
 Or install the local CLI:
@@ -56,9 +56,9 @@ Or install the local CLI:
 pip install -e .
 trm doctor
 trm validate examples/academic-paper-demo/outputs/tech-route.json
-trm render examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,html,markdown,json
+trm render examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,drawio-code,html,markdown,json
 ```
 
 ## Output Reminder
 
-Rendered diagrams are editable drafts. Users should revise the PPTX, SVG or Draw.io files before academic submission, defense use, course delivery or engineering handoff.
+Rendered diagrams are editable drafts. Users should revise the PPTX, SVG, Draw.io or imported Draw.io XML outputs before academic submission, defense use, course delivery or engineering handoff.

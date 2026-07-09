@@ -2,8 +2,60 @@
   "title": "光伏自清洁涂层开题技术路线图",
   "subtitle": "中文开题报告示例：材料设计、性能测试与光伏应用验证",
   "selected_preset": "chinese-thesis-proposal",
-  "layout": "cn-proposal-poster-route",
-  "style": "cn-polished-pastel-academic",
+  "layout": "cn-a4-stage-route",
+  "style": "research-ppt-blue",
+  "domain_context": {
+    "discipline": "材料科学与新能源工程",
+    "subfield": "光伏玻璃自清洁涂层",
+    "project_type": "开题报告技术路线图",
+    "research_object": "透明自清洁涂层及其光伏应用",
+    "method_family": "材料设计、制备、表征与性能验证",
+    "application_area": "光伏组件表面防护与发电效率保持",
+    "data_or_materials": [
+      "涂层前驱体",
+      "光伏玻璃基底",
+      "污染物样本",
+      "环境老化样本"
+    ],
+    "technical_objects": [
+      "低表面能化学",
+      "微纳结构",
+      "润湿行为",
+      "耐久性",
+      "透光性"
+    ],
+    "domain_constraints": [
+      "透光率保持",
+      "户外耐久性",
+      "工艺可放大",
+      "组件兼容性"
+    ],
+    "evaluation_metrics": [
+      "接触角",
+      "滚动角",
+      "透过率",
+      "耐磨性",
+      "功率保持率"
+    ],
+    "expected_outputs": [
+      "开题技术路线",
+      "涂层样品",
+      "性能测试数据",
+      "论文实验章节"
+    ],
+    "terminology": {},
+    "domain_profile": {
+      "material_route": "design-preparation-characterization-testing-mechanism",
+      "test_types": [
+        "wettability",
+        "optical",
+        "durability",
+        "PV performance"
+      ]
+    },
+    "source": "demo brief",
+    "confidence": "high"
+  },
   "reader_question": "该课题如何从涂层设计走向光伏应用价值验证？",
   "reader_path": [
     "研究目标",
@@ -437,6 +489,60 @@
       "markdown",
       "json"
     ],
+    "domain_context_status": "complete",
+    "domain_context_missing_fields": [],
+    "domain_context": {
+      "discipline": "材料科学与新能源工程",
+      "subfield": "光伏玻璃自清洁涂层",
+      "project_type": "开题报告技术路线图",
+      "research_object": "透明自清洁涂层及其光伏应用",
+      "method_family": "材料设计、制备、表征与性能验证",
+      "application_area": "光伏组件表面防护与发电效率保持",
+      "data_or_materials": [
+        "涂层前驱体",
+        "光伏玻璃基底",
+        "污染物样本",
+        "环境老化样本"
+      ],
+      "technical_objects": [
+        "低表面能化学",
+        "微纳结构",
+        "润湿行为",
+        "耐久性",
+        "透光性"
+      ],
+      "domain_constraints": [
+        "透光率保持",
+        "户外耐久性",
+        "工艺可放大",
+        "组件兼容性"
+      ],
+      "evaluation_metrics": [
+        "接触角",
+        "滚动角",
+        "透过率",
+        "耐磨性",
+        "功率保持率"
+      ],
+      "expected_outputs": [
+        "开题技术路线",
+        "涂层样品",
+        "性能测试数据",
+        "论文实验章节"
+      ],
+      "terminology": {},
+      "domain_profile": {
+        "material_route": "design-preparation-characterization-testing-mechanism",
+        "test_types": [
+          "wettability",
+          "optical",
+          "durability",
+          "PV performance"
+        ]
+      },
+      "source": "demo brief",
+      "confidence": "high"
+    },
     "stage_count": 5,
     "node_count": 13,
     "edge_count": 12,
@@ -453,6 +559,7 @@
     },
     "warnings": [],
     "suggested_manual_review": [
+      "Check whether the diagram matches the stated discipline, subfield, project type, research object, method family, constraints, and evaluation metrics.",
       "Check terminology against the source material.",
       "Check whether inferred nodes should be removed or supported with evidence.",
       "Check edge labels and route logic.",

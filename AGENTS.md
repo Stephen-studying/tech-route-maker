@@ -10,18 +10,21 @@ Use `SKILL.md` as the source of truth. This file exists so generic coding agents
 
 - Read `SKILL.md` before using the skill.
 - Read relevant files in `references/` only when needed.
+- Establish `domain_context` before final rendering: discipline, subfield, project type, research object, method family, data/materials, constraints and evaluation metrics.
+- Read `references/domain-profiles.md` when the discipline is unclear or unfamiliar.
 - Always build or update `tech-route.json` before rendering final diagram files.
 - Use the default presets in `SKILL.md` when the request is clear.
-- Ask only when a missing choice would materially change the output.
+- Ask only when a missing choice would materially change the output; missing field/domain context is such a case.
 - Record `selected_preset` and `metadata.selected_output_formats` in `tech-route.json`.
 - Report `QUALITY_REPORT.md` findings after rendering.
 - Keep diagrams editable. Do not replace PPTX/SVG/Draw.io/Excalidraw outputs with screenshots.
+- When the user asks for Draw.io copyable code, include `drawio-code` and explain how to paste `tech-route.drawio-code.xml` into [diagrams.net / draw.io](https://app.diagrams.net/) through **Extras > Edit Diagram**.
 
 ## Common Commands
 
 ```bash
 python scripts/validate_route.py examples/academic-paper-demo/outputs/tech-route.json
-python scripts/render_all.py examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,html,markdown,json
+python scripts/render_all.py examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,drawio-code,html,markdown,json
 ```
 
 ## Safety

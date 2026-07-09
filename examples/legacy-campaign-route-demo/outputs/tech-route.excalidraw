@@ -6,10 +6,10 @@
     {
       "id": "title",
       "type": "text",
-      "x": 460.0,
+      "x": 90,
       "y": 22,
-      "width": 440,
-      "height": 32,
+      "width": 1180,
+      "height": 48,
       "angle": 0,
       "strokeColor": "#111827",
       "backgroundColor": "transparent",
@@ -228,12 +228,12 @@
       "lineHeight": 1.25
     },
     {
-      "id": "edge_e1",
+      "id": "stage_flow_1",
       "type": "arrow",
-      "x": 175.2,
-      "y": 275.0,
-      "width": 0.0,
-      "height": 78.0,
+      "x": 290.4,
+      "y": 371.0,
+      "width": 22.0,
+      "height": 0.0,
       "angle": 0,
       "strokeColor": "#E11D48",
       "backgroundColor": "transparent",
@@ -248,13 +248,13 @@
           0
         ],
         [
-          0.0,
-          78.0
+          22.0,
+          0.0
         ]
       ],
       "lastCommittedPoint": [
-        0.0,
-        78.0
+        22.0,
+        0.0
       ],
       "startBinding": null,
       "endBinding": null,
@@ -262,12 +262,12 @@
       "endArrowhead": "arrow"
     },
     {
-      "id": "edge_e2",
+      "id": "stage_flow_2",
       "type": "arrow",
-      "x": 175.2,
-      "y": 353.0,
-      "width": 252.39999999999998,
-      "height": -78.0,
+      "x": 542.8,
+      "y": 371.0,
+      "width": 22.0,
+      "height": 0.0,
       "angle": 0,
       "strokeColor": "#E11D48",
       "backgroundColor": "transparent",
@@ -282,13 +282,13 @@
           0
         ],
         [
-          252.39999999999998,
-          -78.0
+          22.0,
+          0.0
         ]
       ],
       "lastCommittedPoint": [
-        252.39999999999998,
-        -78.0
+        22.0,
+        0.0
       ],
       "startBinding": null,
       "endBinding": null,
@@ -296,12 +296,12 @@
       "endArrowhead": "arrow"
     },
     {
-      "id": "edge_e3",
+      "id": "stage_flow_3",
       "type": "arrow",
-      "x": 427.59999999999997,
-      "y": 275.0,
-      "width": 0.0,
-      "height": 78.0,
+      "x": 795.1999999999999,
+      "y": 371.0,
+      "width": 22.000000000000114,
+      "height": 0.0,
       "angle": 0,
       "strokeColor": "#E11D48",
       "backgroundColor": "transparent",
@@ -316,13 +316,13 @@
           0
         ],
         [
-          0.0,
-          78.0
+          22.000000000000114,
+          0.0
         ]
       ],
       "lastCommittedPoint": [
-        0.0,
-        78.0
+        22.000000000000114,
+        0.0
       ],
       "startBinding": null,
       "endBinding": null,
@@ -330,12 +330,12 @@
       "endArrowhead": "arrow"
     },
     {
-      "id": "edge_e4",
+      "id": "stage_flow_4",
       "type": "arrow",
-      "x": 427.59999999999997,
-      "y": 353.0,
-      "width": 252.40000000000003,
-      "height": -78.0,
+      "x": 1047.6000000000001,
+      "y": 371.0,
+      "width": 21.999999999999773,
+      "height": 0.0,
       "angle": 0,
       "strokeColor": "#E11D48",
       "backgroundColor": "transparent",
@@ -350,217 +350,13 @@
           0
         ],
         [
-          252.40000000000003,
-          -78.0
+          21.999999999999773,
+          0.0
         ]
       ],
       "lastCommittedPoint": [
-        252.40000000000003,
-        -78.0
-      ],
-      "startBinding": null,
-      "endBinding": null,
-      "startArrowhead": null,
-      "endArrowhead": "arrow"
-    },
-    {
-      "id": "edge_e5",
-      "type": "arrow",
-      "x": 680.0,
-      "y": 275.0,
-      "width": 0.0,
-      "height": 78.0,
-      "angle": 0,
-      "strokeColor": "#E11D48",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 2,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          0.0,
-          78.0
-        ]
-      ],
-      "lastCommittedPoint": [
-        0.0,
-        78.0
-      ],
-      "startBinding": null,
-      "endBinding": null,
-      "startArrowhead": null,
-      "endArrowhead": "arrow"
-    },
-    {
-      "id": "edge_e6",
-      "type": "arrow",
-      "x": 680.0,
-      "y": 353.0,
-      "width": 252.4000000000001,
-      "height": -78.0,
-      "angle": 0,
-      "strokeColor": "#E11D48",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 2,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          252.4000000000001,
-          -78.0
-        ]
-      ],
-      "lastCommittedPoint": [
-        252.4000000000001,
-        -78.0
-      ],
-      "startBinding": null,
-      "endBinding": null,
-      "startArrowhead": null,
-      "endArrowhead": "arrow"
-    },
-    {
-      "id": "edge_e7",
-      "type": "arrow",
-      "x": 932.4000000000001,
-      "y": 275.0,
-      "width": 0.0,
-      "height": 78.0,
-      "angle": 0,
-      "strokeColor": "#E11D48",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 2,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          0.0,
-          78.0
-        ]
-      ],
-      "lastCommittedPoint": [
-        0.0,
-        78.0
-      ],
-      "startBinding": null,
-      "endBinding": null,
-      "startArrowhead": null,
-      "endArrowhead": "arrow"
-    },
-    {
-      "id": "edge_e8",
-      "type": "arrow",
-      "x": 932.4000000000001,
-      "y": 353.0,
-      "width": 252.39999999999986,
-      "height": -78.0,
-      "angle": 0,
-      "strokeColor": "#E11D48",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 2,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          252.39999999999986,
-          -78.0
-        ]
-      ],
-      "lastCommittedPoint": [
-        252.39999999999986,
-        -78.0
-      ],
-      "startBinding": null,
-      "endBinding": null,
-      "startArrowhead": null,
-      "endArrowhead": "arrow"
-    },
-    {
-      "id": "edge_e9",
-      "type": "arrow",
-      "x": 1184.8,
-      "y": 275.0,
-      "width": 0.0,
-      "height": 78.0,
-      "angle": 0,
-      "strokeColor": "#E11D48",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 2,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          0.0,
-          78.0
-        ]
-      ],
-      "lastCommittedPoint": [
-        0.0,
-        78.0
-      ],
-      "startBinding": null,
-      "endBinding": null,
-      "startArrowhead": null,
-      "endArrowhead": "arrow"
-    },
-    {
-      "id": "edge_e10",
-      "type": "arrow",
-      "x": 1184.8,
-      "y": 353.0,
-      "width": -504.79999999999995,
-      "height": -78.0,
-      "angle": 0,
-      "strokeColor": "#E11D48",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 2,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          -504.79999999999995,
-          -78.0
-        ]
-      ],
-      "lastCommittedPoint": [
-        -504.79999999999995,
-        -78.0
+        21.999999999999773,
+        0.0
       ],
       "startBinding": null,
       "endBinding": null,

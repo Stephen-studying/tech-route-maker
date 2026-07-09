@@ -2,7 +2,14 @@ import json
 from pathlib import Path
 
 from .quality import _assumption_node_ids, build_quality_report, iter_nodes
-from .schema import ROUTE_VERSION, VALID_CONFIDENCE, VALID_PRESETS, selected_output_formats
+from .schema import (
+    ROUTE_VERSION,
+    VALID_CONFIDENCE,
+    VALID_PRESETS,
+    domain_context_missing_fields,
+    domain_context_status,
+    selected_output_formats,
+)
 
 
 def load_route(path):
@@ -30,6 +37,13 @@ def validate(route):
         errors.append("Missing selected_preset.")
     elif selected_preset not in VALID_PRESETS:
         errors.append(f"Invalid selected_preset: {selected_preset}")
+
+    domain_status = domain_context_status(route)
+    missing_domain = domain_context_missing_fields(route)
+    if domain_status == "missing":
+        warnings.append("Missing domain_context; final diagrams should not be rendered without a stated discipline and field-specific context.")
+    elif missing_domain:
+        warnings.append(f"Incomplete domain_context; missing: {', '.join(missing_domain)}")
 
     stages = route.get("stages") or []
     if len(stages) < 4:
@@ -125,6 +139,7 @@ def format_validation_result(route, errors, warnings, quality_report):
         status,
         f"Route version: {route.get('route_version', '')}",
         f"Preset: {route.get('selected_preset', '')}",
+        f"Domain context: {quality_report.get('domain_context_status', 'missing')}",
         f"Stages: {quality_report.get('stage_count', 0)}",
         f"Nodes: {quality_report.get('node_count', 0)}",
         f"Edges: {quality_report.get('edge_count', 0)}",

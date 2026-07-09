@@ -3,7 +3,63 @@
   "subtitle": "中文论文方法框架示例：从图像证据到可验证检测结果",
   "selected_preset": "academic-paper-framework-cn",
   "layout": "cn-research-method-matrix",
-  "style": "cn-blue-green-proposal",
+  "style": "research-ppt-blue",
+  "domain_context": {
+    "discipline": "计算机科学与新能源工程",
+    "subfield": "光伏缺陷检测中的计算机视觉方法",
+    "project_type": "论文方法框架图",
+    "research_object": "光伏组件表面与热异常缺陷",
+    "method_family": "深度学习目标检测与多模态特征融合",
+    "application_area": "光伏电站巡检与智能运维",
+    "data_or_materials": [
+      "可见光图像",
+      "红外图像",
+      "缺陷标注",
+      "测试样本"
+    ],
+    "technical_objects": [
+      "数据标注",
+      "样本增强",
+      "特征融合",
+      "检测网络",
+      "消融实验"
+    ],
+    "domain_constraints": [
+      "小目标缺陷",
+      "样本不均衡",
+      "现场成像差异",
+      "实时推理"
+    ],
+    "evaluation_metrics": [
+      "mAP",
+      "Precision",
+      "Recall",
+      "FPS",
+      "参数量"
+    ],
+    "expected_outputs": [
+      "论文方法图",
+      "检测模型",
+      "对比实验结果",
+      "缺陷诊断报告"
+    ],
+    "terminology": {},
+    "domain_profile": {
+      "task_type": "object detection",
+      "data_modalities": [
+        "RGB",
+        "infrared"
+      ],
+      "model_family": [
+        "YOLO",
+        "CNN",
+        "attention",
+        "feature fusion"
+      ]
+    },
+    "source": "demo brief",
+    "confidence": "high"
+  },
   "reader_question": "该方法如何从多源图像证据走向可验证的缺陷检测结果？",
   "reader_path": [
     "研究目标",
@@ -464,6 +520,64 @@
       "markdown",
       "json"
     ],
+    "domain_context_status": "complete",
+    "domain_context_missing_fields": [],
+    "domain_context": {
+      "discipline": "计算机科学与新能源工程",
+      "subfield": "光伏缺陷检测中的计算机视觉方法",
+      "project_type": "论文方法框架图",
+      "research_object": "光伏组件表面与热异常缺陷",
+      "method_family": "深度学习目标检测与多模态特征融合",
+      "application_area": "光伏电站巡检与智能运维",
+      "data_or_materials": [
+        "可见光图像",
+        "红外图像",
+        "缺陷标注",
+        "测试样本"
+      ],
+      "technical_objects": [
+        "数据标注",
+        "样本增强",
+        "特征融合",
+        "检测网络",
+        "消融实验"
+      ],
+      "domain_constraints": [
+        "小目标缺陷",
+        "样本不均衡",
+        "现场成像差异",
+        "实时推理"
+      ],
+      "evaluation_metrics": [
+        "mAP",
+        "Precision",
+        "Recall",
+        "FPS",
+        "参数量"
+      ],
+      "expected_outputs": [
+        "论文方法图",
+        "检测模型",
+        "对比实验结果",
+        "缺陷诊断报告"
+      ],
+      "terminology": {},
+      "domain_profile": {
+        "task_type": "object detection",
+        "data_modalities": [
+          "RGB",
+          "infrared"
+        ],
+        "model_family": [
+          "YOLO",
+          "CNN",
+          "attention",
+          "feature fusion"
+        ]
+      },
+      "source": "demo brief",
+      "confidence": "high"
+    },
     "stage_count": 5,
     "node_count": 14,
     "edge_count": 13,
@@ -480,6 +594,7 @@
     },
     "warnings": [],
     "suggested_manual_review": [
+      "Check whether the diagram matches the stated discipline, subfield, project type, research object, method family, constraints, and evaluation metrics.",
       "Check terminology against the source material.",
       "Check whether inferred nodes should be removed or supported with evidence.",
       "Check edge labels and route logic.",

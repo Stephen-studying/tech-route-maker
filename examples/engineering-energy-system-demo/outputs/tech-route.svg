@@ -1,127 +1,91 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="890" viewBox="0 0 1500 890">
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
 <defs>
-<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#2F7CA6"/></marker>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#64748B"/></marker>
 <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#CBD5E1" flood-opacity="0.32"/></filter>
 </defs>
-<rect width="100%" height="100%" fill="#FFFFFF"/>
-<rect x="10.0" y="10.0" width="1480.0" height="870.0" rx="18" fill="none" stroke="#D8E1EA" stroke-width="1.0" />
-<rect x="64.0" y="22.0" width="1372.0" height="58.0" rx="18" fill="#D8F0EA" stroke="none" stroke-width="1.5" />
-<text x="750.0" y="58.0" text-anchor="middle" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#152E3A" >校园综合能源系统项目技术路线图</text>
-<text x="750.0" y="92.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" font-weight="400" fill="#57717A" >中文工程项目汇报示例：源网荷储配置、运行策略与验证输出</text>
-<rect x="270.0" y="156.0" width="1120.0" height="116.0" rx="6" fill="#D8F0EA" stroke="#7CB7C6" stroke-width="1.4" stroke-dasharray="7 6" opacity="0.78"/>
-<rect x="58.0" y="156.0" width="168.0" height="116.0" rx="6" fill="#5AA6D6" stroke="#5AA6D6" stroke-width="1.0" />
-<text x="142.0" y="218.0" text-anchor="middle" font-size="14" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#FFFFFF" >系统边界</text>
-<rect x="270.0" y="294.0" width="1120.0" height="116.0" rx="6" fill="#DDEBFB" stroke="#7CB7C6" stroke-width="1.4" stroke-dasharray="7 6" opacity="0.78"/>
-<rect x="58.0" y="294.0" width="168.0" height="116.0" rx="6" fill="#5AA6D6" stroke="#5AA6D6" stroke-width="1.0" />
-<text x="142.0" y="356.0" text-anchor="middle" font-size="14" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#FFFFFF" >源荷数据</text>
-<rect x="270.0" y="432.0" width="1120.0" height="116.0" rx="6" fill="#EAF4D9" stroke="#7CB7C6" stroke-width="1.4" stroke-dasharray="7 6" opacity="0.78"/>
-<rect x="58.0" y="432.0" width="168.0" height="116.0" rx="6" fill="#5AA6D6" stroke="#5AA6D6" stroke-width="1.0" />
-<text x="142.0" y="494.0" text-anchor="middle" font-size="14" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#FFFFFF" >配置模型</text>
-<rect x="270.0" y="570.0" width="1120.0" height="116.0" rx="6" fill="#FFF0D4" stroke="#7CB7C6" stroke-width="1.4" stroke-dasharray="7 6" opacity="0.78"/>
-<rect x="58.0" y="570.0" width="168.0" height="116.0" rx="6" fill="#5AA6D6" stroke="#5AA6D6" stroke-width="1.0" />
-<text x="142.0" y="632.0" text-anchor="middle" font-size="14" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#FFFFFF" >运行策略</text>
-<rect x="270.0" y="708.0" width="1120.0" height="116.0" rx="6" fill="#F6E2E8" stroke="#7CB7C6" stroke-width="1.4" stroke-dasharray="7 6" opacity="0.78"/>
-<rect x="58.0" y="708.0" width="168.0" height="116.0" rx="6" fill="#5AA6D6" stroke="#5AA6D6" stroke-width="1.0" />
-<text x="142.0" y="770.0" text-anchor="middle" font-size="14" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#FFFFFF" >验证交付</text>
-<path d="M 821.0 214.0 C 830.0 214.0, 830.0 214.0, 839.0 214.0" fill="none" stroke="#2F7CA6" stroke-width="2.1" marker-end="url(#arrow)" opacity="0.72"/>
-<rect x="799.0" y="194.0" width="62.0" height="19.0" rx="9" fill="#FFFFFF" stroke="#E7ECF2" stroke-width="0.8" />
-<text x="830.0" y="208.0" text-anchor="middle" font-size="9" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#57717A" >设定目标</text>
-<path d="M 1097.0 244.0 C 1097.0 283.0, 474.0 283.0, 474.0 322.0" fill="none" stroke="#2F7CA6" stroke-width="2.1" marker-end="url(#arrow)" opacity="0.72" stroke-dasharray="6 5"/>
-<rect x="754.5" y="263.0" width="62.0" height="19.0" rx="9" fill="#FFFFFF" stroke="#E7ECF2" stroke-width="0.8" />
-<text x="785.5" y="277.0" text-anchor="middle" font-size="9" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#57717A" >定义数据</text>
-<path d="M 643.0 352.0 C 652.0 352.0, 652.0 352.0, 661.0 352.0" fill="none" stroke="#2F7CA6" stroke-width="2.1" marker-end="url(#arrow)" opacity="0.72"/>
-<rect x="621.0" y="332.0" width="62.0" height="19.0" rx="9" fill="#FFFFFF" stroke="#E7ECF2" stroke-width="0.8" />
-<text x="652.0" y="346.0" text-anchor="middle" font-size="9" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#57717A" >匹配资源</text>
-<path d="M 999.0 352.0 C 1008.0 352.0, 1008.0 352.0, 1017.0 352.0" fill="none" stroke="#2F7CA6" stroke-width="2.1" marker-end="url(#arrow)" opacity="0.72"/>
-<rect x="977.0" y="332.0" width="62.0" height="19.0" rx="9" fill="#FFFFFF" stroke="#E7ECF2" stroke-width="0.8" />
-<text x="1008.0" y="346.0" text-anchor="middle" font-size="9" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#57717A" >加入约束</text>
-<path d="M 1186.0 382.0 C 1186.0 421.0, 474.0 421.0, 474.0 460.0" fill="none" stroke="#2F7CA6" stroke-width="2.1" marker-end="url(#arrow)" opacity="0.72" stroke-dasharray="6 5"/>
-<rect x="799.0" y="401.0" width="62.0" height="19.0" rx="9" fill="#FFFFFF" stroke="#E7ECF2" stroke-width="0.8" />
-<text x="830.0" y="415.0" text-anchor="middle" font-size="9" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#57717A" >输入模型</text>
-<path d="M 643.0 490.0 C 652.0 490.0, 652.0 490.0, 661.0 490.0" fill="none" stroke="#2F7CA6" stroke-width="2.1" marker-end="url(#arrow)" opacity="0.72"/>
-<rect x="621.0" y="470.0" width="62.0" height="19.0" rx="9" fill="#FFFFFF" stroke="#E7ECF2" stroke-width="0.8" />
-<text x="652.0" y="484.0" text-anchor="middle" font-size="9" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#57717A" >优化配置</text>
-<path d="M 999.0 490.0 C 1008.0 490.0, 1008.0 490.0, 1017.0 490.0" fill="none" stroke="#2F7CA6" stroke-width="2.1" marker-end="url(#arrow)" opacity="0.72"/>
-<rect x="977.0" y="470.0" width="62.0" height="19.0" rx="9" fill="#FFFFFF" stroke="#E7ECF2" stroke-width="0.8" />
-<text x="1008.0" y="484.0" text-anchor="middle" font-size="9" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#57717A" >比较场景</text>
-<path d="M 1186.0 520.0 C 1186.0 559.0, 563.0 559.0, 563.0 598.0" fill="none" stroke="#2F7CA6" stroke-width="2.1" marker-end="url(#arrow)" opacity="0.72" stroke-dasharray="6 5"/>
-<rect x="843.5" y="539.0" width="62.0" height="19.0" rx="9" fill="#FFFFFF" stroke="#E7ECF2" stroke-width="0.8" />
-<text x="874.5" y="553.0" text-anchor="middle" font-size="9" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#57717A" >形成策略</text>
-<path d="M 821.0 628.0 C 830.0 628.0, 830.0 628.0, 839.0 628.0" fill="none" stroke="#2F7CA6" stroke-width="2.1" marker-end="url(#arrow)" opacity="0.72"/>
-<rect x="799.0" y="608.0" width="62.0" height="19.0" rx="9" fill="#FFFFFF" stroke="#E7ECF2" stroke-width="0.8" />
-<text x="830.0" y="622.0" text-anchor="middle" font-size="9" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#57717A" >组织控制</text>
-<path d="M 1097.0 658.0 C 1097.0 697.0, 474.0 697.0, 474.0 736.0" fill="none" stroke="#2F7CA6" stroke-width="2.1" marker-end="url(#arrow)" opacity="0.72" stroke-dasharray="6 5"/>
-<rect x="754.5" y="677.0" width="62.0" height="19.0" rx="9" fill="#FFFFFF" stroke="#E7ECF2" stroke-width="0.8" />
-<text x="785.5" y="691.0" text-anchor="middle" font-size="9" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#57717A" >验证指标</text>
-<path d="M 643.0 766.0 C 652.0 766.0, 652.0 766.0, 661.0 766.0" fill="none" stroke="#2F7CA6" stroke-width="2.1" marker-end="url(#arrow)" opacity="0.72"/>
-<rect x="621.0" y="746.0" width="62.0" height="19.0" rx="9" fill="#FFFFFF" stroke="#E7ECF2" stroke-width="0.8" />
-<text x="652.0" y="760.0" text-anchor="middle" font-size="9" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#57717A" >测试不确定性</text>
-<path d="M 999.0 766.0 C 1008.0 766.0, 1008.0 766.0, 1017.0 766.0" fill="none" stroke="#2F7CA6" stroke-width="2.1" marker-end="url(#arrow)" opacity="0.72"/>
-<rect x="977.0" y="746.0" width="62.0" height="19.0" rx="9" fill="#FFFFFF" stroke="#E7ECF2" stroke-width="0.8" />
-<text x="1008.0" y="760.0" text-anchor="middle" font-size="9" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#57717A" >输出方案</text>
+<rect width="100%" height="100%" fill="#F8FAFC"/>
+<rect x="10.0" y="10.0" width="1900.0" height="1060.0" rx="18" fill="none" stroke="#CBD5E1" stroke-width="1.0" />
+<text x="960.0" y="56.0" text-anchor="middle" font-size="32" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#0F172A" >校园综合能源系统源网荷储配置技术路线</text>
+<text x="960.0" y="102.0" text-anchor="middle" font-size="14" font-family="Arial, Helvetica, sans-serif" font-weight="400" fill="#64748B" >基于资源评估、容量测算、系统建模、仿真优化与结果评价的研究流程</text>
+<rect x="70.0" y="160.0" width="338.4" height="600.0" rx="16" fill="#EFF6FF" stroke="#E2E8F0" stroke-width="1.0" opacity="0.72"/>
+<rect x="84.0" y="184.0" width="310.4" height="88.0" rx="12" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.8" />
+<text x="239.2" y="235.0" text-anchor="middle" font-size="19" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#1E3A8A" >基础数据分析</text>
+<rect x="430.4" y="160.0" width="338.4" height="600.0" rx="16" fill="#F0FDF4" stroke="#E2E8F0" stroke-width="1.0" opacity="0.72"/>
+<rect x="444.4" y="184.0" width="310.4" height="88.0" rx="12" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.8" />
+<text x="599.6" y="235.0" text-anchor="middle" font-size="19" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#1E3A8A" >容量配置计算</text>
+<rect x="790.8" y="160.0" width="338.4" height="600.0" rx="16" fill="#FEFCE8" stroke="#E2E8F0" stroke-width="1.0" opacity="0.72"/>
+<rect x="804.8" y="184.0" width="310.4" height="88.0" rx="12" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.8" />
+<text x="960.0" y="235.0" text-anchor="middle" font-size="19" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#1E3A8A" >系统结构建模</text>
+<rect x="1151.2" y="160.0" width="338.4" height="600.0" rx="16" fill="#FFF7ED" stroke="#E2E8F0" stroke-width="1.0" opacity="0.72"/>
+<rect x="1165.2" y="184.0" width="310.4" height="88.0" rx="12" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.8" />
+<text x="1320.4" y="235.0" text-anchor="middle" font-size="19" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#1E3A8A" >运行仿真优化</text>
+<rect x="1511.6" y="160.0" width="338.4" height="600.0" rx="16" fill="#FDF2F8" stroke="#E2E8F0" stroke-width="1.0" opacity="0.72"/>
+<rect x="1525.6" y="184.0" width="310.4" height="88.0" rx="12" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.8" />
+<text x="1680.8" y="235.0" text-anchor="middle" font-size="19" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#1E3A8A" >结果评价应用</text>
+<line x1="394.4" y1="228.0" x2="444.4" y2="228.0" stroke="#64748B" stroke-width="2.2" marker-end="url(#arrow)" opacity="0.66"/>
+<line x1="754.8" y1="228.0" x2="804.8" y2="228.0" stroke="#64748B" stroke-width="2.2" marker-end="url(#arrow)" opacity="0.66"/>
+<line x1="1115.2" y1="228.0" x2="1165.2" y2="228.0" stroke="#64748B" stroke-width="2.2" marker-end="url(#arrow)" opacity="0.66"/>
+<line x1="1475.6" y1="228.0" x2="1525.6" y2="228.0" stroke="#64748B" stroke-width="2.2" marker-end="url(#arrow)" opacity="0.66"/>
 <g class="node" data-node="boundary_scope" style="cursor:pointer">
-<rect x="305.0" y="184.0" width="516.0" height="60.0" rx="10" fill="#FFFFFF" stroke="#9EB7C8" stroke-width="1.45" filter="url(#softShadow)"/>
-<circle cx="319.0" cy="198.0" r="4.2" fill="#6AA43A" opacity="0.86"/>
-<text x="563.0" y="218.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#152E3A" >定义校园边界</text>
+<rect x="92.0" y="324.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
+<text x="239.2" y="370.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >校园负荷特性</text>
 </g>
 <g class="node" data-node="boundary_targets" style="cursor:pointer">
-<rect x="839.0" y="184.0" width="516.0" height="60.0" rx="10" fill="#FFFFFF" stroke="#9EB7C8" stroke-width="1.45" filter="url(#softShadow)"/>
-<circle cx="853.0" cy="198.0" r="4.2" fill="#6AA43A" opacity="0.86"/>
-<text x="1097.0" y="218.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#152E3A" >设定规划目标</text>
+<rect x="92.0" y="440.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
+<text x="239.2" y="486.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >光伏资源条件</text>
+</g>
+<g class="node" data-node="boundary_area" style="cursor:pointer">
+<rect x="92.0" y="556.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
+<text x="239.2" y="602.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >可利用面积统计</text>
 </g>
 <g class="node" data-node="data_load" style="cursor:pointer">
-<rect x="305.0" y="322.0" width="338.0" height="60.0" rx="10" fill="#FFFFFF" stroke="#9EB7C8" stroke-width="1.45" filter="url(#softShadow)"/>
-<circle cx="319.0" cy="336.0" r="4.2" fill="#6AA43A" opacity="0.86"/>
-<text x="474.0" y="356.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#152E3A" >构建冷热电负荷</text>
+<rect x="452.4" y="324.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
+<text x="599.6" y="370.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >装机容量估算</text>
 </g>
 <g class="node" data-node="data_resource" style="cursor:pointer">
-<rect x="661.0" y="322.0" width="338.0" height="60.0" rx="10" fill="#FFFFFF" stroke="#9EB7C8" stroke-width="1.45" filter="url(#softShadow)"/>
-<circle cx="675.0" cy="336.0" r="4.2" fill="#6AA43A" opacity="0.86"/>
-<text x="830.0" y="356.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#152E3A" >评估新能源资源</text>
+<rect x="452.4" y="440.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
+<text x="599.6" y="486.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >组件数量核算</text>
 </g>
 <g class="node" data-node="data_tariff" style="cursor:pointer">
-<rect x="1017.0" y="322.0" width="338.0" height="60.0" rx="10" fill="#FFFFFF" stroke="#9EB7C8" stroke-width="1.45" filter="url(#softShadow)"/>
-<circle cx="1031.0" cy="336.0" r="4.2" fill="#6AA43A" opacity="0.86"/>
-<text x="1186.0" y="356.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#152E3A" >整理约束条件</text>
+<rect x="452.4" y="556.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
+<text x="599.6" y="602.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >理论发电量计算</text>
 </g>
 <g class="node" data-node="model_assets" style="cursor:pointer">
-<rect x="305.0" y="460.0" width="338.0" height="60.0" rx="10" fill="#FFFFFF" stroke="#9EB7C8" stroke-width="1.45" filter="url(#softShadow)"/>
-<circle cx="319.0" cy="474.0" r="4.2" fill="#6AA43A" opacity="0.86"/>
-<text x="474.0" y="494.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#152E3A" >建模候选设备</text>
+<rect x="812.8" y="324.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
+<text x="960.0" y="370.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >源网荷储拓扑</text>
 </g>
 <g class="node" data-node="model_objective" style="cursor:pointer">
-<rect x="661.0" y="460.0" width="338.0" height="60.0" rx="10" fill="#FFFFFF" stroke="#9EB7C8" stroke-width="1.45" filter="url(#softShadow)"/>
-<circle cx="675.0" cy="474.0" r="4.2" fill="#6AA43A" opacity="0.86"/>
-<text x="830.0" y="494.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#152E3A" >多目标容量优化</text>
+<rect x="812.8" y="440.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
+<text x="960.0" y="486.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >并网接入方式</text>
 </g>
 <g class="node" data-node="model_scenarios" style="cursor:pointer">
-<rect x="1017.0" y="460.0" width="338.0" height="60.0" rx="10" fill="#FFFFFF" stroke="#9EB7C8" stroke-width="1.45" filter="url(#softShadow)"/>
-<circle cx="1031.0" cy="474.0" r="4.2" fill="#6AA43A" opacity="0.86"/>
-<text x="1186.0" y="494.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#152E3A" >比较规划场景</text>
+<rect x="812.8" y="556.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
+<text x="960.0" y="602.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >EMS 控制结构</text>
 </g>
 <g class="node" data-node="operation_dispatch" style="cursor:pointer">
-<rect x="305.0" y="598.0" width="516.0" height="60.0" rx="10" fill="#FFFFFF" stroke="#9EB7C8" stroke-width="1.45" filter="url(#softShadow)"/>
-<circle cx="319.0" cy="612.0" r="4.2" fill="#6AA43A" opacity="0.86"/>
-<text x="563.0" y="632.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#152E3A" >制定调度策略</text>
+<rect x="1173.2" y="324.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
+<text x="1320.4" y="370.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >典型日出力</text>
 </g>
 <g class="node" data-node="operation_control" style="cursor:pointer">
-<rect x="839.0" y="598.0" width="516.0" height="60.0" rx="10" fill="#FFFFFF" stroke="#9EB7C8" stroke-width="1.45" filter="url(#softShadow)"/>
-<circle cx="853.0" cy="612.0" r="4.2" fill="#6AA43A" opacity="0.86"/>
-<text x="1097.0" y="632.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#152E3A" >定义控制层级</text>
+<rect x="1173.2" y="440.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
+<text x="1320.4" y="486.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >源荷匹配分析</text>
+</g>
+<g class="node" data-node="operation_storage" style="cursor:pointer">
+<rect x="1173.2" y="556.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
+<text x="1320.4" y="602.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >储能充放电策略</text>
 </g>
 <g class="node" data-node="validation_kpi" style="cursor:pointer">
-<rect x="305.0" y="736.0" width="338.0" height="60.0" rx="10" fill="#FFFFFF" stroke="#9EB7C8" stroke-width="1.45" filter="url(#softShadow)"/>
-<circle cx="319.0" cy="750.0" r="4.2" fill="#6AA43A" opacity="0.86"/>
-<text x="474.0" y="770.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#152E3A" >评价系统指标</text>
+<rect x="1533.6" y="324.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
+<text x="1680.8" y="370.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >运行效果评价</text>
 </g>
 <g class="node" data-node="validation_sensitivity" style="cursor:pointer">
-<rect x="661.0" y="736.0" width="338.0" height="60.0" rx="10" fill="#FFFFFF" stroke="#9EB7C8" stroke-width="1.45" filter="url(#softShadow)"/>
-<circle cx="675.0" cy="750.0" r="4.2" fill="#6AA43A" opacity="0.86"/>
-<text x="830.0" y="770.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#152E3A" >开展敏感性分析</text>
+<rect x="1533.6" y="440.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
+<text x="1680.8" y="486.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >配置方案优化</text>
 </g>
 <g class="node" data-node="validation_deliver" style="cursor:pointer">
-<rect x="1017.0" y="736.0" width="338.0" height="60.0" rx="10" fill="#FFFFFF" stroke="#9EB7C8" stroke-width="1.45" filter="url(#softShadow)"/>
-<circle cx="1031.0" cy="750.0" r="4.2" fill="#6AA43A" opacity="0.86"/>
-<text x="1186.0" y="770.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#152E3A" >交付配置方案</text>
+<rect x="1533.6" y="556.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
+<text x="1680.8" y="602.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >工程应用建议</text>
 </g>
+<rect x="70.0" y="805.0" width="1780.0" height="108.0" rx="16" fill="#E0F2FE" stroke="#2563EB" stroke-width="1.6" />
+<text x="960.0" y="865.0" text-anchor="middle" font-size="18" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#0F172A" >成果输出：形成校园综合能源系统源网荷储配置方案与运行优化分析结果</text>
 </svg>

@@ -9,6 +9,7 @@
   <a href="README.en.md">English guide</a> |
   <a href="docs/quickstart.md">Quick start</a> |
   <a href="examples/README.md">Example gallery</a> |
+  <a href="https://app.diagrams.net/">diagrams.net / draw.io</a> |
   <a href="docs/comparison-before-after.md">Before/after comparison</a> |
   <a href="docs/faq.md">FAQ</a>
 </p>
@@ -22,11 +23,13 @@
 
 Evidence-grounded editable technical route diagrams for research and engineering projects.
 
-`tech-route-maker` is an agent skill and renderer toolkit for turning research papers, thesis proposals, engineering reports, project documentation, and technical notes into editable technical route diagrams. It keeps a structured `tech-route.json` as the source of truth, then renders the same route model into editable PPTX, SVG, Draw.io, HTML, Markdown, Mermaid, Excalidraw, and JSON outputs.
+`tech-route-maker` is an agent skill and renderer toolkit for turning research papers, thesis proposals, engineering reports, project documentation, and technical notes into editable technical route diagrams. It keeps a structured `tech-route.json` as the source of truth, then renders the same route model into editable PPTX, SVG, Draw.io, Draw.io copy-code XML, HTML, Markdown, Mermaid, Excalidraw, and JSON outputs.
 
 ![Editable route diagram preview](assets/demo-preview.svg)
 
 > **Use as an editable draft, not as a final unchecked figure.** Generated diagrams are starting points for revision. Users should review facts, terminology, evidence, logic, layout, colors, and wording before using the PPTX, SVG, or Draw.io files in papers, thesis defenses, grant proposals, courses, or engineering reports.
+
+> **Field context is required.** The skill should not render a final route from a field-agnostic request. It first identifies the discipline, subfield, project type, research object, method family, constraints and evaluation metrics, then chooses a field-appropriate route grammar.
 
 The optional `assets/github-visual-preview.png` file is only a GitHub visual preview. It does not replace the editable PPTX, SVG, Draw.io, HTML, Markdown, Mermaid, Excalidraw, or JSON deliverables.
 
@@ -47,6 +50,8 @@ Most diagram tools create static figures or one-off drawings. They are hard to a
 | Evidence-grounded route model | Keeps visible nodes traceable to source materials or marked assumptions. |
 | Reusable JSON source | Stores the route as `tech-route.json` for re-rendering and version control. |
 | Editable outputs | Generates PPTX, SVG, Draw.io and other editable formats instead of screenshots. |
+| Draw.io copy code | Generates `tech-route.drawio-code.xml` that users can paste into [diagrams.net / draw.io](https://app.diagrams.net/) through **Extras > Edit Diagram**. |
+| Domain-aware extraction | Separates computer vision, materials, energy systems, biomedical, mechanical, environmental and social-science route grammar. |
 | Research and engineering presets | Provides templates for academic methods, thesis proposals, engineering systems and technical workflows. |
 | Validation before rendering | Checks route structure, node labels, evidence fields and output selections before export. |
 | Quality report | Summarizes evidence coverage, inferred nodes, unresolved questions and layout warnings. |
@@ -75,6 +80,8 @@ The skill can still ask the user to choose formats, layouts, or visual styles, b
 | [Thesis proposal technical route](examples/thesis-proposal-demo/) | Thesis, proposal, research plan | Proposal route | [SVG](examples/thesis-proposal-demo/outputs/tech-route.svg) |
 | [Chinese grant application route](examples/chinese-grant-application-demo/) | Grant or project application | Application route | [SVG](examples/chinese-grant-application-demo/outputs/tech-route.svg) |
 | [Engineering energy system route](examples/engineering-energy-system-demo/) | Engineering report or course design | Source-grid-load-storage route | [SVG](examples/engineering-energy-system-demo/outputs/tech-route.svg) |
+| [Biomedical mechanism route](examples/biomedical-mechanism-demo/) | Biomedical proposal or paper | Mechanism validation route | [SVG](examples/biomedical-mechanism-demo/outputs/tech-route.svg) |
+| [Draw.io copy-code HGDY route](examples/drawio-copy-code-demo/) | Project application or route handoff | Copyable Draw.io XML | [XML](examples/drawio-copy-code-demo/outputs/tech-route.drawio-code.xml) |
 | [Agent workflow route](examples/agent-workflow-demo/) | Skill/tool documentation | Workflow pipeline | [SVG](examples/agent-workflow-demo/outputs/tech-route.svg) |
 
 ## Quick Start
@@ -83,7 +90,7 @@ The skill can still ask the user to choose formats, layouts, or visual styles, b
 git clone https://github.com/Stephen-studying/tech-route-maker.git
 cd tech-route-maker
 python scripts/validate_route.py examples/academic-paper-demo/outputs/tech-route.json
-python scripts/render_all.py examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,html,markdown,json
+python scripts/render_all.py examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,drawio-code,html,markdown,json
 ```
 
 After rendering, open:
@@ -92,9 +99,28 @@ After rendering, open:
 examples/academic-paper-demo/outputs/tech-route.pptx
 examples/academic-paper-demo/outputs/tech-route.svg
 examples/academic-paper-demo/outputs/tech-route.drawio
+examples/academic-paper-demo/outputs/tech-route.drawio-code.xml
 examples/academic-paper-demo/outputs/tech-route.html
 examples/academic-paper-demo/outputs/QUALITY_REPORT.md
 ```
+
+## Draw.io Copy-Code Workflow
+
+Use this when a user wants code that can be copied into Draw.io instead of downloading a file.
+
+```bash
+python scripts/render_all.py examples/drawio-copy-code-demo/outputs/tech-route.json examples/drawio-copy-code-demo/outputs --formats drawio,drawio-code,svg,json
+```
+
+Then:
+
+1. Open [diagrams.net / draw.io](https://app.diagrams.net/).
+2. Create a blank diagram.
+3. Open `examples/drawio-copy-code-demo/outputs/tech-route.drawio-code.xml`.
+4. Copy all XML text.
+5. In diagrams.net, use **Extras > Edit Diagram**, paste the XML, and confirm.
+
+This produces an editable Draw.io diagram. Users can still edit text, colors, arrows and boxes after import.
 
 ## Editable Outputs
 
@@ -103,6 +129,7 @@ examples/academic-paper-demo/outputs/QUALITY_REPORT.md
 | PPTX | `tech-route.pptx` | PowerPoint, WPS | Defense slides, reports, teaching and review decks. |
 | SVG | `tech-route.svg` | Figma, Illustrator, Inkscape, browser | High-resolution vector editing and publication polishing. |
 | Draw.io | `tech-route.drawio` | diagrams.net | Long-term technical diagram maintenance. |
+| Draw.io code | `tech-route.drawio-code.xml` | diagrams.net XML editor | Copy-paste import into [draw.io](https://app.diagrams.net/). |
 | Excalidraw | `tech-route.excalidraw` | Excalidraw | Whiteboard-style review and lightweight edits. |
 | Mermaid | `tech-route.mmd` | Text editor, GitHub Markdown | Version-controlled diagrams. |
 | HTML | `tech-route.html` | Browser and code editor | Interactive preview with details and evidence. |

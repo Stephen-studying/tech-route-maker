@@ -3,7 +3,16 @@ import zipfile
 from pathlib import Path
 from xml.sax.saxutils import escape
 
-from route_common import build_layout, center, get_style, load_route, wrap_text
+from route_common import (
+    build_layout,
+    edge_is_feedback,
+    edge_points,
+    get_style,
+    load_route,
+    show_node_edges,
+    stage_flow_segments,
+    wrap_text,
+)
 
 
 P_NS = "http://schemas.openxmlformats.org/presentationml/2006/main"
@@ -31,7 +40,7 @@ def tx_body(text, font_size=1200, font_color="111827", bold=False, max_chars=18)
     return f'<p:txBody><a:bodyPr wrap="square" anchor="ctr"/><a:lstStyle/>{"".join(paras)}</p:txBody>'
 
 
-def rect_shape(shape_id, name, x, y, w, h, text, fill, stroke, font_color, font_size=1200, bold=False, radius=True, dash=False):
+def rect_shape(shape_id, name, x, y, w, h, text, fill, stroke, font_color, font_size=1200, bold=False, radius=True, dash=False, max_chars=18):
     geom = "roundRect" if radius else "rect"
     dash_xml = '<a:prstDash val="dash"/>' if dash else ""
     return f"""
@@ -43,7 +52,7 @@ def rect_shape(shape_id, name, x, y, w, h, text, fill, stroke, font_color, font_
     <a:solidFill><a:srgbClr val="{color(fill)}"/></a:solidFill>
     <a:ln w="12700"><a:solidFill><a:srgbClr val="{color(stroke)}"/></a:solidFill>{dash_xml}</a:ln>
   </p:spPr>
-  {tx_body(text, font_size, font_color, bold)}
+  {tx_body(text, font_size, font_color, bold, max_chars)}
 </p:sp>"""
 
 
@@ -102,11 +111,15 @@ def make_slide(route):
     sid = 2
     title_w = slide_w - 2 * max(360000, ox + 420000)
     title_x = (slide_w - title_w) / 2
-    shapes.append(rect_shape(sid, "Title Band", title_x, oy + 70000, title_w, 430000, route["title"], palette_item(style, 0), style["stage_stroke"], style["text"], 2100, True, True))
+    title_fill = style["background"] if layout["orientation"] in {"mainline", "a4stage"} else palette_item(style, 0)
+    title_stroke = style["background"] if layout["orientation"] in {"mainline", "a4stage"} else style["stage_stroke"]
+    title_size = 2900 if layout["orientation"] == "mainline" else 2500 if layout["orientation"] == "a4stage" else 2100
+    shapes.append(rect_shape(sid, "Title Band", title_x, oy + 70000, title_w, 500000, route["title"], title_fill, title_stroke, style["text"], title_size, True, False if layout["orientation"] in {"mainline", "a4stage"} else True, False, 34))
     sid += 1
     if route.get("subtitle"):
         sub_w = min(slide_w - 700000, title_w)
-        shapes.append(rect_shape(sid, "Subtitle", (slide_w - sub_w) / 2, oy + 515000, sub_w, 190000, route["subtitle"], style["background"], style["background"], style["muted"], 850, False, False))
+        subtitle_size = 1050 if layout["orientation"] in {"mainline", "a4stage"} else 850
+        shapes.append(rect_shape(sid, "Subtitle", (slide_w - sub_w) / 2, oy + 560000, sub_w, 210000, route["subtitle"], style["background"], style["background"], style["muted"], subtitle_size, False, False, False, 44))
         sid += 1
     if layout["orientation"] == "vertical" and layout["stages"]:
         y1 = oy + (layout["stages"][0]["y"] + 10) * scale
@@ -120,6 +133,22 @@ def make_slide(route):
             sid += 1
     for stage in layout["stages"]:
         box = scale_box(stage, scale, ox, oy)
+        if stage.get("layout") == "mainline":
+            shapes.append(rect_shape(sid, f"Stage {stage['title']}", box["x"], box["y"], box["w"], box["h"], "", palette_item(style, stage["index"]), style["stage_stroke"], style["text"], 800, False, True, False))
+            sid += 1
+            main = scale_box(stage["main_box"], scale, ox, oy)
+            shapes.append(rect_shape(sid, f"Main {stage['title']}", main["x"], main["y"], main["w"], main["h"], stage["title"], style.get("main_fill", "#DBEAFE"), style.get("main_stroke", style["header_fill"]), style.get("main_text", style["text"]), 1550, True, True, False, 10))
+            sid += 1
+            continue
+        if stage.get("layout") == "a4stage":
+            shapes.append(rect_shape(sid, f"Stage {stage['title']}", box["x"], box["y"], box["w"], box["h"], "", palette_item(style, stage["index"]), style["stage_stroke"], style["text"], 800, False, True, False))
+            sid += 1
+            label = f"{stage['index'] + 1:02d}  {stage['title']}"
+            label_w = min(box["w"] - 720000, max(2800000, len(label) * 190000))
+            label_x = box["x"] + (box["w"] - label_w) / 2
+            shapes.append(rect_shape(sid, f"Header {stage['title']}", label_x, box["y"] + 190000, label_w, 430000, label, style["header_fill"], style["header_fill"], style["header_text"], 1450, True, True, False, 14))
+            sid += 1
+            continue
         shapes.append(rect_shape(sid, f"Stage {stage['title']}", box["x"], box["y"], box["w"], box["h"], "", palette_item(style, stage["index"]), style["stage_stroke"], style["text"], 1000, False, True, bool(style.get("stage_dash"))))
         sid += 1
         if stage.get("label_box"):
@@ -130,18 +159,36 @@ def make_slide(route):
             header_w = min(box["w"] * 0.34, 1850000)
             shapes.append(rect_shape(sid, f"Header {stage['title']}", box["x"] + 220000, box["y"] - 120000 if layout["orientation"] == "vertical" else box["y"], header_w, max(260000, 38 * scale), stage["title"], style["header_fill"], style["header_fill"], style["header_text"], 1100, True, True))
             sid += 1
-    for edge in route["edges"]:
-        if not edge.get("valid", True) or edge["from"] not in nodes or edge["to"] not in nodes:
-            continue
-        x1, y1 = center(nodes[edge["from"]])
-        x2, y2 = center(nodes[edge["to"]])
-        shapes.append(line_shape(sid, x1, y1, x2, y2, style["line"], arrow=True, dash=edge.get("kind") == "feedback"))
-        sid += 1
+    if show_node_edges(route):
+        for edge in route["edges"]:
+            if not edge.get("valid", True) or edge["from"] not in nodes or edge["to"] not in nodes:
+                continue
+            a = nodes[edge["from"]]
+            b = nodes[edge["to"]]
+            points = edge_points(a, b, layout["orientation"])
+            dashed = edge_is_feedback(edge, a, b)
+            for index in range(len(points) - 1):
+                x1, y1 = points[index]
+                x2, y2 = points[index + 1]
+                shapes.append(line_shape(sid, x1, y1, x2, y2, style["line"], arrow=index == len(points) - 2, dash=dashed))
+                sid += 1
+    else:
+        for x1, y1, x2, y2 in stage_flow_segments(layout):
+            shapes.append(line_shape(sid, ox + x1 * scale, oy + y1 * scale, ox + x2 * scale, oy + y2 * scale, style["line"], arrow=True))
+            sid += 1
     for stage in route["stages"]:
         for node in stage["nodes"]:
+            if node["id"] not in nodes:
+                continue
             box = nodes[node["id"]]
-            shapes.append(rect_shape(sid, f"Node {node['id']}", box["x"], box["y"], box["w"], box["h"], node["label"], style["node_fill"], style["node_stroke"], style["text"], 980, False, True))
+            node_size = 1320 if layout["orientation"] == "mainline" else 1250 if layout["orientation"] == "a4stage" else 930
+            shapes.append(rect_shape(sid, f"Node {node['id']}", box["x"], box["y"], box["w"], box["h"], node["label"], style["node_fill"], style["node_stroke"], style["text"], node_size, False, True, False, 12))
             sid += 1
+    bar = layout.get("output_bar")
+    if bar and bar.get("text"):
+        output = scale_box(bar, scale, ox, oy)
+        shapes.append(rect_shape(sid, "Output", output["x"], output["y"], output["w"], output["h"], "成果输出：" + str(bar["text"]), style.get("output_fill", "#E0F2FE"), style.get("output_stroke", style["header_fill"]), style["text"], 1400, True, True, False, 40))
+        sid += 1
     return slide_w, slide_h, f"""<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <p:sld xmlns:a="{A_NS}" xmlns:r="{R_NS}" xmlns:p="{P_NS}">
   <p:cSld>

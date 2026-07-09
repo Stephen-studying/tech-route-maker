@@ -5,9 +5,9 @@
 </defs>
 <rect width="100%" height="100%" fill="#FFFFFF"/>
 <rect x="10.0" y="10.0" width="1340.0" height="670.0" rx="18" fill="none" stroke="#D8E1EA" stroke-width="1.0" />
-<rect x="64.0" y="22.0" width="1232.0" height="58.0" rx="18" fill="#FFE4E6" stroke="none" stroke-width="1.5" />
-<text x="680.0" y="58.0" text-anchor="middle" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#111827" >Legacy Campaign Strategy Route</text>
-<text x="680.0" y="92.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" font-weight="400" fill="#5B6472" >Experimental campaign route retained for explicit advertising requests</text>
+<rect x="64.0" y="22.0" width="1232.0" height="54.0" rx="18" fill="#FFE4E6" stroke="none" stroke-width="1.5" />
+<text x="680.0" y="55.0" text-anchor="middle" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#111827" >Legacy Campaign Strategy Route</text>
+<text x="680.0" y="99.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" font-weight="400" fill="#5B6472" >Experimental campaign route retained for explicit advertising requests</text>
 <rect x="60.0" y="176.0" width="230.4" height="390.0" rx="12" fill="#FFE4E6" stroke="#FDA4AF" stroke-width="1.3" opacity="0.88"/>
 <rect x="60.0" y="176.0" width="230.4" height="48.0" rx="12" fill="#E11D48" stroke="#E11D48" stroke-width="1.0" />
 <text x="175.2" y="207.0" text-anchor="middle" font-size="13" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#FFFFFF" >Audience</text>
@@ -23,84 +23,58 @@
 <rect x="1069.6" y="176.0" width="230.4" height="390.0" rx="12" fill="#FCE7F3" stroke="#FDA4AF" stroke-width="1.3" opacity="0.88"/>
 <rect x="1069.6" y="176.0" width="230.4" height="48.0" rx="12" fill="#E11D48" stroke="#E11D48" stroke-width="1.0" />
 <text x="1184.8" y="207.0" text-anchor="middle" font-size="13" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#FFFFFF" >Measurement</text>
-<path d="M 273.4 275.0 C 175.2 275.0, 175.2 353.0, 77.0 353.0" fill="none" stroke="#E11D48" stroke-width="2.1" marker-end="url(#arrow)" opacity="0.72"/>
-<rect x="144.2" y="294.0" width="62.0" height="19.0" rx="9" fill="#FFFFFF" stroke="#E7ECF2" stroke-width="0.8" />
-<text x="175.2" y="308.0" text-anchor="middle" font-size="9" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#5B6472" >segments</text>
-<path d="M 273.4 353.0 C 301.4 353.0, 301.4 275.0, 329.4 275.0" fill="none" stroke="#E11D48" stroke-width="2.1" marker-end="url(#arrow)" opacity="0.72" stroke-dasharray="6 5"/>
-<rect x="270.4" y="294.0" width="62.0" height="19.0" rx="9" fill="#FFFFFF" stroke="#E7ECF2" stroke-width="0.8" />
-<text x="301.4" y="308.0" text-anchor="middle" font-size="9" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#5B6472" >reveals</text>
-<path d="M 525.8 275.0 C 427.6 275.0, 427.6 353.0, 329.4 353.0" fill="none" stroke="#E11D48" stroke-width="2.1" marker-end="url(#arrow)" opacity="0.72"/>
-<rect x="396.6" y="294.0" width="62.0" height="19.0" rx="9" fill="#FFFFFF" stroke="#E7ECF2" stroke-width="0.8" />
-<text x="427.6" y="308.0" text-anchor="middle" font-size="9" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#5B6472" >frames</text>
-<path d="M 525.8 353.0 C 553.8 353.0, 553.8 275.0, 581.8 275.0" fill="none" stroke="#E11D48" stroke-width="2.1" marker-end="url(#arrow)" opacity="0.72" stroke-dasharray="6 5"/>
-<rect x="522.8" y="294.0" width="62.0" height="19.0" rx="9" fill="#FFFFFF" stroke="#E7ECF2" stroke-width="0.8" />
-<text x="553.8" y="308.0" text-anchor="middle" font-size="9" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#5B6472" >shapes</text>
-<path d="M 778.2 275.0 C 680.0 275.0, 680.0 353.0, 581.8 353.0" fill="none" stroke="#E11D48" stroke-width="2.1" marker-end="url(#arrow)" opacity="0.72"/>
-<rect x="649.0" y="294.0" width="62.0" height="19.0" rx="9" fill="#FFFFFF" stroke="#E7ECF2" stroke-width="0.8" />
-<text x="680.0" y="308.0" text-anchor="middle" font-size="9" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#5B6472" >proves</text>
-<path d="M 778.2 353.0 C 806.2 353.0, 806.2 275.0, 834.2 275.0" fill="none" stroke="#E11D48" stroke-width="2.1" marker-end="url(#arrow)" opacity="0.72" stroke-dasharray="6 5"/>
-<rect x="775.2" y="294.0" width="62.0" height="19.0" rx="9" fill="#FFFFFF" stroke="#E7ECF2" stroke-width="0.8" />
-<text x="806.2" y="308.0" text-anchor="middle" font-size="9" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#5B6472" >anchors</text>
-<path d="M 1030.6 275.0 C 932.4 275.0, 932.4 353.0, 834.2 353.0" fill="none" stroke="#E11D48" stroke-width="2.1" marker-end="url(#arrow)" opacity="0.72"/>
-<rect x="901.4" y="294.0" width="62.0" height="19.0" rx="9" fill="#FFFFFF" stroke="#E7ECF2" stroke-width="0.8" />
-<text x="932.4" y="308.0" text-anchor="middle" font-size="9" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#5B6472" >extends</text>
-<path d="M 1030.6 353.0 C 1058.6 353.0, 1058.6 275.0, 1086.6 275.0" fill="none" stroke="#E11D48" stroke-width="2.1" marker-end="url(#arrow)" opacity="0.72" stroke-dasharray="6 5"/>
-<rect x="1027.6" y="294.0" width="62.0" height="19.0" rx="9" fill="#FFFFFF" stroke="#E7ECF2" stroke-width="0.8" />
-<text x="1058.6" y="308.0" text-anchor="middle" font-size="9" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#5B6472" >drives</text>
-<path d="M 1283.0 275.0 C 1184.8 275.0, 1184.8 353.0, 1086.6 353.0" fill="none" stroke="#E11D48" stroke-width="2.1" marker-end="url(#arrow)" opacity="0.72"/>
-<rect x="1153.8" y="294.0" width="62.0" height="19.0" rx="9" fill="#FFFFFF" stroke="#E7ECF2" stroke-width="0.8" />
-<text x="1184.8" y="308.0" text-anchor="middle" font-size="9" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#5B6472" >learns</text>
-<path d="M 1184.8 322.0 C 1184.8 182.0, 680.0 182.0, 680.0 244.0" fill="none" stroke="#E11D48" stroke-width="2.1" marker-end="url(#arrow)" opacity="0.72" stroke-dasharray="6 5"/>
-<rect x="901.4" y="294.0" width="62.0" height="19.0" rx="9" fill="#FFFFFF" stroke="#E7ECF2" stroke-width="0.8" />
-<text x="932.4" y="308.0" text-anchor="middle" font-size="9" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#5B6472" >optimizes</text>
+<line x1="290.4" y1="371.0" x2="312.4" y2="371.0" stroke="#E11D48" stroke-width="2.2" marker-end="url(#arrow)" opacity="0.66"/>
+<line x1="542.8" y1="371.0" x2="564.8" y2="371.0" stroke="#E11D48" stroke-width="2.2" marker-end="url(#arrow)" opacity="0.66"/>
+<line x1="795.2" y1="371.0" x2="817.2" y2="371.0" stroke="#E11D48" stroke-width="2.2" marker-end="url(#arrow)" opacity="0.66"/>
+<line x1="1047.6" y1="371.0" x2="1069.6" y2="371.0" stroke="#E11D48" stroke-width="2.2" marker-end="url(#arrow)" opacity="0.66"/>
 <g class="node" data-node="audience_segments" style="cursor:pointer">
-<rect x="77.0" y="244.0" width="196.4" height="62.0" rx="10" fill="#FFFFFF" stroke="#FB7185" stroke-width="1.45" filter="url(#softShadow)"/>
+<rect x="77.0" y="244.0" width="196.4" height="62.0" rx="10" fill="#FFFFFF" stroke="#FB7185" stroke-width="1.25" filter="url(#softShadow)"/>
 <circle cx="91.0" cy="258.0" r="4.2" fill="#0F766E" opacity="0.86"/>
-<text x="175.2" y="279.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#111827" >Map user segments</text>
+<text x="175.2" y="280.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#111827" >Map user segments</text>
 </g>
 <g class="node" data-node="audience_jobs" style="cursor:pointer">
-<rect x="77.0" y="322.0" width="196.4" height="62.0" rx="10" fill="#FFFFFF" stroke="#FB7185" stroke-width="1.45" filter="url(#softShadow)"/>
+<rect x="77.0" y="322.0" width="196.4" height="62.0" rx="10" fill="#FFFFFF" stroke="#FB7185" stroke-width="1.25" filter="url(#softShadow)"/>
 <circle cx="91.0" cy="336.0" r="4.2" fill="#0F766E" opacity="0.86"/>
-<text x="175.2" y="357.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#111827" >Clarify workflow jobs</text>
+<text x="175.2" y="358.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#111827" >Clarify workflow jobs</text>
 </g>
 <g class="node" data-node="insight_editable" style="cursor:pointer">
-<rect x="329.4" y="244.0" width="196.4" height="62.0" rx="10" fill="#FFFFFF" stroke="#FB7185" stroke-width="1.45" filter="url(#softShadow)"/>
+<rect x="329.4" y="244.0" width="196.4" height="62.0" rx="10" fill="#FFFFFF" stroke="#FB7185" stroke-width="1.25" filter="url(#softShadow)"/>
 <circle cx="343.4" cy="258.0" r="4.2" fill="#0F766E" opacity="0.86"/>
-<text x="427.6" y="279.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#111827" >Lead with editability</text>
+<text x="427.6" y="280.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#111827" >Lead with editability</text>
 </g>
 <g class="node" data-node="insight_friction" style="cursor:pointer">
-<rect x="329.4" y="322.0" width="196.4" height="62.0" rx="10" fill="#FFFFFF" stroke="#FB7185" stroke-width="1.45" filter="url(#softShadow)"/>
+<rect x="329.4" y="322.0" width="196.4" height="62.0" rx="10" fill="#FFFFFF" stroke="#FB7185" stroke-width="1.25" filter="url(#softShadow)"/>
 <circle cx="343.4" cy="336.0" r="4.2" fill="#0F766E" opacity="0.86"/>
-<text x="427.6" y="357.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#111827" >Remove drawing friction</text>
+<text x="427.6" y="358.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#111827" >Remove drawing friction</text>
 </g>
 <g class="node" data-node="message_position" style="cursor:pointer">
-<rect x="581.8" y="244.0" width="196.4" height="62.0" rx="10" fill="#FFFFFF" stroke="#FB7185" stroke-width="1.45" filter="url(#softShadow)"/>
+<rect x="581.8" y="244.0" width="196.4" height="62.0" rx="10" fill="#FFFFFF" stroke="#FB7185" stroke-width="1.25" filter="url(#softShadow)"/>
 <circle cx="595.8" cy="258.0" r="4.2" fill="#0F766E" opacity="0.86"/>
-<text x="680.0" y="279.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#111827" >Position workflow value</text>
+<text x="680.0" y="280.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#111827" >Position workflow value</text>
 </g>
 <g class="node" data-node="message_proof" style="cursor:pointer">
-<rect x="581.8" y="322.0" width="196.4" height="62.0" rx="10" fill="#FFFFFF" stroke="#FB7185" stroke-width="1.45" filter="url(#softShadow)"/>
+<rect x="581.8" y="322.0" width="196.4" height="62.0" rx="10" fill="#FFFFFF" stroke="#FB7185" stroke-width="1.25" filter="url(#softShadow)"/>
 <circle cx="595.8" cy="336.0" r="4.2" fill="#0F766E" opacity="0.86"/>
-<text x="680.0" y="357.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#111827" >Show demo proof</text>
+<text x="680.0" y="358.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#111827" >Show demo proof</text>
 </g>
 <g class="node" data-node="channels_github" style="cursor:pointer">
-<rect x="834.2" y="244.0" width="196.4" height="62.0" rx="10" fill="#FFFFFF" stroke="#FB7185" stroke-width="1.45" filter="url(#softShadow)"/>
+<rect x="834.2" y="244.0" width="196.4" height="62.0" rx="10" fill="#FFFFFF" stroke="#FB7185" stroke-width="1.25" filter="url(#softShadow)"/>
 <circle cx="848.2" cy="258.0" r="4.2" fill="#0F766E" opacity="0.86"/>
-<text x="932.4" y="279.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#111827" >Use GitHub hub</text>
+<text x="932.4" y="280.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#111827" >Use GitHub hub</text>
 </g>
 <g class="node" data-node="channels_content" style="cursor:pointer">
-<rect x="834.2" y="322.0" width="196.4" height="62.0" rx="10" fill="#FFFFFF" stroke="#FB7185" stroke-width="1.45" filter="url(#softShadow)"/>
+<rect x="834.2" y="322.0" width="196.4" height="62.0" rx="10" fill="#FFFFFF" stroke="#FB7185" stroke-width="1.25" filter="url(#softShadow)"/>
 <circle cx="848.2" cy="336.0" r="4.2" fill="#0F766E" opacity="0.86"/>
-<text x="932.4" y="357.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#111827" >Publish demo content</text>
+<text x="932.4" y="358.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#111827" >Publish demo content</text>
 </g>
 <g class="node" data-node="measure_metrics" style="cursor:pointer">
-<rect x="1086.6" y="244.0" width="196.4" height="62.0" rx="10" fill="#FFFFFF" stroke="#FB7185" stroke-width="1.45" filter="url(#softShadow)"/>
+<rect x="1086.6" y="244.0" width="196.4" height="62.0" rx="10" fill="#FFFFFF" stroke="#FB7185" stroke-width="1.25" filter="url(#softShadow)"/>
 <circle cx="1100.6" cy="258.0" r="4.2" fill="#0F766E" opacity="0.86"/>
-<text x="1184.8" y="279.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#111827" >Track adoption signals</text>
+<text x="1184.8" y="280.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#111827" >Track adoption signals</text>
 </g>
 <g class="node" data-node="measure_feedback" style="cursor:pointer">
-<rect x="1086.6" y="322.0" width="196.4" height="62.0" rx="10" fill="#FFFFFF" stroke="#FB7185" stroke-width="1.45" filter="url(#softShadow)"/>
+<rect x="1086.6" y="322.0" width="196.4" height="62.0" rx="10" fill="#FFFFFF" stroke="#FB7185" stroke-width="1.25" filter="url(#softShadow)"/>
 <circle cx="1100.6" cy="336.0" r="4.2" fill="#0F766E" opacity="0.86"/>
-<text x="1184.8" y="357.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#111827" >Feed back issues</text>
+<text x="1184.8" y="358.0" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#111827" >Feed back issues</text>
 </g>
 </svg>

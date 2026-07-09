@@ -4,6 +4,60 @@
   "selected_preset": "academic-method",
   "layout": "academic-method-framework",
   "style": "academic-blue",
+  "domain_context": {
+    "discipline": "Computer science and renewable energy",
+    "subfield": "Computer vision for photovoltaic defect detection",
+    "project_type": "paper method figure",
+    "research_object": "PV module surface and thermal defects",
+    "method_family": "deep learning object detection",
+    "application_area": "PV inspection and operation maintenance",
+    "data_or_materials": [
+      "RGB images",
+      "infrared images",
+      "annotated defect labels"
+    ],
+    "technical_objects": [
+      "dataset annotation",
+      "multimodal feature fusion",
+      "detector backbone",
+      "ablation study",
+      "defect report"
+    ],
+    "domain_constraints": [
+      "small targets",
+      "class imbalance",
+      "field imaging variation",
+      "real-time inference"
+    ],
+    "evaluation_metrics": [
+      "mAP",
+      "precision",
+      "recall",
+      "FPS",
+      "Params"
+    ],
+    "expected_outputs": [
+      "editable method route",
+      "validated detector",
+      "defect diagnosis report"
+    ],
+    "terminology": {},
+    "domain_profile": {
+      "task_type": "object detection",
+      "data_modalities": [
+        "RGB",
+        "infrared"
+      ],
+      "model_family": [
+        "YOLO",
+        "CNN",
+        "feature fusion",
+        "attention"
+      ]
+    },
+    "source": "demo brief",
+    "confidence": "high"
+  },
   "reader_question": "How does the method move from multi-source image evidence to validated defect results?",
   "reader_path": [
     "Goal",
@@ -465,6 +519,62 @@
       "markdown",
       "json"
     ],
+    "domain_context_status": "complete",
+    "domain_context_missing_fields": [],
+    "domain_context": {
+      "discipline": "Computer science and renewable energy",
+      "subfield": "Computer vision for photovoltaic defect detection",
+      "project_type": "paper method figure",
+      "research_object": "PV module surface and thermal defects",
+      "method_family": "deep learning object detection",
+      "application_area": "PV inspection and operation maintenance",
+      "data_or_materials": [
+        "RGB images",
+        "infrared images",
+        "annotated defect labels"
+      ],
+      "technical_objects": [
+        "dataset annotation",
+        "multimodal feature fusion",
+        "detector backbone",
+        "ablation study",
+        "defect report"
+      ],
+      "domain_constraints": [
+        "small targets",
+        "class imbalance",
+        "field imaging variation",
+        "real-time inference"
+      ],
+      "evaluation_metrics": [
+        "mAP",
+        "precision",
+        "recall",
+        "FPS",
+        "Params"
+      ],
+      "expected_outputs": [
+        "editable method route",
+        "validated detector",
+        "defect diagnosis report"
+      ],
+      "terminology": {},
+      "domain_profile": {
+        "task_type": "object detection",
+        "data_modalities": [
+          "RGB",
+          "infrared"
+        ],
+        "model_family": [
+          "YOLO",
+          "CNN",
+          "feature fusion",
+          "attention"
+        ]
+      },
+      "source": "demo brief",
+      "confidence": "high"
+    },
     "stage_count": 5,
     "node_count": 14,
     "edge_count": 13,
@@ -481,6 +591,7 @@
     },
     "warnings": [],
     "suggested_manual_review": [
+      "Check whether the diagram matches the stated discipline, subfield, project type, research object, method family, constraints, and evaluation metrics.",
       "Check terminology against the source material.",
       "Check whether inferred nodes should be removed or supported with evidence.",
       "Check edge labels and route logic.",

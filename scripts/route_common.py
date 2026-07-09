@@ -339,6 +339,29 @@ STYLES = {
         "accent_3": "#E96C72",
         "stage_dash": "7 6",
     },
+    "research-ppt-blue": {
+        "background": "#F8FAFC",
+        "text": "#0F172A",
+        "muted": "#64748B",
+        "line": "#64748B",
+        "stage_fill": "#FFFFFF",
+        "stage_stroke": "#E2E8F0",
+        "header_fill": "#2563EB",
+        "header_text": "#FFFFFF",
+        "node_fill": "#FFFFFF",
+        "node_stroke": "#CBD5E1",
+        "main_fill": "#DBEAFE",
+        "main_stroke": "#2563EB",
+        "main_text": "#1E3A8A",
+        "output_fill": "#E0F2FE",
+        "output_stroke": "#2563EB",
+        "palette": ["#EFF6FF", "#F0FDF4", "#FEFCE8", "#FFF7ED", "#FDF2F8", "#EEF2FF"],
+        "accent": "#2563EB",
+        "accent_2": "#1D4ED8",
+        "accent_3": "#64748B",
+        "canvas_stroke": "#CBD5E1",
+        "soft_shadow": "#E2E8F0",
+    },
 }
 
 STYLE_DEFAULTS = {
@@ -359,6 +382,7 @@ STYLE_ALIASES = {
     "cn-thesis-pastel": "cn-polished-pastel-academic",
     "cn-grant-pastel": "cn-soft-grant-report",
     "cn-linework": "cn-reviewer-linework",
+    "formal-research-ppt": "research-ppt-blue",
 }
 
 
@@ -530,6 +554,120 @@ def build_layout(route):
         "cn-wide-project-map",
     }
     campaign_layouts = {"campaign-strategy-map"}
+    mainline_layouts = {"cn-ppt-mainline-route", "ppt-mainline-route", "research-ppt-mainline"}
+    a4_stage_layouts = {"cn-a4-stage-route", "a4-stage-route"}
+
+    if layout_name in mainline_layouts:
+        width = 1920
+        height = 1080
+        margin_x = 70
+        stage_gap = 22
+        stage_y = 160
+        stage_h = 600
+        main_h = 88
+        support_h = 82
+        support_gap = 34
+        stage_w = (width - margin_x * 2 - max(0, len(stages) - 1) * stage_gap) / max(1, len(stages))
+        for si, stage in enumerate(stages):
+            x = margin_x + si * (stage_w + stage_gap)
+            main_box = {
+                "x": x + 14,
+                "y": stage_y + 24,
+                "w": stage_w - 28,
+                "h": main_h,
+            }
+            stage_boxes.append(
+                {
+                    "id": stage["id"],
+                    "title": stage["title"],
+                    "x": x,
+                    "y": stage_y,
+                    "w": stage_w,
+                    "h": stage_h,
+                    "index": si,
+                    "layout": "mainline",
+                    "main_box": main_box,
+                }
+            )
+            visible_nodes = stage["nodes"][:3]
+            for ni, node in enumerate(visible_nodes):
+                ny = main_box["y"] + main_h + 52 + ni * (support_h + support_gap)
+                nodes[node["id"]] = {
+                    "x": x + 22,
+                    "y": ny,
+                    "w": stage_w - 44,
+                    "h": support_h,
+                    "stage": stage["id"],
+                    "role": "support",
+                }
+        final_output = route.get("final_output") or route["metadata"].get("final_output", "")
+        return {
+            "width": int(width),
+            "height": int(height),
+            "layout_name": layout_name,
+            "orientation": "mainline",
+            "stages": stage_boxes,
+            "nodes": nodes,
+            "route": route,
+            "output_bar": {
+                "x": margin_x,
+                "y": 805,
+                "w": width - margin_x * 2,
+                "h": 108,
+                "text": final_output,
+            },
+        }
+
+    if layout_name in a4_stage_layouts:
+        width = 1240
+        margin_x = 78
+        stage_w = width - margin_x * 2
+        y = 180
+        row_gap = 48
+        header_h = 56
+        node_h = 86
+        node_gap = 18
+        for si, stage in enumerate(stages):
+            count = max(1, min(3, len(stage["nodes"])))
+            cols = 1 if count == 1 else count
+            node_w = (stage_w - 72 - (cols - 1) * node_gap) / cols
+            stage_h = 240
+            stage_boxes.append(
+                {
+                    "id": stage["id"],
+                    "title": stage["title"],
+                    "x": margin_x,
+                    "y": y,
+                    "w": stage_w,
+                    "h": stage_h,
+                    "index": si,
+                    "layout": "a4stage",
+                }
+            )
+            for ni, node in enumerate(stage["nodes"][:3]):
+                nx = margin_x + 36 + ni * (node_w + node_gap)
+                ny = y + header_h + 58
+                nodes[node["id"]] = {"x": nx, "y": ny, "w": node_w, "h": node_h, "stage": stage["id"], "role": "support"}
+            y += stage_h + row_gap
+        final_output = route.get("final_output") or route["metadata"].get("final_output", "")
+        output_h = 96
+        height = max(1754, int(y + (output_h + 90 if final_output else 80)))
+        return {
+            "width": int(width),
+            "height": int(height),
+            "layout_name": layout_name,
+            "orientation": "a4stage",
+            "stages": stage_boxes,
+            "nodes": nodes,
+            "route": route,
+            "output_bar": {
+                "x": margin_x,
+                "y": y + 10,
+                "w": stage_w,
+                "h": output_h,
+                "text": final_output,
+            },
+        }
 
     if layout_name in matrix_layouts:
         if layout_name.startswith("cn-"):
@@ -806,6 +944,116 @@ def build_layout(route):
 
 def center(box):
     return (box["x"] + box["w"] / 2, box["y"] + box["h"] / 2)
+
+
+def node_port(box, side):
+    if side == "left":
+        return box["x"], box["y"] + box["h"] / 2
+    if side == "right":
+        return box["x"] + box["w"], box["y"] + box["h"] / 2
+    if side == "top":
+        return box["x"] + box["w"] / 2, box["y"]
+    return box["x"] + box["w"] / 2, box["y"] + box["h"]
+
+
+def _compact_points(points):
+    compacted = []
+    for x, y in points:
+        if not compacted or abs(compacted[-1][0] - x) > 0.5 or abs(compacted[-1][1] - y) > 0.5:
+            compacted.append((x, y))
+    return compacted
+
+
+def _horizontal_edge_points(source, target):
+    sx, sy = center(source)
+    tx, ty = center(target)
+    if tx >= sx:
+        x1, y1 = node_port(source, "right")
+        x2, y2 = node_port(target, "left")
+        if abs(y1 - y2) < 4:
+            return [(x1, y1), (x2, y2)]
+        mid_x = (x1 + x2) / 2
+        return [(x1, y1), (mid_x, y1), (mid_x, y2), (x2, y2)]
+    x1, y1 = node_port(source, "left")
+    x2, y2 = node_port(target, "right")
+    lane_y = max(28, min(source["y"], target["y"]) - 42)
+    return [(x1, y1), (x1, lane_y), (x2, lane_y), (x2, y2)]
+
+
+def _vertical_edge_points(source, target):
+    sx, sy = center(source)
+    tx, ty = center(target)
+    if ty >= sy:
+        x1, y1 = node_port(source, "bottom")
+        x2, y2 = node_port(target, "top")
+        if abs(x1 - x2) < 4:
+            return [(x1, y1), (x2, y2)]
+        mid_y = (y1 + y2) / 2
+        return [(x1, y1), (x1, mid_y), (x2, mid_y), (x2, y2)]
+    x1, y1 = node_port(source, "top")
+    x2, y2 = node_port(target, "top")
+    lane_y = max(28, min(source["y"], target["y"]) - 46)
+    return [(x1, y1), (x1, lane_y), (x2, lane_y), (x2, y2)]
+
+
+def edge_points(source, target, orientation):
+    sx, sy = center(source)
+    tx, ty = center(target)
+    same_band = abs(sy - ty) < 38
+    same_stage = source.get("stage") == target.get("stage")
+    if same_band:
+        points = _horizontal_edge_points(source, target)
+    elif orientation in {"vertical", "matrix", "system"} or same_stage:
+        points = _vertical_edge_points(source, target)
+    else:
+        points = _horizontal_edge_points(source, target)
+    return _compact_points(points)
+
+
+def edge_is_feedback(edge, source, target):
+    return (
+        edge.get("kind") == "feedback"
+        or target["x"] + target["w"] / 2 < source["x"] + source["w"] / 2
+        or target["y"] + target["h"] / 2 < source["y"] + source["h"] / 2
+    )
+
+
+def show_edge_labels(route):
+    overrides = route.get("renderer_overrides") or {}
+    metadata = route.get("metadata") or {}
+    return bool(overrides.get("show_edge_labels") or metadata.get("show_edge_labels"))
+
+
+def show_node_edges(route):
+    overrides = route.get("renderer_overrides") or {}
+    metadata = route.get("metadata") or {}
+    return bool(overrides.get("show_node_edges") or metadata.get("show_node_edges"))
+
+
+def stage_flow_segments(layout):
+    stages = layout.get("stages") or []
+    orientation = layout.get("orientation", "horizontal")
+    segments = []
+    for source, target in zip(stages, stages[1:]):
+        if orientation == "mainline":
+            source_box = source.get("main_box") or source
+            target_box = target.get("main_box") or target
+            x1 = source_box["x"] + source_box["w"]
+            y1 = source_box["y"] + source_box["h"] / 2
+            x2 = target_box["x"]
+            y2 = target_box["y"] + target_box["h"] / 2
+        elif orientation in {"horizontal", "campaign"}:
+            x1 = source["x"] + source["w"]
+            y1 = source["y"] + source["h"] / 2
+            x2 = target["x"]
+            y2 = target["y"] + target["h"] / 2
+        else:
+            x1 = source["x"] + source["w"] / 2
+            y1 = source["y"] + source["h"]
+            x2 = target["x"] + target["w"] / 2
+            y2 = target["y"]
+        segments.append((x1, y1, x2, y2))
+    return segments
 
 
 def html_escape(value):

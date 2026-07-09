@@ -1,6 +1,6 @@
 from collections import Counter
 
-from .schema import ROUTE_VERSION, selected_output_formats
+from .schema import ROUTE_VERSION, domain_context_missing_fields, domain_context_status, selected_output_formats
 
 
 def iter_nodes(route):
@@ -50,8 +50,14 @@ def build_quality_report(route):
         if len(stage.get("nodes") or []) < 2
     ]
     confidence_counts = Counter(str(node.get("confidence") or "missing") for _, node in nodes)
+    domain_status = domain_context_status(route)
+    missing_domain_fields = domain_context_missing_fields(route)
 
     warnings = []
+    if domain_status == "missing":
+        warnings.append("Missing domain_context; ask for discipline, subfield, project type, research object, method family, application area, constraints, and evaluation metrics before final rendering.")
+    elif missing_domain_fields:
+        warnings.append(f"Incomplete domain_context; missing: {', '.join(missing_domain_fields)}")
     if len(stages) < 4:
         warnings.append("Route has fewer than 4 stages; a technical route may be underspecified.")
     if len(stages) > 7:
@@ -71,6 +77,9 @@ def build_quality_report(route):
         "route_version": route.get("route_version") or ROUTE_VERSION,
         "selected_preset": route.get("selected_preset") or "custom",
         "selected_output_formats": selected_output_formats(route),
+        "domain_context_status": domain_status,
+        "domain_context_missing_fields": missing_domain_fields,
+        "domain_context": route.get("domain_context") if isinstance(route.get("domain_context"), dict) else {},
         "stage_count": len(stages),
         "node_count": node_count,
         "edge_count": len(edges),
@@ -85,6 +94,7 @@ def build_quality_report(route):
         "confidence_summary": dict(confidence_counts),
         "warnings": warnings,
         "suggested_manual_review": [
+            "Check whether the diagram matches the stated discipline, subfield, project type, research object, method family, constraints, and evaluation metrics.",
             "Check terminology against the source material.",
             "Check whether inferred nodes should be removed or supported with evidence.",
             "Check edge labels and route logic.",
@@ -103,6 +113,7 @@ def render_quality_report_markdown(report):
         f"- Route version: {report.get('route_version', '')}",
         f"- Selected preset: {report.get('selected_preset', '')}",
         f"- Output formats: {', '.join(report.get('selected_output_formats') or []) or 'not recorded'}",
+        f"- Domain context: {report.get('domain_context_status', 'missing')}",
         f"- Stage count: {report.get('stage_count', 0)}",
         f"- Node count: {report.get('node_count', 0)}",
         f"- Edge count: {report.get('edge_count', 0)}",
@@ -115,6 +126,7 @@ def render_quality_report_markdown(report):
         f"- [{'x' if 4 <= report.get('stage_count', 0) <= 7 else ' '}] Main route has 4-7 stages.",
         f"- [{'x' if not report.get('stages_with_too_many_nodes') else ' '}] Each stage has 2-6 visible nodes.",
         f"- [{'x' if not report.get('long_label_nodes') else ' '}] Node labels are concise.",
+        f"- [{'x' if report.get('domain_context_status') == 'complete' else ' '}] Domain context is complete.",
         "- [x] Edges connect existing nodes after validation.",
         "",
         "## Evidence Checks",
@@ -122,6 +134,7 @@ def render_quality_report_markdown(report):
         f"- Nodes with evidence: {report.get('evidence_node_count', 0)}",
         f"- Nodes marked as inferred: {report.get('inferred_node_count', 0)}",
         f"- Nodes missing evidence: {len(report.get('missing_evidence_nodes') or [])}",
+        f"- Missing domain fields: {', '.join(report.get('domain_context_missing_fields') or []) or 'none'}",
         "",
         "## Layout Checks",
         "",

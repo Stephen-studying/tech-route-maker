@@ -5,6 +5,7 @@
 | PPTX | `tech-route.pptx` | PowerPoint, WPS | The user needs slides, defense material, teaching material or report edits. |
 | SVG | `tech-route.svg` | Figma, Illustrator, Inkscape, browser | The user needs high-resolution vector editing. |
 | Draw.io | `tech-route.drawio` | diagrams.net | The diagram must be maintained as a technical diagram. |
+| Draw.io code | `tech-route.drawio-code.xml` | diagrams.net XML editor | The user wants XML code that can be copied into draw.io. |
 | Excalidraw | `tech-route.excalidraw` | Excalidraw | The team wants a whiteboard-style editable scene. |
 | Mermaid | `tech-route.mmd` | Text editor, GitHub Markdown | Version control and simple docs matter more than precise layout. |
 | HTML | `tech-route.html` | Browser and code editor | The user wants an interactive preview with details. |
@@ -21,9 +22,10 @@ Recommended defaults:
 - Editable presentation figure: `pptx,svg,json`
 - Paper or research figure: `svg,pptx,json`
 - Maintainable system diagram: `drawio,svg,json`
+- Copy-paste into Draw.io: `drawio-code,drawio,svg,json`
 - Documentation output: `markdown,mermaid,json`
 - Long-term maintenance: add `drawio`
-- Full archive: `pptx,svg,drawio,excalidraw,mermaid,html,markdown,json`
+- Full archive: `pptx,svg,drawio,drawio-code,excalidraw,mermaid,html,markdown,json`
 
 ## Manual Review
 

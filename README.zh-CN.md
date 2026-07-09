@@ -2,7 +2,7 @@
 
 面向科研与工程项目的证据驱动型可编辑技术路线图生成 Skill。
 
-`tech-route-maker` 是一个可被 Codex、Claude、Gemini、Cursor、Copilot、Aider 等 agent 使用的技能包和渲染工具。它把论文、开题报告、工程报告、课程设计、项目文档和技术笔记转换为可审查的 `tech-route.json` 路线模型，再渲染为 PPTX、SVG、Draw.io、Excalidraw、Mermaid、HTML、Markdown 和 JSON 等可编辑文件。
+`tech-route-maker` 是一个可被 Codex、Claude、Gemini、Cursor、Copilot、Aider 等 agent 使用的技能包和渲染工具。它把论文、开题报告、工程报告、课程设计、项目文档和技术笔记转换为可审查的 `tech-route.json` 路线模型，再渲染为 PPTX、SVG、Draw.io、Draw.io 可复制 XML 代码、Excalidraw、Mermaid、HTML、Markdown 和 JSON 等可编辑文件。
 
 > **重要提醒**：自动生成的路线图更适合作为可编辑初稿和设计起点，不能不经检查就直接用于论文投稿、毕业答辩、课题申报、课程设计或工程报告。用户需要继续核对事实、术语、逻辑、证据来源、颜色、版式和文字表达，并在 PPTX、SVG 或 Draw.io 等可编辑文件中进行二次修改。
 
@@ -24,6 +24,7 @@
 | 证据驱动路线模型 | 每个可见节点都需要来源证据，无法确认的内容标记为推断。 |
 | JSON 源文件复用 | 使用 `tech-route.json` 保存路线结构，便于后续修改、复渲染和版本管理。 |
 | 可编辑输出 | 生成 PPTX、SVG、Draw.io 等可编辑文件，而不是一次性截图。 |
+| Draw.io 复制代码 | 生成 `tech-route.drawio-code.xml`，用户可以复制到 [diagrams.net / draw.io](https://app.diagrams.net/) 的 XML 编辑窗口中直接生成可编辑图。 |
 | 科研与工程预设 | 面向论文方法图、开题技术路线、工程系统路线和技术工作流。 |
 | 渲染前校验 | 在输出前检查阶段、节点、连线、证据和格式选择。 |
 | 质量报告 | 输出证据覆盖率、推断节点、未解决问题和人工复核建议。 |
@@ -73,7 +74,7 @@
 git clone https://github.com/Stephen-studying/tech-route-maker.git
 cd tech-route-maker
 python scripts/validate_route.py examples/academic-paper-demo/outputs/tech-route.json
-python scripts/render_all.py examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,html,markdown,json
+python scripts/render_all.py examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,drawio-code,html,markdown,json
 ```
 
 生成后可以打开：
@@ -82,6 +83,7 @@ python scripts/render_all.py examples/academic-paper-demo/outputs/tech-route.jso
 examples/academic-paper-demo/outputs/tech-route.pptx
 examples/academic-paper-demo/outputs/tech-route.svg
 examples/academic-paper-demo/outputs/tech-route.drawio
+examples/academic-paper-demo/outputs/tech-route.drawio-code.xml
 examples/academic-paper-demo/outputs/tech-route.html
 examples/academic-paper-demo/outputs/QUALITY_REPORT.md
 ```
@@ -94,6 +96,23 @@ trm validate examples/academic-paper-demo/outputs/tech-route.json
 trm render examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,html,markdown,json
 ```
 
+## Draw.io 复制代码用法
+
+当用户希望获得“可以复制到 draw.io 里直接生成图的代码”时，选择 `drawio-code` 输出：
+
+```bash
+python scripts/render_all.py examples/drawio-copy-code-demo/outputs/tech-route.json examples/drawio-copy-code-demo/outputs --formats drawio,drawio-code,svg,json
+```
+
+使用步骤：
+
+1. 打开 [diagrams.net / draw.io](https://app.diagrams.net/)。
+2. 新建一个空白图。
+3. 打开 `examples/drawio-copy-code-demo/outputs/tech-route.drawio-code.xml`，复制全部 XML 文本。
+4. 在 diagrams.net 中选择 **Extras > Edit Diagram**。
+5. 粘贴 XML 并确认。
+6. 生成后可以继续修改文字、颜色、箭头和模块。
+
 ## 支持的可编辑输出
 
 | 格式 | 文件 | 可编辑工具 | 适合场景 |
@@ -101,6 +120,7 @@ trm render examples/academic-paper-demo/outputs/tech-route.json examples/academi
 | PPTX | `tech-route.pptx` | PowerPoint、WPS | 答辩、汇报、课程展示和报告。 |
 | SVG | `tech-route.svg` | Figma、Illustrator、Inkscape、浏览器 | 高清矢量编辑和论文级美化。 |
 | Draw.io | `tech-route.drawio` | diagrams.net | 长期维护技术图。 |
+| Draw.io 代码 | `tech-route.drawio-code.xml` | diagrams.net XML 编辑窗口 | 复制粘贴到 [draw.io](https://app.diagrams.net/) 生成可编辑图。 |
 | Excalidraw | `tech-route.excalidraw` | Excalidraw | 白板讨论和轻量修改。 |
 | Mermaid | `tech-route.mmd` | 文本编辑器、GitHub Markdown | 版本管理和文档化。 |
 | HTML | `tech-route.html` | 浏览器和代码编辑器 | 交互式预览、节点详情和证据说明。 |

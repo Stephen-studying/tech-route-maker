@@ -6,12 +6,12 @@
     {
       "id": "title",
       "type": "text",
-      "x": 470.0,
+      "x": 90,
       "y": 22,
-      "width": 440,
-      "height": 32,
+      "width": 1200,
+      "height": 48,
       "angle": 0,
-      "strokeColor": "#152E3A",
+      "strokeColor": "#0F172A",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -35,8 +35,8 @@
       "width": 1046,
       "height": 136,
       "angle": 0,
-      "strokeColor": "#7CB7C6",
-      "backgroundColor": "#F7FBFB",
+      "strokeColor": "#E2E8F0",
+      "backgroundColor": "#FFFFFF",
       "fillStyle": "solid",
       "strokeWidth": 1,
       "strokeStyle": "solid",
@@ -51,8 +51,8 @@
       "width": 148,
       "height": 56,
       "angle": 0,
-      "strokeColor": "#5AA6D6",
-      "backgroundColor": "#5AA6D6",
+      "strokeColor": "#2563EB",
+      "backgroundColor": "#2563EB",
       "fillStyle": "solid",
       "strokeWidth": 1,
       "strokeStyle": "solid",
@@ -91,8 +91,8 @@
       "width": 1046,
       "height": 136,
       "angle": 0,
-      "strokeColor": "#7CB7C6",
-      "backgroundColor": "#F7FBFB",
+      "strokeColor": "#E2E8F0",
+      "backgroundColor": "#FFFFFF",
       "fillStyle": "solid",
       "strokeWidth": 1,
       "strokeStyle": "solid",
@@ -107,8 +107,8 @@
       "width": 148,
       "height": 56,
       "angle": 0,
-      "strokeColor": "#5AA6D6",
-      "backgroundColor": "#5AA6D6",
+      "strokeColor": "#2563EB",
+      "backgroundColor": "#2563EB",
       "fillStyle": "solid",
       "strokeWidth": 1,
       "strokeStyle": "solid",
@@ -147,8 +147,8 @@
       "width": 1046,
       "height": 136,
       "angle": 0,
-      "strokeColor": "#7CB7C6",
-      "backgroundColor": "#F7FBFB",
+      "strokeColor": "#E2E8F0",
+      "backgroundColor": "#FFFFFF",
       "fillStyle": "solid",
       "strokeWidth": 1,
       "strokeStyle": "solid",
@@ -163,8 +163,8 @@
       "width": 148,
       "height": 56,
       "angle": 0,
-      "strokeColor": "#5AA6D6",
-      "backgroundColor": "#5AA6D6",
+      "strokeColor": "#2563EB",
+      "backgroundColor": "#2563EB",
       "fillStyle": "solid",
       "strokeWidth": 1,
       "strokeStyle": "solid",
@@ -203,8 +203,8 @@
       "width": 1046,
       "height": 136,
       "angle": 0,
-      "strokeColor": "#7CB7C6",
-      "backgroundColor": "#F7FBFB",
+      "strokeColor": "#E2E8F0",
+      "backgroundColor": "#FFFFFF",
       "fillStyle": "solid",
       "strokeWidth": 1,
       "strokeStyle": "solid",
@@ -219,8 +219,8 @@
       "width": 148,
       "height": 56,
       "angle": 0,
-      "strokeColor": "#5AA6D6",
-      "backgroundColor": "#5AA6D6",
+      "strokeColor": "#2563EB",
+      "backgroundColor": "#2563EB",
       "fillStyle": "solid",
       "strokeWidth": 1,
       "strokeStyle": "solid",
@@ -259,8 +259,8 @@
       "width": 1046,
       "height": 136,
       "angle": 0,
-      "strokeColor": "#7CB7C6",
-      "backgroundColor": "#F7FBFB",
+      "strokeColor": "#E2E8F0",
+      "backgroundColor": "#FFFFFF",
       "fillStyle": "solid",
       "strokeWidth": 1,
       "strokeStyle": "solid",
@@ -275,8 +275,8 @@
       "width": 148,
       "height": 56,
       "angle": 0,
-      "strokeColor": "#5AA6D6",
-      "backgroundColor": "#5AA6D6",
+      "strokeColor": "#2563EB",
+      "backgroundColor": "#2563EB",
       "fillStyle": "solid",
       "strokeWidth": 1,
       "strokeStyle": "solid",
@@ -308,14 +308,14 @@
       "lineHeight": 1.25
     },
     {
-      "id": "edge_e1",
+      "id": "stage_flow_1",
       "type": "arrow",
-      "x": 525.0,
-      "y": 224.0,
-      "width": 496.0,
-      "height": 0.0,
+      "x": 773.0,
+      "y": 296,
+      "width": 0.0,
+      "height": 30,
       "angle": 0,
-      "strokeColor": "#2F7CA6",
+      "strokeColor": "#64748B",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 2,
@@ -328,13 +328,13 @@
           0
         ],
         [
-          496.0,
-          0.0
+          0.0,
+          30
         ]
       ],
       "lastCommittedPoint": [
-        496.0,
-        0.0
+        0.0,
+        30
       ],
       "startBinding": null,
       "endBinding": null,
@@ -342,14 +342,14 @@
       "endArrowhead": "arrow"
     },
     {
-      "id": "edge_e2",
+      "id": "stage_flow_2",
       "type": "arrow",
-      "x": 1021.0,
-      "y": 224.0,
-      "width": -578.6666666666666,
-      "height": 166.0,
+      "x": 773.0,
+      "y": 462,
+      "width": 0.0,
+      "height": 30,
       "angle": 0,
-      "strokeColor": "#2F7CA6",
+      "strokeColor": "#64748B",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 2,
@@ -362,13 +362,13 @@
           0
         ],
         [
-          -578.6666666666666,
-          166.0
+          0.0,
+          30
         ]
       ],
       "lastCommittedPoint": [
-        -578.6666666666666,
-        166.0
+        0.0,
+        30
       ],
       "startBinding": null,
       "endBinding": null,
@@ -376,14 +376,14 @@
       "endArrowhead": "arrow"
     },
     {
-      "id": "edge_e3",
+      "id": "stage_flow_3",
       "type": "arrow",
-      "x": 442.33333333333337,
-      "y": 390.0,
-      "width": 330.66666666666674,
-      "height": 0.0,
+      "x": 773.0,
+      "y": 628,
+      "width": 0.0,
+      "height": 30,
       "angle": 0,
-      "strokeColor": "#2F7CA6",
+      "strokeColor": "#64748B",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 2,
@@ -396,13 +396,13 @@
           0
         ],
         [
-          330.66666666666674,
-          0.0
+          0.0,
+          30
         ]
       ],
       "lastCommittedPoint": [
-        330.66666666666674,
-        0.0
+        0.0,
+        30
       ],
       "startBinding": null,
       "endBinding": null,
@@ -410,14 +410,14 @@
       "endArrowhead": "arrow"
     },
     {
-      "id": "edge_e4",
+      "id": "stage_flow_4",
       "type": "arrow",
-      "x": 773.0000000000001,
-      "y": 390.0,
-      "width": 330.66666666666663,
-      "height": 0.0,
+      "x": 773.0,
+      "y": 794,
+      "width": 0.0,
+      "height": 30,
       "angle": 0,
-      "strokeColor": "#2F7CA6",
+      "strokeColor": "#64748B",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 2,
@@ -430,319 +430,13 @@
           0
         ],
         [
-          330.66666666666663,
-          0.0
+          0.0,
+          30
         ]
       ],
       "lastCommittedPoint": [
-        330.66666666666663,
-        0.0
-      ],
-      "startBinding": null,
-      "endBinding": null,
-      "startArrowhead": null,
-      "endArrowhead": "arrow"
-    },
-    {
-      "id": "edge_e5",
-      "type": "arrow",
-      "x": 1103.6666666666667,
-      "y": 390.0,
-      "width": -661.3333333333334,
-      "height": 166.0,
-      "angle": 0,
-      "strokeColor": "#2F7CA6",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 2,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          -661.3333333333334,
-          166.0
-        ]
-      ],
-      "lastCommittedPoint": [
-        -661.3333333333334,
-        166.0
-      ],
-      "startBinding": null,
-      "endBinding": null,
-      "startArrowhead": null,
-      "endArrowhead": "arrow"
-    },
-    {
-      "id": "edge_e6",
-      "type": "arrow",
-      "x": 442.33333333333337,
-      "y": 556.0,
-      "width": 330.66666666666674,
-      "height": 0.0,
-      "angle": 0,
-      "strokeColor": "#2F7CA6",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 2,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          330.66666666666674,
-          0.0
-        ]
-      ],
-      "lastCommittedPoint": [
-        330.66666666666674,
-        0.0
-      ],
-      "startBinding": null,
-      "endBinding": null,
-      "startArrowhead": null,
-      "endArrowhead": "arrow"
-    },
-    {
-      "id": "edge_e7",
-      "type": "arrow",
-      "x": 773.0000000000001,
-      "y": 556.0,
-      "width": 330.66666666666663,
-      "height": 0.0,
-      "angle": 0,
-      "strokeColor": "#2F7CA6",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 2,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          330.66666666666663,
-          0.0
-        ]
-      ],
-      "lastCommittedPoint": [
-        330.66666666666663,
-        0.0
-      ],
-      "startBinding": null,
-      "endBinding": null,
-      "startArrowhead": null,
-      "endArrowhead": "arrow"
-    },
-    {
-      "id": "edge_e8",
-      "type": "arrow",
-      "x": 1103.6666666666667,
-      "y": 556.0,
-      "width": -661.3333333333334,
-      "height": 166.0,
-      "angle": 0,
-      "strokeColor": "#2F7CA6",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 2,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          -661.3333333333334,
-          166.0
-        ]
-      ],
-      "lastCommittedPoint": [
-        -661.3333333333334,
-        166.0
-      ],
-      "startBinding": null,
-      "endBinding": null,
-      "startArrowhead": null,
-      "endArrowhead": "arrow"
-    },
-    {
-      "id": "edge_e9",
-      "type": "arrow",
-      "x": 442.33333333333337,
-      "y": 722.0,
-      "width": 330.66666666666674,
-      "height": 0.0,
-      "angle": 0,
-      "strokeColor": "#2F7CA6",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 2,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          330.66666666666674,
-          0.0
-        ]
-      ],
-      "lastCommittedPoint": [
-        330.66666666666674,
-        0.0
-      ],
-      "startBinding": null,
-      "endBinding": null,
-      "startArrowhead": null,
-      "endArrowhead": "arrow"
-    },
-    {
-      "id": "edge_e10",
-      "type": "arrow",
-      "x": 773.0000000000001,
-      "y": 722.0,
-      "width": 330.66666666666663,
-      "height": 0.0,
-      "angle": 0,
-      "strokeColor": "#2F7CA6",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 2,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          330.66666666666663,
-          0.0
-        ]
-      ],
-      "lastCommittedPoint": [
-        330.66666666666663,
-        0.0
-      ],
-      "startBinding": null,
-      "endBinding": null,
-      "startArrowhead": null,
-      "endArrowhead": "arrow"
-    },
-    {
-      "id": "edge_e11",
-      "type": "arrow",
-      "x": 1103.6666666666667,
-      "y": 722.0,
-      "width": -661.3333333333334,
-      "height": 166.0,
-      "angle": 0,
-      "strokeColor": "#2F7CA6",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 2,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          -661.3333333333334,
-          166.0
-        ]
-      ],
-      "lastCommittedPoint": [
-        -661.3333333333334,
-        166.0
-      ],
-      "startBinding": null,
-      "endBinding": null,
-      "startArrowhead": null,
-      "endArrowhead": "arrow"
-    },
-    {
-      "id": "edge_e12",
-      "type": "arrow",
-      "x": 442.33333333333337,
-      "y": 888.0,
-      "width": 330.66666666666674,
-      "height": 0.0,
-      "angle": 0,
-      "strokeColor": "#2F7CA6",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 2,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          330.66666666666674,
-          0.0
-        ]
-      ],
-      "lastCommittedPoint": [
-        330.66666666666674,
-        0.0
-      ],
-      "startBinding": null,
-      "endBinding": null,
-      "startArrowhead": null,
-      "endArrowhead": "arrow"
-    },
-    {
-      "id": "edge_e13",
-      "type": "arrow",
-      "x": 773.0000000000001,
-      "y": 888.0,
-      "width": 330.66666666666663,
-      "height": 0.0,
-      "angle": 0,
-      "strokeColor": "#2F7CA6",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 2,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          330.66666666666663,
-          0.0
-        ]
-      ],
-      "lastCommittedPoint": [
-        330.66666666666663,
-        0.0
+        0.0,
+        30
       ],
       "startBinding": null,
       "endBinding": null,
@@ -757,7 +451,7 @@
       "width": 478.0,
       "height": 64,
       "angle": 0,
-      "strokeColor": "#9EB7C8",
+      "strokeColor": "#CBD5E1",
       "backgroundColor": "#FFFFFF",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -773,7 +467,7 @@
       "width": 462.0,
       "height": 48,
       "angle": 0,
-      "strokeColor": "#152E3A",
+      "strokeColor": "#0F172A",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -797,7 +491,7 @@
       "width": 478.0,
       "height": 64,
       "angle": 0,
-      "strokeColor": "#9EB7C8",
+      "strokeColor": "#CBD5E1",
       "backgroundColor": "#FFFFFF",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -813,7 +507,7 @@
       "width": 462.0,
       "height": 48,
       "angle": 0,
-      "strokeColor": "#152E3A",
+      "strokeColor": "#0F172A",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -837,7 +531,7 @@
       "width": 312.6666666666667,
       "height": 64,
       "angle": 0,
-      "strokeColor": "#9EB7C8",
+      "strokeColor": "#CBD5E1",
       "backgroundColor": "#FFFFFF",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -853,7 +547,7 @@
       "width": 296.6666666666667,
       "height": 48,
       "angle": 0,
-      "strokeColor": "#152E3A",
+      "strokeColor": "#0F172A",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -877,7 +571,7 @@
       "width": 312.6666666666667,
       "height": 64,
       "angle": 0,
-      "strokeColor": "#9EB7C8",
+      "strokeColor": "#CBD5E1",
       "backgroundColor": "#FFFFFF",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -893,7 +587,7 @@
       "width": 296.6666666666667,
       "height": 48,
       "angle": 0,
-      "strokeColor": "#152E3A",
+      "strokeColor": "#0F172A",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -917,7 +611,7 @@
       "width": 312.6666666666667,
       "height": 64,
       "angle": 0,
-      "strokeColor": "#9EB7C8",
+      "strokeColor": "#CBD5E1",
       "backgroundColor": "#FFFFFF",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -933,7 +627,7 @@
       "width": 296.6666666666667,
       "height": 48,
       "angle": 0,
-      "strokeColor": "#152E3A",
+      "strokeColor": "#0F172A",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -957,7 +651,7 @@
       "width": 312.6666666666667,
       "height": 64,
       "angle": 0,
-      "strokeColor": "#9EB7C8",
+      "strokeColor": "#CBD5E1",
       "backgroundColor": "#FFFFFF",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -973,7 +667,7 @@
       "width": 296.6666666666667,
       "height": 48,
       "angle": 0,
-      "strokeColor": "#152E3A",
+      "strokeColor": "#0F172A",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -997,7 +691,7 @@
       "width": 312.6666666666667,
       "height": 64,
       "angle": 0,
-      "strokeColor": "#9EB7C8",
+      "strokeColor": "#CBD5E1",
       "backgroundColor": "#FFFFFF",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -1013,7 +707,7 @@
       "width": 296.6666666666667,
       "height": 48,
       "angle": 0,
-      "strokeColor": "#152E3A",
+      "strokeColor": "#0F172A",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -1037,7 +731,7 @@
       "width": 312.6666666666667,
       "height": 64,
       "angle": 0,
-      "strokeColor": "#9EB7C8",
+      "strokeColor": "#CBD5E1",
       "backgroundColor": "#FFFFFF",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -1053,7 +747,7 @@
       "width": 296.6666666666667,
       "height": 48,
       "angle": 0,
-      "strokeColor": "#152E3A",
+      "strokeColor": "#0F172A",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -1077,7 +771,7 @@
       "width": 312.6666666666667,
       "height": 64,
       "angle": 0,
-      "strokeColor": "#9EB7C8",
+      "strokeColor": "#CBD5E1",
       "backgroundColor": "#FFFFFF",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -1093,7 +787,7 @@
       "width": 296.6666666666667,
       "height": 48,
       "angle": 0,
-      "strokeColor": "#152E3A",
+      "strokeColor": "#0F172A",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -1117,7 +811,7 @@
       "width": 312.6666666666667,
       "height": 64,
       "angle": 0,
-      "strokeColor": "#9EB7C8",
+      "strokeColor": "#CBD5E1",
       "backgroundColor": "#FFFFFF",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -1133,7 +827,7 @@
       "width": 296.6666666666667,
       "height": 48,
       "angle": 0,
-      "strokeColor": "#152E3A",
+      "strokeColor": "#0F172A",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -1157,7 +851,7 @@
       "width": 312.6666666666667,
       "height": 64,
       "angle": 0,
-      "strokeColor": "#9EB7C8",
+      "strokeColor": "#CBD5E1",
       "backgroundColor": "#FFFFFF",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -1173,7 +867,7 @@
       "width": 296.6666666666667,
       "height": 48,
       "angle": 0,
-      "strokeColor": "#152E3A",
+      "strokeColor": "#0F172A",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -1197,7 +891,7 @@
       "width": 312.6666666666667,
       "height": 64,
       "angle": 0,
-      "strokeColor": "#9EB7C8",
+      "strokeColor": "#CBD5E1",
       "backgroundColor": "#FFFFFF",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -1213,7 +907,7 @@
       "width": 296.6666666666667,
       "height": 48,
       "angle": 0,
-      "strokeColor": "#152E3A",
+      "strokeColor": "#0F172A",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -1237,7 +931,7 @@
       "width": 312.6666666666667,
       "height": 64,
       "angle": 0,
-      "strokeColor": "#9EB7C8",
+      "strokeColor": "#CBD5E1",
       "backgroundColor": "#FFFFFF",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -1253,7 +947,7 @@
       "width": 296.6666666666667,
       "height": 48,
       "angle": 0,
-      "strokeColor": "#152E3A",
+      "strokeColor": "#0F172A",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -1277,7 +971,7 @@
       "width": 312.6666666666667,
       "height": 64,
       "angle": 0,
-      "strokeColor": "#9EB7C8",
+      "strokeColor": "#CBD5E1",
       "backgroundColor": "#FFFFFF",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -1293,7 +987,7 @@
       "width": 296.6666666666667,
       "height": 48,
       "angle": 0,
-      "strokeColor": "#152E3A",
+      "strokeColor": "#0F172A",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -1311,7 +1005,7 @@
     }
   ],
   "appState": {
-    "viewBackgroundColor": "#FFFFFF"
+    "viewBackgroundColor": "#F8FAFC"
   },
   "files": {}
 }

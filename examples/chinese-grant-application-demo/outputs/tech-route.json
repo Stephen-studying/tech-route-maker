@@ -4,6 +4,63 @@
   "selected_preset": "chinese-grant-application",
   "layout": "cn-grant-application-route",
   "style": "cn-soft-grant-report",
+  "domain_context": {
+    "discipline": "计算机科学与新能源运维",
+    "subfield": "光伏组件智能缺陷诊断",
+    "project_type": "项目申请技术路线图",
+    "research_object": "光伏组件多源缺陷与运维风险",
+    "method_family": "多模态诊断、可解释评分与闭环优化",
+    "application_area": "光伏电站智能巡检与运维决策",
+    "data_or_materials": [
+      "可见光图像",
+      "红外图像",
+      "电性能记录",
+      "现场运维记录"
+    ],
+    "technical_objects": [
+      "多源样本库",
+      "诊断模型",
+      "风险评分",
+      "人工复核",
+      "闭环优化"
+    ],
+    "domain_constraints": [
+      "跨场景泛化",
+      "诊断可信度",
+      "运维可解释性",
+      "样本持续更新"
+    ],
+    "evaluation_metrics": [
+      "准确率",
+      "召回率",
+      "误报率",
+      "推理速度",
+      "跨场景稳定性"
+    ],
+    "expected_outputs": [
+      "项目申请路线",
+      "样本库",
+      "原型系统",
+      "诊断报告"
+    ],
+    "terminology": {},
+    "domain_profile": {
+      "task_type": "multimodal diagnosis",
+      "data_modalities": [
+        "RGB",
+        "infrared",
+        "electrical records",
+        "maintenance records"
+      ],
+      "model_family": [
+        "feature fusion",
+        "explainable scoring",
+        "closed-loop learning"
+      ]
+    },
+    "source": "demo brief",
+    "confidence": "high"
+  },
   "reader_question": "项目如何把科学问题、研究内容、关键方法和验证成果对应起来？",
   "reader_path": [
     "项目目标",
@@ -437,6 +494,65 @@
       "markdown",
       "json"
     ],
+    "domain_context_status": "complete",
+    "domain_context_missing_fields": [],
+    "domain_context": {
+      "discipline": "计算机科学与新能源运维",
+      "subfield": "光伏组件智能缺陷诊断",
+      "project_type": "项目申请技术路线图",
+      "research_object": "光伏组件多源缺陷与运维风险",
+      "method_family": "多模态诊断、可解释评分与闭环优化",
+      "application_area": "光伏电站智能巡检与运维决策",
+      "data_or_materials": [
+        "可见光图像",
+        "红外图像",
+        "电性能记录",
+        "现场运维记录"
+      ],
+      "technical_objects": [
+        "多源样本库",
+        "诊断模型",
+        "风险评分",
+        "人工复核",
+        "闭环优化"
+      ],
+      "domain_constraints": [
+        "跨场景泛化",
+        "诊断可信度",
+        "运维可解释性",
+        "样本持续更新"
+      ],
+      "evaluation_metrics": [
+        "准确率",
+        "召回率",
+        "误报率",
+        "推理速度",
+        "跨场景稳定性"
+      ],
+      "expected_outputs": [
+        "项目申请路线",
+        "样本库",
+        "原型系统",
+        "诊断报告"
+      ],
+      "terminology": {},
+      "domain_profile": {
+        "task_type": "multimodal diagnosis",
+        "data_modalities": [
+          "RGB",
+          "infrared",
+          "electrical records",
+          "maintenance records"
+        ],
+        "model_family": [
+          "feature fusion",
+          "explainable scoring",
+          "closed-loop learning"
+        ]
+      },
+      "source": "demo brief",
+      "confidence": "high"
+    },
     "stage_count": 5,
     "node_count": 13,
     "edge_count": 12,
@@ -453,6 +569,7 @@
     },
     "warnings": [],
     "suggested_manual_review": [
+      "Check whether the diagram matches the stated discipline, subfield, project type, research object, method family, constraints, and evaluation metrics.",
       "Check terminology against the source material.",
       "Check whether inferred nodes should be removed or supported with evidence.",
       "Check edge labels and route logic.",

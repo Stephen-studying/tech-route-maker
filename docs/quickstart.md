@@ -30,7 +30,7 @@ Validation passed with 0 warning(s).
 ## 3. Render Editable Outputs
 
 ```bash
-python scripts/render_all.py examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,html,markdown,json
+python scripts/render_all.py examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,drawio-code,html,markdown,json
 ```
 
 Open:
@@ -39,6 +39,7 @@ Open:
 examples/academic-paper-demo/outputs/tech-route.pptx
 examples/academic-paper-demo/outputs/tech-route.svg
 examples/academic-paper-demo/outputs/tech-route.drawio
+examples/academic-paper-demo/outputs/tech-route.drawio-code.xml
 examples/academic-paper-demo/outputs/tech-route.html
 examples/academic-paper-demo/outputs/QUALITY_REPORT.md
 ```
@@ -51,8 +52,18 @@ After local installation:
 pip install -e .
 trm doctor
 trm validate examples/academic-paper-demo/outputs/tech-route.json
-trm render examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,html,markdown,json
+trm render examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,drawio-code,html,markdown,json
 ```
+
+## Draw.io Copy-Code
+
+To generate XML that can be pasted into [diagrams.net / draw.io](https://app.diagrams.net/):
+
+```bash
+python scripts/render_all.py examples/drawio-copy-code-demo/outputs/tech-route.json examples/drawio-copy-code-demo/outputs --formats drawio,drawio-code,svg,json
+```
+
+Open `tech-route.drawio-code.xml`, copy all XML, then use **Extras > Edit Diagram** in diagrams.net.
 
 ## 5. Use With An Agent
 

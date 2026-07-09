@@ -17,10 +17,40 @@ VALID_PRESETS = {
 
 VALID_CONFIDENCE = {"high", "medium", "low"}
 
+DOMAIN_CONTEXT_REQUIRED_FIELDS = [
+    "discipline",
+    "subfield",
+    "project_type",
+    "research_object",
+    "method_family",
+    "application_area",
+]
+
+DOMAIN_CONTEXT_RECOMMENDED_LIST_FIELDS = [
+    "data_or_materials",
+    "technical_objects",
+    "domain_constraints",
+    "evaluation_metrics",
+    "expected_outputs",
+]
+
+UNKNOWN_DOMAIN_VALUES = {
+    "",
+    "unknown",
+    "unspecified",
+    "not specified",
+    "not provided",
+    "tbd",
+    "todo",
+    "n/a",
+    "na",
+}
+
 SUPPORTED_FORMATS = [
     "pptx",
     "svg",
     "drawio",
+    "drawio-code",
     "excalidraw",
     "mermaid",
     "html",
@@ -96,6 +126,40 @@ PRESETS = {
 }
 
 
+def has_domain_value(value):
+    if isinstance(value, str):
+        return value.strip().lower() not in UNKNOWN_DOMAIN_VALUES
+    return value is not None
+
+
+def has_domain_list(value):
+    if not isinstance(value, list):
+        return False
+    return any(has_domain_value(item) for item in value)
+
+
+def domain_context_missing_fields(route):
+    context = route.get("domain_context")
+    if not isinstance(context, dict):
+        return DOMAIN_CONTEXT_REQUIRED_FIELDS + DOMAIN_CONTEXT_RECOMMENDED_LIST_FIELDS
+
+    missing = []
+    for field in DOMAIN_CONTEXT_REQUIRED_FIELDS:
+        if not has_domain_value(context.get(field)):
+            missing.append(field)
+    for field in DOMAIN_CONTEXT_RECOMMENDED_LIST_FIELDS:
+        if not has_domain_list(context.get(field)):
+            missing.append(field)
+    return missing
+
+
+def domain_context_status(route):
+    missing = domain_context_missing_fields(route)
+    if not isinstance(route.get("domain_context"), dict):
+        return "missing"
+    return "complete" if not missing else "partial"
+
+
 def selected_output_formats(route):
     metadata = route.get("metadata") or {}
     formats = metadata.get("selected_output_formats") or []
@@ -114,6 +178,23 @@ def make_template_route(preset="academic-method"):
         "selected_preset": preset,
         "layout": config["layout"],
         "style": config["style"],
+        "domain_context": {
+            "discipline": "unspecified",
+            "subfield": "unspecified",
+            "project_type": config["source_type"],
+            "research_object": "unspecified",
+            "method_family": "unspecified",
+            "application_area": "unspecified",
+            "data_or_materials": [],
+            "technical_objects": [],
+            "domain_constraints": [],
+            "evaluation_metrics": [],
+            "expected_outputs": [],
+            "terminology": {},
+            "domain_profile": {},
+            "source": "template-placeholder",
+            "confidence": "low",
+        },
         "metadata": {
             "created_by": "tech-route-maker",
             "selected_output_formats": deepcopy(config["outputs"]),
@@ -258,6 +339,11 @@ def make_template_route(preset="academic-method"):
                 "id": "question_1",
                 "text": "Which source file should be treated as authoritative?",
                 "needed_input": "Provide the manuscript, proposal, engineering brief, or repository path.",
+            },
+            {
+                "id": "question_2",
+                "text": "Which discipline, subfield, project type, research object, method family, application area, constraints, and evaluation metrics should govern the route?",
+                "needed_input": "Provide the project domain before rendering a final diagram.",
             }
         ],
         "quality_report": {},

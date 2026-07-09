@@ -122,6 +122,18 @@ Use this reference to choose or explain layout patterns. Use the default preset 
    - Strength: robust for formal documents and low-color printing.
    - Risk: less visually engaging for presentations.
 
+26. `cn-ppt-mainline-route`
+   - Best for defense PPT, project reports, course-design final presentations, and engineering/research main route diagrams.
+   - Uses a 16:9 horizontal canvas, five-stage mainline, enlarged readable text, 2 to 3 short support modules under each stage, and a final-output bar.
+   - Strength: strongest default for formal presentation because the main route is visually dominant and readable on projection.
+   - Risk: needs concise module labels; do not place full sentences inside modules.
+
+27. `cn-a4-stage-route`
+   - Best for Word reports, thesis text, design documents, and portrait technical-route figures.
+   - Uses an A4-style vertical canvas, centered numbered stage headers, no left phase axis, enlarged module text, 2 to 3 short modules per stage, and vertical arrows.
+   - Strength: keeps portrait figures readable by giving the subject area more width.
+   - Risk: not ideal as a PPT main slide unless used on a portrait slide.
+
 ## Design rules
 
 - Keep the main route to 4 to 7 stages.
@@ -133,7 +145,11 @@ Use this reference to choose or explain layout patterns. Use the default preset 
 - For Chinese thesis/proposal/grant figures, prefer `cn-proposal-poster-route`, `cn-grant-application-route`, or `cn-research-method-matrix` over the legacy `proposal-phase-axis`.
 - Preserve a visible distinction between research content, research objective, scientific questions, methods, validation, and outputs.
 - Use portrait PPTX canvas for long Chinese proposal routes instead of shrinking them into 16:9.
-- Use semantic edge labels.
+- Use semantic edge labels in the route model, but keep them out of the main rendered canvas by default. Show labels only in HTML/Markdown/detail panels or when `renderer_overrides.show_edge_labels` is explicitly enabled.
+- Use a small number of straight stage-to-stage arrows for formal academic and engineering routes. Do not default to elbow connectors or dense node-to-node connectors.
+- Render node-to-node semantic edges only when `renderer_overrides.show_node_edges` is explicitly enabled.
+- For formal PPT output, use a mainline structure: main stage cards in `#DBEAFE` with `#2563EB` borders, support modules as white cards with `#CBD5E1` borders, and a bottom output bar.
+- Keep visible module labels to 4 to 12 Chinese characters or short noun phrases. Put full explanations in `detail`, HTML, Markdown, or report text.
 - Put variables, metrics, parameters, and pass-through artifacts on edges or ports before promoting them to nodes.
 - Separate the audit/semantic graph from the visible render graph.
 - Add a 3 to 7 step `reader_path` for academic, engineering, workflow, and legacy campaign diagrams.

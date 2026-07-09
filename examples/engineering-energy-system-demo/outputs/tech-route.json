@@ -1,16 +1,71 @@
 {
-  "title": "校园综合能源系统项目技术路线图",
-  "subtitle": "中文工程项目汇报示例：源网荷储配置、运行策略与验证输出",
+  "title": "校园综合能源系统源网荷储配置技术路线",
+  "subtitle": "基于资源评估、容量测算、系统建模、仿真优化与结果评价的研究流程",
   "selected_preset": "engineering-project-report-cn",
-  "layout": "cn-wide-project-map",
-  "style": "cn-blue-green-proposal",
+  "layout": "cn-ppt-mainline-route",
+  "style": "research-ppt-blue",
+  "final_output": "形成校园综合能源系统源网荷储配置方案与运行优化分析结果",
+  "domain_context": {
+    "discipline": "能源工程",
+    "subfield": "校园综合能源系统规划",
+    "project_type": "工程项目汇报技术路线图",
+    "research_object": "校园源网荷储一体化系统",
+    "method_family": "系统建模、容量优化、运行仿真与情景验证",
+    "application_area": "校园低碳能源规划与运行管理",
+    "data_or_materials": [
+      "电负荷曲线",
+      "冷/热负荷曲线",
+      "气象数据",
+      "电价数据",
+      "设备参数"
+    ],
+    "technical_objects": [
+      "光伏",
+      "储能",
+      "电网交互",
+      "热泵",
+      "调度策略",
+      "KPI评价"
+    ],
+    "domain_constraints": [
+      "并网约束",
+      "设备容量",
+      "天气不确定性",
+      "投资预算",
+      "实施顺序"
+    ],
+    "evaluation_metrics": [
+      "运行成本",
+      "碳排放",
+      "新能源消纳率",
+      "削峰效果",
+      "可靠性"
+    ],
+    "expected_outputs": [
+      "容量配置方案",
+      "运行策略",
+      "情景对比",
+      "工程交付文件"
+    ],
+    "terminology": {},
+    "domain_profile": {
+      "system_scope": "source-grid-load-storage",
+      "analysis_types": [
+        "planning optimization",
+        "dispatch simulation",
+        "sensitivity analysis"
+      ]
+    },
+    "source": "demo brief",
+    "confidence": "high"
+  },
   "reader_question": "工程路线如何把校园负荷证据转化为可验证的源网荷储配置方案？",
   "reader_path": [
-    "系统边界",
-    "源荷数据",
-    "配置模型",
-    "运行策略",
-    "验证交付"
+    "基础数据",
+    "容量配置",
+    "系统建模",
+    "仿真优化",
+    "结果评价"
   ],
   "metadata": {
     "created_by": "tech-route-maker",
@@ -33,18 +88,19 @@
     "source_hashes": [],
     "language": "zh-CN",
     "audience": "engineering",
+    "final_output": "形成校园综合能源系统源网荷储配置方案与运行优化分析结果",
     "demo": true
   },
   "stages": [
     {
       "id": "boundary",
-      "title": "系统边界",
+      "title": "基础数据分析",
       "order": 1,
       "summary": "明确校园综合能源项目边界和目标。",
       "nodes": [
         {
           "id": "boundary_scope",
-          "label": "定义校园边界",
+          "label": "校园负荷特性",
           "detail": "识别建筑、负荷、能源资产和并网范围。",
           "tag": "objective",
           "node_type": "objective",
@@ -55,14 +111,14 @@
               "kind": "source",
               "source_id": "source_1",
               "path": "examples/engineering-energy-system-demo/brief.md",
-              "locator": "System boundary",
-              "quote_or_note": "System boundary"
+              "locator": "Load characteristics",
+              "quote_or_note": "Load characteristics"
             }
           ]
         },
         {
           "id": "boundary_targets",
-          "label": "设定规划目标",
+          "label": "光伏资源条件",
           "detail": "平衡成本、碳减排、可靠性和新能源消纳。",
           "tag": "objective",
           "node_type": "objective",
@@ -73,8 +129,26 @@
               "kind": "source",
               "source_id": "source_1",
               "path": "examples/engineering-energy-system-demo/brief.md",
-              "locator": "Planning targets",
-              "quote_or_note": "Planning targets"
+              "locator": "PV resource conditions",
+              "quote_or_note": "PV resource conditions"
+            }
+          ]
+        },
+        {
+          "id": "boundary_area",
+          "label": "可利用面积统计",
+          "detail": "统计屋顶、车棚和空地等可布置光伏区域。",
+          "tag": "input",
+          "node_type": "input",
+          "confidence": "high",
+          "is_inferred": false,
+          "evidence": [
+            {
+              "kind": "source",
+              "source_id": "source_1",
+              "path": "examples/engineering-energy-system-demo/brief.md",
+              "locator": "Available area",
+              "quote_or_note": "Available area"
             }
           ]
         }
@@ -82,13 +156,13 @@
     },
     {
       "id": "data",
-      "title": "源荷数据",
+      "title": "容量配置计算",
       "order": 2,
       "summary": "建立配置优化的基础证据。",
       "nodes": [
         {
           "id": "data_load",
-          "label": "构建冷热电负荷",
+          "label": "装机容量估算",
           "detail": "形成逐时电、热、冷和可调负荷曲线。",
           "tag": "input",
           "node_type": "input",
@@ -99,14 +173,14 @@
               "kind": "source",
               "source_id": "source_1",
               "path": "examples/engineering-energy-system-demo/brief.md",
-              "locator": "Load profiles",
-              "quote_or_note": "Load profiles"
+              "locator": "Capacity estimate",
+              "quote_or_note": "Capacity estimate"
             }
           ]
         },
         {
           "id": "data_resource",
-          "label": "评估新能源资源",
+          "label": "组件数量核算",
           "detail": "估算光伏、储能、屋顶面积和可用资源。",
           "tag": "input",
           "node_type": "input",
@@ -117,14 +191,14 @@
               "kind": "source",
               "source_id": "source_1",
               "path": "examples/engineering-energy-system-demo/brief.md",
-              "locator": "Resource assessment",
-              "quote_or_note": "Resource assessment"
+              "locator": "Module quantity",
+              "quote_or_note": "Module quantity"
             }
           ]
         },
         {
           "id": "data_tariff",
-          "label": "整理约束条件",
+          "label": "理论发电量计算",
           "detail": "纳入电价、需量、电网交互和碳排因子约束。",
           "tag": "input",
           "node_type": "input",
@@ -135,8 +209,8 @@
               "kind": "source",
               "source_id": "source_1",
               "path": "examples/engineering-energy-system-demo/brief.md",
-              "locator": "Tariff and constraints",
-              "quote_or_note": "Tariff and constraints"
+              "locator": "Power generation",
+              "quote_or_note": "Power generation"
             }
           ]
         }
@@ -144,13 +218,13 @@
     },
     {
       "id": "model",
-      "title": "配置模型",
+      "title": "系统结构建模",
       "order": 3,
       "summary": "优化源网荷储容量和运行边界。",
       "nodes": [
         {
           "id": "model_assets",
-          "label": "建模候选设备",
+          "label": "源网荷储拓扑",
           "detail": "表达光伏、储能、热泵、购电和可调负荷等设备。",
           "tag": "method",
           "node_type": "method",
@@ -161,14 +235,14 @@
               "kind": "source",
               "source_id": "source_1",
               "path": "examples/engineering-energy-system-demo/brief.md",
-              "locator": "Candidate assets",
-              "quote_or_note": "Candidate assets"
+              "locator": "System topology",
+              "quote_or_note": "System topology"
             }
           ]
         },
         {
           "id": "model_objective",
-          "label": "多目标容量优化",
+          "label": "并网接入方式",
           "detail": "在成本、碳排和可靠性之间求解配置方案。",
           "tag": "method",
           "node_type": "method",
@@ -179,14 +253,14 @@
               "kind": "source",
               "source_id": "source_1",
               "path": "examples/engineering-energy-system-demo/brief.md",
-              "locator": "Optimization objective",
-              "quote_or_note": "Optimization objective"
+              "locator": "Grid connection",
+              "quote_or_note": "Grid connection"
             }
           ]
         },
         {
           "id": "model_scenarios",
-          "label": "比较规划场景",
+          "label": "EMS 控制结构",
           "detail": "比较基准、低碳优先、储能优先和经济优先场景。",
           "tag": "validation",
           "node_type": "validation",
@@ -197,8 +271,8 @@
               "kind": "source",
               "source_id": "source_1",
               "path": "examples/engineering-energy-system-demo/brief.md",
-              "locator": "Scenario comparison",
-              "quote_or_note": "Scenario comparison"
+              "locator": "EMS structure",
+              "quote_or_note": "EMS structure"
             }
           ]
         }
@@ -206,13 +280,13 @@
     },
     {
       "id": "operation",
-      "title": "运行策略",
+      "title": "运行仿真优化",
       "order": 4,
       "summary": "把规划结果转化为运行逻辑。",
       "nodes": [
         {
           "id": "operation_dispatch",
-          "label": "制定调度策略",
+          "label": "典型日出力",
           "detail": "协调光伏自用、储能充放电和电网交互。",
           "tag": "implementation",
           "node_type": "implementation",
@@ -223,14 +297,14 @@
               "kind": "source",
               "source_id": "source_1",
               "path": "examples/engineering-energy-system-demo/brief.md",
-              "locator": "Dispatch strategy",
-              "quote_or_note": "Dispatch strategy"
+              "locator": "Typical-day output",
+              "quote_or_note": "Typical-day output"
             }
           ]
         },
         {
           "id": "operation_control",
-          "label": "定义控制层级",
+          "label": "源荷匹配分析",
           "detail": "区分日前计划、日内修正和实时控制。",
           "tag": "implementation",
           "node_type": "implementation",
@@ -241,8 +315,26 @@
               "kind": "source",
               "source_id": "source_1",
               "path": "examples/engineering-energy-system-demo/brief.md",
-              "locator": "Control hierarchy",
-              "quote_or_note": "Control hierarchy"
+              "locator": "Source-load matching",
+              "quote_or_note": "Source-load matching"
+            }
+          ]
+        },
+        {
+          "id": "operation_storage",
+          "label": "储能充放电策略",
+          "detail": "分析储能在削峰、消纳和经济运行中的调节作用。",
+          "tag": "implementation",
+          "node_type": "implementation",
+          "confidence": "high",
+          "is_inferred": false,
+          "evidence": [
+            {
+              "kind": "source",
+              "source_id": "source_1",
+              "path": "examples/engineering-energy-system-demo/brief.md",
+              "locator": "Storage strategy",
+              "quote_or_note": "Storage strategy"
             }
           ]
         }
@@ -250,13 +342,13 @@
     },
     {
       "id": "validation",
-      "title": "验证交付",
+      "title": "结果评价应用",
       "order": 5,
       "summary": "验证工程可行性并形成交付物。",
       "nodes": [
         {
           "id": "validation_kpi",
-          "label": "评价系统指标",
+          "label": "运行效果评价",
           "detail": "输出成本、碳排、新能源消纳、削峰和可靠性指标。",
           "tag": "validation",
           "node_type": "validation",
@@ -267,14 +359,14 @@
               "kind": "source",
               "source_id": "source_1",
               "path": "examples/engineering-energy-system-demo/brief.md",
-              "locator": "KPI evaluation",
-              "quote_or_note": "KPI evaluation"
+              "locator": "Operation evaluation",
+              "quote_or_note": "Operation evaluation"
             }
           ]
         },
         {
           "id": "validation_sensitivity",
-          "label": "开展敏感性分析",
+          "label": "配置方案优化",
           "detail": "测试电价、天气、负荷增长和设备成本不确定性。",
           "tag": "validation",
           "node_type": "validation",
@@ -285,14 +377,14 @@
               "kind": "source",
               "source_id": "source_1",
               "path": "examples/engineering-energy-system-demo/brief.md",
-              "locator": "Sensitivity analysis",
-              "quote_or_note": "Sensitivity analysis"
+              "locator": "Configuration optimization",
+              "quote_or_note": "Configuration optimization"
             }
           ]
         },
         {
           "id": "validation_deliver",
-          "label": "交付配置方案",
+          "label": "工程应用建议",
           "detail": "形成容量配置、运行策略、风险提示和实施顺序。",
           "tag": "output",
           "node_type": "output",
@@ -303,8 +395,8 @@
               "kind": "source",
               "source_id": "source_1",
               "path": "examples/engineering-energy-system-demo/brief.md",
-              "locator": "Deliverables",
-              "quote_or_note": "Deliverables"
+              "locator": "Engineering suggestion",
+              "quote_or_note": "Engineering suggestion"
             }
           ]
         }
@@ -324,32 +416,41 @@
     {
       "id": "e2",
       "from": "boundary_targets",
-      "to": "data_load",
-      "label": "定义数据",
+      "to": "boundary_area",
+      "label": "统计面积",
       "kind": "flow",
       "confidence": "medium",
       "evidence": []
     },
     {
       "id": "e3",
-      "from": "data_load",
-      "to": "data_resource",
-      "label": "匹配资源",
+      "from": "boundary_area",
+      "to": "data_load",
+      "label": "估算容量",
       "kind": "flow",
       "confidence": "medium",
       "evidence": []
     },
     {
       "id": "e4",
-      "from": "data_resource",
-      "to": "data_tariff",
-      "label": "加入约束",
+      "from": "data_load",
+      "to": "data_resource",
+      "label": "核算组件",
       "kind": "flow",
       "confidence": "medium",
       "evidence": []
     },
     {
       "id": "e5",
+      "from": "data_resource",
+      "to": "data_tariff",
+      "label": "计算发电量",
+      "kind": "flow",
+      "confidence": "medium",
+      "evidence": []
+    },
+    {
+      "id": "e6",
       "from": "data_tariff",
       "to": "model_assets",
       "label": "输入模型",
@@ -358,64 +459,73 @@
       "evidence": []
     },
     {
-      "id": "e6",
+      "id": "e7",
       "from": "model_assets",
       "to": "model_objective",
-      "label": "优化配置",
-      "kind": "flow",
-      "confidence": "medium",
-      "evidence": []
-    },
-    {
-      "id": "e7",
-      "from": "model_objective",
-      "to": "model_scenarios",
-      "label": "比较场景",
+      "label": "接入电网",
       "kind": "flow",
       "confidence": "medium",
       "evidence": []
     },
     {
       "id": "e8",
-      "from": "model_scenarios",
-      "to": "operation_dispatch",
-      "label": "形成策略",
+      "from": "model_objective",
+      "to": "model_scenarios",
+      "label": "控制结构",
       "kind": "flow",
       "confidence": "medium",
       "evidence": []
     },
     {
       "id": "e9",
-      "from": "operation_dispatch",
-      "to": "operation_control",
-      "label": "组织控制",
+      "from": "model_scenarios",
+      "to": "operation_dispatch",
+      "label": "仿真出力",
       "kind": "flow",
       "confidence": "medium",
       "evidence": []
     },
     {
       "id": "e10",
-      "from": "operation_control",
-      "to": "validation_kpi",
-      "label": "验证指标",
+      "from": "operation_dispatch",
+      "to": "operation_control",
+      "label": "匹配源荷",
       "kind": "flow",
       "confidence": "medium",
       "evidence": []
     },
     {
       "id": "e11",
-      "from": "validation_kpi",
-      "to": "validation_sensitivity",
-      "label": "测试不确定性",
+      "from": "operation_control",
+      "to": "operation_storage",
+      "label": "储能调节",
       "kind": "flow",
       "confidence": "medium",
       "evidence": []
     },
     {
       "id": "e12",
+      "from": "operation_storage",
+      "to": "validation_kpi",
+      "label": "评价效果",
+      "kind": "flow",
+      "confidence": "medium",
+      "evidence": []
+    },
+    {
+      "id": "e13",
+      "from": "validation_kpi",
+      "to": "validation_sensitivity",
+      "label": "优化方案",
+      "kind": "flow",
+      "confidence": "medium",
+      "evidence": []
+    },
+    {
+      "id": "e14",
       "from": "validation_sensitivity",
       "to": "validation_deliver",
-      "label": "输出方案",
+      "label": "输出建议",
       "kind": "flow",
       "confidence": "medium",
       "evidence": []
@@ -437,10 +547,66 @@
       "markdown",
       "json"
     ],
+    "domain_context_status": "complete",
+    "domain_context_missing_fields": [],
+    "domain_context": {
+      "discipline": "能源工程",
+      "subfield": "校园综合能源系统规划",
+      "project_type": "工程项目汇报技术路线图",
+      "research_object": "校园源网荷储一体化系统",
+      "method_family": "系统建模、容量优化、运行仿真与情景验证",
+      "application_area": "校园低碳能源规划与运行管理",
+      "data_or_materials": [
+        "电负荷曲线",
+        "冷/热负荷曲线",
+        "气象数据",
+        "电价数据",
+        "设备参数"
+      ],
+      "technical_objects": [
+        "光伏",
+        "储能",
+        "电网交互",
+        "热泵",
+        "调度策略",
+        "KPI评价"
+      ],
+      "domain_constraints": [
+        "并网约束",
+        "设备容量",
+        "天气不确定性",
+        "投资预算",
+        "实施顺序"
+      ],
+      "evaluation_metrics": [
+        "运行成本",
+        "碳排放",
+        "新能源消纳率",
+        "削峰效果",
+        "可靠性"
+      ],
+      "expected_outputs": [
+        "容量配置方案",
+        "运行策略",
+        "情景对比",
+        "工程交付文件"
+      ],
+      "terminology": {},
+      "domain_profile": {
+        "system_scope": "source-grid-load-storage",
+        "analysis_types": [
+          "planning optimization",
+          "dispatch simulation",
+          "sensitivity analysis"
+        ]
+      },
+      "source": "demo brief",
+      "confidence": "high"
+    },
     "stage_count": 5,
-    "node_count": 13,
-    "edge_count": 12,
-    "evidence_node_count": 13,
+    "node_count": 15,
+    "edge_count": 14,
+    "evidence_node_count": 15,
     "evidence_coverage": 1.0,
     "inferred_node_count": 0,
     "unresolved_question_count": 0,
@@ -449,10 +615,11 @@
     "stages_with_too_few_nodes": [],
     "missing_evidence_nodes": [],
     "confidence_summary": {
-      "high": 13
+      "high": 15
     },
     "warnings": [],
     "suggested_manual_review": [
+      "Check whether the diagram matches the stated discipline, subfield, project type, research object, method family, constraints, and evaluation metrics.",
       "Check terminology against the source material.",
       "Check whether inferred nodes should be removed or supported with evidence.",
       "Check edge labels and route logic.",

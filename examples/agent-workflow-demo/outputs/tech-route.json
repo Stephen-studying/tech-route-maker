@@ -4,6 +4,61 @@
   "selected_preset": "workflow-pipeline",
   "layout": "horizontal-stages",
   "style": "minimal-gray",
+  "domain_context": {
+    "discipline": "Software engineering",
+    "subfield": "Agent workflow for editable diagram generation",
+    "project_type": "workflow documentation route",
+    "research_object": "route-diagram generation agent workflow",
+    "method_family": "source-grounded extraction, schema validation and editable rendering",
+    "application_area": "agent skills and technical documentation",
+    "data_or_materials": [
+      "source documents",
+      "project files",
+      "route JSON",
+      "rendered diagram outputs"
+    ],
+    "technical_objects": [
+      "source intake",
+      "evidence extraction",
+      "route schema",
+      "render scripts",
+      "quality report"
+    ],
+    "domain_constraints": [
+      "untrusted source files",
+      "format editability",
+      "evidence traceability",
+      "agent portability"
+    ],
+    "evaluation_metrics": [
+      "validation pass",
+      "evidence coverage",
+      "editable output availability",
+      "warning clarity"
+    ],
+    "expected_outputs": [
+      "tech-route.json",
+      "PPTX",
+      "SVG",
+      "Draw.io",
+      "HTML preview",
+      "QUALITY_REPORT.md"
+    ],
+    "terminology": {},
+    "domain_profile": {
+      "workflow_type": "agent skill pipeline",
+      "render_targets": [
+        "PPTX",
+        "SVG",
+        "Draw.io",
+        "HTML",
+        "Markdown",
+        "JSON"
+      ]
+    },
+    "source": "demo brief",
+    "confidence": "high"
+  },
   "reader_question": "How does the agent convert technical source material into editable, reviewable route diagrams?",
   "reader_path": [
     "Source Intake",
@@ -419,6 +474,63 @@
       "markdown",
       "json"
     ],
+    "domain_context_status": "complete",
+    "domain_context_missing_fields": [],
+    "domain_context": {
+      "discipline": "Software engineering",
+      "subfield": "Agent workflow for editable diagram generation",
+      "project_type": "workflow documentation route",
+      "research_object": "route-diagram generation agent workflow",
+      "method_family": "source-grounded extraction, schema validation and editable rendering",
+      "application_area": "agent skills and technical documentation",
+      "data_or_materials": [
+        "source documents",
+        "project files",
+        "route JSON",
+        "rendered diagram outputs"
+      ],
+      "technical_objects": [
+        "source intake",
+        "evidence extraction",
+        "route schema",
+        "render scripts",
+        "quality report"
+      ],
+      "domain_constraints": [
+        "untrusted source files",
+        "format editability",
+        "evidence traceability",
+        "agent portability"
+      ],
+      "evaluation_metrics": [
+        "validation pass",
+        "evidence coverage",
+        "editable output availability",
+        "warning clarity"
+      ],
+      "expected_outputs": [
+        "tech-route.json",
+        "PPTX",
+        "SVG",
+        "Draw.io",
+        "HTML preview",
+        "QUALITY_REPORT.md"
+      ],
+      "terminology": {},
+      "domain_profile": {
+        "workflow_type": "agent skill pipeline",
+        "render_targets": [
+          "PPTX",
+          "SVG",
+          "Draw.io",
+          "HTML",
+          "Markdown",
+          "JSON"
+        ]
+      },
+      "source": "demo brief",
+      "confidence": "high"
+    },
     "stage_count": 5,
     "node_count": 12,
     "edge_count": 12,
@@ -435,6 +547,7 @@
     },
     "warnings": [],
     "suggested_manual_review": [
+      "Check whether the diagram matches the stated discipline, subfield, project type, research object, method family, constraints, and evaluation metrics.",
       "Check terminology against the source material.",
       "Check whether inferred nodes should be removed or supported with evidence.",
       "Check edge labels and route logic.",

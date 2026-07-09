@@ -12,7 +12,7 @@ if str(ROOT) not in sys.path:
 from tech_route_maker.quality import build_quality_report  # noqa: E402
 
 
-CORE_FORMATS = "pptx,svg,drawio,excalidraw,mermaid,html,markdown,json"
+CORE_FORMATS = "pptx,svg,drawio,drawio-code,excalidraw,mermaid,html,markdown,json"
 
 
 def write_text(path, text):
@@ -54,6 +54,42 @@ def edge(edge_id, source, target, label, kind="flow", confidence="medium"):
     return {"id": edge_id, "from": source, "to": target, "label": label, "kind": kind, "confidence": confidence, "evidence": []}
 
 
+def domain_context(
+    discipline,
+    subfield,
+    project_type,
+    research_object,
+    method_family,
+    application_area,
+    data_or_materials,
+    technical_objects,
+    domain_constraints,
+    evaluation_metrics,
+    expected_outputs,
+    domain_profile=None,
+    terminology=None,
+    source="demo brief",
+    confidence="high",
+):
+    return {
+        "discipline": discipline,
+        "subfield": subfield,
+        "project_type": project_type,
+        "research_object": research_object,
+        "method_family": method_family,
+        "application_area": application_area,
+        "data_or_materials": data_or_materials,
+        "technical_objects": technical_objects,
+        "domain_constraints": domain_constraints,
+        "evaluation_metrics": evaluation_metrics,
+        "expected_outputs": expected_outputs,
+        "terminology": terminology or {},
+        "domain_profile": domain_profile or {},
+        "source": source,
+        "confidence": confidence,
+    }
+
+
 def finalize(route):
     route.setdefault("route_version", "0.2.0")
     route.setdefault("assumptions", [])
@@ -73,6 +109,24 @@ def academic_route():
             "selected_preset": "academic-method",
             "layout": "academic-method-framework",
             "style": "academic-blue",
+            "domain_context": domain_context(
+                discipline="Computer science and renewable energy",
+                subfield="Computer vision for photovoltaic defect detection",
+                project_type="paper method figure",
+                research_object="PV module surface and thermal defects",
+                method_family="deep learning object detection",
+                application_area="PV inspection and operation maintenance",
+                data_or_materials=["RGB images", "infrared images", "annotated defect labels"],
+                technical_objects=["dataset annotation", "multimodal feature fusion", "detector backbone", "ablation study", "defect report"],
+                domain_constraints=["small targets", "class imbalance", "field imaging variation", "real-time inference"],
+                evaluation_metrics=["mAP", "precision", "recall", "FPS", "Params"],
+                expected_outputs=["editable method route", "validated detector", "defect diagnosis report"],
+                domain_profile={
+                    "task_type": "object detection",
+                    "data_modalities": ["RGB", "infrared"],
+                    "model_family": ["YOLO", "CNN", "feature fusion", "attention"],
+                },
+            ),
             "reader_question": "How does the method move from multi-source image evidence to validated defect results?",
             "reader_path": ["Goal", "Data", "Method", "Training", "Validation", "Output"],
             "metadata": {
@@ -139,6 +193,23 @@ def thesis_route():
             "selected_preset": "thesis-proposal",
             "layout": "proposal-matrix-route",
             "style": "presentation-clean",
+            "domain_context": domain_context(
+                discipline="Materials science and photovoltaic engineering",
+                subfield="Self-cleaning coating for PV cover glass",
+                project_type="thesis proposal technical route",
+                research_object="transparent self-cleaning coating on PV glass",
+                method_family="material preparation, characterization and performance testing",
+                application_area="PV module surface protection and efficiency retention",
+                data_or_materials=["coating precursors", "PV cover glass", "dust and water contamination samples"],
+                technical_objects=["coating chemistry", "micro/nano texture", "surface morphology", "wettability", "durability test"],
+                domain_constraints=["transparency retention", "outdoor durability", "process scalability", "PV compatibility"],
+                evaluation_metrics=["contact angle", "sliding angle", "transmittance", "abrasion resistance", "power retention"],
+                expected_outputs=["proposal route", "coating samples", "performance dataset", "thesis chapter structure"],
+                domain_profile={
+                    "material_route": "design-preparation-characterization-testing-mechanism",
+                    "test_types": ["wettability", "optical", "durability", "PV power impact"],
+                },
+            ),
             "reader_question": "How does the proposal connect coating design, performance testing, and PV application value?",
             "reader_path": ["Objective", "Research Content", "Key Technology", "Validation", "Expected Outcomes"],
             "metadata": {
@@ -203,6 +274,23 @@ def energy_route():
             "selected_preset": "engineering-system",
             "layout": "engineering-architecture-route",
             "style": "dark-technical",
+            "domain_context": domain_context(
+                discipline="Energy engineering",
+                subfield="Campus integrated energy system planning",
+                project_type="engineering report route",
+                research_object="source-grid-load-storage campus energy system",
+                method_family="system modelling, optimization and scenario validation",
+                application_area="campus low-carbon energy planning and operation",
+                data_or_materials=["electric load profile", "thermal load profile", "weather data", "tariff data", "equipment parameters"],
+                technical_objects=["PV", "energy storage", "grid exchange", "heat pump", "dispatch strategy", "KPI evaluation"],
+                domain_constraints=["grid interaction limits", "equipment capacity", "weather uncertainty", "budget", "implementation sequence"],
+                evaluation_metrics=["cost", "carbon emissions", "renewable utilization", "peak shaving", "reliability"],
+                expected_outputs=["capacity plan", "operation strategy", "scenario comparison", "engineering deliverables"],
+                domain_profile={
+                    "system_scope": "source-grid-load-storage",
+                    "analysis_types": ["planning optimization", "dispatch simulation", "sensitivity analysis"],
+                },
+            ),
             "reader_question": "How does the engineering route turn campus demand evidence into a validated source-grid-load-storage configuration?",
             "reader_path": ["Boundary", "Data", "Configuration", "Operation", "Validation", "Deliverables"],
             "metadata": {
@@ -267,6 +355,23 @@ def workflow_route():
             "selected_preset": "workflow-pipeline",
             "layout": "horizontal-stages",
             "style": "minimal-gray",
+            "domain_context": domain_context(
+                discipline="Software engineering",
+                subfield="Agent workflow for editable diagram generation",
+                project_type="workflow documentation route",
+                research_object="route-diagram generation agent workflow",
+                method_family="source-grounded extraction, schema validation and editable rendering",
+                application_area="agent skills and technical documentation",
+                data_or_materials=["source documents", "project files", "route JSON", "rendered diagram outputs"],
+                technical_objects=["source intake", "evidence extraction", "route schema", "render scripts", "quality report"],
+                domain_constraints=["untrusted source files", "format editability", "evidence traceability", "agent portability"],
+                evaluation_metrics=["validation pass", "evidence coverage", "editable output availability", "warning clarity"],
+                expected_outputs=["tech-route.json", "PPTX", "SVG", "Draw.io", "HTML preview", "QUALITY_REPORT.md"],
+                domain_profile={
+                    "workflow_type": "agent skill pipeline",
+                    "render_targets": ["PPTX", "SVG", "Draw.io", "HTML", "Markdown", "JSON"],
+                },
+            ),
             "reader_question": "How does the agent convert technical source material into editable, reviewable route diagrams?",
             "reader_path": ["Source Intake", "Evidence Extraction", "Route JSON", "Editable Rendering", "Quality Review"],
             "metadata": {
@@ -330,6 +435,20 @@ def campaign_route():
             "selected_preset": "custom",
             "layout": "campaign-strategy-map",
             "style": "advertising-clean-campaign",
+            "domain_context": domain_context(
+                discipline="Marketing",
+                subfield="Campaign strategy mapping",
+                project_type="legacy campaign route",
+                research_object="audience-to-channel campaign workflow",
+                method_family="audience analysis, message design and channel measurement",
+                application_area="commercial campaign planning",
+                data_or_materials=["audience brief", "channel plan", "campaign metrics"],
+                technical_objects=["audience segment", "insight", "message", "channel", "measurement"],
+                domain_constraints=["brand consistency", "budget", "timing", "channel attribution"],
+                evaluation_metrics=["reach", "conversion", "engagement", "cost per action"],
+                expected_outputs=["campaign map", "channel plan", "measurement report"],
+                confidence="medium",
+            ),
             "reader_question": "How does the campaign connect audience insight to measurable adoption?",
             "reader_path": ["Audience", "Insight", "Message", "Channels", "Measurement"],
             "metadata": {
@@ -389,7 +508,25 @@ def academic_route_cn():
             "subtitle": "中文论文方法框架示例：从图像证据到可验证检测结果",
             "selected_preset": "academic-paper-framework-cn",
             "layout": "cn-research-method-matrix",
-            "style": "cn-blue-green-proposal",
+            "style": "research-ppt-blue",
+            "domain_context": domain_context(
+                discipline="计算机科学与新能源工程",
+                subfield="光伏缺陷检测中的计算机视觉方法",
+                project_type="论文方法框架图",
+                research_object="光伏组件表面与热异常缺陷",
+                method_family="深度学习目标检测与多模态特征融合",
+                application_area="光伏电站巡检与智能运维",
+                data_or_materials=["可见光图像", "红外图像", "缺陷标注", "测试样本"],
+                technical_objects=["数据标注", "样本增强", "特征融合", "检测网络", "消融实验"],
+                domain_constraints=["小目标缺陷", "样本不均衡", "现场成像差异", "实时推理"],
+                evaluation_metrics=["mAP", "Precision", "Recall", "FPS", "参数量"],
+                expected_outputs=["论文方法图", "检测模型", "对比实验结果", "缺陷诊断报告"],
+                domain_profile={
+                    "task_type": "object detection",
+                    "data_modalities": ["RGB", "infrared"],
+                    "model_family": ["YOLO", "CNN", "attention", "feature fusion"],
+                },
+            ),
             "reader_question": "该方法如何从多源图像证据走向可验证的缺陷检测结果？",
             "reader_path": ["研究目标", "数据证据", "方法设计", "训练验证", "结果输出"],
             "metadata": {
@@ -454,8 +591,25 @@ def thesis_route_cn():
             "title": "光伏自清洁涂层开题技术路线图",
             "subtitle": "中文开题报告示例：材料设计、性能测试与光伏应用验证",
             "selected_preset": "chinese-thesis-proposal",
-            "layout": "cn-proposal-poster-route",
-            "style": "cn-polished-pastel-academic",
+            "layout": "cn-a4-stage-route",
+            "style": "research-ppt-blue",
+            "domain_context": domain_context(
+                discipline="材料科学与新能源工程",
+                subfield="光伏玻璃自清洁涂层",
+                project_type="开题报告技术路线图",
+                research_object="透明自清洁涂层及其光伏应用",
+                method_family="材料设计、制备、表征与性能验证",
+                application_area="光伏组件表面防护与发电效率保持",
+                data_or_materials=["涂层前驱体", "光伏玻璃基底", "污染物样本", "环境老化样本"],
+                technical_objects=["低表面能化学", "微纳结构", "润湿行为", "耐久性", "透光性"],
+                domain_constraints=["透光率保持", "户外耐久性", "工艺可放大", "组件兼容性"],
+                evaluation_metrics=["接触角", "滚动角", "透过率", "耐磨性", "功率保持率"],
+                expected_outputs=["开题技术路线", "涂层样品", "性能测试数据", "论文实验章节"],
+                domain_profile={
+                    "material_route": "design-preparation-characterization-testing-mechanism",
+                    "test_types": ["wettability", "optical", "durability", "PV performance"],
+                },
+            ),
             "reader_question": "该课题如何从涂层设计走向光伏应用价值验证？",
             "reader_path": ["研究目标", "研究内容", "关键技术", "实验验证", "预期成果"],
             "metadata": {
@@ -520,6 +674,24 @@ def grant_route_cn():
             "selected_preset": "chinese-grant-application",
             "layout": "cn-grant-application-route",
             "style": "cn-soft-grant-report",
+            "domain_context": domain_context(
+                discipline="计算机科学与新能源运维",
+                subfield="光伏组件智能缺陷诊断",
+                project_type="项目申请技术路线图",
+                research_object="光伏组件多源缺陷与运维风险",
+                method_family="多模态诊断、可解释评分与闭环优化",
+                application_area="光伏电站智能巡检与运维决策",
+                data_or_materials=["可见光图像", "红外图像", "电性能记录", "现场运维记录"],
+                technical_objects=["多源样本库", "诊断模型", "风险评分", "人工复核", "闭环优化"],
+                domain_constraints=["跨场景泛化", "诊断可信度", "运维可解释性", "样本持续更新"],
+                evaluation_metrics=["准确率", "召回率", "误报率", "推理速度", "跨场景稳定性"],
+                expected_outputs=["项目申请路线", "样本库", "原型系统", "诊断报告"],
+                domain_profile={
+                    "task_type": "multimodal diagnosis",
+                    "data_modalities": ["RGB", "infrared", "electrical records", "maintenance records"],
+                    "model_family": ["feature fusion", "explainable scoring", "closed-loop learning"],
+                },
+            ),
             "reader_question": "项目如何把科学问题、研究内容、关键方法和验证成果对应起来？",
             "reader_path": ["项目目标", "研究内容", "科学问题", "关键方法", "验证输出"],
             "metadata": {
@@ -579,13 +751,31 @@ def energy_route_cn():
     path = "examples/engineering-energy-system-demo/brief.md"
     return finalize(
         {
-            "title": "校园综合能源系统项目技术路线图",
-            "subtitle": "中文工程项目汇报示例：源网荷储配置、运行策略与验证输出",
+            "title": "校园综合能源系统源网荷储配置技术路线",
+            "subtitle": "基于资源评估、容量测算、系统建模、仿真优化与结果评价的研究流程",
             "selected_preset": "engineering-project-report-cn",
-            "layout": "cn-wide-project-map",
-            "style": "cn-blue-green-proposal",
+            "layout": "cn-ppt-mainline-route",
+            "style": "research-ppt-blue",
+            "final_output": "形成校园综合能源系统源网荷储配置方案与运行优化分析结果",
+            "domain_context": domain_context(
+                discipline="能源工程",
+                subfield="校园综合能源系统规划",
+                project_type="工程项目汇报技术路线图",
+                research_object="校园源网荷储一体化系统",
+                method_family="系统建模、容量优化、运行仿真与情景验证",
+                application_area="校园低碳能源规划与运行管理",
+                data_or_materials=["电负荷曲线", "冷/热负荷曲线", "气象数据", "电价数据", "设备参数"],
+                technical_objects=["光伏", "储能", "电网交互", "热泵", "调度策略", "KPI评价"],
+                domain_constraints=["并网约束", "设备容量", "天气不确定性", "投资预算", "实施顺序"],
+                evaluation_metrics=["运行成本", "碳排放", "新能源消纳率", "削峰效果", "可靠性"],
+                expected_outputs=["容量配置方案", "运行策略", "情景对比", "工程交付文件"],
+                domain_profile={
+                    "system_scope": "source-grid-load-storage",
+                    "analysis_types": ["planning optimization", "dispatch simulation", "sensitivity analysis"],
+                },
+            ),
             "reader_question": "工程路线如何把校园负荷证据转化为可验证的源网荷储配置方案？",
-            "reader_path": ["系统边界", "源荷数据", "配置模型", "运行策略", "验证交付"],
+            "reader_path": ["基础数据", "容量配置", "系统建模", "仿真优化", "结果评价"],
             "metadata": {
                 "created_by": "tech-route-maker",
                 "selected_output_formats": ["pptx", "svg", "drawio", "html", "markdown", "json"],
@@ -594,46 +784,215 @@ def energy_route_cn():
                 "source_hashes": [],
                 "language": "zh-CN",
                 "audience": "engineering",
+                "final_output": "形成校园综合能源系统源网荷储配置方案与运行优化分析结果",
                 "demo": True,
             },
             "stages": [
-                stage("boundary", "系统边界", 1, "明确校园综合能源项目边界和目标。", [
-                    node("boundary_scope", "定义校园边界", "识别建筑、负荷、能源资产和并网范围。", "objective", path, "System boundary"),
-                    node("boundary_targets", "设定规划目标", "平衡成本、碳减排、可靠性和新能源消纳。", "objective", path, "Planning targets"),
+                stage("boundary", "基础数据分析", 1, "明确校园综合能源项目边界和目标。", [
+                    node("boundary_scope", "校园负荷特性", "识别建筑、负荷、能源资产和并网范围。", "objective", path, "Load characteristics"),
+                    node("boundary_targets", "光伏资源条件", "平衡成本、碳减排、可靠性和新能源消纳。", "objective", path, "PV resource conditions"),
+                    node("boundary_area", "可利用面积统计", "统计屋顶、车棚和空地等可布置光伏区域。", "input", path, "Available area"),
                 ]),
-                stage("data", "源荷数据", 2, "建立配置优化的基础证据。", [
-                    node("data_load", "构建冷热电负荷", "形成逐时电、热、冷和可调负荷曲线。", "input", path, "Load profiles"),
-                    node("data_resource", "评估新能源资源", "估算光伏、储能、屋顶面积和可用资源。", "input", path, "Resource assessment"),
-                    node("data_tariff", "整理约束条件", "纳入电价、需量、电网交互和碳排因子约束。", "input", path, "Tariff and constraints"),
+                stage("data", "容量配置计算", 2, "建立配置优化的基础证据。", [
+                    node("data_load", "装机容量估算", "形成逐时电、热、冷和可调负荷曲线。", "input", path, "Capacity estimate"),
+                    node("data_resource", "组件数量核算", "估算光伏、储能、屋顶面积和可用资源。", "input", path, "Module quantity"),
+                    node("data_tariff", "理论发电量计算", "纳入电价、需量、电网交互和碳排因子约束。", "input", path, "Power generation"),
                 ]),
-                stage("model", "配置模型", 3, "优化源网荷储容量和运行边界。", [
-                    node("model_assets", "建模候选设备", "表达光伏、储能、热泵、购电和可调负荷等设备。", "method", path, "Candidate assets"),
-                    node("model_objective", "多目标容量优化", "在成本、碳排和可靠性之间求解配置方案。", "method", path, "Optimization objective"),
-                    node("model_scenarios", "比较规划场景", "比较基准、低碳优先、储能优先和经济优先场景。", "validation", path, "Scenario comparison"),
+                stage("model", "系统结构建模", 3, "优化源网荷储容量和运行边界。", [
+                    node("model_assets", "源网荷储拓扑", "表达光伏、储能、热泵、购电和可调负荷等设备。", "method", path, "System topology"),
+                    node("model_objective", "并网接入方式", "在成本、碳排和可靠性之间求解配置方案。", "method", path, "Grid connection"),
+                    node("model_scenarios", "EMS 控制结构", "比较基准、低碳优先、储能优先和经济优先场景。", "validation", path, "EMS structure"),
                 ]),
-                stage("operation", "运行策略", 4, "把规划结果转化为运行逻辑。", [
-                    node("operation_dispatch", "制定调度策略", "协调光伏自用、储能充放电和电网交互。", "implementation", path, "Dispatch strategy"),
-                    node("operation_control", "定义控制层级", "区分日前计划、日内修正和实时控制。", "implementation", path, "Control hierarchy"),
+                stage("operation", "运行仿真优化", 4, "把规划结果转化为运行逻辑。", [
+                    node("operation_dispatch", "典型日出力", "协调光伏自用、储能充放电和电网交互。", "implementation", path, "Typical-day output"),
+                    node("operation_control", "源荷匹配分析", "区分日前计划、日内修正和实时控制。", "implementation", path, "Source-load matching"),
+                    node("operation_storage", "储能充放电策略", "分析储能在削峰、消纳和经济运行中的调节作用。", "implementation", path, "Storage strategy"),
                 ]),
-                stage("validation", "验证交付", 5, "验证工程可行性并形成交付物。", [
-                    node("validation_kpi", "评价系统指标", "输出成本、碳排、新能源消纳、削峰和可靠性指标。", "validation", path, "KPI evaluation"),
-                    node("validation_sensitivity", "开展敏感性分析", "测试电价、天气、负荷增长和设备成本不确定性。", "validation", path, "Sensitivity analysis"),
-                    node("validation_deliver", "交付配置方案", "形成容量配置、运行策略、风险提示和实施顺序。", "output", path, "Deliverables"),
+                stage("validation", "结果评价应用", 5, "验证工程可行性并形成交付物。", [
+                    node("validation_kpi", "运行效果评价", "输出成本、碳排、新能源消纳、削峰和可靠性指标。", "validation", path, "Operation evaluation"),
+                    node("validation_sensitivity", "配置方案优化", "测试电价、天气、负荷增长和设备成本不确定性。", "validation", path, "Configuration optimization"),
+                    node("validation_deliver", "工程应用建议", "形成容量配置、运行策略、风险提示和实施顺序。", "output", path, "Engineering suggestion"),
                 ]),
             ],
             "edges": [
                 edge("e1", "boundary_scope", "boundary_targets", "设定目标"),
-                edge("e2", "boundary_targets", "data_load", "定义数据"),
-                edge("e3", "data_load", "data_resource", "匹配资源"),
-                edge("e4", "data_resource", "data_tariff", "加入约束"),
-                edge("e5", "data_tariff", "model_assets", "输入模型"),
-                edge("e6", "model_assets", "model_objective", "优化配置"),
-                edge("e7", "model_objective", "model_scenarios", "比较场景"),
-                edge("e8", "model_scenarios", "operation_dispatch", "形成策略"),
-                edge("e9", "operation_dispatch", "operation_control", "组织控制"),
-                edge("e10", "operation_control", "validation_kpi", "验证指标"),
-                edge("e11", "validation_kpi", "validation_sensitivity", "测试不确定性"),
-                edge("e12", "validation_sensitivity", "validation_deliver", "输出方案"),
+                edge("e2", "boundary_targets", "boundary_area", "统计面积"),
+                edge("e3", "boundary_area", "data_load", "估算容量"),
+                edge("e4", "data_load", "data_resource", "核算组件"),
+                edge("e5", "data_resource", "data_tariff", "计算发电量"),
+                edge("e6", "data_tariff", "model_assets", "输入模型"),
+                edge("e7", "model_assets", "model_objective", "接入电网"),
+                edge("e8", "model_objective", "model_scenarios", "控制结构"),
+                edge("e9", "model_scenarios", "operation_dispatch", "仿真出力"),
+                edge("e10", "operation_dispatch", "operation_control", "匹配源荷"),
+                edge("e11", "operation_control", "operation_storage", "储能调节"),
+                edge("e12", "operation_storage", "validation_kpi", "评价效果"),
+                edge("e13", "validation_kpi", "validation_sensitivity", "优化方案"),
+                edge("e14", "validation_sensitivity", "validation_deliver", "输出建议"),
+            ],
+        }
+    )
+
+
+def biomedical_route_cn():
+    path = "examples/biomedical-mechanism-demo/brief.md"
+    return finalize(
+        {
+            "title": "炎症微环境调控骨修复机制研究技术路线图",
+            "subtitle": "生物医学机制研究示例：样本模型、干预检测、机制验证与转化意义",
+            "selected_preset": "chinese-thesis-proposal",
+            "layout": "cn-a4-stage-route",
+            "style": "research-ppt-blue",
+            "domain_context": domain_context(
+                discipline="生物医学",
+                subfield="炎症微环境与骨组织修复机制",
+                project_type="课题申报/论文机制研究技术路线图",
+                research_object="炎症微环境下成骨分化与骨缺损修复过程",
+                method_family="样本模型、分组干预、分子检测与机制验证",
+                application_area="骨缺损修复与再生医学研究",
+                data_or_materials=["细胞模型", "动物骨缺损模型", "炎症因子处理样本", "组织切片", "分子检测数据"],
+                technical_objects=["实验分组", "成骨指标", "炎症因子", "信号通路", "组织学验证"],
+                domain_constraints=["伦理审批", "样本量", "批次差异", "阳性/阴性对照", "统计显著性"],
+                evaluation_metrics=["ALP活性", "矿化结节", "炎症因子表达", "骨量参数", "p值与效应量"],
+                expected_outputs=["机制路线图", "实验验证结果", "候选靶点", "论文图表"],
+                domain_profile={
+                    "study_type": "biomedical mechanism validation",
+                    "sample_design": ["cell model", "animal model", "tissue validation"],
+                    "validation_types": ["assay", "molecular detection", "histology", "statistics"],
+                },
+            ),
+            "reader_question": "该研究如何从炎症表型走向骨修复机制验证与转化意义？",
+            "reader_path": ["研究问题", "模型构建", "分组干预", "机制检测", "验证输出"],
+            "metadata": {
+                "created_by": "tech-route-maker",
+                "selected_output_formats": ["pptx", "svg", "drawio", "html", "markdown", "json"],
+                "source_type": "proposal",
+                "source_files": [{"path": path, "kind": "document", "description": "Biomedical mechanism demo brief"}],
+                "source_hashes": [],
+                "language": "zh-CN",
+                "audience": "research",
+                "demo": True,
+            },
+            "stages": [
+                stage("question", "研究问题", 1, "明确炎症微环境影响骨修复的核心科学问题。", [
+                    node("question_inflammation", "界定炎症表型", "识别炎症因子变化与骨修复受阻之间的关系。", "objective", path, "Inflammation phenotype"),
+                    node("question_mechanism", "提出机制假设", "假设特定信号通路调控成骨分化与组织修复。", "objective", path, "Mechanism hypothesis"),
+                ]),
+                stage("model", "模型构建", 2, "建立细胞与动物层面的验证对象。", [
+                    node("model_cell", "建立细胞模型", "构建炎症刺激下的成骨细胞或干细胞分化模型。", "input", path, "Cell model"),
+                    node("model_animal", "建立缺损模型", "构建标准化骨缺损动物模型用于组织修复验证。", "input", path, "Animal model"),
+                    node("model_control", "设置对照组", "设置空白、模型、干预和阳性对照以保证可比性。", "validation", path, "Control groups"),
+                ]),
+                stage("intervention", "分组干预", 3, "把机制假设转化为可检验的实验处理。", [
+                    node("intervention_factor", "调控炎症因子", "通过因子刺激、抑制剂或基因干预改变炎症状态。", "method", path, "Inflammatory intervention"),
+                    node("intervention_pathway", "干预信号通路", "围绕候选通路进行激活、抑制或表达调控。", "method", path, "Pathway intervention"),
+                ]),
+                stage("assay", "机制检测", 4, "用多层证据验证成骨、炎症和通路变化。", [
+                    node("assay_osteogenesis", "检测成骨指标", "检测ALP、矿化结节、成骨相关基因和蛋白表达。", "validation", path, "Osteogenesis assays"),
+                    node("assay_inflammation", "检测炎症表达", "检测炎症因子、免疫标志物和微环境变化。", "validation", path, "Inflammation assays"),
+                    node("assay_histology", "开展组织学验证", "利用组织染色和骨量参数验证体内修复效果。", "validation", path, "Histology validation"),
+                ]),
+                stage("output", "验证输出", 5, "形成可写入论文或申报书的机制链条。", [
+                    node("output_mechanism", "形成机制链条", "连接炎症状态、通路调控、成骨变化和修复结果。", "output", path, "Mechanism chain"),
+                    node("output_target", "筛选干预靶点", "提出可进一步验证的候选靶点或治疗策略。", "output", path, "Candidate target"),
+                ]),
+            ],
+            "edges": [
+                edge("e1", "question_inflammation", "question_mechanism", "提出假设"),
+                edge("e2", "question_mechanism", "model_cell", "指导建模"),
+                edge("e3", "model_cell", "model_animal", "扩展验证"),
+                edge("e4", "model_animal", "model_control", "设置对照"),
+                edge("e5", "model_control", "intervention_factor", "进入干预"),
+                edge("e6", "intervention_factor", "intervention_pathway", "验证通路"),
+                edge("e7", "intervention_pathway", "assay_osteogenesis", "检测成骨"),
+                edge("e8", "assay_osteogenesis", "assay_inflammation", "关联炎症"),
+                edge("e9", "assay_inflammation", "assay_histology", "体内验证"),
+                edge("e10", "assay_histology", "output_mechanism", "支持机制"),
+                edge("e11", "output_mechanism", "output_target", "凝练靶点"),
+            ],
+        }
+    )
+
+
+def drawio_copy_code_route_cn():
+    path = "examples/drawio-copy-code-demo/source/hgdy-route-reference-cropped.png"
+    return finalize(
+        {
+            "title": "HGDY光催化降解木质素技术路线图",
+            "subtitle": "Draw.io复制代码示例：从技术路线图参考图生成可编辑Draw.io XML",
+            "selected_preset": "chinese-grant-application",
+            "layout": "cn-grant-application-route",
+            "style": "cn-soft-grant-report",
+            "domain_context": domain_context(
+                discipline="材料科学与化学工程",
+                subfield="光催化降解木质素与石墨炔基催化材料",
+                project_type="大学生创新创业训练项目技术路线图",
+                research_object="棉秆废弃物木质素高值化利用与HGDY光催化体系",
+                method_family="文献调研、材料合成、仪器表征、色谱分析与综合评价",
+                application_area="农业废弃物资源化与木质素绿色转化",
+                data_or_materials=["棉秆废弃物木质素", "HGDY催化剂", "模型底物", "光催化反应样品", "HPLC检测数据"],
+                technical_objects=["项目立项", "材料制备", "性能表征", "实验机理", "优化应用"],
+                domain_constraints=["C-C键断裂限制", "催化剂结构稳定性", "光生载流子迁移", "实际生物质适用性"],
+                evaluation_metrics=["单体转化率", "HPLC路径", "光电性能", "循环降解活性保持率", "推广价值"],
+                expected_outputs=["可复制Draw.io XML代码", "可编辑Draw.io路线图", "项目申请书技术路线图", "优化评价方案"],
+                domain_profile={
+                    "route_style": "drawio-copy-code-demo",
+                    "reference_image": path,
+                    "drawio_url": "https://app.diagrams.net/",
+                },
+            ),
+            "reader_question": "该示例如何把HGDY光催化降解木质素项目路线转化为可复制到Draw.io的XML代码？",
+            "reader_path": ["提出问题", "材料制备", "性能表征", "机理探究", "优化评价"],
+            "metadata": {
+                "created_by": "tech-route-maker",
+                "selected_output_formats": ["pptx", "svg", "drawio", "drawio-code", "html", "markdown", "json"],
+                "source_type": "proposal",
+                "source_files": [{"path": path, "kind": "image", "description": "User-provided Draw.io technical route reference image"}],
+                "source_hashes": [],
+                "language": "zh-CN",
+                "audience": "research",
+                "demo": True,
+            },
+            "stages": [
+                stage("proposal", "项目立项", 1, "从木质素高值化利用与关键键断裂限制提出研究问题。", [
+                    node("proposal_value", "棉秆木质素高值化利用", "围绕新疆棉秆废弃物木质素资源化利用提出项目方向。", "objective", path, "研究内容：新疆棉秆废弃物木质素的高值化利用"),
+                    node("proposal_cc", "突破C-C键断裂限制", "聚焦木质素顽固C-C键断裂的热力学限制。", "objective", path, "研究内容：突破木质素顽固C-C键断裂的热力学限制"),
+                    node("proposal_hgdy", "构建HGDY催化体系", "设计氢取代石墨炔催化剂体系支撑光催化转化。", "method", path, "研究内容：构建氢取代石墨炔（HGDY）催化剂体系设计"),
+                ]),
+                stage("material", "材料制备", 2, "制备并调控HGDY材料结构。", [
+                    node("material_synthesis", "HGDY单体可控合成", "开展HGDY单体可控合成，形成后续性能测试样品。", "implementation", path, "研究内容：HGDY单体的可控合成"),
+                    node("material_tuning", "带隙和形貌精准调控", "调控HGDY带隙与形貌，为光催化性能优化提供结构基础。", "implementation", path, "研究内容：HGDY带隙和形貌的精准调控"),
+                ]),
+                stage("characterization", "性能表征", 3, "用多类仪器表征结构、形貌、界面与光电性能。", [
+                    node("characterization_phase", "物相与化学结构表征", "通过XRD、FTIR、XPS确认物相与化学结构。", "validation", path, "研究内容：物相与化学结构表征（XRD/FTIR/XPS）"),
+                    node("characterization_micro", "形貌与元素分布", "通过SEM、TEM、EDS分析微观形貌与界面元素分布。", "validation", path, "研究内容：微观形貌与界面元素分布（SEM/TEM/EDS）"),
+                    node("characterization_photo", "光电性能与能带结构", "通过UV-Vis、PL、EIS、Mott-Schottky评价光电性能与能带结构。", "validation", path, "研究内容：光电性能与能带结构（UV-Vis/PL/EIS/Mott-Schottky）"),
+                ]),
+                stage("mechanism", "实验机理", 4, "从性能测试、路径推测和自由基捕获验证降解机理。", [
+                    node("mechanism_activity", "降解性能与转化率评价", "开展模型体系降解性能测试与单体转化率评价。", "validation", path, "研究内容：模型体系降解性能测试与单体转化率评价"),
+                    node("mechanism_hplc", "HPLC路径推测", "基于PCET-SCS级联机制推测降解机理与HPLC路径。", "method", path, "研究内容：基于PCET-SCS级联的降解机理与HPLC路径推测"),
+                    node("mechanism_radical", "自由基与载流子验证", "用自由基淬灭捕获和光生载流子迁移验证机理链条。", "validation", path, "研究内容：自由基淬灭捕获与光生载流子迁移验证"),
+                ]),
+                stage("application", "优化应用", 5, "优化反应条件并评价应用潜力。", [
+                    node("application_conversion", "优化转化率条件", "调控前驱体比例、氧气含量等因素优化转化率。", "implementation", path, "研究内容：通过调控前驱体比例、氧气含量等优化转化率"),
+                    node("application_stability", "循环稳定性监测", "监测结构稳定性与多次循环降解活性保持率。", "validation", path, "研究内容：结构稳定性监测与多次循环降解活性保持率"),
+                    node("application_value", "应用潜力与推广评价", "评价实际生物质降解应用潜力与推广价值。", "output", path, "研究内容：实际生物质降解应用潜力与推广价值评价"),
+                ]),
+            ],
+            "edges": [
+                edge("e1", "proposal_value", "proposal_cc", "提出关键限制"),
+                edge("e2", "proposal_cc", "proposal_hgdy", "设计催化体系"),
+                edge("e3", "proposal_hgdy", "material_synthesis", "进入制备"),
+                edge("e4", "material_synthesis", "material_tuning", "调控结构"),
+                edge("e5", "material_tuning", "characterization_phase", "表征物相"),
+                edge("e6", "characterization_phase", "characterization_micro", "观察形貌"),
+                edge("e7", "characterization_micro", "characterization_photo", "评估光电"),
+                edge("e8", "characterization_photo", "mechanism_activity", "测试性能"),
+                edge("e9", "mechanism_activity", "mechanism_hplc", "推测路径"),
+                edge("e10", "mechanism_hplc", "mechanism_radical", "验证机理"),
+                edge("e11", "mechanism_radical", "application_conversion", "优化条件"),
+                edge("e12", "application_conversion", "application_stability", "评估稳定"),
+                edge("e13", "application_stability", "application_value", "形成应用评价"),
             ],
         }
     )
@@ -644,6 +1003,8 @@ DEMOS = {
     "thesis-proposal-demo": (thesis_route_cn, "Chinese thesis proposal demo brief for PV self-cleaning coating research."),
     "chinese-grant-application-demo": (grant_route_cn, "Chinese grant application demo brief for intelligent PV defect diagnosis."),
     "engineering-energy-system-demo": (energy_route_cn, "Chinese engineering demo brief for a campus source-grid-load-storage energy system."),
+    "biomedical-mechanism-demo": (biomedical_route_cn, "Chinese biomedical mechanism demo brief for inflammation microenvironment and bone repair."),
+    "drawio-copy-code-demo": (drawio_copy_code_route_cn, "Draw.io copy-code demo brief based on an HGDY lignin photocatalysis technical route."),
     "agent-workflow-demo": (workflow_route, "Workflow demo brief for converting technical materials into editable route diagrams."),
     "legacy-campaign-route-demo": (campaign_route, "Legacy campaign demo brief retained only for explicit advertising requests."),
 }

@@ -1,13 +1,13 @@
 ---
 name: tech-route-maker
-description: Create evidence-grounded editable technical route diagrams for research and engineering projects. Use when the user asks to draw, generate, visualize, render, export, or revise a technical route diagram, research route, paper method framework, publication figure, thesis proposal route, engineering system route, software or agent workflow, pipeline, architecture roadmap, process diagram, or editable PPTX/SVG/Draw.io/Mermaid/HTML diagram. Supports implicit invocation when the user asks for route diagrams and explicit invocation with $tech-route-maker.
+description: Create evidence-grounded editable technical route diagrams for research and engineering projects. Use when the user asks to draw, generate, visualize, render, export, or revise a technical route diagram, research route, paper method framework, publication figure, thesis proposal route, engineering system route, software or agent workflow, pipeline, architecture roadmap, process diagram, editable PPTX/SVG/Draw.io/Mermaid/HTML diagram, or copyable Draw.io XML code. Supports implicit invocation when the user asks for route diagrams and explicit invocation with $tech-route-maker.
 ---
 
 # Tech Route Maker
 
 ## Purpose
 
-Use this skill to turn source materials into evidence-grounded editable technical route diagrams for research and engineering projects.
+Use this skill to turn source materials into evidence-grounded editable technical route diagrams for research and engineering projects across multiple disciplines.
 
 Primary users are researchers, students, academic writers, engineering teams and agent/tool builders preparing paper framework figures, method overview diagrams, thesis proposal routes, defense visuals, course-design diagrams, engineering system routes and workflow pipelines.
 
@@ -32,15 +32,48 @@ If the user provides enough context, choose the closest preset automatically and
 
 Default behavior:
 
+- Never render a final technical route diagram from a field-agnostic request such as "draw a technical route diagram" without first identifying the discipline, subfield, project type, research object, method family and evaluation logic.
+- If source files are available, infer the domain context from them first. If the context is still incomplete, ask one concise field-specific clarification question.
+- If the user asks for a quick draft before the field is complete, mark `domain_context.confidence` as `low`, keep missing items in `unresolved_questions`, and report that the output is not final.
 - If the user asks in Chinese for 开题, 课题申报, 项目申请, 基金, 论文技术路线图, or a Chinese research route diagram, prefer the Chinese academic presets below.
 - If the user asks for an editable presentation figure, generate `pptx`, `svg` and `json`.
 - If the user asks for a paper or research figure, generate `svg`, `pptx` and `json`.
 - If the user asks for a maintainable system diagram, generate `drawio`, `svg` and `json`.
+- If the user asks for Draw.io, diagrams.net, online editing, import code, copyable code, or "能复制到draw.io的代码", include `drawio-code` and explain how to paste the XML into diagrams.net.
 - If the user asks for documentation output, generate `markdown`, `mermaid` and `json`.
 - If the user asks for long-term maintenance, add `drawio`.
-- If the user asks for all formats, render `pptx`, `svg`, `drawio`, `excalidraw`, `mermaid`, `html`, `markdown` and `json`.
+- If the user asks for all formats, render `pptx`, `svg`, `drawio`, `drawio-code`, `excalidraw`, `mermaid`, `html`, `markdown` and `json`.
 
 Always record the selected preset and output formats in `selected_preset` and `metadata.selected_output_formats`.
+Always record the discipline-specific context in `domain_context`.
+
+## Domain Context Policy
+
+Technical route diagrams are domain-sensitive. A diagram for computer vision, materials science, energy engineering, biomedical research, mechanical control, environmental field studies and social science should not share the same semantic grammar.
+
+Before final rendering, establish:
+
+- `discipline`: broad field.
+- `subfield`: specific direction.
+- `project_type`: paper figure, thesis proposal, grant application, engineering report, system architecture, experiment workflow, review framework, or similar.
+- `research_object`: concrete object under study.
+- `method_family`: main method type.
+- `application_area`: intended use context.
+- `data_or_materials`: source data, samples, materials, devices, documents, or field records.
+- `technical_objects`: algorithms, modules, variables, devices, experiments, mechanisms, controls, or system components.
+- `domain_constraints`: sample size, equipment, standards, deployment, ethics, cost, timeline, or data-quality constraints.
+- `evaluation_metrics`: measurable success criteria.
+- `expected_outputs`: figure, model, prototype, report, mechanism, dataset, application plan, or deliverable.
+
+Read `references/domain-profiles.md` when the domain is unclear, unfamiliar, or likely to affect node semantics.
+
+Examples:
+
+- Computer vision / PV defect detection: separate dataset, annotation, augmentation, model architecture, training, ablation, evaluation and deployment.
+- Materials science: separate material design, preparation, characterization, performance testing, mechanism analysis and application validation.
+- Energy systems: separate system boundary, source/load data, optimization model, operation strategy, scenario validation and engineering deliverables.
+- Biomedical research: separate sample/cohort, grouping/intervention, assays, mechanism/statistics, validation and biological or clinical significance.
+- Social science: separate theory, hypotheses, variables, data collection, empirical model, robustness and implications.
 
 ## Default Presets
 
@@ -100,8 +133,8 @@ engineering-project-report-cn:
   purpose: Chinese engineering project report route
   trigger_hints: [工程项目, 项目汇报, 系统路线图, 能源系统, 平台建设]
   outputs: [pptx, svg, drawio, html, json]
-  layout: cn-wide-project-map
-  style: cn-blue-green-proposal
+  layout: cn-ppt-mainline-route
+  style: research-ppt-blue
 ```
 
 ## Ask Only When Necessary
@@ -109,6 +142,7 @@ engineering-project-report-cn:
 Ask one concise clarification question when:
 
 - No source material or topic is available.
+- The discipline, subfield, project type, research object, method family or evaluation metrics are missing and cannot be inferred from source evidence.
 - The user requests a final figure but gives no target audience or use case and several presets fit equally well.
 - The user asks for a specific output environment but the format is ambiguous.
 - A requested format conflicts with editability or with available renderer support.
@@ -125,11 +159,12 @@ Advanced output formats:
 1. `pptx` - editable in PowerPoint or WPS.
 2. `svg` - editable in Figma, Illustrator or Inkscape.
 3. `drawio` - editable in diagrams.net.
-4. `excalidraw` - editable whiteboard-style scene.
-5. `mermaid` - text-editable Markdown diagram.
-6. `html` - interactive preview with node details.
-7. `markdown` - project documentation page.
-8. `json` - structured source file for re-rendering.
+4. `drawio-code` - copyable Draw.io XML for diagrams.net / draw.io.
+5. `excalidraw` - editable whiteboard-style scene.
+6. `mermaid` - text-editable Markdown diagram.
+7. `html` - interactive preview with node details.
+8. `markdown` - project documentation page.
+9. `json` - structured source file for re-rendering.
 
 Advanced layout families:
 
@@ -178,6 +213,7 @@ Advanced visual styles:
    - Tests, examples and outputs when they clarify validation or deliverables.
 3. Build a source-grounded foundation:
    - Problem, gap, objective, assumptions, audience and intended reader effect.
+   - Discipline, subfield, project type, research object, method family, application area and evaluation metrics.
    - Ordered method/process steps and non-droppable core substeps.
    - Inputs, outputs, artifacts, variables, metrics, claims, evidence and risk items.
    - For papers: figure slot, reader question, caption burden and terminology/acronym integrity.
@@ -186,7 +222,7 @@ Advanced visual styles:
 5. Extract a route model with this minimum logic:
    `problem or objective -> inputs/data -> methods/modules -> implementation/training/inference -> validation/evaluation -> outputs/applications`.
 6. Create or update `tech-route.json` before rendering any user-facing format.
-7. Validate route structure, evidence coverage, inferred content, warnings and unresolved assumptions.
+7. Validate route structure, domain context, evidence coverage, inferred content, warnings and unresolved assumptions.
 8. Render selected editable formats.
 9. Report generated files, warnings, quality report findings and recommended manual review steps.
 
@@ -196,6 +232,8 @@ Use `references/route-schema.md` for the JSON schema. Keep every visible node tr
 
 Use `references/paper-framework-integration.md` for paper-grounded and publication-figure rules, especially when the input is a manuscript, thesis, proposal, academic project, or method description.
 
+Use `references/domain-profiles.md` to choose field-specific route grammar. Do not apply computer-vision, lab-experiment, engineering-system, biomedical or social-science semantics to each other unless the source explicitly combines them.
+
 Use concise node labels:
 
 - Prefer 3 to 9 words.
@@ -204,6 +242,8 @@ Use concise node labels:
 - Keep variables, temporary artifacts, scores, metrics, parameters and pass-through states on edges, tags or legends unless the source proves they are actual modules.
 - Separate the semantic graph used for audit from the visual graph that will be rendered.
 - Compress repeated actors, samples, panels, rows, arrows or equivalent flows unless each visible repetition adds source-grounded meaning.
+- Keep edge labels in `tech-route.json`, HTML, Markdown and quality reports by default. Do not render them on the main diagram canvas unless the user explicitly enables `renderer_overrides.show_edge_labels`, because labels on connector lines often collide with arrows and node text.
+- Keep node-to-node semantic edges out of the main diagram by default. Render a small number of straight stage-to-stage arrows instead. Only render node-level edges when the user explicitly enables `renderer_overrides.show_node_edges`.
 
 ## Output Formats
 
@@ -214,6 +254,7 @@ Editable constraints:
 - PPTX: use native shapes, text boxes and connector lines; do not paste a screenshot as the main diagram.
 - SVG: use editable text, rectangles, paths and lines; do not rasterize the diagram.
 - Draw.io: use editable `mxCell` nodes and edges.
+- Draw.io copy code: generate `tech-route.drawio-code.xml` as plain XML. Tell the user to open [diagrams.net / draw.io](https://app.diagrams.net/), create a blank diagram, use **Extras > Edit Diagram**, paste the XML, confirm, and then edit the shapes.
 - Excalidraw: use editable scene elements.
 - Mermaid: keep the `.mmd` source as text.
 - HTML: keep interaction data in structured JSON or embedded object data.
@@ -232,6 +273,12 @@ Read `references/local-style-study.md` when the target is a Chinese academic, th
 For proposal and research-report diagrams, prefer polished academic template language: white canvas, clear title, matrix or framework sections, low-saturation logical regions, dashed boundaries where they clarify grouping, and white editable node cards.
 
 Use a left phase axis only when the user explicitly asks for a long vertical route. Do not use the vertical phase-axis layout as the default academic format.
+
+For PPT-facing research and engineering diagrams, prefer `cn-ppt-mainline-route`: 16:9 canvas, five-stage horizontal mainline, enlarged stage/support text, 2 to 3 short support modules under each stage, and a bottom final-output bar.
+
+For Word, thesis, or paper body diagrams that need a portrait figure, prefer `cn-a4-stage-route`: A4-style vertical canvas, no left phase axis, centered numbered stage headers, enlarged module text, 2 to 3 short modules per stage, and clear top-to-bottom arrows.
+
+Use straight stage-to-stage connector arrows as the default. Avoid decorative curved arrows, elbow connectors, and dense auto-routed node connectors in formal academic and engineering technical-route diagrams unless the user explicitly requests them.
 
 For engineering diagrams, separate system boundary, data or energy flow, service/module layers, validation and outputs. Do not force engineering routes into a thesis-proposal layout.
 
@@ -258,18 +305,19 @@ python scripts/validate_route.py outputs/tech-route.json
 python scripts/render_mermaid.py outputs/tech-route.json outputs/tech-route.mmd
 python scripts/render_svg.py outputs/tech-route.json outputs/tech-route.svg
 python scripts/render_drawio.py outputs/tech-route.json outputs/tech-route.drawio
+python scripts/render_drawio_code.py outputs/tech-route.json outputs/tech-route.drawio-code.xml
 python scripts/render_excalidraw.py outputs/tech-route.json outputs/tech-route.excalidraw
 python scripts/render_html.py outputs/tech-route.json outputs/tech-route.html
 python scripts/render_markdown.py outputs/tech-route.json outputs/TECH_ROUTE.md
 python scripts/render_pptx.py outputs/tech-route.json outputs/tech-route.pptx
-python scripts/render_all.py outputs/tech-route.json outputs --formats pptx,svg,drawio
+python scripts/render_all.py outputs/tech-route.json outputs --formats pptx,svg,drawio,drawio-code
 ```
 
 CLI commands, when installed:
 
 ```bash
 trm validate outputs/tech-route.json
-trm render outputs/tech-route.json outputs --formats pptx,svg,drawio,html,markdown,json
+trm render outputs/tech-route.json outputs --formats pptx,svg,drawio,drawio-code,html,markdown,json
 trm init --preset academic-method --output tech-route.json
 trm doctor
 ```
@@ -285,6 +333,14 @@ python scripts/render_all.py examples/academic-paper-demo/outputs/tech-route.jso
 
 Read `examples/academic-paper-demo/demo-walkthrough.md` to see the simulated user request, route JSON, render commands and generated editable files.
 
+For a Draw.io copy-code example, use:
+
+```bash
+python scripts/render_all.py examples/drawio-copy-code-demo/outputs/tech-route.json examples/drawio-copy-code-demo/outputs --formats drawio,drawio-code,svg,json
+```
+
+Then copy `examples/drawio-copy-code-demo/outputs/tech-route.drawio-code.xml` into [diagrams.net / draw.io](https://app.diagrams.net/) through **Extras > Edit Diagram**.
+
 ## Validation
 
 Run validation before and after rendering. Treat errors as blockers and warnings as items to report.
@@ -293,6 +349,7 @@ Validation checks:
 
 - Required route title and stages.
 - `route_version` and `selected_preset`.
+- `domain_context` exists and is complete enough for the requested final output.
 - Unique stage and node IDs.
 - Edge endpoints exist.
 - Every visible node has evidence or explicit inference.

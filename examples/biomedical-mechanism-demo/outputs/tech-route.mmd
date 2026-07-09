@@ -1,0 +1,35 @@
+flowchart LR
+  title["炎症微环境调控骨修复机制研究技术路线图"]
+  subgraph question["研究问题"]
+    question_inflammation["界定炎症表型"]
+    question_mechanism["提出机制假设"]
+  end
+  subgraph model["模型构建"]
+    model_cell["建立细胞模型"]
+    model_animal["建立缺损模型"]
+    model_control["设置对照组"]
+  end
+  subgraph intervention["分组干预"]
+    intervention_factor["调控炎症因子"]
+    intervention_pathway["干预信号通路"]
+  end
+  subgraph assay["机制检测"]
+    assay_osteogenesis["检测成骨指标"]
+    assay_inflammation["检测炎症表达"]
+    assay_histology["开展组织学验证"]
+  end
+  subgraph output["验证输出"]
+    output_mechanism["形成机制链条"]
+    output_target["筛选干预靶点"]
+  end
+  question_inflammation -->|提出假设| question_mechanism
+  question_mechanism -->|指导建模| model_cell
+  model_cell -->|扩展验证| model_animal
+  model_animal -->|设置对照| model_control
+  model_control -->|进入干预| intervention_factor
+  intervention_factor -->|验证通路| intervention_pathway
+  intervention_pathway -->|检测成骨| assay_osteogenesis
+  assay_osteogenesis -->|关联炎症| assay_inflammation
+  assay_inflammation -->|体内验证| assay_histology
+  assay_histology -->|支持机制| output_mechanism
+  output_mechanism -->|凝练靶点| output_target
