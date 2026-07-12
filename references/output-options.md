@@ -1,6 +1,6 @@
 # Output Options
 
-Use this reference when choosing or explaining output formats. Use default presets first, and ask only when a missing choice would materially change the output.
+Use this reference when choosing or explaining output formats. Offer preset defaults first, then confirm final formats and target medium in one concise grouped choice.
 
 Primary users are academic and engineering users who need editable paper, thesis, proposal, defense, method-framework, system, workflow, and engineering route diagrams. Campaign diagrams are legacy/experimental and should be used only when the user explicitly asks for them.
 

@@ -9,10 +9,11 @@ Required behavior:
 - Build `tech-route.json` before rendering.
 - Establish `domain_context` before final rendering: discipline, subfield, project type, research object, method family, data/materials, constraints and evaluation metrics.
 - Read `references/domain-profiles.md` when the discipline is unclear or unfamiliar.
-- Use default presets when the request is clear.
-- Ask only when a missing choice would materially change the output; missing domain context is such a case.
-- Use `scripts/validate_route.py` before and after rendering.
-- Use `scripts/render_all.py` to generate selected formats.
+- Inventory local sources and record stable source IDs, locators and SHA-256 hashes.
+- Offer a default preset, but confirm missing domain and final delivery choices instead of guessing them.
+- Use `trm validate <route> --strict` before final rendering.
+- Use `trm render` to generate selected formats; `--allow-draft` is only for explicit drafts.
 - Report `QUALITY_REPORT.md` warnings and manual review needs.
 - Preserve editability in PPTX, SVG, Draw.io, and Excalidraw outputs.
+- Tell the user that generated files require factual and visual revision before formal use.
 - If the user asks for copyable Draw.io or diagrams.net code, generate `drawio-code` and mention [diagrams.net / draw.io](https://app.diagrams.net/) with **Extras > Edit Diagram**.

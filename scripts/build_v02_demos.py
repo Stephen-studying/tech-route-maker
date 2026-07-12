@@ -10,6 +10,8 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tech_route_maker.quality import build_quality_report  # noqa: E402
+from tech_route_maker.schema import ROUTE_VERSION  # noqa: E402
+from tech_route_maker.sources import attach_source_hashes  # noqa: E402
 
 
 CORE_FORMATS = "pptx,svg,drawio,drawio-code,excalidraw,mermaid,html,markdown,json"
@@ -91,7 +93,7 @@ def domain_context(
 
 
 def finalize(route):
-    route.setdefault("route_version", "0.2.0")
+    route.setdefault("route_version", ROUTE_VERSION)
     route.setdefault("assumptions", [])
     route.setdefault("unresolved_questions", [])
     route.setdefault("citations", [])
@@ -1010,16 +1012,59 @@ DEMOS = {
 }
 
 
-def write_brief(folder, text):
+def write_brief(folder, text, route):
     target = ROOT / "examples" / folder / "brief.md"
-    write_text(target, f"# {folder}\n\n{text}\n")
+    context = route.get("domain_context") or {}
+    lines = [
+        f"# {folder}",
+        "",
+        text,
+        "",
+        "## Domain context",
+        "",
+    ]
+    for key in (
+        "discipline",
+        "subfield",
+        "project_type",
+        "research_object",
+        "method_family",
+        "application_area",
+    ):
+        lines.append(f"- {key}: {context.get(key, '')}")
+    lines.extend(["", "## Route evidence", ""])
+    for stage_item in route.get("stages") or []:
+        lines.extend(
+            [
+                f"## {stage_item.get('title', '')}",
+                "",
+                str(stage_item.get("summary") or ""),
+                "",
+            ]
+        )
+        for node_item in stage_item.get("nodes") or []:
+            locators = [
+                str(item.get("locator") or "").strip()
+                for item in node_item.get("evidence") or []
+                if isinstance(item, dict) and str(item.get("locator") or "").strip()
+            ]
+            locator = locators[0] if locators else str(node_item.get("label") or "")
+            lines.extend(
+                [
+                    f"### {locator}",
+                    "",
+                    f"- Route label: {node_item.get('label', '')}",
+                    f"- Source statement: {node_item.get('detail', '')}",
+                    "",
+                ]
+            )
+    write_text(target, "\n".join(lines).rstrip() + "\n")
 
 
-def render_demo(folder, route_factory):
+def render_demo(folder, route):
     example_dir = ROOT / "examples" / folder
     out_dir = example_dir / "outputs"
     out_dir.mkdir(parents=True, exist_ok=True)
-    route = route_factory()
     route_path = out_dir / "tech-route.json"
     write_text(route_path, json.dumps(route, ensure_ascii=False, indent=2) + "\n")
     subprocess.check_call([
@@ -1091,10 +1136,16 @@ def write_assets():
 
 def main():
     for folder, (factory, brief) in DEMOS.items():
-        write_brief(folder, brief)
-        render_demo(folder, factory)
+        route = factory()
+        write_brief(folder, brief, route)
+        attach_source_hashes(route, ROOT)
+        route["quality_report"] = build_quality_report(route)
+        render_demo(folder, route)
     sample = ROOT / "examples" / "sample-tech-route.json"
-    write_text(sample, json.dumps(academic_route(), ensure_ascii=False, indent=2) + "\n")
+    sample_route = academic_route()
+    attach_source_hashes(sample_route, ROOT)
+    sample_route["quality_report"] = build_quality_report(sample_route)
+    write_text(sample, json.dumps(sample_route, ensure_ascii=False, indent=2) + "\n")
     write_assets()
     return 0
 

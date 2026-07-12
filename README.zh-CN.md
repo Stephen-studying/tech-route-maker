@@ -26,8 +26,9 @@
 | 可编辑输出 | 生成 PPTX、SVG、Draw.io 等可编辑文件，而不是一次性截图。 |
 | Draw.io 复制代码 | 生成 `tech-route.drawio-code.xml`，用户可以复制到 [diagrams.net / draw.io](https://app.diagrams.net/) 的 XML 编辑窗口中直接生成可编辑图。 |
 | 科研与工程预设 | 面向论文方法图、开题技术路线、工程系统路线和技术工作流。 |
-| 渲染前校验 | 在输出前检查阶段、节点、连线、证据和格式选择。 |
-| 质量报告 | 输出证据覆盖率、推断节点、未解决问题和人工复核建议。 |
+| 来源清单与哈希校验 | 在采信证据前定位来源文件并核对 SHA-256，防止来源被替换或路径失效。 |
+| 严格最终质量门槛 | 学科上下文、来源哈希、节点证据或未解决问题不完整时，默认禁止正式渲染。 |
+| 质量报告 | 分开报告真实证据覆盖率、推断覆盖率和已说明覆盖率，不再把推断算作证据。 |
 | 多 Agent 适配 | 提供 Codex/OpenAI-style、Claude、Gemini、Cursor、Copilot、Aider 等说明文件。 |
 
 ## 默认预设
@@ -43,7 +44,7 @@
 | `academic-paper-framework-cn` | 中文论文方法框架图、研究框架图和学术图。 | `pptx`, `svg`, `drawio`, `json` |
 | `engineering-project-report-cn` | 中文工程项目汇报、平台建设和能源系统路线图。 | `pptx`, `svg`, `drawio`, `html`, `json` |
 
-用户仍然可以自行选择格式、版式和风格，但默认情况下 Skill 不再强制用户回答一长串选项。只有当缺失信息会明显改变输出结果时，才会提出一个必要问题。
+Skill 会先给出推荐预设，再用一个简洁的组合问题确认最终输出格式、使用媒介、版式和风格；用户可以单选或多选，Skill 不会默默猜测这些交付偏好。
 
 ## 适用场景
 
@@ -68,14 +69,39 @@
 
 广告和 campaign 场景只作为 legacy/experimental 示例保留，不再作为项目核心定位。
 
+## 安装到不同 Agent
+
+GitHub CLI 2.96 及以上版本可以直接安装仓库根目录的 `SKILL.md`。根据使用的软件选择 `--agent`：
+
+```bash
+gh skill install Stephen-studying/tech-route-maker SKILL.md --agent codex --scope user
+gh skill install Stephen-studying/tech-route-maker SKILL.md --agent claude-code --scope user
+gh skill install Stephen-studying/tech-route-maker SKILL.md --agent cursor --scope user
+gh skill install Stephen-studying/tech-route-maker SKILL.md --agent gemini-cli --scope user
+gh skill install Stephen-studying/tech-route-maker SKILL.md --agent github-copilot --scope user
+```
+
+更多 Agent、项目级安装和无 GitHub CLI 的通用安装方式见 [Agent 兼容性说明](docs/agent-compatibility.md)。
+
 ## 快速开始
 
 ```bash
 git clone https://github.com/Stephen-studying/tech-route-maker.git
 cd tech-route-maker
-python scripts/validate_route.py examples/academic-paper-demo/outputs/tech-route.json
-python scripts/render_all.py examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,drawio-code,html,markdown,json
+python -m pip install -e .
+trm doctor
+trm validate examples/academic-paper-demo/outputs/tech-route.json --strict
+trm render examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,drawio-code,excalidraw,mermaid,html,markdown,json
 ```
+
+新项目先建立来源清单和证据包：
+
+```bash
+trm ingest 论文或项目资料目录 --output-dir evidence-pack
+trm init --preset academic-method --output work/tech-route.json --quality-report
+```
+
+填写生成的 `source.md` 与 `tech-route.json` 后，执行 `trm validate --strict`。只有学科上下文完整、全部来源通过 SHA-256 校验、每个可见节点都有已验证证据，且不存在推断节点和未解决问题时，才允许正式渲染。`--allow-draft` 只用于明确标注的未完成草稿。
 
 生成后可以打开：
 
@@ -138,6 +164,14 @@ python scripts/render_all.py examples/drawio-copy-code-demo/outputs/tech-route.j
 - `.cursor/rules/tech-route-maker.mdc`：Cursor。
 - `.github/copilot-instructions.md`：GitHub Copilot coding agent。
 - `.aider.conf.yml`：Aider-style 工作流。
+
+推荐使用 `gh skill install ... SKILL.md --agent <agent> --scope user`。没有 GitHub CLI Skill 安装能力的软件可以使用：
+
+```bash
+python scripts/install_agent_skill.py --target <该软件的技能父目录> --agent <软件名称>
+```
+
+安装目标必须由用户明确提供，脚本不会猜测不同软件的私有目录。
 
 ## Legacy / Experimental Use Cases
 

@@ -9,8 +9,12 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from tech_route_maker.quality import build_quality_report, render_quality_report_markdown  # noqa: E402
-from tech_route_maker.validator import load_route  # noqa: E402
+from tech_route_maker.quality import render_quality_report_markdown  # noqa: E402
+from tech_route_maker.validator import (  # noqa: E402
+    format_validation_result,
+    strict_render_blockers,
+    validate_file,
+)
 
 
 SCRIPT_BY_FORMAT = {
@@ -30,15 +34,34 @@ def main():
     parser.add_argument("route_json")
     parser.add_argument("output_dir")
     parser.add_argument("--formats", required=True, help="Comma-separated formats or all")
+    parser.add_argument(
+        "--allow-draft",
+        action="store_true",
+        help="Render despite final-quality blockers. Structural validation errors still stop rendering.",
+    )
     args = parser.parse_args()
     selected = [x.strip().lower() for x in args.formats.split(",") if x.strip()]
     if "all" in selected:
         selected = list(SCRIPT_BY_FORMAT) + ["json"]
+    route, errors, warnings, report = validate_file(args.route_json)
+    if errors:
+        print(format_validation_result(route, errors, warnings, report), file=sys.stderr)
+        raise SystemExit("Rendering stopped because route validation failed.")
+    blockers = strict_render_blockers(route, errors, report)
+    if blockers and not args.allow_draft:
+        details = "\n".join(f"- {item}" for item in blockers)
+        raise SystemExit(
+            "Final rendering stopped by the quality gate:\n"
+            f"{details}\n"
+            "Resolve these items or use --allow-draft for a clearly marked working draft."
+        )
+    if blockers:
+        print("Draft rendering enabled. Remaining blockers:", file=sys.stderr)
+        for blocker in blockers:
+            print(f"- {blocker}", file=sys.stderr)
     out_dir = Path(args.output_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     script_dir = Path(__file__).resolve().parent
-    route = load_route(args.route_json)
-    report = build_quality_report(route)
     route["quality_report"] = report
     write_json = False
     for fmt in selected:

@@ -26,14 +26,14 @@ This skill is intentionally agent-agnostic. `SKILL.md` is the source of truth fo
 
 ## Default Interaction Policy
 
-Do not interrupt the user with a long option list by default.
+Do not interrupt the user with a long sequence of questions, but do not guess domain or delivery preferences from a field-agnostic request.
 
-If the user provides enough context, choose the closest preset automatically and proceed. Ask a clarification question only when a missing choice would materially change the output.
+Before final rendering, explicitly establish the domain context and confirm the requested output format, target medium, layout family and visual style. Present one concise grouped choice with sensible defaults; allow single or multiple output formats. If the source explicitly proves a domain fact, extract it with an evidence locator instead of asking the user to repeat it.
 
 Default behavior:
 
 - Never render a final technical route diagram from a field-agnostic request such as "draw a technical route diagram" without first identifying the discipline, subfield, project type, research object, method family and evaluation logic.
-- If source files are available, infer the domain context from them first. If the context is still incomplete, ask one concise field-specific clarification question.
+- If source files are available, extract domain context only from explicit source evidence. Ask one concise field-specific clarification question for every material gap rather than silently inventing it.
 - If the user asks for a quick draft before the field is complete, mark `domain_context.confidence` as `low`, keep missing items in `unresolved_questions`, and report that the output is not final.
 - If the user asks in Chinese for 开题, 课题申报, 项目申请, 基金, 论文技术路线图, or a Chinese research route diagram, prefer the Chinese academic presets below.
 - If the user asks for an editable presentation figure, generate `pptx`, `svg` and `json`.
@@ -46,6 +46,7 @@ Default behavior:
 
 Always record the selected preset and output formats in `selected_preset` and `metadata.selected_output_formats`.
 Always record the discipline-specific context in `domain_context`.
+Always state that generated editable files are drafts that require factual, wording and visual revision before publication or submission.
 
 ## Domain Context Policy
 
@@ -137,7 +138,7 @@ engineering-project-report-cn:
   style: research-ppt-blue
 ```
 
-## Ask Only When Necessary
+## Required Clarification
 
 Ask one concise clarification question when:
 
@@ -174,15 +175,15 @@ Advanced layout families:
 4. `horizontal-stages`
 5. `vertical-research-route`
 6. `layered-architecture`
-7. `closed-loop-optimization-route`
-8. `evidence-centered-route`
-9. `baseline-vs-ours-split`
-10. `case-walkthrough-strip`
-11. `cn-proposal-poster-route`
-12. `cn-grant-application-route`
-13. `cn-research-method-matrix`
-14. `cn-wide-project-map`
-15. `cn-monochrome-linework-route`
+7. `timeline-swimlane`
+8. `wide-collaboration-map`
+9. `cn-proposal-poster-route`
+10. `cn-grant-application-route`
+11. `cn-research-method-matrix`
+12. `cn-wide-project-map`
+13. `cn-monochrome-linework-route`
+14. `cn-ppt-mainline-route`
+15. `cn-a4-stage-route`
 
 Advanced visual styles:
 
@@ -204,7 +205,7 @@ Advanced visual styles:
 
 ## Workflow
 
-1. Confirm the source scope: current repository, a specific directory, a document set, or pasted project notes.
+1. Confirm the source scope: current repository, a specific directory, a document set, or pasted project notes. When local files are available, run `trm ingest <sources> --output-dir evidence-pack` to freeze their paths and SHA-256 hashes before extraction.
 2. Inspect project evidence before diagramming:
    - README, docs, notebooks, papers, reports, briefs or notes.
    - PDF, LaTeX, manuscript text, method sections, supplements, proposal documents or task briefs.
@@ -222,13 +223,13 @@ Advanced visual styles:
 5. Extract a route model with this minimum logic:
    `problem or objective -> inputs/data -> methods/modules -> implementation/training/inference -> validation/evaluation -> outputs/applications`.
 6. Create or update `tech-route.json` before rendering any user-facing format.
-7. Validate route structure, domain context, evidence coverage, inferred content, warnings and unresolved assumptions.
-8. Render selected editable formats.
+7. Run `trm validate tech-route.json --strict`. Treat incomplete domain context, unverified hashes, evidence gaps, inferred nodes and unresolved questions as final-render blockers.
+8. Render selected editable formats. Use `--allow-draft` only when the user explicitly requests an unfinished working draft.
 9. Report generated files, warnings, quality report findings and recommended manual review steps.
 
 ## Route Model
 
-Use `references/route-schema.md` for the JSON schema. Keep every visible node traceable. Each visible node should include at least one evidence item or be marked with `is_inferred: true` and linked to an assumption.
+Use `references/route-schema.md` for the JSON schema. Keep every visible node traceable. A final diagram requires at least one hash-verified source evidence item for every visible node. Draft-only inferred nodes must set `is_inferred: true`, link to an assumption, remain separate from evidence coverage and block final rendering until resolved.
 
 Use `references/paper-framework-integration.md` for paper-grounded and publication-figure rules, especially when the input is a manuscript, thesis, proposal, academic project, or method description.
 
@@ -317,7 +318,10 @@ CLI commands, when installed:
 
 ```bash
 trm validate outputs/tech-route.json
+trm validate outputs/tech-route.json --strict
 trm render outputs/tech-route.json outputs --formats pptx,svg,drawio,drawio-code,html,markdown,json
+trm render outputs/tech-route.json outputs --formats pptx,svg,json --allow-draft
+trm ingest source-files --output-dir evidence-pack
 trm init --preset academic-method --output tech-route.json
 trm doctor
 ```
@@ -352,7 +356,9 @@ Validation checks:
 - `domain_context` exists and is complete enough for the requested final output.
 - Unique stage and node IDs.
 - Edge endpoints exist.
-- Every visible node has evidence or explicit inference.
+- Every visible node has hash-verified evidence; inference is reported separately and is allowed only in drafts.
+- Every evidence locator names a declared source and is found in extractable source text when applicable.
+- Final rendering has no unresolved questions or inferred nodes.
 - Confidence values use `high`, `medium` or `low`.
 - Node labels are not overloaded.
 - Quality report warnings are visible to the user.

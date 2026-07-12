@@ -9,6 +9,11 @@ on:
 jobs:
   validate:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.8", "3.11", "3.12"]
+
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -16,49 +21,62 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: ${{ matrix.python-version }}
 
-      - name: Compile Python scripts
+      - name: Install package
+        run: python -m pip install -e .
+
+      - name: Compile source
         run: |
           python - <<'PY'
           import pathlib
-          for path in pathlib.Path("scripts").glob("*.py"):
-              compile(path.read_text(encoding="utf-8"), str(path), "exec")
-          for path in pathlib.Path("tech_route_maker").glob("*.py"):
-              compile(path.read_text(encoding="utf-8"), str(path), "exec")
+          for folder in ("scripts", "tech_route_maker", "tests"):
+              for path in pathlib.Path(folder).glob("*.py"):
+                  compile(path.read_text(encoding="utf-8"), str(path), "exec")
           print("source compile OK")
           PY
 
-      - name: Validate route JSON examples
-        run: |
-          python scripts/validate_route.py examples/academic-paper-demo/outputs/tech-route.json
-          python scripts/validate_route.py examples/thesis-proposal-demo/outputs/tech-route.json
-          python scripts/validate_route.py examples/chinese-grant-application-demo/outputs/tech-route.json
-          python scripts/validate_route.py examples/engineering-energy-system-demo/outputs/tech-route.json
-          python scripts/validate_route.py examples/agent-workflow-demo/outputs/tech-route.json
+      - name: Run unit tests
+        run: python -m unittest discover -s tests -v
 
-      - name: Render demo outputs
-        run: |
-          python scripts/render_all.py examples/academic-paper-demo/outputs/tech-route.json /tmp/academic --formats pptx,svg,drawio,html,markdown,json
-          python scripts/render_all.py examples/thesis-proposal-demo/outputs/tech-route.json /tmp/thesis --formats pptx,svg,drawio,html,markdown,json
-          python scripts/render_all.py examples/chinese-grant-application-demo/outputs/tech-route.json /tmp/grant --formats pptx,svg,drawio,html,markdown,json
-          python scripts/render_all.py examples/engineering-energy-system-demo/outputs/tech-route.json /tmp/energy --formats pptx,svg,drawio,html,markdown,json
-          python scripts/render_all.py examples/agent-workflow-demo/outputs/tech-route.json /tmp/workflow --formats pptx,svg,drawio,html,markdown,json
+      - name: Check text integrity
+        run: python scripts/check_text_integrity.py
 
-      - name: Parse representative outputs
+      - name: Check CLI and installer
         run: |
-          python - <<'PY'
-          import json
-          import pathlib
-          import xml.etree.ElementTree as ET
-          import zipfile
-          roots = [pathlib.Path("/tmp/academic"), pathlib.Path("/tmp/thesis"), pathlib.Path("/tmp/grant"), pathlib.Path("/tmp/energy"), pathlib.Path("/tmp/workflow")]
-          for root in roots:
-              json.load(open(root / "tech-route.json", encoding="utf-8"))
-              ET.parse(root / "tech-route.svg")
-              ET.parse(root / "tech-route.drawio")
-              assert (root / "QUALITY_REPORT.md").exists()
-              z = zipfile.ZipFile(root / "tech-route.pptx")
-              assert z.testzip() is None
-          print("output parse OK")
-          PY
+          trm --help
+          trm doctor
+          trm ingest docs --output-dir /tmp/evidence-pack
+          python scripts/install_agent_skill.py --target /tmp/agent-skills --agent ci --dry-run
+
+      - name: Strictly validate every demo
+        shell: bash
+        run: |
+          set -euo pipefail
+          for route in examples/*-demo/outputs/tech-route.json; do
+            trm validate "$route" --strict
+            python scripts/validate_route.py "$route"
+          done
+
+      - name: Render and verify all formats
+        if: matrix.python-version == '3.11'
+        shell: bash
+        run: |
+          set -euo pipefail
+          for route in examples/*-demo/outputs/tech-route.json; do
+            demo=$(basename "$(dirname "$(dirname "$route")")")
+            out="/tmp/tech-route-maker/$demo"
+            trm render "$route" "$out" --formats pptx,svg,drawio,drawio-code,excalidraw,mermaid,html,markdown,json
+            python scripts/verify_outputs.py "$route" "$out"
+          done
+
+      - name: Verify standard wheel installation
+        if: matrix.python-version == '3.11'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip wheel . --no-deps --no-build-isolation --wheel-dir /tmp/wheels
+          python -m venv /tmp/trm-wheel-venv
+          /tmp/trm-wheel-venv/bin/python -m pip install /tmp/wheels/tech_route_maker-0.3.0-py3-none-any.whl --no-deps
+          /tmp/trm-wheel-venv/bin/trm doctor
+          /tmp/trm-wheel-venv/bin/trm render examples/academic-paper-demo/outputs/tech-route.json /tmp/wheel-render --formats svg,drawio,json

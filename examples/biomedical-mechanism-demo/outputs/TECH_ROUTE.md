@@ -3,7 +3,7 @@
 生物医学机制研究示例：样本模型、干预检测、机制验证与转化意义
 
 ```mermaid
-flowchart LR
+flowchart TB
   title["炎症微环境调控骨修复机制研究技术路线图"]
   subgraph question["研究问题"]
     question_inflammation["界定炎症表型"]

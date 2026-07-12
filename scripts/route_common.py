@@ -2,7 +2,15 @@ import copy
 import json
 import math
 import re
+import sys
 from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from tech_route_maker.registry import SUPPORTED_LAYOUTS, layout_family  # noqa: E402
 
 
 STYLES = {
@@ -441,6 +449,13 @@ def normalize_route(route):
     data["subtitle"] = str(data.get("subtitle") or "")
     data["layout"] = data.get("layout") or "horizontal-stages"
     data["style"] = data.get("style") or data.get("theme") or "academic-blue"
+    if data["layout"] not in SUPPORTED_LAYOUTS:
+        supported = ", ".join(sorted(SUPPORTED_LAYOUTS))
+        raise ValueError(f"Unsupported layout '{data['layout']}'. Supported layouts: {supported}")
+    canonical_style = STYLE_ALIASES.get(data["style"], data["style"])
+    if canonical_style not in STYLES:
+        supported = ", ".join(sorted(set(STYLES) | set(STYLE_ALIASES)))
+        raise ValueError(f"Unsupported style '{data['style']}'. Supported styles: {supported}")
     data["metadata"] = data.get("metadata") or {}
     stages = []
     node_ids = set()
@@ -517,7 +532,10 @@ def normalize_route(route):
 def get_style(route):
     requested = route.get("style") or "academic-blue"
     name = STYLE_ALIASES.get(requested, requested)
-    style = copy.deepcopy(STYLES.get(name, STYLES["academic-blue"]))
+    if name not in STYLES:
+        supported = ", ".join(sorted(set(STYLES) | set(STYLE_ALIASES)))
+        raise ValueError(f"Unsupported style '{requested}'. Supported styles: {supported}")
+    style = copy.deepcopy(STYLES[name])
     for key, value in STYLE_DEFAULTS.items():
         style.setdefault(key, value)
     style["name"] = requested
@@ -531,6 +549,9 @@ def flatten_nodes(route):
 def build_layout(route):
     route = normalize_route(route)
     layout_name = route.get("layout", "horizontal-stages")
+    if layout_name not in SUPPORTED_LAYOUTS:
+        supported = ", ".join(sorted(SUPPORTED_LAYOUTS))
+        raise ValueError(f"Unsupported layout '{layout_name}'. Supported layouts: {supported}")
     stages = route["stages"]
     margin = 64
     title_h = 102
@@ -589,13 +610,19 @@ def build_layout(route):
                     "main_box": main_box,
                 }
             )
-            visible_nodes = stage["nodes"][:3]
+            visible_nodes = stage["nodes"]
+            cols = 1 if len(visible_nodes) <= 3 else 2
+            support_gap_x = 12
+            support_gap_y = 24
+            support_w = (stage_w - 44 - (cols - 1) * support_gap_x) / cols
             for ni, node in enumerate(visible_nodes):
-                ny = main_box["y"] + main_h + 52 + ni * (support_h + support_gap)
+                row = ni // cols
+                col = ni % cols
+                ny = main_box["y"] + main_h + 52 + row * (support_h + support_gap_y)
                 nodes[node["id"]] = {
-                    "x": x + 22,
+                    "x": x + 22 + col * (support_w + support_gap_x),
                     "y": ny,
-                    "w": stage_w - 44,
+                    "w": support_w,
                     "h": support_h,
                     "stage": stage["id"],
                     "role": "support",
@@ -628,10 +655,11 @@ def build_layout(route):
         node_h = 86
         node_gap = 18
         for si, stage in enumerate(stages):
-            count = max(1, min(3, len(stage["nodes"])))
-            cols = 1 if count == 1 else count
+            count = max(1, len(stage["nodes"]))
+            cols = 1 if count == 1 else min(3, count)
+            rows = int(math.ceil(count / cols))
             node_w = (stage_w - 72 - (cols - 1) * node_gap) / cols
-            stage_h = 240
+            stage_h = header_h + 58 + rows * node_h + max(0, rows - 1) * node_gap + 38
             stage_boxes.append(
                 {
                     "id": stage["id"],
@@ -644,9 +672,11 @@ def build_layout(route):
                     "layout": "a4stage",
                 }
             )
-            for ni, node in enumerate(stage["nodes"][:3]):
-                nx = margin_x + 36 + ni * (node_w + node_gap)
-                ny = y + header_h + 58
+            for ni, node in enumerate(stage["nodes"]):
+                row = ni // cols
+                col = ni % cols
+                nx = margin_x + 36 + col * (node_w + node_gap)
+                ny = y + header_h + 58 + row * (node_h + node_gap)
                 nodes[node["id"]] = {"x": nx, "y": ny, "w": node_w, "h": node_h, "stage": stage["id"], "role": "support"}
             y += stage_h + row_gap
         final_output = route.get("final_output") or route["metadata"].get("final_output", "")
@@ -842,10 +872,6 @@ def build_layout(route):
 
     vertical = layout_name in {
         "vertical-research-route",
-        "closed-loop-optimization",
-        "closed-loop-optimization-route",
-        "evidence-centered",
-        "evidence-centered-route",
         "proposal-phase-axis",
         "cn-proposal-poster-route",
         "cn-grant-application-route",
@@ -908,9 +934,11 @@ def build_layout(route):
         else:
             width = max(1180, min(1520, margin * 2 + len(stages) * 214 + max(0, len(stages) - 1) * gap))
             height = 610
+        required_stage_h = header_h + 18 + max_nodes * node_h + max(0, max_nodes - 1) * node_gap + 24
+        height = max(height, title_h + margin + required_stage_h + margin)
         stage_w = (width - margin * 2 - max(0, len(stages) - 1) * gap) / max(1, len(stages))
         stage_w = max(150, stage_w)
-        stage_h = min(390, height - title_h - margin - 56)
+        stage_h = required_stage_h
         for si, stage in enumerate(stages):
             x = margin + si * (stage_w + gap)
             y = title_h + margin

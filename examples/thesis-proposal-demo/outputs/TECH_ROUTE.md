@@ -3,7 +3,7 @@
 中文开题报告示例：材料设计、性能测试与光伏应用验证
 
 ```mermaid
-flowchart LR
+flowchart TB
   title["光伏自清洁涂层开题技术路线图"]
   subgraph objective["研究目标"]
     objective_problem["降低表面污染"]

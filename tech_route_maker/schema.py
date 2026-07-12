@@ -1,7 +1,7 @@
 from copy import deepcopy
 
 
-ROUTE_VERSION = "0.2.0"
+ROUTE_VERSION = "0.3.0"
 
 VALID_PRESETS = {
     "academic-method",
@@ -201,9 +201,11 @@ def make_template_route(preset="academic-method"):
             "source_type": config["source_type"],
             "source_files": [
                 {
+                    "id": "source_1",
                     "path": source_path,
                     "kind": "document",
                     "description": "Input source material",
+                    "sha256": "",
                 }
             ],
             "source_hashes": [],

@@ -8,9 +8,13 @@ No. It includes adapter files for several agent environments. `SKILL.md` remains
 
 Yes. PPTX uses native shapes, SVG uses vector/text elements, Draw.io uses editable diagram cells, Excalidraw uses scene JSON, Mermaid stays text-editable, and HTML/Markdown keep route data visible.
 
-## Does the skill always ask users to choose format, layout and style?
+## Does the skill ask users to choose format, layout and style?
 
-No. The v0.2.0 workflow uses default presets first. It asks only when a missing choice would materially change the output or when the user explicitly asks for advanced options.
+Before final rendering, it confirms the target medium, output formats, layout family and visual style in one concise grouped question. It may offer a preset as the default, but it must not silently guess these preferences from a field-agnostic request.
+
+## What does strict validation check?
+
+It requires complete discipline context, valid layout/style identifiers, existing source files with matching SHA-256 hashes, verified evidence for every visible node, no inferred nodes and no unresolved questions. Draft rendering can bypass final-quality blockers with `--allow-draft`, but not structural errors.
 
 ## Can it make paper figures?
 

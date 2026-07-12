@@ -1,94 +1,59 @@
 # Quick Start
 
-This page gives the shortest path from clone to editable route outputs.
+## 1. Install The Skill
 
-## 1. Clone
+With GitHub CLI 2.96 or newer:
+
+```bash
+gh skill install Stephen-studying/tech-route-maker SKILL.md --agent codex --scope user
+```
+
+Replace `codex` with the target host. See [Agent compatibility](agent-compatibility.md).
+
+## 2. Install The Local CLI
 
 ```bash
 git clone https://github.com/Stephen-studying/tech-route-maker.git
 cd tech-route-maker
-```
-
-## 2. Validate A Demo Route
-
-```bash
-python scripts/validate_route.py examples/academic-paper-demo/outputs/tech-route.json
-```
-
-Expected result:
-
-```text
-Validation OK
-```
-
-Older versions may print:
-
-```text
-Validation passed with 0 warning(s).
-```
-
-## 3. Render Editable Outputs
-
-```bash
-python scripts/render_all.py examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,drawio-code,html,markdown,json
-```
-
-Open:
-
-```text
-examples/academic-paper-demo/outputs/tech-route.pptx
-examples/academic-paper-demo/outputs/tech-route.svg
-examples/academic-paper-demo/outputs/tech-route.drawio
-examples/academic-paper-demo/outputs/tech-route.drawio-code.xml
-examples/academic-paper-demo/outputs/tech-route.html
-examples/academic-paper-demo/outputs/QUALITY_REPORT.md
-```
-
-## 4. Use The CLI
-
-After local installation:
-
-```bash
-pip install -e .
+python -m pip install -e .
 trm doctor
-trm validate examples/academic-paper-demo/outputs/tech-route.json
-trm render examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,drawio-code,html,markdown,json
 ```
 
-## Draw.io Copy-Code
-
-To generate XML that can be pasted into [diagrams.net / draw.io](https://app.diagrams.net/):
+## 3. Verify A Complete Demo
 
 ```bash
-python scripts/render_all.py examples/drawio-copy-code-demo/outputs/tech-route.json examples/drawio-copy-code-demo/outputs --formats drawio,drawio-code,svg,json
+trm validate examples/academic-paper-demo/outputs/tech-route.json --strict
+trm render examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,drawio-code,excalidraw,mermaid,html,markdown,json
+python scripts/verify_outputs.py examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs
 ```
 
-Open `tech-route.drawio-code.xml`, copy all XML, then use **Extras > Edit Diagram** in diagrams.net.
+The strict command should report complete domain context, verified sources, 100% evidence coverage and 0% inferred coverage.
 
-## 5. Use With An Agent
+## 4. Start A New Route
 
-Ask your agent:
-
-```text
-Use tech-route-maker to create an editable technical route diagram from my source brief.
+```bash
+trm ingest path/to/source-files --output-dir evidence-pack
+trm init --preset academic-method --output work/tech-route.json --quality-report
 ```
 
-The agent should choose a default preset when the request is clear. It should ask only when a missing choice would materially change the result.
+Then:
 
-For Chinese academic proposal routes, ask for the dedicated preset:
+1. Review `evidence-pack/source-manifest.json` and `EVIDENCE_PACK.md`.
+2. Fill `work/source.md` and `work/tech-route.json` from authoritative evidence.
+3. Confirm discipline, subfield, project type, research object, method family, constraints, metrics, target medium, formats, layout and style with the user.
+4. Run `trm validate work/tech-route.json --strict`.
+5. Render only after all final-quality blockers are resolved.
 
-```text
-Use tech-route-maker to create a Chinese thesis proposal technical route diagram. Output PPTX, SVG, Draw.io and HTML.
+Use `trm render ... --allow-draft` only when the user explicitly wants an unfinished draft. Inferred nodes and unresolved questions must remain visible in the quality report and must not be presented as source evidence.
+
+## Draw.io Copy Code
+
+```bash
+trm render examples/drawio-copy-code-demo/outputs/tech-route.json examples/drawio-copy-code-demo/outputs --formats drawio,drawio-code,svg,json
 ```
 
-The expected default is `chinese-thesis-proposal`, which renders a portrait, editable, poster-style academic route rather than a generic flowchart.
+Open [diagrams.net / draw.io](https://app.diagrams.net/), create a blank diagram, choose **Extras > Edit Diagram**, paste all text from `tech-route.drawio-code.xml`, and confirm. The resulting cells remain editable.
 
-## Manual Review Reminder
+## Manual Review
 
-The generated route is an editable draft. Before using it in a paper, thesis defense, grant proposal, course design or engineering report, review:
-
-- Facts and terminology.
-- Evidence and inferred nodes.
-- Route logic and edge labels.
-- Colors, layout and spacing.
-- Long labels and overloaded stages.
+Generated PPTX, SVG and Draw.io files are editable drafts, not finished submission figures. Review facts, terminology, evidence, route logic, wording, colors, spacing, font sizes and target-template requirements before formal use.

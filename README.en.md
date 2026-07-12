@@ -25,10 +25,10 @@ Technical route diagrams are not ordinary decorative flowcharts. A usable resear
 2. Extracts a research, engineering, or workflow route from evidence.
 3. Builds `domain_context` for the discipline and project type.
 4. Builds or updates `tech-route.json`.
-5. Selects a default preset when the user has not requested advanced choices.
-6. Validates the route model before rendering.
-7. Renders editable outputs.
-8. Reports warnings, assumptions, unresolved questions and generated files.
+5. Records source files and SHA-256 hashes before accepting evidence.
+6. Separates verified evidence coverage from inferred coverage.
+7. Applies a strict final-quality gate before rendering.
+8. Renders editable outputs and reports required manual revision.
 
 ## Default Presets
 
@@ -43,7 +43,7 @@ Technical route diagrams are not ordinary decorative flowcharts. A usable resear
 | `academic-paper-framework-cn` | Chinese academic method framework or paper figure. | `pptx`, `svg`, `drawio`, `json` |
 | `engineering-project-report-cn` | Chinese engineering report, platform map, or energy-system route. | `pptx`, `svg`, `drawio`, `html`, `json` |
 
-Advanced format, layout and style choices are still available. The skill asks for them only when the user explicitly asks to choose or when a missing decision would materially change the output.
+The skill offers a recommended preset, then confirms final formats, target medium, layout and style in one concise grouped choice. It does not silently guess delivery preferences.
 
 ## Typical Use Cases
 
@@ -56,7 +56,6 @@ Research and academic users can use it for:
 - Project application or grant-application technical routes.
 - AI/model pipeline figures.
 - Evidence-linked method overviews.
-- Baseline-versus-proposed-method comparisons.
 
 Engineering users can use it for:
 
@@ -70,6 +69,16 @@ Campaign diagrams are kept only as legacy or experimental examples. They are not
 
 ## Installation
 
+Install the root skill directly with GitHub CLI 2.96 or newer:
+
+```bash
+gh skill install Stephen-studying/tech-route-maker SKILL.md --agent codex --scope user
+gh skill install Stephen-studying/tech-route-maker SKILL.md --agent claude-code --scope user
+gh skill install Stephen-studying/tech-route-maker SKILL.md --agent cursor --scope user
+gh skill install Stephen-studying/tech-route-maker SKILL.md --agent gemini-cli --scope user
+gh skill install Stephen-studying/tech-route-maker SKILL.md --agent github-copilot --scope user
+```
+
 Clone this repository:
 
 ```bash
@@ -77,20 +86,16 @@ git clone https://github.com/Stephen-studying/tech-route-maker.git
 cd tech-route-maker
 ```
 
-Use it directly with the backward-compatible scripts:
+Install the CLI and validate a complete demo:
 
 ```bash
-python scripts/validate_route.py examples/academic-paper-demo/outputs/tech-route.json
-python scripts/render_all.py examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,drawio-code,html,markdown,json
+python -m pip install -e .
+trm doctor
+trm validate examples/academic-paper-demo/outputs/tech-route.json --strict
+trm render examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,drawio-code,excalidraw,mermaid,html,markdown,json
 ```
 
-Or install the package locally when the CLI is available:
-
-```bash
-pip install -e .
-trm validate examples/academic-paper-demo/outputs/tech-route.json
-trm render examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,drawio-code,html,markdown,json
-```
+For a new project, run `trm ingest <sources> --output-dir evidence-pack`, then `trm init`. Final rendering is blocked until domain context, source hashes, node evidence, inferred content and unresolved questions pass. Use `--allow-draft` only for an explicitly unfinished draft.
 
 ## Agent Compatibility
 
@@ -113,6 +118,8 @@ For other agents, open the repository root and let the agent read the adapter it
 - `.cursor/rules/tech-route-maker.mdc` for Cursor.
 - `.github/copilot-instructions.md` for GitHub Copilot coding agent.
 - `.aider.conf.yml` for Aider-style workflows.
+
+The preferred installer is `gh skill install ... SKILL.md --agent <agent> --scope user`. For unsupported hosts, use `python scripts/install_agent_skill.py --target <skill-parent-directory> --agent <name>`; the fallback installer requires an explicit destination and does not guess agent-specific private paths.
 
 ## Output Formats
 

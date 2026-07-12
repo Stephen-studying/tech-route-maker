@@ -3,7 +3,7 @@
 中文项目申请示例：研究内容、科学问题、关键方法与验证输出
 
 ```mermaid
-flowchart LR
+flowchart TB
   title["智能光伏缺陷诊断项目申请技术路线图"]
   subgraph objective["项目目标"]
     objective_need["面向运维诊断需求"]

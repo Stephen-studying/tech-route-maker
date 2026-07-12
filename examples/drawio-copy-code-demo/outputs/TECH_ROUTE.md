@@ -3,7 +3,7 @@
 Draw.io复制代码示例：从技术路线图参考图生成可编辑Draw.io XML
 
 ```mermaid
-flowchart LR
+flowchart TB
   title["HGDY光催化降解木质素技术路线图"]
   subgraph proposal["项目立项"]
     proposal_value["棉秆木质素高值化利用"]

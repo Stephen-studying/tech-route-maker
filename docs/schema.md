@@ -2,13 +2,13 @@
 
 `tech-route.json` is the source of truth for rendering. Edit the JSON first, then rerender PPTX, SVG, Draw.io, Draw.io copy-code XML, Excalidraw, Mermaid, HTML, Markdown, or JSON outputs from the same model.
 
-Current schema version: `0.2.0`.
+Current schema version: `0.3.0`.
 
 ## Minimal Structure
 
 ```json
 {
-  "route_version": "0.2.0",
+  "route_version": "0.3.0",
   "title": "Project Technical Route",
   "subtitle": "Editable route diagram",
   "selected_preset": "academic-method",
@@ -41,12 +41,21 @@ Current schema version: `0.2.0`.
     "source_type": "paper",
     "source_files": [
       {
+        "id": "source_1",
         "path": "source.md",
         "kind": "document",
-        "description": "Input source material"
+        "description": "Input source material",
+        "sha256": "<64-character SHA-256>"
       }
     ],
-    "source_hashes": [],
+    "source_hashes": [
+      {
+        "source_id": "source_1",
+        "path": "source.md",
+        "algorithm": "sha256",
+        "value": "<64-character SHA-256>"
+      }
+    ],
     "language": "en",
     "audience": "research"
   },
@@ -101,7 +110,7 @@ Current schema version: `0.2.0`.
 
 ## Required Fields
 
-- `route_version`: must exist. Current version is `0.2.0`.
+- `route_version`: must exist. Current version is `0.3.0`.
 - `title`: visible diagram title.
 - `selected_preset`: one of `academic-method`, `thesis-proposal`, `engineering-system`, `workflow-pipeline`, `chinese-thesis-proposal`, `chinese-grant-application`, `academic-paper-framework-cn`, `engineering-project-report-cn`, or `custom`.
 - `domain_context`: required for final-use diagrams. Drafts may be partial, but missing fields must be shown in `unresolved_questions` and `QUALITY_REPORT.md`.
@@ -112,10 +121,7 @@ Current schema version: `0.2.0`.
 
 ## Evidence And Inference Rules
 
-Every visible node must satisfy one of these conditions:
-
-1. It has at least one `evidence` item; or
-2. It has `is_inferred: true` and an entry in `assumptions` links to that node through `node_ids`.
+Every visible node in a final diagram must have at least one evidence item that names a declared source, uses a nonempty locator, and points to a source whose SHA-256 is verified. An inferred node is draft-only: set `is_inferred: true`, link it from `assumptions.node_ids`, and resolve or remove it before final rendering.
 
 Use `unresolved_questions` for missing decisions that would materially affect the route, such as whether a validation step should be a separate stage or whether an inferred branch should remain visible.
 
@@ -160,4 +166,4 @@ Examples:
 
 ## Quality Report
 
-`QUALITY_REPORT.md` is generated from the route model. It summarizes stage count, node count, edge count, evidence coverage, inferred nodes, unresolved questions, label length warnings and manual review suggestions.
+`QUALITY_REPORT.md` is generated from the route model. It reports source-verification status, true evidence coverage, inferred coverage, accounted coverage, unresolved questions, label warnings and manual review suggestions. Inferred nodes never increase evidence coverage.

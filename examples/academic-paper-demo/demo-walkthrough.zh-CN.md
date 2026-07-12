@@ -1,153 +1,53 @@
-# 完整案例：学术方法框架图
+# 中文完整使用示范
 
-这个案例展示用户从“提供一个简短学术项目 brief”到“获得可编辑技术路线图”的完整过程。流程包括：用户提出需求、agent 阅读源材料、agent 询问必要选项、生成结构化路线模型、校验路线、渲染多个可编辑输出。
-
-## 1. 场景
-
-用户想为一个“多模态光伏组件缺陷检测”学术项目生成一张可编辑技术路线图。
-
-源文件是：
+## 1. 用户请求
 
 ```text
-examples/academic-paper-demo/source/project-brief.md
+请使用 $tech-route-maker，把 examples/academic-paper-demo/brief.md 制作为可编辑的论文方法技术路线图。
 ```
 
-这个 brief 是合成的入门示例，不是真实论文。
+## 2. 来源与领域确认
 
-## 2. 用户输入
+Agent 先建立来源清单，只提取源文件明确支持的事实，再用一个组合问题确认尚未确定的交付选项。本案例确认：
 
-用户可以这样说：
+- 学科：计算机科学与新能源工程。
+- 方向：光伏缺陷检测中的计算机视觉。
+- 数据：RGB 与红外多模态图像。
+- 方法：深度学习目标检测与特征融合。
+- 用途：论文方法图或答辩方法总览。
+- 版式：`cn-research-method-matrix`。
+- 风格：`research-ppt-blue`。
+- 输出：PPTX、SVG、Draw.io、Draw.io XML、Excalidraw、Mermaid、HTML、Markdown、JSON。
 
-```text
-Use tech-route-maker to create a technical route diagram for examples/academic-paper-demo/source/project-brief.md.
-```
+## 3. 证据模型
 
-如果 agent 支持直接调用 skill，也可以这样说：
+`outputs/tech-route.json` 中每个可见节点都引用 `source_1`，locator 能在 `brief.md` 中找到，来源 SHA-256 同时记录在 `metadata.source_files` 与 `metadata.source_hashes`。推断内容不会计入证据覆盖率。
 
-```text
-Use $tech-route-maker to create an editable technical route diagram from examples/academic-paper-demo/source/project-brief.md.
-```
-
-## 3. Agent 理解源材料
-
-agent 阅读 brief 后，抽取出下面的证据：
-
-| 证据区域 | 抽取内容 |
-|---|---|
-| 项目目标 | 为多模态光伏组件缺陷检测项目创建方法总览图。 |
-| 输入数据 | RGB 组件图像和红外热图像。 |
-| 数据准备 | 质量筛选、配准、标注、增强、训练/验证/测试集划分。 |
-| 核心方法 | baseline 检测器、多模态特征融合、注意力增强特征提取、损失函数和指标驱动优化。 |
-| 训练与推理 | 监督训练、验证监控、未见图像推理、置信度筛选。 |
-| 评估验证 | baseline 对比、模块消融、precision、recall、mAP 和定性缺陷图。 |
-| 输出结果 | 缺陷类别、位置、置信度和可用于报告的可视化结果。 |
-
-## 4. 必须询问用户的选项
-
-skill 不能直接猜测最终输出选项，必须询问：
-
-```text
-1. 图的用途或子类型
-2. 输出格式，可以单选或多选
-3. 版式布局
-4. 视觉风格
-```
-
-本案例中，用户选择：
-
-```text
-图的用途/子类型：
-学术方法框架图
-
-输出格式：
-PPTX、SVG、Draw.io、HTML、Markdown、JSON
-
-版式：
-AI 或算法 pipeline
-
-视觉风格：
-Premium scientific
-```
-
-## 5. 生成路线模型
-
-结构化源文件是：
-
-```text
-examples/academic-paper-demo/outputs/tech-route.json
-```
-
-读者问题：
-
-```text
-该方法如何从多模态图像输入走向可验证的缺陷检测结果？
-```
-
-读者阅读路径：
-
-```text
-研究目标 -> 数据构建 -> 预处理 -> 核心方法 -> 训练推理 -> 验证输出
-```
-
-路线模型中的每个阶段、节点和连接关系都可以继续修改。用户后续可以编辑 `tech-route.json`，再重新渲染出新的 PPTX、SVG 或 Draw.io 文件。
-
-## 6. 校验
-
-在 `tech-route-maker` 文件夹中运行：
+## 4. 校验与生成
 
 ```bash
-python scripts/validate_route.py examples/academic-paper-demo/outputs/tech-route.json
+python -m pip install -e .
+trm ingest examples/academic-paper-demo/brief.md --output-dir evidence-pack
+trm validate examples/academic-paper-demo/outputs/tech-route.json --strict
+trm render examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,drawio-code,excalidraw,mermaid,html,markdown,json
+python scripts/verify_outputs.py examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs
 ```
 
-预期结果：
+严格校验应显示：领域上下文完整、来源哈希已验证、证据覆盖率 100%、推断覆盖率 0%、无未解决问题。
 
-```text
-Validation passed with 0 warning(s).
-```
+## 5. 可编辑交付物
 
-## 7. 渲染
+- `tech-route.pptx`：PowerPoint/WPS 原生形状。
+- `tech-route.svg`：可编辑矢量文字与图形。
+- `tech-route.drawio`：可编辑 Draw.io 单元格。
+- `tech-route.drawio-code.xml`：可粘贴到 [draw.io](https://app.diagrams.net/) 的 XML。
+- `tech-route.excalidraw`：可编辑白板场景。
+- `tech-route.mmd`：文本化 Mermaid。
+- `tech-route.html`：包含证据信息的网页预览。
+- `TECH_ROUTE.md`：文档版本。
+- `tech-route.json`：唯一结构源文件。
+- `QUALITY_REPORT.md`：质量与人工复核报告。
 
-渲染用户选择的格式：
+## 6. 人工二次修改
 
-```bash
-python scripts/render_all.py examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,html,markdown,json
-```
-
-生成的可编辑输出：
-
-```text
-examples/academic-paper-demo/outputs/tech-route.pptx
-examples/academic-paper-demo/outputs/tech-route.svg
-examples/academic-paper-demo/outputs/tech-route.drawio
-examples/academic-paper-demo/outputs/tech-route.html
-examples/academic-paper-demo/outputs/TECH_ROUTE.md
-examples/academic-paper-demo/outputs/tech-route.json
-```
-
-## 8. 用户如何继续修改
-
-用户可以直接修改这些输出：
-
-- 用 PowerPoint 或 WPS 打开 `tech-route.pptx`，修改文字、颜色、形状、连接线和布局。
-- 用 Figma、Illustrator、Inkscape 或浏览器 SVG 编辑器打开 `tech-route.svg`。
-- 用 diagrams.net 打开 `tech-route.drawio`。
-- 用浏览器打开 `tech-route.html`，查看交互式预览和节点说明。
-- 修改 `TECH_ROUTE.md`，作为项目文档或 README 内容。
-- 修改 `tech-route.json`，调整路线、风格、版式、节点，再重新渲染。
-
-修改风格后重新渲染的例子：
-
-```bash
-python scripts/render_all.py examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio
-```
-
-## 9. 交付前检查清单
-
-交付给用户前，agent 应确认：
-
-- `tech-route.json` 校验通过。
-- 用户选择的输出文件都已生成。
-- PPTX、SVG、Draw.io 和 JSON 可以正常解析。
-- 主要标签仍然是可编辑文字，而不是截图。
-- 图中没有声称源材料中不存在的证据。
-- 输出格式、版式和视觉风格符合用户明确选择。
+不能把第一次生成结果不加检查地直接用于投稿、答辩或申报。应在可编辑文件中继续核对术语、事实、证据、路线逻辑、文字长度、字体、颜色、间距和学校或期刊模板要求。

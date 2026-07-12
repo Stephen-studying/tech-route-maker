@@ -1,190 +1,54 @@
-# Layout Patterns
+# Supported Layout Patterns
 
-Use this reference to choose or explain layout patterns. Use the default preset layout first, and ask the user only when the layout choice would materially change the output.
+Only the identifiers in this document are accepted by the validator. Unknown or aspirational layout names fail explicitly; the renderer never silently substitutes a generic flowchart.
 
-## Layout menu
+## Recommended Research And Engineering Layouts
 
-1. `academic-method-framework`
-   - Best for papers, defenses, and academic reports that need a formal technical route rather than a decorative process chain.
-   - Uses research-objective, data/sample, method, training/implementation, and validation/output sections on a clean matrix canvas.
+| Layout | Best use | Rendering grammar |
+|---|---|---|
+| `academic-method-framework` | Paper method figures and defense overviews | Side-labeled matrix with objective, evidence, method, validation and output regions. |
+| `proposal-matrix-route` | Thesis proposals and research plans | Matrix emphasizing objective, research content, key technology, validation and deliverables. |
+| `cn-research-method-matrix` | Chinese paper and thesis method figures | Wide Chinese academic matrix with concise editable node cards. |
+| `cn-paper-framework-canvas` | Chinese paper framework variants | Same audited matrix family with a paper-first canvas. |
+| `engineering-architecture-route` | Engineering systems and platforms | Layered system regions, flows, validation and deliverables. |
+| `software-system-route` | Software architecture and data/service routes | System-oriented layers rather than a thesis-proposal chain. |
+| `cn-wide-project-map` | Chinese engineering reports and energy systems | Wide project map with work packages and explicit system boundary. |
+| `cn-ppt-mainline-route` | Defense PPT and formal project presentations | 16:9 five-stage mainline, up to six support nodes per stage and a final-output bar. |
+| `cn-a4-stage-route` | Word, thesis and portrait report figures | Centered vertical stage sections without a left phase axis; up to six nodes per stage. |
+| `cn-proposal-poster-route` | Chinese opening reports and long research routes | Top-to-bottom proposal poster with a visible phase axis. |
+| `cn-grant-application-route` | Chinese grants and project applications | Dense reviewer-facing stages for questions, content, methods, validation and outputs. |
+| `cn-monochrome-linework-route` | Print-safe grant or report figures | Proposal route rendered with restrained monochrome linework. |
+| `horizontal-stages` | Tool, agent and general workflow pipelines | Left-to-right stages with vertically stacked support nodes. |
 
-2. `proposal-matrix-route`
-   - Best for thesis proposals, grant reports, and research plans.
-   - Uses explicit sections such as research objective, research content, key technologies, experimental validation, and expected outputs.
+## Supported Aliases And Specialized Variants
 
-3. `software-system-route`
-   - Best for software or system projects.
-   - Uses system layers such as user input, data layer, service layer, rendering/output layer, and quality/release layer.
+- Mainline aliases: `ppt-mainline-route`, `research-ppt-mainline`.
+- Portrait alias: `a4-stage-route`.
+- System aliases: `engineering-architecture`, `layered-architecture`, `wide-collaboration-map`.
+- Vertical variants: `vertical-research-route`, `proposal-phase-axis`.
+- Horizontal variants: `timeline-swimlane`, `campaign-funnel`, `creative-production-pipeline`.
+- Legacy advertising layout: `campaign-strategy-map`.
 
-4. `campaign-strategy-map`
-   - Legacy/experimental option for advertising and campaign planning when the user explicitly selects a business route.
-   - Separates audience, insight, message, channels, measurement, and optimization.
+The specialized names above currently share a documented renderer family. Use them only when that family matches the requested reading direction. Do not claim that they implement a distinct closed-loop, evidence-centered, hub-and-spoke, baseline comparison or case-walkthrough algorithm.
 
-5. `horizontal-stages`
-   - Best for project summaries, defenses, and reports.
-   - Reads left to right: objective, input, method, implementation, validation, output.
+## Selection Rules
 
-6. `vertical-research-route`
-   - Best for thesis, proposal, and research-topic route diagrams.
-   - Reads top to bottom and supports branch groups under each research phase.
+1. Confirm the target medium: PPT, Word/paper, engineering handoff, Draw.io maintenance or web documentation.
+2. Confirm the discipline and project type before selecting a route grammar.
+3. Use `cn-ppt-mainline-route` for a readable presentation main figure.
+4. Use `cn-a4-stage-route` for a portrait document figure.
+5. Use matrix layouts when the reader must compare objective, content, method and validation sections.
+6. Use system layouts when modules, layers, data, energy or material flows matter more than research phases.
+7. Use a phase-axis route only when the user explicitly requests a long vertical structure.
 
-7. `three-column`
-   - Best for Chinese-style research reports and project proposals.
-   - Columns: goals, technical content, expected results.
+## Structural Rules
 
-8. `ai-pipeline`
-   - Best for AI, ML, computer vision, NLP, or data projects.
-   - Typical route: data acquisition, preprocessing, model, training/inference, evaluation, deployment.
-
-9. `engineering-architecture`
-   - Best for software and systems engineering.
-   - Typical route: requirements, architecture, modules/services, integration, tests, deployment.
-
-10. `timeline-swimlane`
-   - Best for product or implementation roadmaps.
-   - Uses time periods as columns and lanes such as frontend, backend, data, model, ops, validation.
-
-11. `layered-architecture`
-   - Best for platform and service systems.
-   - Uses layers such as user/input, application, domain/model, data, infrastructure, output.
-
-12. `closed-loop-optimization`
-   - Best for research or engineering workflows with feedback.
-   - Shows design, implementation, evaluation, feedback, optimization, and re-validation.
-
-13. `evidence-centered`
-   - Best when traceability matters.
-   - Places route nodes around evidence groups: source files, scripts, datasets, metrics, outputs.
-
-14. `hub-and-spoke-core-method`
-   - Best when one core model, method, service, or creative idea coordinates several inputs and outputs.
-   - Strength: highlights novelty or central strategy.
-   - Risk: can over-center one block and hide sequential order.
-
-15. `baseline-vs-ours-split`
-   - Best when novelty is comparative.
-   - Strength: quickly shows what changes relative to a baseline or old workflow.
-   - Risk: can oversimplify the source if differences are subtle.
-
-16. `case-walkthrough-strip`
-   - Best when one example, sample, user, or customer moves through the method.
-   - Strength: intuitive and strong for qualitative evidence.
-   - Risk: insufficient as a full method specification unless paired with a framework overview.
-
-17. `campaign-funnel`
-   - Legacy/experimental option for teams mapping audience, awareness, engagement, conversion, retention, and measurement.
-   - Strength: familiar business communication path.
-   - Risk: can hide production dependencies.
-
-18. `creative-production-pipeline`
-   - Legacy/experimental option for mapping brief, insight, concept, assets, media, launch, and optimization.
-   - Strength: separates creative work from channel execution.
-   - Risk: needs clear approval/revision loops.
-
-19. `proposal-phase-axis`
-   - Legacy option for long vertical research-topic roadmaps when the user explicitly requests a left phase axis.
-   - Reads top to bottom with a left phase axis, dashed stage regions, and grouped task nodes.
-   - Risk: easily becomes a decorative stacked flowchart and should not be used as the default Gallery/README example.
-
-20. `wide-collaboration-map`
-   - Best for project reports, platform construction, industry-academia collaboration, and policy/resource coordination.
-   - Reads as side axes plus a central collaboration system.
-   - Strength: exposes actors, dependencies, work packages, and support systems better than a simple pipeline.
-   - Risk: can look busy if every stakeholder becomes a node.
-
-21. `cn-proposal-poster-route`
-   - Best for Chinese thesis proposals, opening reports, topic applications, and research-route poster pages.
-   - Reads top to bottom with a polished left phase axis, pastel stage regions, dashed group boundaries, and white node cards.
-   - Strength: matches common Chinese academic route aesthetics while keeping PPTX/SVG/Draw.io editable.
-   - Risk: becomes weak if every semantic step is drawn as a separate visible node; compress repeated content.
-
-22. `cn-grant-application-route`
-   - Best for grants, project applications, and reviewer-facing research routes.
-   - Reads as proposal objective, research contents, scientific questions, key methods, validation, and deliverables.
-   - Strength: supports dense but organized application figures.
-   - Risk: needs stricter text-density control than slide-first routes.
-
-23. `cn-research-method-matrix`
-   - Best for Chinese paper method frameworks, thesis method chapters, and defense method slides.
-   - Reads as side-labeled matrix sections rather than a simple chain.
-   - Strength: separates objective, data, method, training/implementation, validation, and outputs.
-   - Risk: can become too report-like if every node is a paragraph.
-
-24. `cn-wide-project-map`
-   - Best for engineering project reports, platform construction, energy systems, and collaborative project maps.
-   - Reads as side labels plus central work-package/system regions.
-   - Strength: avoids forcing engineering systems into thesis-proposal poster structure.
-   - Risk: needs explicit system boundaries and validation/output layers.
-
-25. `cn-monochrome-linework-route`
-   - Best for reviewer-safe, print-safe, or Word/PDF application figures.
-   - Reads like the proposal poster route, but with black/gray linework and minimal fills.
-   - Strength: robust for formal documents and low-color printing.
-   - Risk: less visually engaging for presentations.
-
-26. `cn-ppt-mainline-route`
-   - Best for defense PPT, project reports, course-design final presentations, and engineering/research main route diagrams.
-   - Uses a 16:9 horizontal canvas, five-stage mainline, enlarged readable text, 2 to 3 short support modules under each stage, and a final-output bar.
-   - Strength: strongest default for formal presentation because the main route is visually dominant and readable on projection.
-   - Risk: needs concise module labels; do not place full sentences inside modules.
-
-27. `cn-a4-stage-route`
-   - Best for Word reports, thesis text, design documents, and portrait technical-route figures.
-   - Uses an A4-style vertical canvas, centered numbered stage headers, no left phase axis, enlarged module text, 2 to 3 short modules per stage, and vertical arrows.
-   - Strength: keeps portrait figures readable by giving the subject area more width.
-   - Risk: not ideal as a PPT main slide unless used on a portrait slide.
-
-## Design rules
-
-- Keep the main route to 4 to 7 stages.
-- Keep each stage to 2 to 6 nodes.
-- Keep labels short; put details in evidence tables, notes, or HTML panels.
-- Use grouped regions for stages.
-- For proposal-style academic routes, prefer matrix sections or framework sections first. Use a left phase axis only when the user explicitly chooses a long vertical route.
-- For polished PPT landscape routes, use a wide canvas, central modules, side labels, and restrained connector arrows rather than a single cramped line.
-- For Chinese thesis/proposal/grant figures, prefer `cn-proposal-poster-route`, `cn-grant-application-route`, or `cn-research-method-matrix` over the legacy `proposal-phase-axis`.
-- Preserve a visible distinction between research content, research objective, scientific questions, methods, validation, and outputs.
-- Use portrait PPTX canvas for long Chinese proposal routes instead of shrinking them into 16:9.
-- Use semantic edge labels in the route model, but keep them out of the main rendered canvas by default. Show labels only in HTML/Markdown/detail panels or when `renderer_overrides.show_edge_labels` is explicitly enabled.
-- Use a small number of straight stage-to-stage arrows for formal academic and engineering routes. Do not default to elbow connectors or dense node-to-node connectors.
-- Render node-to-node semantic edges only when `renderer_overrides.show_node_edges` is explicitly enabled.
-- For formal PPT output, use a mainline structure: main stage cards in `#DBEAFE` with `#2563EB` borders, support modules as white cards with `#CBD5E1` borders, and a bottom output bar.
-- Keep visible module labels to 4 to 12 Chinese characters or short noun phrases. Put full explanations in `detail`, HTML, Markdown, or report text.
-- Put variables, metrics, parameters, and pass-through artifacts on edges or ports before promoting them to nodes.
-- Separate the audit/semantic graph from the visible render graph.
-- Add a 3 to 7 step `reader_path` for academic, engineering, workflow, and legacy campaign diagrams.
-- Use feedback arrows only when the project has real iteration or optimization evidence.
-- If the source is uncertain, mark the node evidence as `inference` instead of presenting it as confirmed.
-
-## Source patterns
-
-Academic and technical-route references commonly use:
-- Research goal and hypothesis.
-- Literature or theoretical framework.
-- Method and technical route.
-- Key tasks and steps.
-- Time plan and milestones.
-- Analysis, design, implementation, optimization, validation.
-
-Roadmap references commonly use:
-- Vision or why.
-- Themes or major workstreams.
-- Milestones and dependencies.
-- Audience-specific detail.
-- Periodic review and adjustment.
-
-Paper-framework figure references also commonly use:
-- reader question and paper slot;
-- method framework, architecture, pipeline, mechanism, case walkthrough, evidence-linked, and failure-aware subtypes;
-- caption/legend/body division of labor;
-- visual text contracts;
-- edge-label-first variables and artifact labels;
-- density and repetition-compression budgets.
-
-Legacy campaign route references commonly use:
-- target audience and insight;
-- creative idea and message route;
-- media/channel route;
-- content production route;
-- launch and measurement route;
-- optimization feedback loop.
+- Keep the main route to 4-7 stages.
+- Keep each stage to 2-6 visible nodes.
+- Keep labels to short noun phrases; put explanations in `detail`, HTML, Markdown or the quality report.
+- Every JSON node must receive a rendered box. Truncating nodes to fit a template is a validation failure.
+- Keep semantic edge labels in the route model, but hide them on the main canvas by default.
+- Prefer a few straight stage-to-stage arrows. Avoid curved, elbowed or densely auto-routed connectors unless explicitly requested.
+- Keep final deliverables visually explicit.
+- Use feedback arrows only when supported by source evidence.
+- Generated PPTX, SVG and Draw.io files remain editable drafts and require user revision before formal use.
