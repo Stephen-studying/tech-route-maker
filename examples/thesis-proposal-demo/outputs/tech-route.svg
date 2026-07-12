@@ -8,25 +8,25 @@
 <rect x="390.0" y="18.0" width="460.0" height="54.0" rx="28" fill="#FFFFFF" stroke="#F0FDF4" stroke-width="2.2" filter="url(#softShadow)"/>
 <text x="620.0" y="52.0" text-anchor="middle" font-size="27" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#0F172A" >光伏自清洁涂层开题技术路线图</text>
 <text x="620.0" y="99.0" text-anchor="middle" font-size="14" font-family="Arial, Helvetica, sans-serif" font-weight="400" fill="#64748B" >中文开题报告示例：材料设计、性能测试与光伏应用验证</text>
-<rect x="78.0" y="180.0" width="1084.0" height="240.0" rx="14" fill="#EFF6FF" stroke="#E2E8F0" stroke-width="1.1" opacity="0.78"/>
+<rect x="78.0" y="180.0" width="1084.0" height="238.0" rx="14" fill="#EFF6FF" stroke="#E2E8F0" stroke-width="1.1" opacity="0.78"/>
 <rect x="450.0" y="200.0" width="340.0" height="48.0" rx="10" fill="#2563EB" stroke="#2563EB" stroke-width="1.0" />
 <text x="620.0" y="232.0" text-anchor="middle" font-size="18" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#FFFFFF" >01 研究目标</text>
-<rect x="78.0" y="468.0" width="1084.0" height="240.0" rx="14" fill="#F0FDF4" stroke="#E2E8F0" stroke-width="1.1" opacity="0.78"/>
-<rect x="450.0" y="488.0" width="340.0" height="48.0" rx="10" fill="#2563EB" stroke="#2563EB" stroke-width="1.0" />
-<text x="620.0" y="520.0" text-anchor="middle" font-size="18" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#FFFFFF" >02 研究内容</text>
-<rect x="78.0" y="756.0" width="1084.0" height="240.0" rx="14" fill="#FEFCE8" stroke="#E2E8F0" stroke-width="1.1" opacity="0.78"/>
-<rect x="450.0" y="776.0" width="340.0" height="48.0" rx="10" fill="#2563EB" stroke="#2563EB" stroke-width="1.0" />
-<text x="620.0" y="808.0" text-anchor="middle" font-size="18" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#FFFFFF" >03 关键技术</text>
-<rect x="78.0" y="1044.0" width="1084.0" height="240.0" rx="14" fill="#FFF7ED" stroke="#E2E8F0" stroke-width="1.1" opacity="0.78"/>
-<rect x="450.0" y="1064.0" width="340.0" height="48.0" rx="10" fill="#2563EB" stroke="#2563EB" stroke-width="1.0" />
-<text x="620.0" y="1096.0" text-anchor="middle" font-size="18" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#FFFFFF" >04 实验验证</text>
-<rect x="78.0" y="1332.0" width="1084.0" height="240.0" rx="14" fill="#FDF2F8" stroke="#E2E8F0" stroke-width="1.1" opacity="0.78"/>
-<rect x="450.0" y="1352.0" width="340.0" height="48.0" rx="10" fill="#2563EB" stroke="#2563EB" stroke-width="1.0" />
-<text x="620.0" y="1384.0" text-anchor="middle" font-size="18" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#FFFFFF" >05 预期成果</text>
-<line x1="620.0" y1="420.0" x2="620.0" y2="468.0" stroke="#64748B" stroke-width="2.2" marker-end="url(#arrow)" opacity="0.66"/>
-<line x1="620.0" y1="708.0" x2="620.0" y2="756.0" stroke="#64748B" stroke-width="2.2" marker-end="url(#arrow)" opacity="0.66"/>
-<line x1="620.0" y1="996.0" x2="620.0" y2="1044.0" stroke="#64748B" stroke-width="2.2" marker-end="url(#arrow)" opacity="0.66"/>
-<line x1="620.0" y1="1284.0" x2="620.0" y2="1332.0" stroke="#64748B" stroke-width="2.2" marker-end="url(#arrow)" opacity="0.66"/>
+<rect x="78.0" y="466.0" width="1084.0" height="238.0" rx="14" fill="#F0FDF4" stroke="#E2E8F0" stroke-width="1.1" opacity="0.78"/>
+<rect x="450.0" y="486.0" width="340.0" height="48.0" rx="10" fill="#2563EB" stroke="#2563EB" stroke-width="1.0" />
+<text x="620.0" y="518.0" text-anchor="middle" font-size="18" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#FFFFFF" >02 研究内容</text>
+<rect x="78.0" y="752.0" width="1084.0" height="238.0" rx="14" fill="#FEFCE8" stroke="#E2E8F0" stroke-width="1.1" opacity="0.78"/>
+<rect x="450.0" y="772.0" width="340.0" height="48.0" rx="10" fill="#2563EB" stroke="#2563EB" stroke-width="1.0" />
+<text x="620.0" y="804.0" text-anchor="middle" font-size="18" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#FFFFFF" >03 关键技术</text>
+<rect x="78.0" y="1038.0" width="1084.0" height="238.0" rx="14" fill="#FFF7ED" stroke="#E2E8F0" stroke-width="1.1" opacity="0.78"/>
+<rect x="450.0" y="1058.0" width="340.0" height="48.0" rx="10" fill="#2563EB" stroke="#2563EB" stroke-width="1.0" />
+<text x="620.0" y="1090.0" text-anchor="middle" font-size="18" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#FFFFFF" >04 实验验证</text>
+<rect x="78.0" y="1324.0" width="1084.0" height="238.0" rx="14" fill="#FDF2F8" stroke="#E2E8F0" stroke-width="1.1" opacity="0.78"/>
+<rect x="450.0" y="1344.0" width="340.0" height="48.0" rx="10" fill="#2563EB" stroke="#2563EB" stroke-width="1.0" />
+<text x="620.0" y="1376.0" text-anchor="middle" font-size="18" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#FFFFFF" >05 预期成果</text>
+<line x1="620.0" y1="418.0" x2="620.0" y2="466.0" stroke="#64748B" stroke-width="2.2" marker-end="url(#arrow)" opacity="0.66"/>
+<line x1="620.0" y1="704.0" x2="620.0" y2="752.0" stroke="#64748B" stroke-width="2.2" marker-end="url(#arrow)" opacity="0.66"/>
+<line x1="620.0" y1="990.0" x2="620.0" y2="1038.0" stroke="#64748B" stroke-width="2.2" marker-end="url(#arrow)" opacity="0.66"/>
+<line x1="620.0" y1="1276.0" x2="620.0" y2="1324.0" stroke="#64748B" stroke-width="2.2" marker-end="url(#arrow)" opacity="0.66"/>
 <g class="node" data-node="objective_problem" style="cursor:pointer">
 <rect x="114.0" y="294.0" width="497.0" height="86.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
 <text x="362.5" y="342.0" text-anchor="middle" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >降低表面污染</text>
@@ -36,47 +36,47 @@
 <text x="877.5" y="342.0" text-anchor="middle" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >保护透光效率</text>
 </g>
 <g class="node" data-node="content_material" style="cursor:pointer">
-<rect x="114.0" y="582.0" width="325.3" height="86.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
-<text x="276.7" y="630.0" text-anchor="middle" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >筛选涂层体系</text>
+<rect x="114.0" y="580.0" width="325.3" height="86.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
+<text x="276.7" y="628.0" text-anchor="middle" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >筛选涂层体系</text>
 </g>
 <g class="node" data-node="content_texture" style="cursor:pointer">
-<rect x="457.3" y="582.0" width="325.3" height="86.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
-<text x="620.0" y="630.0" text-anchor="middle" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >构筑微纳结构</text>
+<rect x="457.3" y="580.0" width="325.3" height="86.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
+<text x="620.0" y="628.0" text-anchor="middle" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >构筑微纳结构</text>
 </g>
 <g class="node" data-node="content_process" style="cursor:pointer">
-<rect x="800.7" y="582.0" width="325.3" height="86.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
-<text x="963.3" y="630.0" text-anchor="middle" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >设计制备工艺</text>
+<rect x="800.7" y="580.0" width="325.3" height="86.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
+<text x="963.3" y="628.0" text-anchor="middle" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >设计制备工艺</text>
 </g>
 <g class="node" data-node="technology_wetting" style="cursor:pointer">
-<rect x="114.0" y="870.0" width="325.3" height="86.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
-<text x="276.7" y="918.0" text-anchor="middle" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >调控润湿行为</text>
+<rect x="114.0" y="866.0" width="325.3" height="86.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
+<text x="276.7" y="914.0" text-anchor="middle" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >调控润湿行为</text>
 </g>
 <g class="node" data-node="technology_durability" style="cursor:pointer">
-<rect x="457.3" y="870.0" width="325.3" height="86.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
-<text x="620.0" y="918.0" text-anchor="middle" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >提升服役耐久性</text>
+<rect x="457.3" y="866.0" width="325.3" height="86.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
+<text x="620.0" y="914.0" text-anchor="middle" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >提升服役耐久性</text>
 </g>
 <g class="node" data-node="technology_transparency" style="cursor:pointer">
-<rect x="800.7" y="870.0" width="325.3" height="86.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
-<text x="963.3" y="918.0" text-anchor="middle" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >保持高透光率</text>
+<rect x="800.7" y="866.0" width="325.3" height="86.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
+<text x="963.3" y="914.0" text-anchor="middle" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >保持高透光率</text>
 </g>
 <g class="node" data-node="validation_surface" style="cursor:pointer">
-<rect x="114.0" y="1158.0" width="325.3" height="86.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
-<text x="276.7" y="1206.0" text-anchor="middle" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >表征表面结构</text>
+<rect x="114.0" y="1152.0" width="325.3" height="86.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
+<text x="276.7" y="1200.0" text-anchor="middle" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >表征表面结构</text>
 </g>
 <g class="node" data-node="validation_cleaning" style="cursor:pointer">
-<rect x="457.3" y="1158.0" width="325.3" height="86.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
-<text x="620.0" y="1206.0" text-anchor="middle" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >测试自清洁功能</text>
+<rect x="457.3" y="1152.0" width="325.3" height="86.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
+<text x="620.0" y="1200.0" text-anchor="middle" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >测试自清洁功能</text>
 </g>
 <g class="node" data-node="validation_power" style="cursor:pointer">
-<rect x="800.7" y="1158.0" width="325.3" height="86.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
-<text x="963.3" y="1206.0" text-anchor="middle" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >测量发电影响</text>
+<rect x="800.7" y="1152.0" width="325.3" height="86.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
+<text x="963.3" y="1200.0" text-anchor="middle" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >测量发电影响</text>
 </g>
 <g class="node" data-node="outcome_route" style="cursor:pointer">
-<rect x="114.0" y="1446.0" width="497.0" height="86.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
-<text x="362.5" y="1494.0" text-anchor="middle" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >形成技术路线</text>
+<rect x="114.0" y="1438.0" width="497.0" height="86.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
+<text x="362.5" y="1486.0" text-anchor="middle" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >形成技术路线</text>
 </g>
 <g class="node" data-node="outcome_thesis" style="cursor:pointer">
-<rect x="629.0" y="1446.0" width="497.0" height="86.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
-<text x="877.5" y="1494.0" text-anchor="middle" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >支撑论文写作</text>
+<rect x="629.0" y="1438.0" width="497.0" height="86.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
+<text x="877.5" y="1486.0" text-anchor="middle" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >支撑论文写作</text>
 </g>
 </svg>

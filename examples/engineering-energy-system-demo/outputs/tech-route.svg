@@ -31,60 +31,60 @@
 <text x="239.2" y="370.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >校园负荷特性</text>
 </g>
 <g class="node" data-node="boundary_targets" style="cursor:pointer">
-<rect x="92.0" y="440.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
-<text x="239.2" y="486.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >光伏资源条件</text>
+<rect x="92.0" y="430.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
+<text x="239.2" y="476.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >光伏资源条件</text>
 </g>
 <g class="node" data-node="boundary_area" style="cursor:pointer">
-<rect x="92.0" y="556.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
-<text x="239.2" y="602.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >可利用面积统计</text>
+<rect x="92.0" y="536.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
+<text x="239.2" y="582.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >可利用面积统计</text>
 </g>
 <g class="node" data-node="data_load" style="cursor:pointer">
 <rect x="452.4" y="324.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
 <text x="599.6" y="370.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >装机容量估算</text>
 </g>
 <g class="node" data-node="data_resource" style="cursor:pointer">
-<rect x="452.4" y="440.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
-<text x="599.6" y="486.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >组件数量核算</text>
+<rect x="452.4" y="430.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
+<text x="599.6" y="476.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >组件数量核算</text>
 </g>
 <g class="node" data-node="data_tariff" style="cursor:pointer">
-<rect x="452.4" y="556.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
-<text x="599.6" y="602.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >理论发电量计算</text>
+<rect x="452.4" y="536.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
+<text x="599.6" y="582.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >理论发电量计算</text>
 </g>
 <g class="node" data-node="model_assets" style="cursor:pointer">
 <rect x="812.8" y="324.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
 <text x="960.0" y="370.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >源网荷储拓扑</text>
 </g>
 <g class="node" data-node="model_objective" style="cursor:pointer">
-<rect x="812.8" y="440.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
-<text x="960.0" y="486.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >并网接入方式</text>
+<rect x="812.8" y="430.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
+<text x="960.0" y="476.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >并网接入方式</text>
 </g>
 <g class="node" data-node="model_scenarios" style="cursor:pointer">
-<rect x="812.8" y="556.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
-<text x="960.0" y="602.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >EMS 控制结构</text>
+<rect x="812.8" y="536.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
+<text x="960.0" y="582.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >EMS 控制结构</text>
 </g>
 <g class="node" data-node="operation_dispatch" style="cursor:pointer">
 <rect x="1173.2" y="324.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
 <text x="1320.4" y="370.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >典型日出力</text>
 </g>
 <g class="node" data-node="operation_control" style="cursor:pointer">
-<rect x="1173.2" y="440.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
-<text x="1320.4" y="486.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >源荷匹配分析</text>
+<rect x="1173.2" y="430.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
+<text x="1320.4" y="476.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >源荷匹配分析</text>
 </g>
 <g class="node" data-node="operation_storage" style="cursor:pointer">
-<rect x="1173.2" y="556.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
-<text x="1320.4" y="602.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >储能充放电策略</text>
+<rect x="1173.2" y="536.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
+<text x="1320.4" y="582.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >储能充放电策略</text>
 </g>
 <g class="node" data-node="validation_kpi" style="cursor:pointer">
 <rect x="1533.6" y="324.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
 <text x="1680.8" y="370.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >运行效果评价</text>
 </g>
 <g class="node" data-node="validation_sensitivity" style="cursor:pointer">
-<rect x="1533.6" y="440.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
-<text x="1680.8" y="486.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >配置方案优化</text>
+<rect x="1533.6" y="430.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
+<text x="1680.8" y="476.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >配置方案优化</text>
 </g>
 <g class="node" data-node="validation_deliver" style="cursor:pointer">
-<rect x="1533.6" y="556.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
-<text x="1680.8" y="602.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >工程应用建议</text>
+<rect x="1533.6" y="536.0" width="294.4" height="82.0" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.25" />
+<text x="1680.8" y="582.0" text-anchor="middle" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#0F172A" >工程应用建议</text>
 </g>
 <rect x="70.0" y="805.0" width="1780.0" height="108.0" rx="16" fill="#E0F2FE" stroke="#2563EB" stroke-width="1.6" />
 <text x="960.0" y="865.0" text-anchor="middle" font-size="18" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#0F172A" >成果输出：形成校园综合能源系统源网荷储配置方案与运行优化分析结果</text>

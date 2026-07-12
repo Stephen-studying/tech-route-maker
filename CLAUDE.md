@@ -10,11 +10,12 @@ When a user asks for a technical route diagram, paper framework figure, engineer
 2. Establish `domain_context`: discipline, subfield, project type, research object, method family, data/materials, constraints and evaluation metrics.
 3. Read `references/domain-profiles.md` when the discipline is unclear or unfamiliar.
 4. Build `tech-route.json`.
-5. Choose the closest default preset unless the user asks for advanced options.
-6. Run `scripts/validate_route.py`.
-7. Render selected formats with `scripts/render_all.py`.
-8. Report `QUALITY_REPORT.md` warnings and manual review needs.
+5. Inventory local sources with `trm ingest` and record stable source IDs and SHA-256 hashes.
+6. Offer the closest preset, then confirm missing domain and final delivery choices instead of guessing them.
+7. Run `trm validate <route> --strict`.
+8. Render selected formats with `trm render` only after final blockers are resolved.
+9. Report `QUALITY_REPORT.md` findings and required manual revision.
 
 If the user asks for copyable Draw.io or diagrams.net code, render `drawio-code` and tell them to paste `tech-route.drawio-code.xml` into [diagrams.net / draw.io](https://app.diagrams.net/) through **Extras > Edit Diagram**.
 
-Ask only when a missing choice would materially change the output. Missing domain context is a reason to ask before final rendering. Do not render screenshots as the main editable output.
+Use `--allow-draft` only for an explicitly unfinished draft. Do not render screenshots as the main editable output, and do not present inferred nodes as evidence.

@@ -18,6 +18,8 @@ Design a method overview figure for a research project on multimodal photovoltai
 ## User Choices For This Demo
 
 - Figure purpose/subtype: Academic method framework
-- Output formats: PPTX, SVG, Draw.io, HTML, Markdown, JSON
-- Layout: AI or algorithm pipeline
-- Visual style: Premium scientific
+- Output formats: PPTX, SVG, Draw.io, Draw.io code, Excalidraw, Mermaid, HTML, Markdown, JSON
+- Layout: `cn-research-method-matrix`
+- Visual style: `research-ppt-blue`
+
+The maintained v0.3 route uses `examples/academic-paper-demo/brief.md` as its hash-verified canonical demo source. This file is retained as a readable onboarding brief.

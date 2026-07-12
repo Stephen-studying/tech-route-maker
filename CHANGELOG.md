@@ -2,7 +2,32 @@
 
 ## Unreleased
 
-Chinese academic route style upgrade.
+No unreleased changes.
+
+## 0.3.0 - 2026-07-12
+
+Evidence integrity, strict rendering and portable installation release.
+
+Added:
+
+- SHA-256 source manifests and locator-aware evidence verification.
+- Separate evidence, inferred and accounted coverage metrics.
+- Strict final-render quality gate with explicit `--allow-draft` override.
+- `trm ingest` evidence-pack generation and improved `trm init` onboarding.
+- Canonical layout/style registry with explicit errors for unsupported identifiers.
+- Structural and content-parity QA across PPTX, SVG, Draw.io, Draw.io code, Excalidraw, Mermaid, HTML, Markdown and JSON.
+- Deterministic PPTX archives so identical routes produce identical files.
+- GitHub CLI `gh skill install` instructions plus a generic explicit-target installer.
+
+Fixed:
+
+- Mainline and A4 renderers no longer truncate stages after three nodes.
+- Inferred nodes no longer inflate evidence coverage.
+- Unknown layout/style names no longer silently fall back to unrelated templates.
+- Generated demos now include real source statements, stable source IDs and verified hashes.
+- Chinese output is regenerated from UTF-8 source material and checked across formats.
+
+### Chinese academic route style upgrade
 
 Added:
 

@@ -1,6 +1,6 @@
 import sys
 
-from route_common import html_escape, load_route, normalize_route, save_text
+from route_common import layout_family, load_route, normalize_route, save_text
 
 
 def m_id(value):
@@ -13,7 +13,7 @@ def m_label(value):
 
 def make_mermaid(route):
     route = normalize_route(route)
-    direction = "TB" if route.get("layout") in {"vertical-research-route", "closed-loop-optimization"} else "LR"
+    direction = "TB" if layout_family(route.get("layout")) in {"vertical", "a4-stage"} else "LR"
     lines = [f"flowchart {direction}", f'  title["{m_label(route["title"])}"]']
     for stage in route["stages"]:
         lines.append(f'  subgraph {m_id(stage["id"])}["{m_label(stage["title"])}"]')

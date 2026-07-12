@@ -1,37 +1,32 @@
 # Release Checklist
 
-Use this checklist before creating a GitHub release.
-
 ## Validation
 
-- [ ] `python scripts/validate_route.py examples/academic-paper-demo/outputs/tech-route.json`
-- [ ] `python scripts/validate_route.py examples/thesis-proposal-demo/outputs/tech-route.json`
-- [ ] `python scripts/validate_route.py examples/engineering-energy-system-demo/outputs/tech-route.json`
-- [ ] `python scripts/validate_route.py examples/agent-workflow-demo/outputs/tech-route.json`
-- [ ] Python source compile check for `scripts/*.py` and `tech_route_maker/*.py`.
-- [ ] `pip install -e .`
-- [ ] `trm --help`
-- [ ] `trm doctor`
-- [ ] `trm validate examples/academic-paper-demo/outputs/tech-route.json`
-- [ ] `trm render examples/academic-paper-demo/outputs/tech-route.json /tmp/academic --formats pptx,svg,drawio,html,markdown,json`
-- [ ] Legacy scripts still render representative outputs.
-- [ ] Generated PPTX/SVG/Draw.io/JSON parse check.
-- [ ] `QUALITY_REPORT.md` exists in each core demo output directory.
+- [ ] Compile `scripts/*.py`, `tech_route_maker/*.py` and `tests/*.py` on Python 3.8, 3.11 and 3.12.
+- [ ] Run `python -m unittest discover -s tests -v`.
+- [ ] Run `python scripts/check_text_integrity.py`.
+- [ ] Run `trm doctor` and `trm ingest docs --output-dir <temporary-directory>`.
+- [ ] Run `trm validate <route> --strict` for every `examples/*-demo` route.
+- [ ] Render all nine formats for every demo.
+- [ ] Run `scripts/verify_outputs.py` for node preservation, overlap checks, parse checks and label parity.
+- [ ] Run the Skill Creator validator on `SKILL.md`.
+- [ ] Test `gh skill install ... SKILL.md` with at least one user-scope agent target.
 
 ## Documentation
 
-- [ ] `README.md` states the research and engineering positioning in the first screen.
-- [ ] `README.md` does not present advertising as a core scenario.
-- [ ] `README.en.md` and `README.zh-CN.md` match the same information structure.
-- [ ] `docs/quickstart.md`, `docs/schema.md`, `docs/output-formats.md` and `docs/faq.md` are current.
-- [ ] `examples/README.md` lists the four core demos.
-- [ ] `docs/release-notes-v0.2.0.md` is ready for GitHub Releases.
+- [ ] README first screen states the research/engineering focus and manual-editing warning.
+- [ ] Chinese and English guides describe the same strict-quality behavior.
+- [ ] Installation commands use the current GitHub CLI syntax.
+- [ ] Schema docs say `0.3.0` and explain source IDs, hashes, evidence and inference separation.
+- [ ] Layout docs list only implemented renderer identifiers.
+- [ ] `docs/release-notes-v0.3.0.md` is current.
 
 ## GitHub Surface
 
-- [ ] Repository description: `Evidence-grounded editable technical route diagrams for research and engineering projects.`
-- [ ] Topics: `agent-skill`, `technical-route`, `diagram-generator`, `research-diagram`, `engineering-diagram`, `pptx`, `svg`, `drawio`, `mermaid`, `academic-writing`, `ai-agents`, `workflow`.
-- [ ] Social preview uses `assets/social-preview.svg` or a PNG export.
-- [ ] Create tag `v0.2.0`.
-- [ ] Publish release title: `v0.2.0 - Research and Engineering Focus`.
-- [ ] Publish release notes from `docs/release-notes-v0.2.0.md`.
+- [ ] Description: `Evidence-grounded editable technical route diagrams for research and engineering projects.`
+- [ ] Topics include `agent-skill`, `technical-route`, `research-diagram`, `engineering-diagram`, `pptx`, `svg`, `drawio`, `mermaid`, `academic-writing`, `ai-agents` and `workflow`.
+- [ ] README banner, Gallery links and Draw.io URL render correctly.
+- [ ] GitHub Actions pass on `main`.
+- [ ] Create tag `v0.3.0`.
+- [ ] Publish title `v0.3.0 - Evidence Integrity And Reliable Rendering`.
+- [ ] Use `docs/release-notes-v0.3.0.md` as release notes.

@@ -1,79 +1,38 @@
-# Demo Walkthrough: Academic Method Framework
+# Demo Walkthrough: Academic Paper Method Route
 
-This walkthrough shows how a user can start with a short academic project brief and get editable technical route diagrams.
+Detailed guides:
 
-Detailed versions:
+- [English](demo-walkthrough.en.md)
+- [中文](demo-walkthrough.zh-CN.md)
 
-- English: `examples/academic-paper-demo/demo-walkthrough.en.md`
-- Chinese: `examples/academic-paper-demo/demo-walkthrough.zh-CN.md`
-
-## 1. User request
+## User Request
 
 ```text
-Use $tech-route-maker to create a technical route diagram for examples/academic-paper-demo/source/project-brief.md.
+Use $tech-route-maker to turn examples/academic-paper-demo/brief.md into an editable academic technical route diagram.
 ```
 
-## 2. Skill asks required choices
+## Confirmed Choices
 
-The skill must not guess these choices. In this demo, the user selects:
+- Discipline: computer science and renewable-energy engineering.
+- Subfield: multimodal photovoltaic defect detection.
+- Target: paper/defense method figure.
+- Preset: `academic-paper-framework-cn`.
+- Layout: `cn-research-method-matrix`.
+- Style: `research-ppt-blue`.
+- Formats: PPTX, SVG, Draw.io, Draw.io code, Excalidraw, Mermaid, HTML, Markdown and JSON.
 
-```text
-Figure purpose/subtype:
-1. Academic method framework
-
-Output formats:
-PPTX, SVG, Draw.io, HTML, Markdown, JSON
-
-Layout:
-4. AI or algorithm pipeline
-
-Visual style:
-14. Premium scientific
-```
-
-## 3. Route model
-
-The structured source of truth is:
-
-```text
-examples/academic-paper-demo/outputs/tech-route.json
-```
-
-The route answers this reader question:
-
-```text
-该方法如何从多模态图像输入走向可验证的缺陷检测结果？
-```
-
-Reader path:
-
-```text
-研究目标 -> 数据构建 -> 预处理 -> 核心方法 -> 训练推理 -> 验证输出
-```
-
-## 4. Render commands
-
-From the `tech-route-maker` folder:
+## Commands
 
 ```bash
-python scripts/validate_route.py examples/academic-paper-demo/outputs/tech-route.json
-python scripts/render_all.py examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,html,markdown,json
+python -m pip install -e .
+trm ingest examples/academic-paper-demo/brief.md --output-dir evidence-pack
+trm validate examples/academic-paper-demo/outputs/tech-route.json --strict
+trm render examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,drawio-code,excalidraw,mermaid,html,markdown,json
+python scripts/verify_outputs.py examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs
 ```
 
-## 5. Generated editable outputs
+The strict report should show complete domain context, verified source hashes, 100% evidence coverage, 0% inferred coverage and no unresolved questions.
 
-```text
-examples/academic-paper-demo/outputs/tech-route.pptx
-examples/academic-paper-demo/outputs/tech-route.svg
-examples/academic-paper-demo/outputs/tech-route.drawio
-examples/academic-paper-demo/outputs/tech-route.html
-examples/academic-paper-demo/outputs/TECH_ROUTE.md
-examples/academic-paper-demo/outputs/tech-route.json
-```
+## Required User Revision
 
-## 6. What users can edit next
-
-- Change `style` in `tech-route.json` to `schematic-precision`, `editorial-clarity`, or `monochrome-paper`.
-- Change `layout` to `vertical-research-route` or `closed-loop-optimization`.
-- Add/remove nodes under `stages`.
-- Change output formats and rerun `render_all.py`.
+The generated files are editable drafts. Review terminology, evidence locators, route logic, node wording, font sizes, colors and target-journal or defense-template requirements before formal use.

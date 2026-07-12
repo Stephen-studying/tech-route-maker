@@ -15,7 +15,7 @@
 
 ## Default Selection Rule
 
-Do not force users through a long format menu by default. Use the nearest preset and ask only when the requested deliverable is ambiguous.
+Offer the nearest preset, then confirm final output formats and target medium in one concise grouped choice. Allow single or multiple selections and do not silently guess delivery preferences.
 
 Recommended defaults:
 

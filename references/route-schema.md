@@ -2,13 +2,13 @@
 
 Use this schema for `tech-route.json`. The file is the single source of truth for every rendered format.
 
-Current schema version: `0.2.0`.
+Current schema version: `0.3.0`.
 
 ## Top-level fields
 
 | Field | Required | Notes |
 |---|---|---|
-| `route_version` | yes | Current version is `0.2.0`. |
+| `route_version` | yes | Current version is `0.3.0`. |
 | `title` | yes | Visible diagram title. |
 | `subtitle` | no | Optional visible subtitle. |
 | `selected_preset` | yes | `academic-method`, `thesis-proposal`, `engineering-system`, `workflow-pipeline`, or `custom`. |
@@ -29,8 +29,8 @@ Current schema version: `0.2.0`.
 - `created_by`: normally `tech-route-maker`.
 - `selected_output_formats`: actual rendered outputs.
 - `source_type`: `paper`, `proposal`, `engineering`, `workflow`, `legacy-campaign`, or `custom`.
-- `source_files`: list of source files with `path`, `kind`, and `description`.
-- `source_hashes`: optional file hashes for audit trails.
+- `source_files`: list of source files with stable `id`, `path`, `kind`, `description`, and SHA-256.
+- `source_hashes`: structured SHA-256 records with `source_id`, `path`, `algorithm`, and `value`.
 - `language`: route language.
 - `audience`: `research`, `engineering`, `technical`, or another target audience.
 
@@ -66,8 +66,8 @@ Use `domain_context` to prevent generic, field-agnostic diagrams.
 
 ## Evidence fields
 
-- `kind`: `source`, `file`, `function`, `class`, `config`, `document`, `dataset`, `metric`, `output`, or `inference`.
-- `source_id`: optional source record ID.
+- `kind`: use `source` for node-grounding records.
+- `source_id`: required source record ID.
 - `path`: source path when available.
 - `locator`: section, page, paragraph, function, table, figure, or row locator.
 - `quote_or_note`: short evidence note. Keep it concise.
@@ -92,10 +92,12 @@ Use `domain_context` to prevent generic, field-agnostic diagrams.
 
 - `route_version` must exist.
 - `selected_preset` must be valid.
-- Final diagrams should include complete `domain_context`; missing or partial domain context is a warning and should be reported to the user.
+- Final diagrams require complete `domain_context`; missing or partial context blocks final rendering.
 - Stages should usually be 4 to 7.
 - Each stage should usually contain 2 to 6 nodes.
-- Every visible node must have evidence or be explicitly inferred.
-- Inferred nodes should be linked from an assumption by `node_ids`.
+- Every final visible node must have evidence from a declared, hash-verified source.
+- Inferred nodes must be linked from an assumption by `node_ids`, are counted separately from evidence, and block final rendering.
+- Evidence locators must be present in extractable source text when applicable.
+- Unresolved questions block final rendering.
 - Edge endpoints must point to existing nodes.
 - Confidence values must be `high`, `medium`, or `low`.

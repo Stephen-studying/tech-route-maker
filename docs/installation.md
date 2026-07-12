@@ -2,7 +2,17 @@
 
 `tech-route-maker` can be used as a skill folder, a repository context, or a normal local rendering toolkit.
 
-## Codex / OpenAI-Style Skill
+## GitHub CLI Skill Installation
+
+GitHub CLI 2.96 or newer installs the root skill into a selected host:
+
+```bash
+gh skill install Stephen-studying/tech-route-maker SKILL.md --agent codex --scope user
+```
+
+Replace `codex` with `claude-code`, `cursor`, `gemini-cli`, `github-copilot`, or another value shown by `gh skill install --help`. See [Agent compatibility](agent-compatibility.md).
+
+## Manual Codex / OpenAI-Style Installation
 
 Place the repository folder under the agent's skills directory:
 
@@ -55,8 +65,9 @@ Or install the local CLI:
 ```bash
 pip install -e .
 trm doctor
-trm validate examples/academic-paper-demo/outputs/tech-route.json
-trm render examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,drawio-code,html,markdown,json
+trm ingest source-files --output-dir evidence-pack
+trm validate examples/academic-paper-demo/outputs/tech-route.json --strict
+trm render examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,drawio-code,excalidraw,mermaid,html,markdown,json
 ```
 
 ## Output Reminder

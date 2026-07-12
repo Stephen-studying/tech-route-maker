@@ -53,8 +53,9 @@ Most diagram tools create static figures or one-off drawings. They are hard to a
 | Draw.io copy code | Generates `tech-route.drawio-code.xml` that users can paste into [diagrams.net / draw.io](https://app.diagrams.net/) through **Extras > Edit Diagram**. |
 | Domain-aware extraction | Separates computer vision, materials, energy systems, biomedical, mechanical, environmental and social-science route grammar. |
 | Research and engineering presets | Provides templates for academic methods, thesis proposals, engineering systems and technical workflows. |
-| Validation before rendering | Checks route structure, node labels, evidence fields and output selections before export. |
-| Quality report | Summarizes evidence coverage, inferred nodes, unresolved questions and layout warnings. |
+| Verified source manifest | Resolves source paths and checks SHA-256 hashes before evidence is trusted. |
+| Strict final-quality gate | Blocks final rendering when domain context, evidence, source hashes or unresolved questions are incomplete. |
+| Quality report | Separates evidence coverage, inferred coverage and accounted coverage instead of counting inference as evidence. |
 | Agent-compatible instructions | Works with Codex/OpenAI-style agents, Claude, Gemini, Cursor, Copilot, Aider and generic coding agents. |
 
 ## Default Presets
@@ -70,7 +71,7 @@ Most diagram tools create static figures or one-off drawings. They are hard to a
 | `academic-paper-framework-cn` | A Chinese academic method framework or paper figure needs a matrix-style route. | `pptx`, `svg`, `drawio`, `json` |
 | `engineering-project-report-cn` | A Chinese engineering report, platform map or energy-system route needs a wide project diagram. | `pptx`, `svg`, `drawio`, `html`, `json` |
 
-The skill can still ask the user to choose formats, layouts, or visual styles, but it no longer forces a long option list before every render. It asks only when a missing choice would materially change the result.
+The skill offers preset defaults, then confirms final formats, target medium, layout and style in one concise grouped choice. It does not silently guess these delivery preferences.
 
 ## Gallery
 
@@ -84,14 +85,39 @@ The skill can still ask the user to choose formats, layouts, or visual styles, b
 | [Draw.io copy-code HGDY route](examples/drawio-copy-code-demo/) | Project application or route handoff | Copyable Draw.io XML | [XML](examples/drawio-copy-code-demo/outputs/tech-route.drawio-code.xml) |
 | [Agent workflow route](examples/agent-workflow-demo/) | Skill/tool documentation | Workflow pipeline | [SVG](examples/agent-workflow-demo/outputs/tech-route.svg) |
 
+## Install As An Agent Skill
+
+With GitHub CLI 2.96 or newer, install the repository's root `SKILL.md` directly. Replace the agent value as needed:
+
+```bash
+gh skill install Stephen-studying/tech-route-maker SKILL.md --agent codex --scope user
+gh skill install Stephen-studying/tech-route-maker SKILL.md --agent claude-code --scope user
+gh skill install Stephen-studying/tech-route-maker SKILL.md --agent cursor --scope user
+gh skill install Stephen-studying/tech-route-maker SKILL.md --agent gemini-cli --scope user
+gh skill install Stephen-studying/tech-route-maker SKILL.md --agent github-copilot --scope user
+```
+
+GitHub CLI also supports project scope and many additional agents. See [Agent compatibility](docs/agent-compatibility.md) for the full workflow and the generic fallback installer.
+
 ## Quick Start
 
 ```bash
 git clone https://github.com/Stephen-studying/tech-route-maker.git
 cd tech-route-maker
-python scripts/validate_route.py examples/academic-paper-demo/outputs/tech-route.json
-python scripts/render_all.py examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,drawio-code,html,markdown,json
+python -m pip install -e .
+trm doctor
+trm validate examples/academic-paper-demo/outputs/tech-route.json --strict
+trm render examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,drawio-code,excalidraw,mermaid,html,markdown,json
 ```
+
+For a new project, inventory source files before extracting route nodes:
+
+```bash
+trm ingest path/to/paper-or-project --output-dir evidence-pack
+trm init --preset academic-method --output work/tech-route.json --quality-report
+```
+
+Fill the generated `source.md` and `tech-route.json`, then run `trm validate --strict`. Final rendering is blocked until the discipline context is complete, all sources match their SHA-256 hashes, every visible node has verified evidence, and no unresolved question or inferred node remains. `trm render ... --allow-draft` is available only for explicitly unfinished working drafts.
 
 After rendering, open:
 
@@ -147,6 +173,8 @@ This repository is intentionally agent-agnostic. `SKILL.md` is the source of tru
 - `.cursor/rules/tech-route-maker.mdc` for Cursor.
 - `.github/copilot-instructions.md` for GitHub Copilot coding agent.
 - `.aider.conf.yml` for Aider-style workflows.
+
+The preferred installer is `gh skill install ... SKILL.md --agent <agent> --scope user`. Agents without GitHub CLI skill support can use `python scripts/install_agent_skill.py --target <skill-parent-directory> --agent <name>`; the destination is always explicit and the installer never guesses a private agent path.
 
 ## Experimental / Legacy Use Cases
 
