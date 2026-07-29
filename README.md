@@ -1,27 +1,24 @@
-# tech-route-maker
+<div align="center">
 
-<p align="center">
-  <img src="assets/banner.svg" alt="tech-route-maker banner" width="100%">
-</p>
+# 🧭 tech-route-maker
 
-<p align="center">
-  <a href="README.zh-CN.md">Chinese guide</a> |
-  <a href="README.en.md">English guide</a> |
-  <a href="docs/quickstart.md">Quick start</a> |
-  <a href="examples/README.md">Example gallery</a> |
-  <a href="https://app.diagrams.net/">diagrams.net / draw.io</a> |
-  <a href="docs/comparison-before-after.md">Before/after comparison</a> |
-  <a href="docs/faq.md">FAQ</a>
-</p>
+### 可编辑科研技术路线图生成器
 
-<p align="center">
-  <a href="https://github.com/Stephen-studying/tech-route-maker/actions/workflows/validate.yml"><img alt="Validation" src="https://github.com/Stephen-studying/tech-route-maker/actions/workflows/validate.yml/badge.svg"></a>
-  <img alt="License" src="https://img.shields.io/github/license/Stephen-studying/tech-route-maker">
-  <img alt="Editable outputs" src="https://img.shields.io/badge/editable-PPTX%20%7C%20SVG%20%7C%20Draw.io%20%7C%20HTML%20%7C%20Mermaid-315C61">
-  <img alt="Agent compatible" src="https://img.shields.io/badge/agent-Codex%20%7C%20Claude%20%7C%20Gemini%20%7C%20Cursor-blue">
-</p>
+**把论文、开题与工程材料，转换成有证据依据、可重新渲染的技术路线图。**
 
-Evidence-grounded editable technical route diagrams for research and engineering projects.
+[![Agent Skill](https://img.shields.io/badge/Agent%20Skill-tech--route--maker-4F46E5)](SKILL.md)
+[![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](pyproject.toml)
+[![Validation](https://github.com/Stephen-studying/tech-route-maker/actions/workflows/validate.yml/badge.svg)](https://github.com/Stephen-studying/tech-route-maker/actions/workflows/validate.yml)
+[![Editable](https://img.shields.io/badge/outputs-PPTX%20%7C%20SVG%20%7C%20Draw.io-0F766E)](#editable-outputs)
+[![License](https://img.shields.io/badge/license-MIT-F59E0B)](LICENSE)
+
+[快速理解](#what-it-does) · [核心能力](#core-features) · [示例画廊](#gallery) · [快速开始](#quick-start) · [中文说明](README.zh-CN.md)
+
+</div>
+
+---
+
+## What It Does
 
 `tech-route-maker` is an agent skill and renderer toolkit for turning research papers, thesis proposals, engineering reports, project documentation, and technical notes into editable technical route diagrams. It keeps a structured `tech-route.json` as the source of truth, then renders the same route model into editable PPTX, SVG, Draw.io, Draw.io copy-code XML, HTML, Markdown, Mermaid, Excalidraw, and JSON outputs.
 
@@ -37,11 +34,9 @@ The optional `assets/github-visual-preview.png` file is only a GitHub visual pre
 
 Most diagram tools create static figures or one-off drawings. They are hard to audit, hard to revise, and hard to regenerate. This project separates route reasoning from visual rendering:
 
-1. Extract a route model from source materials.
-2. Keep nodes and edges traceable through evidence.
-3. Store the route as reusable JSON.
-4. Render it into editable presentation and documentation formats.
-5. Generate a quality report so missing evidence and assumptions are visible.
+> **① Ingest** → **② Ground** → **③ Model** → **④ Validate** → **⑤ Render**
+>
+> Source inventory · evidence locators · `tech-route.json` · strict quality gate · editable multi-format outputs
 
 ## Core Features
 
