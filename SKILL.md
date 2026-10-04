@@ -296,6 +296,17 @@ Editable constraints:
 
 ## Layout And Style
 
+### Cross-Template Density And Typography
+
+Apply these checks to every template, including when switching templates during an iteration:
+
+- Rebalance content density, font size, node dimensions and spacing together. Do not merely place new labels into fixed oversized boxes or leave large empty areas inside stage regions.
+- Add source-supported method details and stage deliverables where they clarify the research logic. Never invent scientific content to fill space; with sparse evidence, shrink or reorganize the layout and disclose gaps. Clearly label fictional demos.
+- Use a readable hierarchy: prominent stage headers, concise task titles, and smaller, restrained method notes or outputs. Preserve explicit line breaks and avoid cramped text, excessive bold text and unnecessary full sentences.
+- Scale typography for the actual delivery medium and assess the entire figure at its intended viewing size, not only individual nodes at high zoom. Portrait and landscape templates need their own proportions; do not copy one template's font sizes blindly.
+- Keep meaningful whitespace and aligned margins while removing unused container height. Retain the selected template's semantic roles and connector rules rather than forcing all templates into the same structure.
+- Inspect the rendered preview for clipping, overlap, weak hierarchy, oversized containers and illegible text before delivery. Re-render native editable outputs with the same revised geometry and hierarchy; do not fix only the preview image.
+
 Read `references/layout-patterns.md` before building `tech-route.json` for an unfamiliar layout.
 
 Read `references/visual-styles.md` before setting a theme.
