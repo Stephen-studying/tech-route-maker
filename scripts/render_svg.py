@@ -15,7 +15,7 @@ from route_common import (
 )
 
 
-FONT = "Arial, Helvetica, sans-serif"
+FONT = "Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif"
 
 
 def svg_text(x, y, text, size, fill, anchor="middle", weight="400", extra=""):
@@ -32,6 +32,39 @@ def rect(x, y, w, h, rx, fill, stroke="none", stroke_width=1.5, dash="", extra="
         f'<rect x="{x:.1f}" y="{y:.1f}" width="{w:.1f}" height="{h:.1f}" rx="{rx}" '
         f'fill="{fill}" stroke="{stroke}" stroke-width="{stroke_width}"{dash_attr} {extra}/>'
     )
+
+
+def ellipse(x, y, w, h, fill, stroke="none", stroke_width=1.5, dash="", extra=""):
+    dash_attr = f' stroke-dasharray="{dash}"' if dash else ""
+    return (
+        f'<ellipse cx="{x + w / 2:.1f}" cy="{y + h / 2:.1f}" rx="{w / 2:.1f}" ry="{h / 2:.1f}" '
+        f'fill="{fill}" stroke="{stroke}" stroke-width="{stroke_width}"{dash_attr} {extra}/>'
+    )
+
+
+def block_arrow(x, y, w, h, direction, fill, stroke, stroke_width=1.4):
+    if direction == "left":
+        points = [
+            (x + w, y + h * 0.25),
+            (x + w * 0.38, y + h * 0.25),
+            (x + w * 0.38, y),
+            (x, y + h / 2),
+            (x + w * 0.38, y + h),
+            (x + w * 0.38, y + h * 0.75),
+            (x + w, y + h * 0.75),
+        ]
+    else:
+        points = [
+            (x, y + h * 0.25),
+            (x + w * 0.62, y + h * 0.25),
+            (x + w * 0.62, y),
+            (x + w, y + h / 2),
+            (x + w * 0.62, y + h),
+            (x + w * 0.62, y + h * 0.75),
+            (x, y + h * 0.75),
+        ]
+    point_text = " ".join(f"{px:.1f},{py:.1f}" for px, py in points)
+    return f'<polygon points="{point_text}" fill="{fill}" stroke="{stroke}" stroke-width="{stroke_width}"/>'
 
 
 def stage_palette(style, index):
@@ -56,6 +89,8 @@ def draw_wrapped_text(out, text, x, y, width_chars, max_lines, size, fill, weigh
 
 
 def draw_title(out, route, layout, style):
+    if layout["orientation"] == "research-framework-template":
+        return
     width = layout["width"]
     title = route["title"]
     if layout["orientation"] == "mainline":
@@ -98,6 +133,50 @@ def draw_title(out, route, layout, style):
             draw_wrapped_text(out, item, x + i * (chip_w + chip_gap) + chip_w / 2, y + 17, 15, 1, 10, style["muted"], "600")
 
 
+def draw_research_framework_headers(out, layout, style):
+    if layout["orientation"] != "research-framework-template":
+        return
+    for header in layout.get("headers") or []:
+        if header["role"] == "content":
+            fill = style["content_header_fill"]
+            stroke = style["content_header_stroke"]
+        else:
+            fill = style["side_header_fill"]
+            stroke = style["side_header_stroke"]
+        out.append(rect(header["x"], header["y"], header["w"], header["h"], 0, fill, stroke, 1.4, "6 4"))
+        draw_wrapped_text(
+            out,
+            header["text"],
+            header["x"] + header["w"] / 2,
+            header["y"] + header["h"] / 2 + 7,
+            text_capacity(header["text"], header["w"] - 20, 20),
+            2,
+            20,
+            style["text"],
+            "700",
+        )
+
+
+def draw_vertical_label(out, text, box, style):
+    compact = str(text or "").replace("\n", "").replace(" ", "")
+    if not compact:
+        return
+    size = min(18, max(13, int((box["h"] - 16) / max(1, len(compact)) - 2)))
+    total_h = len(compact) * (size + 2)
+    start_y = box["y"] + (box["h"] - total_h) / 2 + size
+    for index, char in enumerate(compact):
+        out.append(
+            svg_text(
+                box["x"] + box["w"] / 2,
+                start_y + index * (size + 2),
+                char,
+                size,
+                style["text"],
+                weight="700",
+            )
+        )
+
+
 def draw_vertical_axis(out, layout, style):
     stages = layout["stages"]
     if not stages:
@@ -118,7 +197,40 @@ def draw_stage_regions(out, layout, style):
     for stage in layout["stages"]:
         fill = stage_palette(style, stage["index"])
         dash = style.get("stage_dash", "")
-        if stage.get("layout") == "mainline":
+        if stage.get("layout") == "research-framework-template":
+            group_strokes = style.get("group_strokes") or [style["stage_stroke"]]
+            group_stroke = group_strokes[stage["group_stroke_index"] % len(group_strokes)]
+            out.append(rect(stage["x"], stage["y"], stage["w"], stage["h"], 0, fill, group_stroke, 1.25, "6 4"))
+            label = stage["content_label_box"]
+            out.append(rect(label["x"], label["y"], label["w"], label["h"], 0, "#FFFFFF", style["template_border"], 1.2, "5 4"))
+            draw_vertical_label(out, stage["content_label"], label, style)
+            logic = stage["logic_box"]
+            method = stage["method_box"]
+            out.append(ellipse(logic["x"], logic["y"], logic["w"], logic["h"], style["logic_fill"], style["logic_stroke"], 1.3))
+            out.append(ellipse(method["x"], method["y"], method["w"], method["h"], style["method_fill"], style["method_stroke"], 1.3))
+            draw_wrapped_text(
+                out,
+                stage["logic_label"],
+                logic["x"] + logic["w"] / 2,
+                logic["y"] + logic["h"] / 2 + 5,
+                text_capacity(stage["logic_label"], logic["w"] - 22, 17),
+                3,
+                17,
+                style["text"],
+                "700",
+            )
+            draw_wrapped_text(
+                out,
+                stage["method_label"],
+                method["x"] + method["w"] / 2,
+                method["y"] + method["h"] / 2 + 5,
+                text_capacity(stage["method_label"], method["w"] - 22, 16),
+                3,
+                16,
+                style["text"],
+                "600",
+            )
+        elif stage.get("layout") == "mainline":
             out.append(rect(stage["x"], stage["y"], stage["w"], stage["h"], 16, fill, style["stage_stroke"], 1.0, "", 'opacity="0.72"'))
             main = stage["main_box"]
             out.append(rect(main["x"], main["y"], main["w"], main["h"], 12, style.get("main_fill", "#DBEAFE"), style.get("main_stroke", style["header_fill"]), 1.8))
@@ -164,6 +276,28 @@ def draw_stage_flow_edges(out, layout, style):
 
 
 def draw_edges(out, route, layout, style):
+    if layout["orientation"] == "research-framework-template":
+        for arrow in layout.get("side_arrows") or []:
+            out.append(
+                block_arrow(
+                    arrow["x"],
+                    arrow["y"],
+                    arrow["w"],
+                    arrow["h"],
+                    arrow["direction"],
+                    "#FFFFFF",
+                    style["template_arrow"],
+                    1.35,
+                )
+            )
+        for segment in layout.get("spine_segments") or []:
+            out.append(
+                f'<line x1="{segment["x1"]:.1f}" y1="{segment["y1"]:.1f}" '
+                f'x2="{segment["x2"]:.1f}" y2="{segment["y2"]:.1f}" '
+                f'stroke="{style["template_spine"]}" stroke-width="5.2" '
+                f'marker-end="url(#blackArrow)"/>'
+            )
+        return
     if not show_node_edges(route):
         draw_stage_flow_edges(out, layout, style)
         return
@@ -200,6 +334,23 @@ def draw_nodes(out, route, layout, style):
                 continue
             box = nodes[node["id"]]
             out.append(f'<g class="node" data-node="{html_escape(node["id"])}" style="cursor:pointer">')
+            if layout["orientation"] == "research-framework-template":
+                out.append(rect(box["x"], box["y"], box["w"], box["h"], 0, style["node_fill"], style["template_border"], 1.15, "5 4"))
+                node_size = 17
+                width_chars = text_capacity(node["label"], box["w"] - 24, node_size)
+                draw_wrapped_text(
+                    out,
+                    node["label"],
+                    box["x"] + box["w"] / 2,
+                    box["y"] + box["h"] / 2 + 6,
+                    width_chars,
+                    2,
+                    node_size,
+                    style["text"],
+                    "600",
+                )
+                out.append("</g>")
+                continue
             shadow = "" if layout["orientation"] in {"mainline", "a4stage"} else 'filter="url(#softShadow)"'
             out.append(rect(box["x"], box["y"], box["w"], box["h"], 10, style["node_fill"], style["node_stroke"], 1.25, "", shadow))
             tag = str(node.get("tag") or "")
@@ -230,12 +381,15 @@ def make_svg(route):
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">',
         "<defs>",
         f'<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="{style["line"]}"/></marker>',
+        f'<marker id="blackArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="{style.get("template_spine", "#111111")}"/></marker>',
         '<filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#CBD5E1" flood-opacity="0.32"/></filter>',
         "</defs>",
         f'<rect width="100%" height="100%" fill="{style["background"]}"/>',
-        rect(10, 10, width - 20, height - 20, 18, "none", style.get("canvas_stroke", "#D8E1EA"), 1.0),
     ]
+    if layout["orientation"] != "research-framework-template":
+        out.append(rect(10, 10, width - 20, height - 20, 18, "none", style.get("canvas_stroke", "#D8E1EA"), 1.0))
     draw_title(out, route, layout, style)
+    draw_research_framework_headers(out, layout, style)
     if layout["orientation"] == "vertical":
         draw_vertical_axis(out, layout, style)
     draw_stage_regions(out, layout, style)

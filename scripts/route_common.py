@@ -278,6 +278,33 @@ STYLES = {
         "stage_dash": "7 6",
         "canvas_stroke": "#D8E5EE",
     },
+    "cn-classic-research-framework": {
+        "background": "#FFFFFF",
+        "text": "#111827",
+        "muted": "#5B6472",
+        "line": "#6B7280",
+        "stage_fill": "#FFF7DD",
+        "stage_stroke": "#D6A33D",
+        "header_fill": "#DCEBFA",
+        "header_text": "#111827",
+        "node_fill": "#FFFFFF",
+        "node_stroke": "#7398D0",
+        "palette": ["#FFF7DD", "#EFF6FF", "#FFF1F0", "#F2FAE8", "#FFF6E8", "#EEF7F5"],
+        "group_strokes": ["#D6A33D", "#7297D0", "#D9786D", "#76A85B", "#D6A33D", "#4C9A8E"],
+        "logic_fill": "#FFF1CF",
+        "logic_stroke": "#E5A12D",
+        "method_fill": "#FBE0DB",
+        "method_stroke": "#D66C5E",
+        "content_header_fill": "#FFF0C6",
+        "content_header_stroke": "#D6A33D",
+        "side_header_fill": "#DCEBFA",
+        "side_header_stroke": "#4A7FC1",
+        "template_border": "#7398D0",
+        "template_arrow": "#6B7280",
+        "template_spine": "#111111",
+        "stage_dash": "6 5",
+        "canvas_stroke": "#FFFFFF",
+    },
     "cn-blue-green-proposal": {
         "background": "#FFFFFF",
         "text": "#152E3A",
@@ -490,6 +517,9 @@ def normalize_route(route):
             {
                 "id": sid,
                 "title": title,
+                "content_label": str(stage.get("content_label") or title),
+                "logic_label": str(stage.get("logic_label") or ""),
+                "method_label": str(stage.get("method_label") or ""),
                 "summary": str(stage.get("summary") or ""),
                 "nodes": nodes,
             }
@@ -577,6 +607,161 @@ def build_layout(route):
     campaign_layouts = {"campaign-strategy-map"}
     mainline_layouts = {"cn-ppt-mainline-route", "ppt-mainline-route", "research-ppt-mainline"}
     a4_stage_layouts = {"cn-a4-stage-route", "a4-stage-route"}
+    research_framework_layouts = {"cn-three-column-research-framework"}
+
+    if layout_name in research_framework_layouts:
+        width = 1000
+        header_y = 24
+        header_h = 58
+        left_x = 18
+        side_w = 145
+        content_x = 200
+        content_w = 600
+        right_x = 837
+        stage_y = 116
+        stage_gap = 24
+        node_x = content_x + 88
+        node_w = content_w - 106
+        node_h = 42
+        node_gap = 8
+        headers = [
+            {
+                "id": "logic",
+                "text": str((route.get("metadata") or {}).get("template_headers", {}).get("logic") or "研究框架"),
+                "x": left_x,
+                "y": header_y,
+                "w": side_w,
+                "h": header_h,
+                "role": "side",
+            },
+            {
+                "id": "content",
+                "text": str((route.get("metadata") or {}).get("template_headers", {}).get("content") or "研究内容"),
+                "x": content_x,
+                "y": header_y,
+                "w": content_w,
+                "h": header_h,
+                "role": "content",
+            },
+            {
+                "id": "method",
+                "text": str((route.get("metadata") or {}).get("template_headers", {}).get("method") or "研究方法"),
+                "x": right_x,
+                "y": header_y,
+                "w": side_w,
+                "h": header_h,
+                "role": "side",
+            },
+        ]
+        side_arrows = [
+            {
+                "x": left_x + side_w + 7,
+                "y": header_y + 15,
+                "w": content_x - (left_x + side_w) - 14,
+                "h": 28,
+                "direction": "right",
+            },
+            {
+                "x": content_x + content_w + 7,
+                "y": header_y + 15,
+                "w": right_x - (content_x + content_w) - 14,
+                "h": 28,
+                "direction": "left",
+            },
+        ]
+        spine_segments = []
+        for si, stage in enumerate(stages):
+            count = max(1, len(stage["nodes"]))
+            nodes_total_h = count * node_h + max(0, count - 1) * node_gap
+            stage_h = max(126, nodes_total_h + 44)
+            logic_box = {
+                "x": left_x,
+                "y": stage_y + stage_h / 2 - 36,
+                "w": side_w,
+                "h": 72,
+            }
+            method_box = {
+                "x": right_x,
+                "y": stage_y + stage_h / 2 - 38,
+                "w": side_w,
+                "h": 76,
+            }
+            label_box = {
+                "x": content_x + 17,
+                "y": stage_y + 14,
+                "w": 54,
+                "h": stage_h - 28,
+            }
+            stage_box = {
+                "id": stage["id"],
+                "title": stage["title"],
+                "content_label": stage.get("content_label") or stage["title"],
+                "logic_label": stage.get("logic_label") or stage["title"],
+                "method_label": stage.get("method_label") or "研究方法",
+                "x": content_x,
+                "y": stage_y,
+                "w": content_w,
+                "h": stage_h,
+                "index": si,
+                "layout": "research-framework-template",
+                "logic_box": logic_box,
+                "method_box": method_box,
+                "content_label_box": label_box,
+                "group_stroke_index": si,
+            }
+            stage_boxes.append(stage_box)
+            node_y = stage_y + (stage_h - nodes_total_h) / 2
+            for ni, node in enumerate(stage["nodes"]):
+                nodes[node["id"]] = {
+                    "x": node_x,
+                    "y": node_y + ni * (node_h + node_gap),
+                    "w": node_w,
+                    "h": node_h,
+                    "stage": stage["id"],
+                    "role": "content-row",
+                }
+            side_arrows.extend(
+                [
+                    {
+                        "x": left_x + side_w + 7,
+                        "y": stage_y + stage_h / 2 - 14,
+                        "w": content_x - (left_x + side_w) - 14,
+                        "h": 28,
+                        "direction": "right",
+                    },
+                    {
+                        "x": content_x + content_w + 7,
+                        "y": stage_y + stage_h / 2 - 14,
+                        "w": right_x - (content_x + content_w) - 14,
+                        "h": 28,
+                        "direction": "left",
+                    },
+                ]
+            )
+            if si:
+                previous = stage_boxes[si - 1]["logic_box"]
+                spine_segments.append(
+                    {
+                        "x1": previous["x"] + previous["w"] / 2,
+                        "y1": previous["y"] + previous["h"] + 2,
+                        "x2": logic_box["x"] + logic_box["w"] / 2,
+                        "y2": logic_box["y"] - 4,
+                    }
+                )
+            stage_y += stage_h + stage_gap
+        height = int(stage_y - stage_gap + 24)
+        return {
+            "width": width,
+            "height": height,
+            "layout_name": layout_name,
+            "orientation": "research-framework-template",
+            "headers": headers,
+            "stages": stage_boxes,
+            "nodes": nodes,
+            "side_arrows": side_arrows,
+            "spine_segments": spine_segments,
+            "route": route,
+        }
 
     if layout_name in mainline_layouts:
         width = 1920

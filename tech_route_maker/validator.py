@@ -19,6 +19,7 @@ from .schema import (
     selected_output_formats,
 )
 from .sources import verify_sources
+from .templates import TEMPLATE_LIBRARY
 
 
 def load_route(path):
@@ -86,6 +87,22 @@ def validate(route, route_path=None):
     style = str(route.get("style") or "")
     if canonical_style_name(style) not in SUPPORTED_STYLES:
         errors.append(f"Unsupported style: {style or '(missing)'}")
+    template_id = str(route.get("template_id") or (route.get("metadata") or {}).get("template_id") or "")
+    if template_id:
+        template = TEMPLATE_LIBRARY.get(template_id)
+        if not template:
+            errors.append(f"Unsupported template_id: {template_id}")
+        else:
+            if layout != template["layout"]:
+                errors.append(
+                    f"Template {template_id} requires layout {template['layout']}, got {layout or '(missing)'}"
+                )
+            if canonical_style_name(style) != canonical_style_name(template["style"]):
+                warnings.append(
+                    f"Template {template_id} normally uses style {template['style']}; current style is {style}."
+                )
+    elif layout == "cn-three-column-research-framework":
+        errors.append("cn-three-column-research-framework requires template_id.")
 
     domain_status = domain_context_status(route)
     missing_domain = domain_context_missing_fields(route)
@@ -99,6 +116,12 @@ def validate(route, route_path=None):
         warnings.append("Route has fewer than 4 stages; consider adding validation or output stages.")
     if len(stages) > 7:
         warnings.append("Route has more than 7 stages; consider grouping stages.")
+    if template_id == "cn-three-column-research-framework":
+        if not 4 <= len(stages) <= 6:
+            errors.append("Three-column research framework requires 4 to 6 stages.")
+        overrides = route.get("renderer_overrides") or {}
+        if overrides.get("show_node_edges") or overrides.get("show_edge_labels"):
+            errors.append("Three-column research framework does not allow node edges or edge labels on the main canvas.")
 
     metadata = route.get("metadata") or {}
     source_files = metadata.get("source_files", [])
@@ -160,6 +183,17 @@ def validate(route, route_path=None):
             warnings.append(f"Stage has fewer than 2 nodes: {stage_id}")
         if len(stage_nodes) > 6:
             errors.append(f"Stage has more than 6 nodes and cannot be rendered safely: {stage_id}")
+        if template_id == "cn-three-column-research-framework":
+            if not stage.get("logic_label"):
+                errors.append(f"Three-column template stage is missing logic_label: {stage_id}")
+            if not (stage.get("content_label") or stage.get("title")):
+                errors.append(f"Three-column template stage is missing content_label: {stage_id}")
+            if not stage.get("method_label"):
+                errors.append(f"Three-column template stage is missing method_label: {stage_id}")
+            if not 2 <= len(stage_nodes) <= 3:
+                errors.append(
+                    f"Three-column template stage must contain 2 or 3 content rows: {stage_id}"
+                )
 
         for node in stage_nodes:
             node_id = node.get("id")

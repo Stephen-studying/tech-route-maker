@@ -14,7 +14,7 @@
 [![可编辑输出](https://img.shields.io/badge/%E8%BE%93%E5%87%BA-PPTX%20%7C%20SVG%20%7C%20Draw.io-0F766E)](#支持的可编辑输出)
 [![许可证](https://img.shields.io/badge/%E8%AE%B8%E5%8F%AF%E8%AF%81-MIT-F59E0B)](LICENSE)
 
-[项目简介](#项目简介) · [核心特点](#核心特点) · [适用场景](#适用场景) · [快速开始](#快速开始) · [安全原则](#安全原则)
+[项目简介](#项目简介) · [核心特点](#核心特点) · [模板库](#结构模板库) · [适用场景](#适用场景) · [快速开始](#快速开始) · [安全原则](#安全原则)
 
 </div>
 
@@ -54,6 +54,7 @@
 | 可编辑输出 | 生成 PPTX、SVG、Draw.io 等可编辑文件，而不是一次性截图。 |
 | Draw.io 复制代码 | 生成 `tech-route.drawio-code.xml`，用户可以复制到 [diagrams.net / draw.io](https://app.diagrams.net/) 的 XML 编辑窗口中直接生成可编辑图。 |
 | 科研与工程预设 | 面向论文方法图、开题技术路线、工程系统路线和技术工作流。 |
+| 结构模板库 | 按研究逻辑、内容、方法等语义角色套用固定结构，并保留可编辑性。 |
 | 来源清单与哈希校验 | 在采信证据前定位来源文件并核对 SHA-256，防止来源被替换或路径失效。 |
 | 严格最终质量门槛 | 学科上下文、来源哈希、节点证据或未解决问题不完整时，默认禁止正式渲染。 |
 | 质量报告 | 分开报告真实证据覆盖率、推断覆盖率和已说明覆盖率，不再把推断算作证据。 |
@@ -73,6 +74,38 @@
 | `engineering-project-report-cn` | 中文工程项目汇报、平台建设和能源系统路线图。 | `pptx`, `svg`, `drawio`, `html`, `json` |
 
 技能会先给出推荐预设，再用一个简洁的组合问题确认最终输出格式、使用媒介、版式和风格；用户可以单选或多选，Skill 不会默默猜测这些交付偏好。
+
+## 结构模板库
+
+执行 `trm templates` 可以查看 6 套可填充的结构模板。用户明确指定模板时，智能体直接套用；模板选择不明确时，先询问用户。学科与项目事实仍需根据来源材料确认。
+
+| 模板 | 适用场景 |
+|---|---|
+| `cn-three-column-research-framework` | 三栏科研框架：左侧研究逻辑、中间研究内容、右侧研究方法 |
+| `cn-horizontal-defense-mainline` | 16:9 答辩与项目汇报主线图 |
+| `cn-a4-stacked-research` | Word、论文与竖版报告插图 |
+| `cn-method-matrix-board` | 论文方法总览与研究矩阵 |
+| `cn-monochrome-review-route` | 黑白打印与正式评审 |
+| `cn-engineering-layer-map` | 能源、控制、平台与工程系统分层图 |
+
+可以直接向智能体提出：
+
+> 使用 tech-route-maker，套用三栏科研框架模板，根据我的项目材料生成 PPTX、SVG 和 Draw.io 文件。
+
+CLI 用法：
+
+```bash
+trm templates
+trm init --template cn-three-column-research-framework --output work/tech-route.json
+```
+
+初始模板是待填写的骨架。补充领域信息、项目内容和来源证据，执行严格校验后，再输出所需格式。详见 [模板目录](references/template-catalog.md)。
+
+### 模板套用示例
+
+![三栏科研框架模板示例](examples/template-library-demo/outputs/tech-route.svg)
+
+[完整案例](examples/template-library-demo/) · [可编辑 PPTX](examples/template-library-demo/outputs/tech-route.pptx) · [SVG](examples/template-library-demo/outputs/tech-route.svg) · [Draw.io](examples/template-library-demo/outputs/tech-route.drawio) · [可复制 XML](examples/template-library-demo/outputs/tech-route.drawio-code.xml)
 
 ## 适用场景
 
@@ -118,6 +151,7 @@ git clone https://github.com/Stephen-studying/tech-route-maker.git
 cd tech-route-maker
 python -m pip install -e .
 trm doctor
+trm templates
 trm validate examples/academic-paper-demo/outputs/tech-route.json --strict
 trm render examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,drawio-code,excalidraw,mermaid,html,markdown,json
 ```

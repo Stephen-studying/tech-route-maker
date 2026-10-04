@@ -1,4 +1,5 @@
 import argparse
+import importlib.util
 import json
 import subprocess
 import sys
@@ -10,6 +11,7 @@ from .quality import render_quality_report_markdown
 from .registry import SUPPORTED_LAYOUTS, SUPPORTED_STYLES
 from .schema import PRESETS, SUPPORTED_FORMATS, make_template_route
 from .sources import attach_source_hashes
+from .templates import TEMPLATE_LIBRARY, template_summary_rows
 from .validator import format_validation_result, strict_render_blockers, validate, validate_file
 
 
@@ -48,7 +50,14 @@ def command_render(args):
 
 
 def command_init(args):
-    route = make_template_route(args.preset)
+    preset = args.preset
+    if not preset:
+        preset = (
+            "chinese-thesis-proposal"
+            if args.template == "cn-three-column-research-framework"
+            else "academic-method"
+        )
+    route = make_template_route(preset, template_id=args.template)
     output = Path(args.output)
     output.parent.mkdir(parents=True, exist_ok=True)
     source_path = output.parent / "source.md"
@@ -68,6 +77,18 @@ def command_init(args):
         quality_path.write_text(render_quality_report_markdown(report), encoding="utf-8")
     print(f"Wrote {output}")
     print(f"Wrote {source_path}")
+    return 0
+
+
+def command_templates(args):
+    rows = template_summary_rows()
+    if args.json:
+        print(json.dumps(rows, ensure_ascii=False, indent=2))
+        return 0
+    print("Available structural templates:")
+    for row in rows:
+        outputs = ",".join(row["outputs"])
+        print(f"- {row['id']}: {row['name_zh']} | {row['description_zh']} | outputs={outputs}")
     return 0
 
 
@@ -92,10 +113,18 @@ def command_doctor(_args):
         "presets": sorted(PRESETS),
         "layouts": sorted(SUPPORTED_LAYOUTS),
         "styles": sorted(SUPPORTED_STYLES),
+        "templates": sorted(TEMPLATE_LIBRARY),
+        "python_pptx_available": bool(importlib.util.find_spec("pptx")),
     }
     for key, value in checks.items():
         print(f"{key}: {value}")
-    return 0 if checks["render_all_exists"] and checks["validate_route_exists"] else 1
+    return (
+        0
+        if checks["render_all_exists"]
+        and checks["validate_route_exists"]
+        and checks["python_pptx_available"]
+        else 1
+    )
 
 
 def build_parser():
@@ -123,10 +152,19 @@ def build_parser():
     render_parser.set_defaults(func=command_render)
 
     init_parser = sub.add_parser("init", help="Create a starter tech-route.json file.")
-    init_parser.add_argument("--preset", default="academic-method", choices=sorted(PRESETS))
+    init_parser.add_argument("--preset", choices=sorted(PRESETS))
+    init_parser.add_argument(
+        "--template",
+        choices=sorted(TEMPLATE_LIBRARY),
+        help="Apply a reusable structural template to the starter route.",
+    )
     init_parser.add_argument("--output", default="tech-route.json")
     init_parser.add_argument("--quality-report", action="store_true")
     init_parser.set_defaults(func=command_init)
+
+    templates_parser = sub.add_parser("templates", help="List reusable structural templates.")
+    templates_parser.add_argument("--json", action="store_true")
+    templates_parser.set_defaults(func=command_templates)
 
     ingest_parser = sub.add_parser("ingest", help="Hash source files and build an evidence pack.")
     ingest_parser.add_argument("sources", nargs="+", help="Files or directories to inventory.")

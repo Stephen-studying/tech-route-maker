@@ -23,6 +23,19 @@ class CoreTests(unittest.TestCase):
     def test_current_schema_version(self):
         self.assertEqual(ROUTE_VERSION, "0.3.0")
 
+    def test_three_column_template_has_required_roles(self):
+        route = make_template_route("chinese-thesis-proposal")
+        self.assertEqual(route["template_id"], "cn-three-column-research-framework")
+        self.assertEqual(len(route["stages"]), 5)
+        for stage in route["stages"]:
+            self.assertTrue(stage["logic_label"])
+            self.assertTrue(stage["content_label"])
+            self.assertTrue(stage["method_label"])
+            self.assertIn(len(stage["nodes"]), {2, 3})
+        layout = build_layout(route)
+        self.assertEqual(layout["orientation"], "research-framework-template")
+        self.assertEqual(len(layout["spine_segments"]), 4)
+
     def test_inference_does_not_inflate_evidence_coverage(self):
         report = build_quality_report(make_template_route())
         self.assertEqual(report["evidence_coverage"], 0.5)

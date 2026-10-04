@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "tech-route-maker"
-version = "0.3.0"
+version = "0.4.0"
 description = "Evidence-grounded editable technical route diagrams for research and engineering projects."
 readme = "README.md"
 requires-python = ">=3.8"
@@ -22,7 +22,9 @@ keywords = [
   "svg",
   "drawio"
 ]
-dependencies = []
+dependencies = [
+  "python-pptx>=1.0.0"
+]
 
 [project.scripts]
 trm = "tech_route_maker.cli:main"

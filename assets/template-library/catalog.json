@@ -1,0 +1,47 @@
+{
+  "version": "0.4.0",
+  "templates": [
+    {
+      "id": "cn-three-column-research-framework",
+      "name_zh": "三栏科研框架图",
+      "layout": "cn-three-column-research-framework",
+      "style": "cn-classic-research-framework",
+      "outputs": ["pptx", "svg", "drawio", "html", "json"]
+    },
+    {
+      "id": "cn-horizontal-defense-mainline",
+      "name_zh": "横向答辩主线图",
+      "layout": "cn-ppt-mainline-route",
+      "style": "research-ppt-blue",
+      "outputs": ["pptx", "svg", "drawio", "html", "json"]
+    },
+    {
+      "id": "cn-a4-stacked-research",
+      "name_zh": "A4 竖向分阶段图",
+      "layout": "cn-a4-stage-route",
+      "style": "cn-polished-pastel-academic",
+      "outputs": ["pptx", "svg", "drawio", "html", "json"]
+    },
+    {
+      "id": "cn-method-matrix-board",
+      "name_zh": "研究方法矩阵图",
+      "layout": "cn-research-method-matrix",
+      "style": "cn-blue-green-proposal",
+      "outputs": ["pptx", "svg", "drawio", "html", "json"]
+    },
+    {
+      "id": "cn-monochrome-review-route",
+      "name_zh": "黑白评审线框图",
+      "layout": "cn-monochrome-linework-route",
+      "style": "cn-reviewer-linework",
+      "outputs": ["pptx", "svg", "drawio", "html", "json"]
+    },
+    {
+      "id": "cn-engineering-layer-map",
+      "name_zh": "工程系统分层图",
+      "layout": "cn-wide-project-map",
+      "style": "cn-blue-green-proposal",
+      "outputs": ["pptx", "svg", "drawio", "html", "json"]
+    }
+  ]
+}

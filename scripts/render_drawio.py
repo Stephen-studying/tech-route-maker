@@ -17,10 +17,116 @@ def palette_item(style, index):
     return palette[index % len(palette)]
 
 
+def make_research_framework_drawio(layout, route, style):
+    page_w = int(layout["width"] + 20)
+    page_h = int(layout["height"] + 20)
+    parts = [
+        '<mxfile host="app.diagrams.net" modified="2026-07-30T00:00:00.000Z" agent="tech-route-maker" version="24.7.8">',
+        '<diagram id="tech-route" name="Research Framework">',
+        f'<mxGraphModel dx="1000" dy="1000" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="{page_w}" pageHeight="{page_h}" math="0" shadow="0">',
+        "<root>",
+        '<mxCell id="0"/>',
+        '<mxCell id="1" parent="0"/>',
+    ]
+    for header in layout.get("headers") or []:
+        if header["role"] == "content":
+            fill = style["content_header_fill"]
+            stroke = style["content_header_stroke"]
+        else:
+            fill = style["side_header_fill"]
+            stroke = style["side_header_stroke"]
+        parts.append(
+            f'<mxCell id="header_{header["id"]}" value="{html_escape(header["text"])}" '
+            f'style="rounded=0;whiteSpace=wrap;html=1;fillColor={fill};strokeColor={stroke};'
+            f'dashed=1;dashPattern=6 4;fontColor={style["text"]};fontStyle=1;fontSize=20;'
+            f'fontFamily=Microsoft YaHei;" vertex="1" parent="1">'
+            f'<mxGeometry x="{header["x"]:.0f}" y="{header["y"]:.0f}" width="{header["w"]:.0f}" '
+            f'height="{header["h"]:.0f}" as="geometry"/></mxCell>'
+        )
+
+    group_strokes = style.get("group_strokes") or [style["stage_stroke"]]
+    for stage in layout["stages"]:
+        group_stroke = group_strokes[stage["group_stroke_index"] % len(group_strokes)]
+        parts.append(
+            f'<mxCell id="stage_{stage["id"]}" value="" '
+            f'style="rounded=0;whiteSpace=wrap;html=1;fillColor={palette_item(style, stage["index"])};'
+            f'strokeColor={group_stroke};dashed=1;dashPattern=6 4;" vertex="1" parent="1">'
+            f'<mxGeometry x="{stage["x"]:.0f}" y="{stage["y"]:.0f}" width="{stage["w"]:.0f}" '
+            f'height="{stage["h"]:.0f}" as="geometry"/></mxCell>'
+        )
+        label = stage["content_label_box"]
+        stacked = html_escape("<br>".join(str(stage["content_label"]).replace("\n", "").replace(" ", "")))
+        parts.append(
+            f'<mxCell id="stage_{stage["id"]}_label" value="{stacked}" '
+            f'style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor={style["template_border"]};'
+            f'dashed=1;dashPattern=5 4;fontColor={style["text"]};fontStyle=1;fontSize=16;'
+            f'fontFamily=Microsoft YaHei;" vertex="1" parent="1">'
+            f'<mxGeometry x="{label["x"]:.0f}" y="{label["y"]:.0f}" width="{label["w"]:.0f}" '
+            f'height="{label["h"]:.0f}" as="geometry"/></mxCell>'
+        )
+        logic = stage["logic_box"]
+        parts.append(
+            f'<mxCell id="stage_{stage["id"]}_logic" value="{html_escape(stage["logic_label"])}" '
+            f'style="ellipse;whiteSpace=wrap;html=1;fillColor={style["logic_fill"]};'
+            f'strokeColor={style["logic_stroke"]};fontColor={style["text"]};fontStyle=1;fontSize=17;'
+            f'fontFamily=Microsoft YaHei;" vertex="1" parent="1">'
+            f'<mxGeometry x="{logic["x"]:.0f}" y="{logic["y"]:.0f}" width="{logic["w"]:.0f}" '
+            f'height="{logic["h"]:.0f}" as="geometry"/></mxCell>'
+        )
+        method = stage["method_box"]
+        parts.append(
+            f'<mxCell id="stage_{stage["id"]}_method" value="{html_escape(stage["method_label"])}" '
+            f'style="ellipse;whiteSpace=wrap;html=1;fillColor={style["method_fill"]};'
+            f'strokeColor={style["method_stroke"]};fontColor={style["text"]};fontSize=16;'
+            f'fontFamily=Microsoft YaHei;" vertex="1" parent="1">'
+            f'<mxGeometry x="{method["x"]:.0f}" y="{method["y"]:.0f}" width="{method["w"]:.0f}" '
+            f'height="{method["h"]:.0f}" as="geometry"/></mxCell>'
+        )
+
+    for index, arrow in enumerate(layout.get("side_arrows") or [], start=1):
+        shape = "leftArrow" if arrow["direction"] == "left" else "rightArrow"
+        parts.append(
+            f'<mxCell id="template_arrow_{index}" value="" '
+            f'style="shape={shape};whiteSpace=wrap;html=1;fillColor=#FFFFFF;'
+            f'strokeColor={style["template_arrow"]};" vertex="1" parent="1">'
+            f'<mxGeometry x="{arrow["x"]:.0f}" y="{arrow["y"]:.0f}" width="{arrow["w"]:.0f}" '
+            f'height="{arrow["h"]:.0f}" as="geometry"/></mxCell>'
+        )
+    for index, segment in enumerate(layout.get("spine_segments") or [], start=1):
+        parts.append(
+            f'<mxCell id="template_spine_{index}" value="" '
+            f'style="edgeStyle=none;rounded=0;curved=0;html=1;endArrow=block;endFill=1;'
+            f'strokeColor={style["template_spine"]};strokeWidth=5;" edge="1" parent="1">'
+            f'<mxGeometry relative="1" as="geometry"><mxPoint x="{segment["x1"]:.0f}" '
+            f'y="{segment["y1"]:.0f}" as="sourcePoint"/><mxPoint x="{segment["x2"]:.0f}" '
+            f'y="{segment["y2"]:.0f}" as="targetPoint"/></mxGeometry></mxCell>'
+        )
+
+    nodes = layout["nodes"]
+    for stage in route["stages"]:
+        for node in stage["nodes"]:
+            if node["id"] not in nodes:
+                continue
+            box = nodes[node["id"]]
+            parts.append(
+                f'<mxCell id="{node["id"]}" value="{html_escape(node["label"])}" '
+                f'tooltip="{html_escape(node.get("detail", ""))}" '
+                f'style="rounded=0;whiteSpace=wrap;html=1;fillColor={style["node_fill"]};'
+                f'strokeColor={style["template_border"]};dashed=1;dashPattern=5 4;'
+                f'fontColor={style["text"]};fontStyle=1;fontSize=17;fontFamily=Microsoft YaHei;" '
+                f'vertex="1" parent="1"><mxGeometry x="{box["x"]:.0f}" y="{box["y"]:.0f}" '
+                f'width="{box["w"]:.0f}" height="{box["h"]:.0f}" as="geometry"/></mxCell>'
+            )
+    parts.extend(["</root>", "</mxGraphModel>", "</diagram>", "</mxfile>"])
+    return "\n".join(parts)
+
+
 def make_drawio(route):
     layout = build_layout(route)
     route = layout["route"]
     style = get_style(route)
+    if layout["orientation"] == "research-framework-template":
+        return make_research_framework_drawio(layout, route, style)
     nodes = layout["nodes"]
     page_w = max(1200, int(layout["width"] + 80))
     page_h = max(800, int(layout["height"] + 80))

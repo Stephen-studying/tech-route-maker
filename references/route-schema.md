@@ -12,6 +12,7 @@ Current schema version: `0.3.0`.
 | `title` | yes | Visible diagram title. |
 | `subtitle` | no | Optional visible subtitle. |
 | `selected_preset` | yes | `academic-method`, `thesis-proposal`, `engineering-system`, `workflow-pipeline`, or `custom`. |
+| `template_id` | required for template layouts | Structural template ID from `references/template-catalog.md`. |
 | `layout` | recommended | Renderer layout ID. |
 | `style` | recommended | Renderer visual style ID. |
 | `domain_context` | recommended for drafts; required for final diagrams | Discipline, subfield, project type, research object, method family, constraints and metrics. |
@@ -64,6 +65,17 @@ Use `domain_context` to prevent generic, field-agnostic diagrams.
 - `is_inferred`: boolean. Use `true` only when the node is not directly stated in the source.
 - `evidence`: source-grounding list.
 
+## Template stage fields
+
+The `cn-three-column-research-framework` template requires these fields on every stage:
+
+- `logic_label`: left research-logic oval, such as `提出问题` or `分析问题（机理探究）`.
+- `content_label`: narrow vertical label inside the central group.
+- `method_label`: right research-method oval.
+- `nodes`: 2–3 central research-content rows.
+
+This template requires 4–6 stages. Keep `renderer_overrides.show_edge_labels` and `renderer_overrides.show_node_edges` set to `false`.
+
 ## Evidence fields
 
 - `kind`: use `source` for node-grounding records.
@@ -92,6 +104,7 @@ Use `domain_context` to prevent generic, field-agnostic diagrams.
 
 - `route_version` must exist.
 - `selected_preset` must be valid.
+- A template layout must declare a supported `template_id` and use its required layout.
 - Final diagrams require complete `domain_context`; missing or partial context blocks final rendering.
 - Stages should usually be 4 to 7.
 - Each stage should usually contain 2 to 6 nodes.

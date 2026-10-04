@@ -1,5 +1,6 @@
 from copy import deepcopy
 
+from .templates import apply_template, template_stage_skeleton
 
 ROUTE_VERSION = "0.3.0"
 
@@ -94,8 +95,9 @@ PRESETS = {
     "chinese-thesis-proposal": {
         "purpose": "Chinese thesis proposal poster route",
         "outputs": ["pptx", "svg", "drawio", "html", "json"],
-        "layout": "cn-proposal-poster-route",
-        "style": "cn-polished-pastel-academic",
+        "layout": "cn-three-column-research-framework",
+        "style": "cn-classic-research-framework",
+        "template_id": "cn-three-column-research-framework",
         "source_type": "proposal",
         "audience": "research",
     },
@@ -166,11 +168,12 @@ def selected_output_formats(route):
     return [str(item).lower() for item in formats]
 
 
-def make_template_route(preset="academic-method"):
+def make_template_route(preset="academic-method", template_id=None):
     if preset not in PRESETS:
         preset = "academic-method"
     config = PRESETS[preset]
     source_path = "source.md"
+    resolved_template = template_id or config.get("template_id")
     route = {
         "route_version": ROUTE_VERSION,
         "title": "Project Technical Route",
@@ -352,4 +355,36 @@ def make_template_route(preset="academic-method"):
         "citations": [],
         "renderer_overrides": {},
     }
+    if resolved_template:
+        route = apply_template(route, resolved_template)
+        stages = template_stage_skeleton(resolved_template, source_path)
+        if stages:
+            route["stages"] = stages
+            route["edges"] = []
+            inferred_ids = [
+                node["id"]
+                for stage in stages
+                for node in stage["nodes"]
+            ]
+            route["assumptions"] = [
+                {
+                    "id": "assumption_1",
+                    "node_ids": inferred_ids,
+                    "text": "Template labels are placeholders until replaced with source-grounded project content.",
+                    "reason": "A structural template cannot know discipline-specific content before source review.",
+                    "impact": "high",
+                }
+            ]
+            route["unresolved_questions"] = [
+                {
+                    "id": "question_1",
+                    "text": "Which source file should be treated as authoritative?",
+                    "needed_input": "Provide the manuscript, proposal, project brief, or repository path.",
+                },
+                {
+                    "id": "question_2",
+                    "text": "What discipline-specific content should fill the logic, content, and method columns?",
+                    "needed_input": "Provide the field, research object, methods, validation logic, and expected outputs.",
+                },
+            ]
     return route

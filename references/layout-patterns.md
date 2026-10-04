@@ -15,6 +15,7 @@ Only the identifiers in this document are accepted by the validator. Unknown or 
 | `cn-wide-project-map` | Chinese engineering reports and energy systems | Wide project map with work packages and explicit system boundary. |
 | `cn-ppt-mainline-route` | Defense PPT and formal project presentations | 16:9 five-stage mainline, up to six support nodes per stage and a final-output bar. |
 | `cn-a4-stage-route` | Word, thesis and portrait report figures | Centered vertical stage sections without a left phase axis; up to six nodes per stage. |
+| `cn-three-column-research-framework` | Chinese thesis, grant and project applications | Left research logic, central content matrix and right research methods; 4 to 6 stages. |
 | `cn-proposal-poster-route` | Chinese opening reports and long research routes | Top-to-bottom proposal poster with a visible phase axis. |
 | `cn-grant-application-route` | Chinese grants and project applications | Dense reviewer-facing stages for questions, content, methods, validation and outputs. |
 | `cn-monochrome-linework-route` | Print-safe grant or report figures | Proposal route rendered with restrained monochrome linework. |

@@ -50,6 +50,7 @@ Most diagram tools create static figures or one-off drawings. They are hard to a
 | Draw.io copy code | Generates `tech-route.drawio-code.xml` that users can paste into [diagrams.net / draw.io](https://app.diagrams.net/) through **Extras > Edit Diagram**. |
 | Domain-aware extraction | Separates computer vision, materials, energy systems, biomedical, mechanical, environmental and social-science route grammar. |
 | Research and engineering presets | Provides templates for academic methods, thesis proposals, engineering systems and technical workflows. |
+| Structural template library | Applies role-aware geometry through six fillable template families. |
 | Verified source manifest | Resolves source paths and checks SHA-256 hashes before evidence is trusted. |
 | Strict final-quality gate | Blocks final rendering when domain context, evidence, source hashes or unresolved questions are incomplete. |
 | Quality report | Separates evidence coverage, inferred coverage and accounted coverage instead of counting inference as evidence. |
@@ -69,6 +70,38 @@ Most diagram tools create static figures or one-off drawings. They are hard to a
 | `engineering-project-report-cn` | A Chinese engineering report, platform map or energy-system route needs a wide project diagram. | `pptx`, `svg`, `drawio`, `html`, `json` |
 
 The skill offers preset defaults, then confirms final formats, target medium, layout and style in one concise grouped choice. It does not silently guess these delivery preferences.
+
+## Structural Template Library
+
+Run `trm templates` to list six fillable template families. An agent applies an explicitly selected template directly and asks the user when the choice is ambiguous. Discipline context and project facts still require source verification.
+
+| Template | Best use |
+|---|---|
+| `cn-three-column-research-framework` | Research logic, content matrix and methods in three columns |
+| `cn-horizontal-defense-mainline` | 16:9 defense and project presentation slides |
+| `cn-a4-stacked-research` | Word, thesis and portrait report figures |
+| `cn-method-matrix-board` | Paper method overviews and research matrices |
+| `cn-monochrome-review-route` | Monochrome print and formal review |
+| `cn-engineering-layer-map` | Energy, control, platform and engineering systems |
+
+Example agent request:
+
+> Use tech-route-maker with the three-column research framework template. Read my project materials and output PPTX, SVG and Draw.io.
+
+CLI workflow:
+
+```bash
+trm templates
+trm init --template cn-three-column-research-framework --output work/tech-route.json
+```
+
+The generated skeleton requires project content, domain context and verified source evidence before strict validation and final rendering. See the [template catalog](references/template-catalog.md).
+
+### Template Example
+
+![Three-column research framework example](examples/template-library-demo/outputs/tech-route.svg)
+
+[Full walkthrough](examples/template-library-demo/) · [Editable PPTX](examples/template-library-demo/outputs/tech-route.pptx) · [SVG](examples/template-library-demo/outputs/tech-route.svg) · [Draw.io](examples/template-library-demo/outputs/tech-route.drawio) · [Copyable XML](examples/template-library-demo/outputs/tech-route.drawio-code.xml)
 
 ## Gallery
 
@@ -103,6 +136,7 @@ git clone https://github.com/Stephen-studying/tech-route-maker.git
 cd tech-route-maker
 python -m pip install -e .
 trm doctor
+trm templates
 trm validate examples/academic-paper-demo/outputs/tech-route.json --strict
 trm render examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,drawio-code,excalidraw,mermaid,html,markdown,json
 ```

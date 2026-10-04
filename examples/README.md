@@ -6,6 +6,7 @@ The optional `assets/github-visual-preview.png` image on the repository homepage
 
 | Demo | Audience | Layout | Style | Preview |
 |---|---|---|---|---|
+| [Three-column template library demo](template-library-demo/) | Chinese proposal, grant or project application | Three-column research framework | Classic research framework | [SVG](template-library-demo/outputs/tech-route.svg) |
 | [Academic paper method route](academic-paper-demo/) | Chinese paper or defense | Chinese research method matrix | Blue-green proposal | [SVG](academic-paper-demo/outputs/tech-route.svg) |
 | [Thesis proposal technical route](thesis-proposal-demo/) | Chinese thesis, opening report, research plan | Chinese proposal poster route | Polished pastel academic | [SVG](thesis-proposal-demo/outputs/tech-route.svg) |
 | [Chinese grant application route](chinese-grant-application-demo/) | Grant, project application, reviewer-facing route | Chinese grant application route | Soft grant report | [SVG](chinese-grant-application-demo/outputs/tech-route.svg) |
@@ -21,6 +22,8 @@ The optional `assets/github-visual-preview.png` image on the repository homepage
 ## Render All Demo Outputs
 
 ```bash
+python scripts/build_template_demo.py
+python scripts/render_all.py examples/template-library-demo/outputs/tech-route.json examples/template-library-demo/outputs --formats pptx,svg,drawio,drawio-code,html,json
 python scripts/render_all.py examples/academic-paper-demo/outputs/tech-route.json examples/academic-paper-demo/outputs --formats pptx,svg,drawio,drawio-code,html,markdown,json
 python scripts/render_all.py examples/thesis-proposal-demo/outputs/tech-route.json examples/thesis-proposal-demo/outputs --formats pptx,svg,drawio,drawio-code,html,markdown,json
 python scripts/render_all.py examples/chinese-grant-application-demo/outputs/tech-route.json examples/chinese-grant-application-demo/outputs --formats pptx,svg,drawio,drawio-code,html,markdown,json

@@ -48,6 +48,17 @@ Always record the selected preset and output formats in `selected_preset` and `m
 Always record the discipline-specific context in `domain_context`.
 Always state that generated editable files are drafts that require factual, wording and visual revision before publication or submission.
 
+## Template-First Policy
+
+Use structural templates before visual styles. A template defines semantic roles, geometry, density and connector rules; a visual style changes only color and typography.
+
+- Read `references/template-catalog.md` whenever the user asks to 套用模板、参考某张图、复刻版式、使用模板库 or choose a reusable academic layout.
+- If the user explicitly names a template or supplies a structurally matching reference image, apply that template directly.
+- If several structures fit and the user has not delegated the choice, show the six template names from the catalog and ask one concise question. Do not infer a template from discipline or color alone.
+- For the common Chinese academic layout with left research logic, central research content and right research methods, use `cn-three-column-research-framework`.
+- Populate `template_id`, then fill each template role from source evidence before rendering.
+- Never fall back to dense node-to-node auto-routing inside a template.
+
 ## Domain Context Policy
 
 Technical route diagrams are domain-sensitive. A diagram for computer vision, materials science, energy engineering, biomedical research, mechanical control, environmental field studies and social science should not share the same semantic grammar.
@@ -113,8 +124,9 @@ chinese-thesis-proposal:
   purpose: Chinese thesis/proposal poster route
   trigger_hints: [中文技术路线图, 开题报告, 课题申报, 论文技术路线, 研究方案, 毕设, 学位论文]
   outputs: [pptx, svg, drawio, html, json]
-  layout: cn-proposal-poster-route
-  style: cn-polished-pastel-academic
+  template: cn-three-column-research-framework
+  layout: cn-three-column-research-framework
+  style: cn-classic-research-framework
 
 chinese-grant-application:
   purpose: Chinese grant or project application route
@@ -184,6 +196,7 @@ Advanced layout families:
 13. `cn-monochrome-linework-route`
 14. `cn-ppt-mainline-route`
 15. `cn-a4-stage-route`
+16. `cn-three-column-research-framework`
 
 Advanced visual styles:
 
@@ -202,6 +215,16 @@ Advanced visual styles:
 13. `cn-soft-grant-report`
 14. `cn-reviewer-linework`
 15. `cn-defense-poster`
+16. `cn-classic-research-framework`
+
+Advanced structural templates:
+
+1. `cn-three-column-research-framework`
+2. `cn-horizontal-defense-mainline`
+3. `cn-a4-stacked-research`
+4. `cn-method-matrix-board`
+5. `cn-monochrome-review-route`
+6. `cn-engineering-layer-map`
 
 ## Workflow
 
@@ -219,7 +242,7 @@ Advanced visual styles:
    - Inputs, outputs, artifacts, variables, metrics, claims, evidence and risk items.
    - For papers: figure slot, reader question, caption burden and terminology/acronym integrity.
    - For engineering: system boundary, modules, data/energy/material flow, validation and deliverables.
-4. Select the closest preset and output bundle using the default policy.
+4. Select or confirm a structural template, then select the closest preset and output bundle.
 5. Extract a route model with this minimum logic:
    `problem or objective -> inputs/data -> methods/modules -> implementation/training/inference -> validation/evaluation -> outputs/applications`.
 6. Create or update `tech-route.json` before rendering any user-facing format.
@@ -245,6 +268,14 @@ Use concise node labels:
 - Compress repeated actors, samples, panels, rows, arrows or equivalent flows unless each visible repetition adds source-grounded meaning.
 - Keep edge labels in `tech-route.json`, HTML, Markdown and quality reports by default. Do not render them on the main diagram canvas unless the user explicitly enables `renderer_overrides.show_edge_labels`, because labels on connector lines often collide with arrows and node text.
 - Keep node-to-node semantic edges out of the main diagram by default. Render a small number of straight stage-to-stage arrows instead. Only render node-level edges when the user explicitly enables `renderer_overrides.show_node_edges`.
+
+For `cn-three-column-research-framework`, use:
+
+- `stage.logic_label` for the left research-logic oval.
+- `stage.content_label` for the narrow central vertical label.
+- `stage.nodes` for 2–3 central research-content rows.
+- `stage.method_label` for the right research-method oval.
+- 4–6 stages, no visible edge labels, no node-level connectors and no rounded web-card containers.
 
 ## Output Formats
 
@@ -297,7 +328,7 @@ Read `references/github-projects.md` when deciding what to reuse or cite. Use pe
 
 ## Scripts
 
-All scripts accept a route JSON file and write output files. They use Python standard library only unless clearly stated.
+All scripts accept a route JSON file and write output files. PPTX rendering requires `python-pptx>=1.0.0`; installing the package with `pip install -e .` installs this dependency.
 
 Common legacy commands:
 
@@ -323,6 +354,8 @@ trm render outputs/tech-route.json outputs --formats pptx,svg,drawio,drawio-code
 trm render outputs/tech-route.json outputs --formats pptx,svg,json --allow-draft
 trm ingest source-files --output-dir evidence-pack
 trm init --preset academic-method --output tech-route.json
+trm templates
+trm init --template cn-three-column-research-framework --output tech-route.json
 trm doctor
 ```
 

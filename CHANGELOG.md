@@ -4,6 +4,23 @@
 
 No unreleased changes.
 
+## 0.4.0 - 2026-07-30
+
+Template-driven academic route release.
+
+Added:
+
+- Six reusable structural templates exposed through `trm templates` and `trm init --template`.
+- `cn-three-column-research-framework` with separate research-logic, research-content and research-method roles.
+- Template-specific schema fields, validation rules, geometry QA and a source-verified campus energy example.
+- Editable PPTX, SVG, Draw.io, Draw.io code, HTML and JSON output for the three-column template.
+
+Fixed:
+
+- Replaced the invalid hand-written PPTX package with native `python-pptx` shapes that open in Microsoft PowerPoint.
+- Removed theme shadows from generated PPTX shapes and preserved explicit Chinese line breaks in side labels.
+- Prevented template diagrams from falling back to dense node-to-node auto-routing or visible edge labels.
+
 ## 0.3.0 - 2026-07-12
 
 Evidence integrity, strict rendering and portable installation release.

@@ -1,0 +1,517 @@
+{
+  "route_version": "0.3.0",
+  "title": "校园源网荷储协同优化技术路线",
+  "subtitle": "",
+  "selected_preset": "chinese-thesis-proposal",
+  "template_id": "cn-three-column-research-framework",
+  "layout": "cn-three-column-research-framework",
+  "style": "cn-classic-research-framework",
+  "domain_context": {
+    "discipline": "能源动力与电气工程",
+    "subfield": "校园综合能源系统优化运行",
+    "project_type": "项目申请技术路线图",
+    "research_object": "校园光伏、储能、负荷与电网协同系统",
+    "method_family": "预测、优化调度与场景仿真",
+    "application_area": "校园综合能源管理",
+    "data_or_materials": [
+      "校园负荷数据",
+      "光伏资源数据",
+      "储能状态数据"
+    ],
+    "technical_objects": [
+      "短期预测模型",
+      "多目标优化模型",
+      "协同调度策略"
+    ],
+    "domain_constraints": [
+      "并网功率约束",
+      "储能 SOC 约束",
+      "设备运行边界"
+    ],
+    "evaluation_metrics": [
+      "运行成本",
+      "碳排放",
+      "供能可靠性"
+    ],
+    "expected_outputs": [
+      "协同调度策略",
+      "仿真评价结果",
+      "实施建议"
+    ],
+    "terminology": {
+      "SOC": "储能荷电状态"
+    },
+    "domain_profile": {
+      "family": "energy-system"
+    },
+    "source": "examples/template-library-demo/source/project-brief.md",
+    "confidence": "high"
+  },
+  "metadata": {
+    "created_by": "tech-route-maker",
+    "template_id": "cn-three-column-research-framework",
+    "template_name": "三栏科研框架图",
+    "template_headers": {
+      "logic": "研究框架",
+      "content": "研究内容",
+      "method": "研究方法"
+    },
+    "selected_output_formats": [
+      "pptx",
+      "svg",
+      "drawio",
+      "html",
+      "json"
+    ],
+    "source_type": "proposal",
+    "source_files": [
+      {
+        "id": "source_1",
+        "path": "examples/template-library-demo/source/project-brief.md",
+        "kind": "document",
+        "description": "Source-verified campus energy project brief",
+        "sha256": "9e475945868b52fdc1cf619f7e4a566d7a5396514a76a77d1403922daa6dca96"
+      }
+    ],
+    "source_hashes": [
+      {
+        "source_id": "source_1",
+        "path": "examples/template-library-demo/source/project-brief.md",
+        "algorithm": "sha256",
+        "value": "9e475945868b52fdc1cf619f7e4a566d7a5396514a76a77d1403922daa6dca96"
+      }
+    ],
+    "language": "zh-CN",
+    "audience": "research"
+  },
+  "stages": [
+    {
+      "id": "system_model",
+      "title": "系统建模",
+      "content_label": "系统建模",
+      "logic_label": "提出问题",
+      "method_label": "文献调研与\n理论分析法",
+      "order": 1,
+      "nodes": [
+        {
+          "id": "system_model_1",
+          "label": "校园负荷与光伏资源",
+          "detail": "项目简要说明中的“校园负荷与光伏资源”任务。",
+          "tag": "source-grounded",
+          "node_type": "content",
+          "confidence": "high",
+          "is_inferred": false,
+          "evidence": [
+            {
+              "kind": "source",
+              "source_id": "source_1",
+              "path": "examples/template-library-demo/source/project-brief.md",
+              "locator": "校园负荷与光伏资源",
+              "quote_or_note": "项目简要说明明确列出“校园负荷与光伏资源”。"
+            }
+          ]
+        },
+        {
+          "id": "system_model_2",
+          "label": "源网荷储系统边界",
+          "detail": "项目简要说明中的“源网荷储系统边界”任务。",
+          "tag": "source-grounded",
+          "node_type": "content",
+          "confidence": "high",
+          "is_inferred": false,
+          "evidence": [
+            {
+              "kind": "source",
+              "source_id": "source_1",
+              "path": "examples/template-library-demo/source/project-brief.md",
+              "locator": "源网荷储系统边界",
+              "quote_or_note": "项目简要说明明确列出“源网荷储系统边界”。"
+            }
+          ]
+        },
+        {
+          "id": "system_model_3",
+          "label": "协同优化目标定义",
+          "detail": "项目简要说明中的“协同优化目标定义”任务。",
+          "tag": "source-grounded",
+          "node_type": "content",
+          "confidence": "high",
+          "is_inferred": false,
+          "evidence": [
+            {
+              "kind": "source",
+              "source_id": "source_1",
+              "path": "examples/template-library-demo/source/project-brief.md",
+              "locator": "协同优化目标定义",
+              "quote_or_note": "项目简要说明明确列出“协同优化目标定义”。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "state_forecast",
+      "title": "状态预测",
+      "content_label": "状态预测",
+      "logic_label": "分析问题\n（状态感知）",
+      "method_label": "数据驱动\n预测方法",
+      "order": 2,
+      "nodes": [
+        {
+          "id": "state_forecast_1",
+          "label": "光伏出力短期预测",
+          "detail": "项目简要说明中的“光伏出力短期预测”任务。",
+          "tag": "source-grounded",
+          "node_type": "content",
+          "confidence": "high",
+          "is_inferred": false,
+          "evidence": [
+            {
+              "kind": "source",
+              "source_id": "source_1",
+              "path": "examples/template-library-demo/source/project-brief.md",
+              "locator": "光伏出力短期预测",
+              "quote_or_note": "项目简要说明明确列出“光伏出力短期预测”。"
+            }
+          ]
+        },
+        {
+          "id": "state_forecast_2",
+          "label": "校园负荷短期预测",
+          "detail": "项目简要说明中的“校园负荷短期预测”任务。",
+          "tag": "source-grounded",
+          "node_type": "content",
+          "confidence": "high",
+          "is_inferred": false,
+          "evidence": [
+            {
+              "kind": "source",
+              "source_id": "source_1",
+              "path": "examples/template-library-demo/source/project-brief.md",
+              "locator": "校园负荷短期预测",
+              "quote_or_note": "项目简要说明明确列出“校园负荷短期预测”。"
+            }
+          ]
+        },
+        {
+          "id": "state_forecast_3",
+          "label": "储能 SOC 状态估计",
+          "detail": "项目简要说明中的“储能 SOC 状态估计”任务。",
+          "tag": "source-grounded",
+          "node_type": "content",
+          "confidence": "high",
+          "is_inferred": false,
+          "evidence": [
+            {
+              "kind": "source",
+              "source_id": "source_1",
+              "path": "examples/template-library-demo/source/project-brief.md",
+              "locator": "储能 SOC 状态估计",
+              "quote_or_note": "项目简要说明明确列出“储能 SOC 状态估计”。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "optimization",
+      "title": "优化决策",
+      "content_label": "优化决策",
+      "logic_label": "分析问题\n（优化决策）",
+      "method_label": "多目标优化与\n约束求解",
+      "order": 3,
+      "nodes": [
+        {
+          "id": "optimization_1",
+          "label": "经济、低碳与可靠性目标",
+          "detail": "项目简要说明中的“经济、低碳与可靠性目标”任务。",
+          "tag": "source-grounded",
+          "node_type": "content",
+          "confidence": "high",
+          "is_inferred": false,
+          "evidence": [
+            {
+              "kind": "source",
+              "source_id": "source_1",
+              "path": "examples/template-library-demo/source/project-brief.md",
+              "locator": "经济、低碳与可靠性目标",
+              "quote_or_note": "项目简要说明明确列出“经济、低碳与可靠性目标”。"
+            }
+          ]
+        },
+        {
+          "id": "optimization_2",
+          "label": "源储荷协同调度",
+          "detail": "项目简要说明中的“源储荷协同调度”任务。",
+          "tag": "source-grounded",
+          "node_type": "content",
+          "confidence": "high",
+          "is_inferred": false,
+          "evidence": [
+            {
+              "kind": "source",
+              "source_id": "source_1",
+              "path": "examples/template-library-demo/source/project-brief.md",
+              "locator": "源储荷协同调度",
+              "quote_or_note": "项目简要说明明确列出“源储荷协同调度”。"
+            }
+          ]
+        },
+        {
+          "id": "optimization_3",
+          "label": "并网功率与设备约束",
+          "detail": "项目简要说明中的“并网功率与设备约束”任务。",
+          "tag": "source-grounded",
+          "node_type": "content",
+          "confidence": "high",
+          "is_inferred": false,
+          "evidence": [
+            {
+              "kind": "source",
+              "source_id": "source_1",
+              "path": "examples/template-library-demo/source/project-brief.md",
+              "locator": "并网功率与设备约束",
+              "quote_or_note": "项目简要说明明确列出“并网功率与设备约束”。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "simulation",
+      "title": "仿真验证",
+      "content_label": "仿真验证",
+      "logic_label": "分析问题\n（运行验证）",
+      "method_label": "场景仿真与\n对比实验",
+      "order": 4,
+      "nodes": [
+        {
+          "id": "simulation_1",
+          "label": "典型日运行仿真",
+          "detail": "项目简要说明中的“典型日运行仿真”任务。",
+          "tag": "source-grounded",
+          "node_type": "content",
+          "confidence": "high",
+          "is_inferred": false,
+          "evidence": [
+            {
+              "kind": "source",
+              "source_id": "source_1",
+              "path": "examples/template-library-demo/source/project-brief.md",
+              "locator": "典型日运行仿真",
+              "quote_or_note": "项目简要说明明确列出“典型日运行仿真”。"
+            }
+          ]
+        },
+        {
+          "id": "simulation_2",
+          "label": "极端天气压力测试",
+          "detail": "项目简要说明中的“极端天气压力测试”任务。",
+          "tag": "source-grounded",
+          "node_type": "content",
+          "confidence": "high",
+          "is_inferred": false,
+          "evidence": [
+            {
+              "kind": "source",
+              "source_id": "source_1",
+              "path": "examples/template-library-demo/source/project-brief.md",
+              "locator": "极端天气压力测试",
+              "quote_or_note": "项目简要说明明确列出“极端天气压力测试”。"
+            }
+          ]
+        },
+        {
+          "id": "simulation_3",
+          "label": "基线策略对比验证",
+          "detail": "项目简要说明中的“基线策略对比验证”任务。",
+          "tag": "source-grounded",
+          "node_type": "content",
+          "confidence": "high",
+          "is_inferred": false,
+          "evidence": [
+            {
+              "kind": "source",
+              "source_id": "source_1",
+              "path": "examples/template-library-demo/source/project-brief.md",
+              "locator": "基线策略对比验证",
+              "quote_or_note": "项目简要说明明确列出“基线策略对比验证”。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "evaluation",
+      "title": "评价应用",
+      "content_label": "评价应用",
+      "logic_label": "解决问题\n（评价输出）",
+      "method_label": "综合评价法",
+      "order": 5,
+      "nodes": [
+        {
+          "id": "evaluation_1",
+          "label": "经济性与减排评价",
+          "detail": "项目简要说明中的“经济性与减排评价”任务。",
+          "tag": "source-grounded",
+          "node_type": "content",
+          "confidence": "high",
+          "is_inferred": false,
+          "evidence": [
+            {
+              "kind": "source",
+              "source_id": "source_1",
+              "path": "examples/template-library-demo/source/project-brief.md",
+              "locator": "经济性与减排评价",
+              "quote_or_note": "项目简要说明明确列出“经济性与减排评价”。"
+            }
+          ]
+        },
+        {
+          "id": "evaluation_2",
+          "label": "供能可靠性评价",
+          "detail": "项目简要说明中的“供能可靠性评价”任务。",
+          "tag": "source-grounded",
+          "node_type": "content",
+          "confidence": "high",
+          "is_inferred": false,
+          "evidence": [
+            {
+              "kind": "source",
+              "source_id": "source_1",
+              "path": "examples/template-library-demo/source/project-brief.md",
+              "locator": "供能可靠性评价",
+              "quote_or_note": "项目简要说明明确列出“供能可靠性评价”。"
+            }
+          ]
+        },
+        {
+          "id": "evaluation_3",
+          "label": "运行策略与实施建议",
+          "detail": "项目简要说明中的“运行策略与实施建议”任务。",
+          "tag": "source-grounded",
+          "node_type": "content",
+          "confidence": "high",
+          "is_inferred": false,
+          "evidence": [
+            {
+              "kind": "source",
+              "source_id": "source_1",
+              "path": "examples/template-library-demo/source/project-brief.md",
+              "locator": "运行策略与实施建议",
+              "quote_or_note": "项目简要说明明确列出“运行策略与实施建议”。"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "edges": [],
+  "assumptions": [],
+  "unresolved_questions": [],
+  "quality_report": {
+    "route_version": "0.3.0",
+    "selected_preset": "chinese-thesis-proposal",
+    "selected_output_formats": [
+      "pptx",
+      "svg",
+      "drawio",
+      "html",
+      "json"
+    ],
+    "domain_context_status": "complete",
+    "domain_context_missing_fields": [],
+    "domain_context": {
+      "discipline": "能源动力与电气工程",
+      "subfield": "校园综合能源系统优化运行",
+      "project_type": "项目申请技术路线图",
+      "research_object": "校园光伏、储能、负荷与电网协同系统",
+      "method_family": "预测、优化调度与场景仿真",
+      "application_area": "校园综合能源管理",
+      "data_or_materials": [
+        "校园负荷数据",
+        "光伏资源数据",
+        "储能状态数据"
+      ],
+      "technical_objects": [
+        "短期预测模型",
+        "多目标优化模型",
+        "协同调度策略"
+      ],
+      "domain_constraints": [
+        "并网功率约束",
+        "储能 SOC 约束",
+        "设备运行边界"
+      ],
+      "evaluation_metrics": [
+        "运行成本",
+        "碳排放",
+        "供能可靠性"
+      ],
+      "expected_outputs": [
+        "协同调度策略",
+        "仿真评价结果",
+        "实施建议"
+      ],
+      "terminology": {
+        "SOC": "储能荷电状态"
+      },
+      "domain_profile": {
+        "family": "energy-system"
+      },
+      "source": "examples/template-library-demo/source/project-brief.md",
+      "confidence": "high"
+    },
+    "stage_count": 5,
+    "node_count": 15,
+    "edge_count": 0,
+    "evidence_node_count": 15,
+    "evidence_coverage": 1.0,
+    "inferred_node_count": 0,
+    "inferred_coverage": 0.0,
+    "linked_inferred_node_count": 0,
+    "unlinked_inferred_nodes": [],
+    "accounted_coverage": 1.0,
+    "unresolved_question_count": 0,
+    "long_label_nodes": [],
+    "stages_with_too_many_nodes": [],
+    "stages_with_too_few_nodes": [],
+    "missing_evidence_nodes": [],
+    "evidence_issues": [],
+    "source_verification": {
+      "status": "verified",
+      "declared_count": 1,
+      "verified_count": 1,
+      "missing_sources": [],
+      "unhashed_sources": [],
+      "hash_mismatches": [],
+      "duplicate_source_ids": [],
+      "records": [
+        {
+          "source_id": "source_1",
+          "path": "examples/template-library-demo/source/project-brief.md",
+          "kind": "document",
+          "expected_sha256": "9e475945868b52fdc1cf619f7e4a566d7a5396514a76a77d1403922daa6dca96",
+          "actual_sha256": "9e475945868b52fdc1cf619f7e4a566d7a5396514a76a77d1403922daa6dca96",
+          "status": "verified"
+        }
+      ]
+    },
+    "confidence_summary": {
+      "high": 15
+    },
+    "warnings": [],
+    "suggested_manual_review": [
+      "Check whether the diagram matches the stated discipline, subfield, research object, method family, constraints, and metrics.",
+      "Check every technical term and evidence locator against the authoritative source.",
+      "Replace or approve inferred nodes before treating the diagram as final.",
+      "Check edge labels, route logic, spacing, text wrapping, and final deliverables.",
+      "Edit the PPTX, SVG, or Draw.io output before publication; generated files are editable drafts."
+    ]
+  },
+  "citations": [],
+  "renderer_overrides": {
+    "show_edge_labels": false,
+    "show_node_edges": false
+  }
+}

@@ -83,6 +83,31 @@ def verify_layout(route):
             for second_id, second in boxes[index + 1 :]:
                 if rects_overlap(first, second):
                     errors.append(f"Node boxes overlap in {stage_id}: {first_id}, {second_id}")
+    if layout.get("orientation") == "research-framework-template":
+        stages = layout.get("stages") or []
+        if not 4 <= len(stages) <= 6:
+            errors.append("Three-column template must have 4 to 6 stages")
+        for index, stage in enumerate(stages):
+            for role in ("logic_box", "method_box", "content_label_box"):
+                box = stage.get(role)
+                if not box:
+                    errors.append(f"Template stage is missing {role}: {stage['id']}")
+                    continue
+                if (
+                    box["x"] < 0
+                    or box["y"] < 0
+                    or box["x"] + box["w"] > layout["width"]
+                    or box["y"] + box["h"] > layout["height"]
+                ):
+                    errors.append(f"Template role box leaves canvas: {stage['id']} {role}")
+            if index and rects_overlap(stages[index - 1], stage):
+                errors.append(
+                    f"Template stage groups overlap: {stages[index - 1]['id']}, {stage['id']}"
+                )
+        if len(layout.get("spine_segments") or []) != max(0, len(stages) - 1):
+            errors.append("Template logic spine does not connect every adjacent stage")
+        if len(layout.get("side_arrows") or []) != 2 + len(stages) * 2:
+            errors.append("Template side-arrow count does not match headers and stages")
     return errors
 
 

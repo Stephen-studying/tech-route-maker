@@ -1,6 +1,6 @@
 interface:
   display_name: "Tech Route Maker"
-  short_description: "Create evidence-grounded editable route diagrams for research and engineering."
-  default_prompt: "Use $tech-route-maker to turn my research or engineering source material into an editable technical route diagram."
+  short_description: "Create source-grounded editable research and engineering route diagrams from structural templates."
+  default_prompt: "Use $tech-route-maker to select a structural template, map my source evidence into it, and render editable PPTX, SVG, Draw.io, HTML, or JSON outputs."
 policy:
   allow_implicit_invocation: true

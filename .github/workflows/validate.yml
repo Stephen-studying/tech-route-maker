@@ -77,6 +77,6 @@ jobs:
           set -euo pipefail
           python -m pip wheel . --no-deps --no-build-isolation --wheel-dir /tmp/wheels
           python -m venv /tmp/trm-wheel-venv
-          /tmp/trm-wheel-venv/bin/python -m pip install /tmp/wheels/tech_route_maker-0.3.0-py3-none-any.whl --no-deps
+          /tmp/trm-wheel-venv/bin/python -m pip install /tmp/wheels/tech_route_maker-*.whl --no-deps
           /tmp/trm-wheel-venv/bin/trm doctor
           /tmp/trm-wheel-venv/bin/trm render examples/academic-paper-demo/outputs/tech-route.json /tmp/wheel-render --formats svg,drawio,json

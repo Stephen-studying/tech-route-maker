@@ -2,6 +2,9 @@
 
 
 LAYOUT_FAMILIES = {
+    "research-framework-template": {
+        "cn-three-column-research-framework",
+    },
     "matrix": {
         "academic-method-framework",
         "proposal-matrix-route",
@@ -51,6 +54,7 @@ SUPPORTED_STYLES = frozenset(
         "cn-blue-green-proposal",
         "cn-defense-poster",
         "cn-polished-pastel-academic",
+        "cn-classic-research-framework",
         "cn-reviewer-linework",
         "cn-soft-grant-report",
         "dark-technical",
